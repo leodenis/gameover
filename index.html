@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8" />
+        <title>index</title>
+        <meta name="description" content="" />
+        <meta name="author" content="2012 : Game over ?" />
+        <!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    </head>
+    <body>
+        <div id='loader'>
+            <span id='avancementLoader'></span>
+        </div>
+        <header>
+            LOGO
+        </header>
+        <div id='centre'>
+            
+            <section id='video' display='none'>
+
+            </section> 
+            
+            <section id='accueil' display='none'>
+                
+            </section>
+
+            <section id='intro' display='none'>
+
+            </section>
+
+            <section id='question' display='none'>
+
+            </section>
+
+            <section id='histoire' display='none'>
+
+            </section>
+
+            <section id='score' display='none'>
+
+            </section>
+
+        </div>
+
+        <footer>
+
+            Footer
+        </footer>
+
+    </body>
+    <script type="text/javascript" src="assets/js/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="assets/js/jquery-ui-1.9.0.custom.min.js"></script>
+    <script type="text/javascript" src="assets/js/pxLoader/PxLoader.js"></script>
+    <script type="text/javascript" src="assets/js/pxLoader/PxLoaderImage.js"></script>
+    <script type="text/javascript" src="assets/js/pxLoader/PxLoaderSound.js"></script>
+    <script type="text/javascript" src="assets/js/pxLoader/PxLoaderVideo.js"></script>
+    <script type="text/javascript" src="assets/js/modernizr.js"></script>
+    <script type="text/javascript" src="assets/js/browser_detect.js"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script>
+    
+		/*Chargement des images & videos & sons */
+		var loader = new PxLoader(), backgroundImg = loader.addImage('assets/img/headerbg.jpg'), treesImg = loader.addImage('assets/img/trees.png'), ufoImg = loader.addImage('assets/img/ufo.png');
+		retina = loader.addImage('assets/img/image.jpg', 'tag1', 1);
+		var videoIntro = loader.addVideo('assets/video/intro.mp4', 'movie', 10)
+
+		// Quand tout est chargé je fais ça
+		loader.addCompletionListener(function() {
+             $('#avancementLoader').hide();
+             console.log(videoIntro);
+             $('#video').show().append(videoIntro);
+             videoIntro.play();
+		});
+		
+		videoIntro.addEventListener('ended',function(){
+		   $('#video').hide('clip');
+		   $('#accueil').append('<button id="start">Lancer le jeux</button>').show('clip');
+		})
+
+		//en cours de chargement
+		loader.addProgressListener(function(e) {
+			//console.log(e);
+		    $('#avancementLoader').text(e.completedCount+'/'+e.totalCount)
+		});
+
+		// télécharger le contenu
+		loader.start();
+		
+		console.log(BrowserDetect);
+		
+
+    </script>
+</html>
