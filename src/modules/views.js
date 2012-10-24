@@ -76,33 +76,33 @@ app.Views.home = Backbone.View.extend({
 		// Déclaration de référance (Demander a pumir si il existe mieux ~~)
 		var renderAccueil = this.renderAccueil;
 		
-		//On lance la vidéo si l'utilisateur n'a jamais vu celle-ci (localstorage a faire)
-		if(true){
+		//On lance la vidéo si l'utilisateur n'a jamais vu celle-ci
+		
+		if(app.users.get('1').attributes.videoWatch == false){	
+			app.users.get('1').attributes.videoWatch = true;
+			app.users.get('1').save();
 			this.loaderVideo(renderAccueil);
-			//this.renderAccueil();
-			
+		}else{
+			renderAccueil();
 		}
 		
 		
 	},
+	
 
 	loaderVideo : function(renderAccueil) {
-		//$('#videoIntro').html(app.Assets.videos.intro);
-		//app.Assets.videos.intro.play();
-		renderAccueil();
+		$('#videoIntro').html(app.Assets.videos.intro);
+		app.Assets.videos.intro.play();
 		app.Assets.videos.intro.addEventListener('ended',function(){
-		 	//jQuery('#videoIntro > video ').hide('clip'); 
-		 	//$('#videoIntro').remove();
+		 	$('#videoIntro').hide('clip'); 
 		 	renderAccueil();
 		})
 		
 	},
 	
 	renderAccueil: function(){
-		a = underscore.template(this.templateAccueil,{});
-		console.log(this.templateAccueil);
-		$('#Accueil').html('accueilHTML');
-		console.log(accueilHTML);
+		accueilHTML = underscore.template($('#templateAccueil').html(),{});
+		$('#Accueil').html(accueilHTML);
 		
 
 	}

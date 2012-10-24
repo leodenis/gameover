@@ -22,8 +22,18 @@ var app = {
   	this.loader = new PxLoader(); 
     // Initialisation du router, c'est lui qui va instancier nos vues
     this.router = new app.Router();
-    //Initialisation du model user
-    this.user = new app.Models.User({userAgent:BrowserDetect.browser,version:BrowserDetect.version});
+    //Essaye de récupérer un model dans le localstorage
+    this.users = new app.Collections.users();
+    this.users.fetch();
+    //si il n'existe pas je crée mon model de l'utilisateur 
+    if (typeof(this.users.get("1")) == 'undefined'){
+    	console.log("Création du model & collections");
+	    //Initialisation du model user
+	    this.user = new app.Models.user({userAgent:BrowserDetect.browser,version:BrowserDetect.version});
+	  	//Intialisation de la collection users et insertion de notre utilisateur
+	  	this.users = new app.Collections.users().add(this.user);
+	  	this.user.save();
+	}
    	//Met en route la surveillance de l'url
     Backbone.history.start();
   }

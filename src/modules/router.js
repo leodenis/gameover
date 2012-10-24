@@ -5,10 +5,15 @@ app.Router = Backbone.Router.extend({
   },
   routes: {
     '': 'root',
+    '#startGame' : "startGame"
   },
   // Root principal du site internet
   root: function () {
   	//Lancement de la view accueil
   	app.views.home = new app.Views.home();
+  },
+  
+  startGame: function() {
+  	alert('gogogo');
   }
 });

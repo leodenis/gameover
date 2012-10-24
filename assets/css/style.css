@@ -229,7 +229,7 @@ header {
 
 footer {
 	text-align: center;
-	
+
 	width: 100%;
 	min-height: 200px;
 	background: url("../img/trees-white.png") center bottom no-repeat;
@@ -268,4 +268,3 @@ header h1, footer p {
 #jeu img {
 	height: 150px;
 }
-

@@ -1,6 +1,7 @@
-app.Models.User = Backbone.Model.extend({
+app.Models.user = Backbone.Model.extend({
 	
 		defaults: {
+			id:1,
 			userAgent:'?',
 			version:'?',
 			videoWatch: false,
@@ -19,7 +20,6 @@ app.Models.User = Backbone.Model.extend({
 			],
 			totalPoint:0
 		},
-		
 		initialize : function User(){
 			console.log("Modèle de l'utilisateur initialisé");
 			this.bind("error", function(model, error){

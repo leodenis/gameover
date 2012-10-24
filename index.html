@@ -42,37 +42,33 @@
         </script>
         
         <!--Template de l'accueil-->
-         <script type="text/template" id="template">
-            <span style ='color:white' id="avancementLoader"><%= avancement %></span>
-        </script>
-        
-        <!--Template de l'accueil-->
         <script type="text/template" id="templateAccueil">
 
             <div id="container">
-
+            
             <section id="video" style="display='none';">
 
-            </section>
-
+            </section> 
+            
             <section id="accueil">
-            <div class="clearfix"> </div>
-
-            <section id="banner"> </section>
-
-            <section id="stats">
-
-            </section>
-
-            <section id="jeu">
-            <h2>ET TOI, PENSES-TU ÊTRE &Aacute; LA HAUTEUR ?</h2>
-            <br />
-            <h4>Vérifies tes chances de survie !</h4>
-            <br />
-            <img src="assets/img/go-m.png" alt="GO !" title="GO !" />
-            </section>
-
-            <div class="clearfix"> </div>
+                <div class="clearfix"> </div>
+                
+                <section id="banner"> </section>
+                
+                <section id="stats">
+                    
+                </section>
+                <a href='#startGame'>
+                    <section id="jeu">
+                        <h2>ET TOI, PENSES-TU ÊTRE &Aacute; LA HAUTEUR ?</h2>
+                        <br />
+                        <h4>Vérifies tes chances de survie !</h4>
+                        <br />
+                        <img src="assets/img/go-m.png" alt="GO !" title="GO !" />
+                    </section>
+                </a>
+                
+                <div class="clearfix"> </div>
             </section>
 
             <section id="intro" style="display='none';">
@@ -91,9 +87,8 @@
 
             </section>
 
-            </div>
+        </div>
 
-            <footer> </footer>
         </script>
         
 
@@ -106,6 +101,7 @@
     <script type="text/javascript" src="assets/js/modernizr.js"></script>
     <script type="text/javascript" src="assets/js/underscore-min.js"></script>
     <script type="text/javascript" src="assets/js/backbone.js"></script>
+    <script type="text/javascript" src="assets/js/backbone-localstorage.js"></script>
     <script type="text/javascript" src="assets/js/pxLoader/PxLoader.js"></script>
     <script type="text/javascript" src="assets/js/pxLoader/PxLoaderImage.js"></script>
     <script type="text/javascript" src="assets/js/pxLoader/PxLoaderSound.js"></script>
@@ -122,39 +118,5 @@
     <script type="text/javascript" src="src/modules/router.js"></script>
     <script type="text/javascript" src="src/modules/views.js"></script>
     <script type="text/javascript" src="src/modules/models.js"></script>
-
-    <script>
-		/* désactivation loader pour taf sur CSS
-
-		 // Chargement des images & videos & sons
-		 var loader = new PxLoader(), backgroundImg = loader.addImage('assets/img/headerbg.jpg'), treesImg = loader.addImage('assets/img/trees.png'), ufoImg = loader.addImage('assets/img/ufo.png');
-		 retina = loader.addImage('assets/img/image.jpg', 'tag1', 1);
-		 var videoIntro = loader.addVideo('assets/video/intro.mp4', 'movie', 10)
-
-		 // Quand tout est chargé je fais ça
-		 loader.addCompletionListener(function() {
-		 $('#avancementLoader').hide();
-		 console.log(videoIntro);
-		 $('#video').show().append(videoIntro);
-		 videoIntro.play();
-		 });
-
-		 videoIntro.addEventListener('ended',function(){
-		 $('#video').hide('clip');
-		 $('#accueil').append('<button id="start">Lancer le jeux</button>').show('clip');
-		 })
-
-		 // en cours de chargement
-		 loader.addProgressListener(function(e) {
-		 //console.log(e);
-		 $('#avancementLoader').text(e.completedCount+'/'+e.totalCount)
-		 });
-
-		 // télécharger le contenu
-		 loader.start();
-
-		 console.log(BrowserDetect);
-
-		 */
-    </script>
+    <script type="text/javascript" src="src/modules/collections.js"></script>
 </html>
