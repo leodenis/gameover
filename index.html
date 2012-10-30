@@ -24,21 +24,26 @@
         <div id="loader">
             
         </div>
-        <!---Zone de rendus de l'accueil-->
-        <div id='Accueil'> </div>
         
         <!---Zone de rendus de l'accueil-->
-        <div id='videoIntro'> </div>
+        <div id='videoIntro' style="display:none"> </div>
+        
+        <!---Zone de rendus de l'accueil-->
+        <div id='Accueil' style="display:none"> </div>
+    
+        <!---Zone de rendus question -->
+        <div id='question' style="display:none"> </div>
         
         
         <!---Footer statique du site -->
         <footer> </footer>
-
-
-        
+                
         <!---Template du loader-->
         <script type="text/template" id="templateLoader">
             <span style ='color:white' id="avancementLoader"><%= avancement %></span>
+            
+            kdsjkdsjdskjdsjdsksjdksjsdkjsdk
+            dksjsdkjdskjds
         </script>
         
         <!--Template de l'accueil-->
@@ -58,7 +63,7 @@
                 <section id="stats">
                     
                 </section>
-                <a href='#startGame'>
+                <a id='startGame'>
                     <section id="jeu">
                         <h2>ET TOI, PENSES-TU ÊTRE &Aacute; LA HAUTEUR ?</h2>
                         <br />
@@ -71,24 +76,27 @@
                 <div class="clearfix"> </div>
             </section>
 
-            <section id="intro" style="display='none';">
-
-            </section>
-
-            <section id="question" style="display='none';">
-
-            </section>
-
-            <section id="histoire" style="display='none';">
-
-            </section>
-
-            <section id="score" style="display='none';">
-
-            </section>
-
         </div>
 
+        </script>
+        
+        <!---Template d'animation entre chaque question & intro du début-->
+        <script type="text/template" id="introQuestionAnimation">
+            <h1><%= introQuestion %></h1>
+        </script>
+        
+        <!---Template du Introduction du jeux en street view-->
+        <script type="text/template" id="templateIntroStreet">
+           <div>introduction ~~</div><br/>
+           <span> Tu kiferai bien allez à la prochaine question non :p ? clique ici -> <a id='nextQuestion'>GOOOOOO QUESTION 1</a></span>
+           
+        </script>
+        
+        <!---Template question 1-->
+        <script type="text/template" id="templateQ1">
+           <div>Question 1 </div><br/>
+           <span> Tu kiferai bien allez à la prochaine question non :p ? clique ici -> <a id='nextQuestion'>GOOOOOO question 2</a></span>
+           
         </script>
         
 
@@ -107,10 +115,7 @@
     <script type="text/javascript" src="assets/js/pxLoader/PxLoaderSound.js"></script>
     <script type="text/javascript" src="assets/js/pxLoader/PxLoaderVideo.js"></script>
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-    <script>
-        underscore = _.noConflict();
-        delete window._;
-    </script>
+
     <!-- Base de l'application Backbone JS -->
     <script type="text/javascript" src="src/app.js"></script>
 
@@ -119,4 +124,5 @@
     <script type="text/javascript" src="src/modules/views.js"></script>
     <script type="text/javascript" src="src/modules/models.js"></script>
     <script type="text/javascript" src="src/modules/collections.js"></script>
+    <script type="text/javascript" src="src/modules/helper.js"></script>
 </html>
