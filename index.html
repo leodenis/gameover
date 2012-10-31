@@ -16,8 +16,8 @@
     </head>
     <body>
         <!---Header statique du site-->
-        <header>
-            <h1>2012 : GAME OVER ?</h1>
+        <header itemscope itemtype="http://schema.org/ItemList">
+            <h1 itemprop="keywords">2012 : GAME OVER ?</h1>
         </header>
         
         <!---Zone de rendus du loader-->
@@ -28,11 +28,11 @@
         <div id='Accueil'> </div>
         
         <!---Zone de rendus de l'accueil-->
-        <div id='videoIntro'> </div>
+        <div itemscope itemtype="http://schema.org/ItemList" itemprop="video" id='videoIntro'> </div>
         
         
         <!---Footer statique du site -->
-        <footer> </footer>
+        <footer itemscope itemtype="http://schema.org/ItemList" itemprop="copyrightYear"> </footer>
 
 
         
@@ -44,46 +44,47 @@
         <!--Template de l'accueil-->
         <script type="text/template" id="templateAccueil">
 
-            <div id="container">
+            <div itemscope itemtype="http://schema.org/ItemList" id="container">
             
-            <section id="video" style="display='none';">
+            <section itemprop="video" id="video" style="display='none';">
 
             </section> 
             
             <section id="accueil">
                 <div class="clearfix"> </div>
                 
-                <section id="banner"> </section>
+                <section itemprop="image" id="banner"> </section>
                 
-                <section id="stats">
+                <section itemprop="text" id="stats">
                     
                 </section>
-                <a href='#startGame'>
-                    <section id="jeu">
-                        <h2>ET TOI, PENSES-TU ÊTRE &Aacute; LA HAUTEUR ?</h2>
+
+                <a itemprop="url" href='#startGame'>
+                    <section itemprop="text" id="jeu">
+                        <h2 itemprop="keywords">ET TOI, PENSES-TU ÊTRE &Aacute; LA HAUTEUR ?</h2>
                         <br />
-                        <h4>Vérifies tes chances de survie !</h4>
+                        <h4 itemprop="keywords">Vérifies tes chances de survie !</h4>
                         <br />
-                        <img src="assets/img/go-m.png" alt="GO !" title="GO !" />
+                        <img itemprop="image "src="assets/img/go-m.png" alt="GO !" title="GO !" />
                     </section>
                 </a>
                 
                 <div class="clearfix"> </div>
             </section>
 
-            <section id="intro" style="display='none';">
+            <section itemprop="video" id="intro" style="display='none';">
 
             </section>
 
-            <section id="question" style="display='none';">
+            <section itemprop="text" id="question" style="display='none';">
 
             </section>
 
-            <section id="histoire" style="display='none';">
+            <section itemprop="text" id="histoire" style="display='none';">
 
             </section>
 
-            <section id="score" style="display='none';">
+            <section itemprop="text" id="score" style="display='none';">
 
             </section>
 
