@@ -17,7 +17,10 @@
     <body>
         <!---Header statique du site-->
         <header itemscope itemtype="http://schema.org/ItemList">
-            <h1 itemprop="keywords">2012 : GAME OVER ?</h1>
+        	<div id="headerDecompte"></div>
+            <a href="" title="Accueil">
+            	<h1 itemprop="keywords">2012 : GAME OVER ?</h1>
+            </a>
         </header>
         
         <!---Zone de rendus du loader-->
@@ -43,8 +46,27 @@
         <script type="text/template" id="templateLoader">
             <span style ='color:white' id="avancementLoader"><%= avancement %></span>
             
-            kdsjkdsjdskjdsjdsksjdksjsdkjsdk
-            dksjsdkjdskjds
+            LOADER [1] 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 ...<br />
+            LOADER 1 [2] 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 ...<br />
+            LOADER 1 2 [3] 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 ...<br />
+            LOADER 1 2 3 [4] 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 ...<br />
+            LOADER 1 2 3 4 [5] 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 ...<br />
+            LOADER 1 2 3 4 5 [6] 7 8 9 10 11 12 13 14 15 16 17 18 19 20 ...<br />
+            LOADER 1 2 3 4 5 6 [7] 8 9 10 11 12 13 14 15 16 17 18 19 20 ...<br />
+            LOADER 1 2 3 4 5 6 7 [8] 9 10 11 12 13 14 15 16 17 18 19 20 ...<br />
+            LOADER 1 2 3 4 5 6 7 8 [9] 10 11 12 13 14 15 16 17 18 19 20 ...<br />
+            LOADER 1 2 3 4 5 6 7 8 9 [10] 11 12 13 14 15 16 17 18 19 20 ...<br />
+            LOADER 1 2 3 4 5 6 7 8 9 10 [11] 12 13 14 15 16 17 18 19 20 ...<br />
+            LOADER 1 2 3 4 5 6 7 8 9 10 11 [12] 13 14 15 16 17 18 19 20 ...<br />
+            LOADER 1 2 3 4 5 6 7 8 9 10 11 12 [13] 14 15 16 17 18 19 20 ...<br />
+            LOADER 1 2 3 4 5 6 7 8 9 10 11 12 13 [14] 15 16 17 18 19 20 ...<br />
+            LOADER 1 2 3 4 5 6 7 8 9 10 11 12 13 14 [15] 16 17 18 19 20 ...<br />
+            LOADER 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 [16] 17 18 19 20 ...<br />
+            LOADER 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 [17] 18 19 20 ...<br />
+            LOADER 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 [18] 19 20 ...<br />
+            LOADER 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 [19] 20 ...<br />
+            LOADER 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 [20] ...<br />
+            LOADER 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 [...]<br />
         </script>
         
         <!--Template de l'accueil-->
@@ -52,34 +74,34 @@
 
             <div itemscope itemtype="http://schema.org/ItemList" id="container">
             
-            <section itemprop="video" id="video" style="display='none';">
-
-            </section> 
-            
-            <section id="accueil">
+	            <section itemprop="video" id="video" style="display='none';">
+	
+	            </section> 
+	            
+	            <section id="accueil">
+				<div class="clearfix"> </div>
+	                <section itemprop="image" id="banner">
+	                	
+	                </section>
+	                
+	                <section itemprop="text" id="stats">
+	                    <h2 itemprop="keywords">êtes-vous prêt à survivre à la fin du monde ?</h2>
+	                </section>
+	
+	                <section itemprop="text" id="jeu">
+	                    <h2 itemprop="keywords">et toi, penses-tu être à la hauteur ?</h2>
+	
+	                    <h4 itemprop="keywords">Vérifies tes chances de survie !</h4>
+	                    <br />
+	                    <a itemprop="url" id="startGame">
+	                    	<img itemprop="image "src="assets/img/go-m.png" alt="GO !" title="GO !" />
+	                    </a>
+	                </section>
+	                
                 <div class="clearfix"> </div>
-                
-                <section itemprop="image" id="banner"> </section>
-                
-                <section itemprop="text" id="stats">
-                    
-                </section>
+            	</section>
 
-                <a itemprop="url" id="startGame">
-                    <section itemprop="text" id="jeu">
-                        <h2 itemprop="keywords">ET TOI, PENSES-TU ÊTRE &Aacute; LA HAUTEUR ?</h2>
-
-                        <br />
-                        <h4 itemprop="keywords">Vérifies tes chances de survie !</h4>
-                        <br />
-                        <img itemprop="image "src="assets/img/go-m.png" alt="GO !" title="GO !" />
-                    </section>
-                </a>
-                
-                <div class="clearfix"> </div>
-            </section>
-
-        </div>
+        	</div>
 
         </script>
         
@@ -90,20 +112,28 @@
         
         <!---Template du Introduction du jeux en street view-->
         <script type="text/template" id="templateIntroStreet">
-           <div>introduction ~~</div><br/>
-           <span> Tu kiferai bien allez à la prochaine question non :p ? clique ici -> <a id='nextQuestion'>GOOOOOO QUESTION 1</a></span>
-           
+           <div>STREET VIEW</div>
+           <a id='nextQuestion'>Passer à la question 1</a>
         </script>
         
         <!---Template question 1-->
         <script type="text/template" id="templateQ1">
            <div>Question 1 </div><br/>
-           <span> Tu kiferai bien allez à la prochaine question non :p ? clique ici -> <a id='nextQuestion'>GOOOOOO question 2</a></span>
-           
+           <a id='nextQuestion'>Passer à la question 2</a>
         </script>
         
 
-        
+        <footer>
+        	<span>about- contact</span>
+        	<a itemprop="url" href="http://facebook.com" title="Voir notre page Facebook"></a>
+        	<a itemprop="url" href="http://twitter.com" title="Voir notre compte Twitter"></a>
+        	<span>hétic 2012 - tous droits réservés - copyright</span>
+        	<span>kévin la rosa - léo denis - simon guérot - arthur chauffaille - tom forlini - mathieu dutto</span>
+        	<div itemprop="image" id="hand-left"></div>
+        	<div itemprop="image" id="hand-center"></div>
+        	<div itemprop="image" id="hand-right"></div>
+        	
+        </footer>
     </body>
     <!-- Librairies (l'ordre compte) -->
     <script type="text/javascript" src="assets/js/browser_detect.js"></script>

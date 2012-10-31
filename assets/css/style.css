@@ -23,7 +23,7 @@ audio[controls], canvas, video { display: inline-block; *display: inline; *zoom:
  *    www.456bereastreet.com/archive/201012/controlling_text_size_in_safari_for_ios_without_disabling_user_zoom/
  */
 html { font-size: 100%; overflow-y: scroll; -webkit-overflow-scrolling: touch; -webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;}
-body { margin: 0; font-size: 13px; line-height: 1.231; }
+body { margin: 0; font-size: 62.5% line-height: 1.231; }
 body, button, input, select, textarea { font-family: sans-serif; color: #222; }
 /* 
  * These selection declarations have to be separate
@@ -213,13 +213,33 @@ table { border-collapse: collapse; border-spacing: 0; }
 
 body {
 	background: url("../img/fond.jpg") left top repeat;
+	color: #FFF;
 }
 
 header {
-	text-align: center;
 	width: 100%;
 	min-height: 100px;
 	line-height: 100px;
+}
+
+header > a {
+	display: block;
+	background: url("../img/logo.png") left no-repeat;
+	padding-left: 120px;
+	height: 100px;
+	text-decoration: none;
+	margin-left: 3%;
+}
+
+header > a, header > a:hover, header > a:visited {
+	color: #d8dce8;
+}
+
+#headerDecompte {
+	background: url("../img/decompte.png") center no-repeat;
+	float: right;
+	width: 440px;
+	height: 100px;
 }
 
 #container {
@@ -229,38 +249,87 @@ header {
 
 footer {
 	text-align: center;
-<<<<<<< HEAD
-
-=======
-	
->>>>>>> be0d70ebbf3a579cf13c9425a9040c0c033c2ad0
 	width: 100%;
-	min-height: 200px;
-	background: url("../img/trees-white.png") center bottom no-repeat;
-	color: #FFF;
+	min-height: 100px;
+	text-align: left;
+	line-height: 100px;
 }
 
 header h1, footer p {
 	margin:0;
 }
 
+footer > a {
+	display:inline-block;
+	float: left;
+	width: 70px;
+	height: 70px;
+	margin-left: 2%;
+	margin-top: 15px;
+	background: url("../img/twitter.png") center no-repeat;
+}
+
+footer a:nth-of-type(1) {
+	background: url("../img/facebook.png") center no-repeat;
+}
+
+footer > span {
+	text-transform: uppercase;
+	float: left;
+	margin: 0 2%;
+}
+
+footer > span:nth-of-type(1) {
+	float: right;
+}
+
+#hand-left {
+	background: url("../img/hand-left.png") center top no-repeat;
+	position: absolute;
+	left: 20%;
+	bottom: 0;
+	width: 151px;
+	height: 123px;
+}
+
+#hand-center {
+	background: url("../img/hand-center.png") center top no-repeat;
+	position: absolute;
+	left: 50%;
+	bottom: 0;
+	width: 270px;
+	height: 700px;
+}
+
+#hand-right {
+	background: url("../img/hand-right.png") center top no-repeat;
+	position: absolute;
+	right: 0;
+	bottom: 20%;
+	width: 270px;
+	height: 270px;
+}
 
 /* ACCUEIL */
 #accueil {
 	width: 100%;
 }
 
+h2 {
+	text-transform: uppercase;
+}
+
 #banner {
 	background: url("../img/banner.png") left top repeat-x;
 	width: 100%;
-	height: 329px;
+	height: 593px;
 }
 
 #stats, #jeu {
 	width: 40%;
 	height: 330px;
 	float: left;
-	background: rgba(0,0,0,0.2);
+	background: rgba(0,0,0,0.5);
 	-webkit-border-radius: 9px;
 	-moz-border-radius: 9px;
 	border-radius: 9px;
@@ -271,9 +340,8 @@ header h1, footer p {
 
 #jeu img {
 	height: 150px;
-<<<<<<< HEAD
-}
-=======
+	cursor:pointer;
 }
 
->>>>>>> be0d70ebbf3a579cf13c9425a9040c0c033c2ad0
+
+
