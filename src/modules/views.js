@@ -23,9 +23,9 @@ app.Views.loader = Backbone.View.extend({
 		//Chargement du bon fichier video ATTTENTION IL FAUT FINIR EN AJOUTER LES AUTRES FORMAT PAR NAVIGATEURS
 		if (Modernizr.video) {
 		  if (Modernizr.video.webm) {
-		    app.Assets.videos.intro = app.loader.addVideo('assets/video/intro.mp4', 'movie', 10);
+		    app.Assets.videos.intro = app.loader.addVideo('assets/video/intro.webm', 'movie', 10);
 		  } else if (Modernizr.video.ogg) {
-		    app.Assets.videos.intro = app.loader.addVideo('assets/video/intro.mp4', 'movie', 10);
+		    app.Assets.videos.intro = app.loader.addVideo('assets/video/intro.ogg', 'movie', 10);
 		  } else if (Modernizr.video.h264){
 		    app.Assets.videos.intro = app.loader.addVideo('assets/video/intro.mp4', 'movie', 10);
 		  }
