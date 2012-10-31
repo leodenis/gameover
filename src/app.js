@@ -8,6 +8,7 @@ var app = {
   Collections: {},
   Models: {},
   Views: {},
+  Helpers: {},
   Assets: {
   	videos:{},
   	images:{},
@@ -17,11 +18,13 @@ var app = {
   collections: {},
   models: {},
   views: {},
+  
+  
   init: function () {
   	//Initialisation d'un loader
   	this.loader = new PxLoader(); 
-    // Initialisation du router, c'est lui qui va instancier nos vues
-    this.router = new app.Router();
+  	//Chargement de la vue loader
+  	app.views.loader = new app.Views.loader();
     //Essaye de récupérer un model dans le localstorage
     this.users = new app.Collections.users();
     this.users.fetch();
@@ -34,8 +37,6 @@ var app = {
 	  	this.users = new app.Collections.users().add(this.user);
 	  	this.user.save();
 	}
-   	//Met en route la surveillance de l'url
-    Backbone.history.start();
   }
 };
 

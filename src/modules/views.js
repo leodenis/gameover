@@ -36,22 +36,28 @@ app.Views.loader = Backbone.View.extend({
 		//Référence vers mon template de chargement
 		app.loader.templateLoader = this.templateLoader;
 		// On prépare notre noeud HTML a partir de son template
-		loaderHTML = underscore.template(this.templateLoader,{avancement:""});
+		loaderHTML = _.template(this.templateLoader,{avancement:""});
 		// On l'affiche
 		$('#loader').html(loaderHTML);
 		
 		//Ecoute et répond jusqu'au moment ou toutes les ressources sont chargés
 		app.loader.addCompletionListener(function() {
 			//supprime le loader
+			console.log('loader chargé');
 			$('#loader').remove();
+			// Initialisation du router, c'est lui qui va instancier nos vues
+    		app.router = new app.Router();
+    		//Met en route la surveillance de l'url
+    		Backbone.history.start();
 		});
 		
 		//Ecoute et répond a chaque avancement du chargement
 		app.loader.addProgressListener(function(e) {
-			templateLoader  = $('#templateLoader').html()
 			progression = e.completedCount+'/'+e.totalCount;
-			loaderHTML = underscore.template(app.loader.templateLoader,{avancement:progression});
 			console.log('Chargement des assets en cours  : '+ progression);
+			templateLoader  = $('#templateLoader').html()		
+			loaderHTML = _.template(app.loader.templateLoader,{avancement:progression});
+			
 			
 		});
 		
@@ -68,12 +74,20 @@ app.Views.loader = Backbone.View.extend({
  */
 app.Views.home = Backbone.View.extend({
 	el : '#Accueil',
+	
+	events: {
+		'click #startGame': 'launchGame',
+	},
 	// Fonction appelé automatiquement lors de l'instanciation de la vue
 	initialize : function() {
+		// On cache les div courante
+		$('div:visible').hide();
+		// On affiche les div courante
+		$('#Accueil').show();		
 		// Déclaration des templates
 		this.templateAccueil = $('#templateAccueil').html();
 		
-		// Déclaration de référance (Demander a pumir si il existe mieux ~~)
+		// Déclaration de référance 
 		var renderAccueil = this.renderAccueil;
 		
 		//On lance la vidéo si l'utilisateur n'a jamais vu celle-ci
@@ -81,7 +95,7 @@ app.Views.home = Backbone.View.extend({
 		if(app.users.get('1').attributes.videoWatch == false){	
 			app.users.get('1').attributes.videoWatch = true;
 			app.users.get('1').save();
-			this.loaderVideo(renderAccueil);
+			this.loaderVideo();
 		}else{
 			renderAccueil();
 		}
@@ -90,21 +104,191 @@ app.Views.home = Backbone.View.extend({
 	},
 	
 
-	loaderVideo : function(renderAccueil) {
+	loaderVideo : function() {
 		$('#videoIntro').html(app.Assets.videos.intro);
 		app.Assets.videos.intro.play();
+		var that = this;
 		app.Assets.videos.intro.addEventListener('ended',function(){
 		 	$('#videoIntro').hide('clip'); 
-		 	renderAccueil();
+		 	that.renderAccueil();
 		})
 		
 	},
 	
 	renderAccueil: function(){
-		accueilHTML = underscore.template($('#templateAccueil').html(),{});
+		accueilHTML = _.template($('#templateAccueil').html(),{});
 		$('#Accueil').html(accueilHTML);
+		console.log('Accueil chargé');
 		
 
+	},
+	// evenement lors du click du lancement de l'application
+	launchGame: function(){
+		// change le statut de l'utilisateur en mode game
+		app.users.get("1").set({gameStart:true});
+		//enregistre son statut dans le localstorage
+		app.users.get("1").save();
+		//root vers l'intro du jeux
+		app.router.navigate('startGame', true);
 	}
 	
 }); 
+
+/**
+ * View du début du jeux
+ * @author Kévin La Rosa
+ * @requires  backbones.js
+ */
+app.Views.startGame = Backbone.View.extend({
+	el : '#question',
+	events: {
+		'click #nextQuestion': 'nextQuestion',
+	},
+	// Fonction appelé automatiquement lors de l'instanciation de la vue
+	initialize : function() {
+		// Controle que nous n'ayons pas l'accueil de charger
+	  	if($('#Accueil:visible').length){
+	  		$('#Accueil:visible').hide().empty();
+	  	}
+	  	//Affiche la zone de rendu
+	  	this.$el.show();
+	  	// Lance l'animation d'introduction (Voir par la création d'un template html)
+	  	AnimationParam = {
+	  		html : this.$el,
+	  		texte : 'ici sera le texte introductif vivement le css3 ça va etre vachement Kikou !! 6S ???',
+	  		template: null,
+	  		render: this.introductionStart,
+	  		delay: 6000
+	  	}
+	  	app.Helpers.animation(AnimationParam);
+	},
+	
+	//Injecte le rendu dans le dom ATTENTION sachant que son appel est depuis un objet différent la zone de rendu doit etre passer en argument !!!
+	introductionStart : function (zoneRendu){
+		//Recupère le html générer avec le template
+		template = accueilHTML = _.template($('#templateIntroStreet').html(),{});
+		zoneRendu.html(template);
+	},
+	nextQuestion : function(){
+		//root vers la question 1
+		app.router.navigate('q1', true);
+	}
+
+}); 
+
+
+/**
+ * View question qui sert de classe mère aux questions enfants.
+ * @author Kévin La Rosa & Tom Forlini
+ * @requires  backbones.js
+ */
+app.Views.question = Backbone.View.extend({
+	el : '#question',
+	events: {
+		'click #nextQuestion': 'nextQuestion',
+	},
+	// Fonction appelé automatiquement lors de l'instanciation de la vue
+	initialize : function() {
+		// Controle que nous n'ayons pas l'accueil de charger
+	  	if($('#Accueil:visible').length){
+	  		$('#Accueil:visible').hide().empty();
+	  	}
+	  	//Affiche la zone de rendu
+	  	this.$el.show();
+	  	// Lance l'animation d'introduction (Voir par la création d'un template html)
+	  	AnimationParam = {
+	  		html : this.$el,
+	  		texte : 'ici sera le texte introductif vivement le css3 ça va etre vachement Kikou !! 6S ???',
+	  		template: null,
+	  		render: this.introductionStart,
+	  		delay: 6000
+	  	}
+	  	app.Helpers.animation(AnimationParam);
+	},
+	
+	//Injecte le rendu dans le dom ATTENTION sachant que son appel est depuis un objet différent la zone de rendu doit etre passer en argument !!!
+	introductionStart : function (zoneRendu){
+		//Recupère le html générer avec le template
+		template = accueilHTML = _.template($('#templateQ1').html(),{});
+		zoneRendu.html(template);
+	},
+	nextQuestion : function(){
+		//root vers la question 1
+		app.router.navigate('q1', true);
+	}
+
+});
+
+
+
+/* DÉFINITION DES VIEWS ENFANTS
+Gestion des unlocks a faire
+ * */ 
+
+app.Views.q1 = app.Views.question.extend({
+	
+});
+
+app.Views.q2 = app.Views.question.extend({
+	
+	nextQuestion : function(){
+		//root vers la question 1
+		app.router.navigate('q3', true);
+	}
+	
+});
+
+app.Views.q3 = app.Views.question.extend({
+	
+	nextQuestion : function(){
+		//root vers la question 1
+		app.router.navigate('q4', true);
+	}
+	
+});
+
+app.Views.q4 = app.Views.question.extend({
+	
+	nextQuestion : function(){
+		//root vers la question 1
+		app.router.navigate('q5', true);
+	}
+	
+});
+
+app.Views.q5 = app.Views.question.extend({
+	
+	nextQuestion : function(){
+		//root vers la question 1
+		app.router.navigate('q6', true);
+	}
+	
+});
+
+app.Views.q6 = app.Views.question.extend({
+	
+	nextQuestion : function(){
+		//root vers la question 1
+		app.router.navigate('q7', true);
+	}
+	
+});
+
+app.Views.q7 = app.Views.question.extend({
+	
+	nextQuestion : function(){
+		//root vers la question 1
+		app.router.navigate('q8', true);
+	}
+	
+});
+
+app.Views.q8 = app.Views.question.extend({
+	
+	nextQuestion : function(){
+		//root vers la question 1
+		app.router.navigate('q9', true);
+	}
+	
+});
+
