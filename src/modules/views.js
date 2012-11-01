@@ -195,15 +195,7 @@ app.Views.question = Backbone.View.extend({
 	  	}
 	  	//Affiche la zone de rendu
 	  	this.$el.show();
-	  	// Lance l'animation d'introduction (Voir par la création d'un template html)
-	  	AnimationParam = {
-	  		html : this.$el,
-	  		texte : 'ici sera le texte introductif vivement le css3 ça va etre vachement Kikou !! 6S ???',
-	  		template: null,
-	  		render: this.introductionStart,
-	  		delay: 6000
-	  	}
-	  	app.Helpers.animation(AnimationParam);
+	  	
 	},
 	
 	//Injecte le rendu dans le dom ATTENTION sachant que son appel est depuis un objet différent la zone de rendu doit etre passer en argument !!!
