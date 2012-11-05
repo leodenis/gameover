@@ -17,7 +17,7 @@ app.Views.loader = Backbone.View.extend({
 	// Chargements des ressources Videos & sons & images
 	LoaderRender : function() {
 		//Définition des ressources (Définir les images)
-		app.Assets.images.background = app.loader.addImage('assets/img/headerbg.jpg'), app.Assets.images.treesImg = app.loader.addImage('assets/img/trees.png'), app.Assets.images.ufoImg = app.loader.addImage('assets/img/ufo.png');
+		//app.Assets.images.background = app.loader.addImage('assets/img/headerbg.jpg'), app.Assets.images.treesImg = app.loader.addImage('assets/img/trees.png'), app.Assets.images.ufoImg = app.loader.addImage('assets/img/ufo.png');
 		
 		//Chargement du bon fichier video ATTTENTION IL FAUT FINIR EN AJOUTER LES AUTRES FORMAT PAR NAVIGATEURS
 		if (Modernizr.video) {
@@ -157,7 +157,7 @@ app.Views.startGame = Backbone.View.extend({
 	  		texte : 'Nous sommes 24 jours avant la fin du monde, les mayas avaient raison !<br />Tout le monde est affolé !<br />Tu décides de partir te réfugier dans un endroit ou tu seras en sécurité<br />Quel sera ton choix ?',
 	  		template: null,
 	  		render: this.renderIntro,
-	  		delay: 6000
+	  		delay: 4000
 	  	}
 	  	app.Helpers.animation(AnimationParam);
 	},
@@ -194,15 +194,7 @@ app.Views.question = Backbone.View.extend({
 	  	}
 	  	//Affiche la zone de rendu
 	  	this.$el.show();
-	  	// Lance l'animation d'introduction (Voir par la création d'un template html)
-	  	AnimationParam = {
-	  		html : this.$el,
-	  		texte : 'Nous sommes 24 jours avant la fin du monde, les mayas avaient raison !<br />Tout le monde est affolé !<br />Tu décides de partir te réfugier dans un endroit ou tu seras en sécurité<br />Quel sera ton choix ?',
-	  		template: null,
-	  		render: this.introductionStart,
-	  		delay: 2000
-	  	}
-	  	app.Helpers.animation(AnimationParam);
+	  	this.introductionStart(this.$el);
 	},
 	
 	//Injecte le rendu dans le dom ATTENTION sachant que son appel est depuis un objet différent la zone de rendu doit etre passer en argument !!!
@@ -225,7 +217,10 @@ Gestion des unlocks a faire
  * */ 
 
 app.Views.q1 = app.Views.question.extend({
-	
+	nextQuestion : function(){
+		//root vers la question 1
+		app.router.navigate('q2', true);
+	}
 });
 
 app.Views.q2 = app.Views.question.extend({
@@ -287,6 +282,15 @@ app.Views.q8 = app.Views.question.extend({
 	nextQuestion : function(){
 		//root vers la question 1
 		app.router.navigate('q9', true);
+	}
+	
+});
+
+app.Views.q9 = app.Views.question.extend({
+	
+	nextQuestion : function(){
+		//root vers la question 1
+		app.router.navigate('end', true);
 	}
 	
 });

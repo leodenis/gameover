@@ -17,6 +17,7 @@ app.Router = Backbone.Router.extend({
     'q7': 'q7',
     'q8': 'q8',
     'q9': 'q9',
+    'end': 'end'
   },
   // Root principal du site internet
   root: function () {
@@ -29,44 +30,52 @@ app.Router = Backbone.Router.extend({
   },
   
   q1: function(){
+  	console.log('Lancement de la question 1');
   	app.views.q1 = new app.Views.q1;
   },
   
   q2: function(){
+  	console.log('Lancement de la question 2');
   	app.views.q2 = new app.Views.q2;
   },
   
   q3: function(){
+  	console.log('Lancement de la question 3');
   	app.views.q3 = new app.Views.q3;
   },
   
   q4: function(){
+  	console.log('Lancement de la question 4');
   	app.views.q4 = new app.Views.q4;
   },
   
   q5: function(){
+  	console.log('Lancement de la question 5');
   	app.views.q5 = new app.Views.q5;
   },
   
   q6: function(){
+  	console.log('Lancement de la question 6');
   	app.views.q6 = new app.Views.q6;
   },
   
-<<<<<<< HEAD
-  q7: function(){app.views.q7 = new app.Views.q7; }
-});
-  
-=======
   q7: function(){
+  	console.log('Lancement de la question 7');
   	app.views.q7 = new app.Views.q7;
   },
   
   q8: function(){
+  	console.log('Lancement de la question 8');
   	app.views.q8 = new app.Views.q8;
   },
   
   q9: function(){
+  	console.log('Lancement de la question 9');
   	app.views.q9 = new app.Views.q9;
+  },
+  
+  end: function(){
+  	console.log('A faire ~');
   }
 });
->>>>>>> 7b87263c40340c1784d8dc9ff1b0b01d2755ad7c
+
