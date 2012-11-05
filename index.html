@@ -111,13 +111,13 @@
         <script type="text/template" id="templateIntroStreet">
            <div>STREET VIEW</div>
            <div style='height:600px' id='exploration'>ICI STREET</div>
-           <div id='carte'>google map</div>
+           <div style='height: 200px;position: relative;background-color: #E5E3DF;overflow: hidden;-webkit-transform: translateZ(0);left: 0;top: -200px;z-index: 0;width: 200px;' id='carte'>google map</div>
            <a id='nextQuestion'>Passer à la question 1</a>
         </script>
         
         <!---Template question 1-->
-        <script type="text/template" id="templateQ1">
-           <div>Question 1 </div><br/>
+        <script type="text/template" id="template">
+           <div><%= titreQuestion %></div><br/>
            <a id='nextQuestion'>Passer à la question 2</a>
         </script>
         
