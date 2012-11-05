@@ -37,10 +37,7 @@
         
         <!---Zone de rendu question -->
         <div id="question" style='display:none'> </div>
-
-        
-        <!---Footer statique du site -->
-        <footer style="display:none" itemscope itemtype="http://schema.org/ItemList" itemprop="copyrightYear"> </footer>
+		
                 
         <!---Template du loader-->
         <script type="text/template" id="templateLoader">
@@ -113,19 +110,19 @@
         <!---Template du Introduction du jeux en street view-->
         <script type="text/template" id="templateIntroStreet">
            <div>STREET VIEW</div>
-           <div style='height:600px' id='exploration'></div>
-           <div style=' width:100% ;z-index:10; position:absolute; top: 0;' id='carte'>dlkdlk</div>
+           <div style='height:600px' id='exploration'>ICI STREET</div>
+           <div style='height: 200px;position: relative;background-color: #E5E3DF;overflow: hidden;-webkit-transform: translateZ(0);left: 0;top: -200px;z-index: 0;width: 200px;' id='carte'>google map</div>
            <a id='nextQuestion'>Passer à la question 1</a>
         </script>
         
         <!---Template question 1-->
-        <script type="text/template" id="templateQ1">
-           <div>Question 1 </div><br/>
+        <script type="text/template" id="template">
+           <div><%= titreQuestion %></div><br/>
            <a id='nextQuestion'>Passer à la question 2</a>
         </script>
         
-
-        <footer>
+		<!---Footer statique du site -->
+        <footer itemscope itemtype="http://schema.org/ItemList" itemprop="copyrightYear">
         	<span>about- contact</span>
         	<a itemprop="url" href="http://facebook.com" title="Voir notre page Facebook"></a>
         	<a itemprop="url" href="http://twitter.com" title="Voir notre compte Twitter"></a>

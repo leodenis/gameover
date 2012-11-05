@@ -80,7 +80,7 @@ app.Views.home = Backbone.View.extend({
 	// Fonction appelé automatiquement lors de l'instanciation de la vue
 	initialize : function() {
 		// On cache les div courante
-		$('div:visible').hide();
+		$('body > div:visible').hide();
 		// On affiche les div courante
 		$('#Accueil').show();		
 		// Déclaration des templates
@@ -167,6 +167,7 @@ app.Views.startGame = Backbone.View.extend({
 		//Recupère le html générer avec le template
 		template = _.template($('#templateIntroStreet').html(),{});
 		zoneRendu.html(template);
+		
 		var optionModeStreetMap = {
 			idMap : 'carte',
 			idStreet : 'exploration',
@@ -224,12 +225,12 @@ app.Views.question = Backbone.View.extend({
 	//Injecte le rendu dans le dom ATTENTION sachant que son appel est depuis un objet différent la zone de rendu doit etre passer en argument !!!
 	introductionStart : function (zoneRendu){
 		//Recupère le html générer avec le template
-		template = accueilHTML = _.template($('#templateQ1').html(),{});
+		template = accueilHTML = _.template($('#template').html(),{'titreQuestion':'question vide'});
 		zoneRendu.html(template);
 	},
 	nextQuestion : function(){
 		//root vers la question 1
-		app.router.navigate('q1', true);
+		app.router.navigate('erreur', true);
 	}
 
 });
@@ -241,10 +242,11 @@ Gestion des unlocks a faire
  * */ 
 
 app.Views.q1 = app.Views.question.extend({
-	nextQuestion : function(){
-		//root vers la question 1
-		app.router.navigate('q2', true);
-	}
+	introductionStart : function (zoneRendu){
+		//Recupère le html générer avec le template
+		template = accueilHTML = _.template($('#template').html(),{'titreQuestion':'question 1'});
+		zoneRendu.html(template);
+	},
 });
 
 app.Views.q2 = app.Views.question.extend({
