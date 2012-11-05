@@ -40,9 +40,6 @@ app.Router = Backbone.Router.extend({
   
   q6: function(){app.views.q6 = new app.Views.q6; },
   
-  q7: function(){app.views.q7 = new app.Views.q7; },
-  
-  q8: function(){app.views.q8 = new app.Views.q8; },
-  
-  q9: function(){app.views.q9 = new app.Views.q9; },
+  q7: function(){app.views.q7 = new app.Views.q7; }
 });
+  

@@ -10,7 +10,6 @@ app.Views.loader = Backbone.View.extend({
 		this.templateLoader  = $('#templateLoader').html()
 		//Déclaration du noeud html de destination
 		this.noeud
-
 		//Lancement du rendu de chargement
 		this.LoaderRender();
 
@@ -157,16 +156,16 @@ app.Views.startGame = Backbone.View.extend({
 	  		html : this.$el,
 	  		texte : 'ici sera le texte introductif vivement le css3 ça va etre vachement Kikou !! 6S ???',
 	  		template: null,
-	  		render: this.introductionStart,
+	  		render: this.renderIntro,
 	  		delay: 6000
 	  	}
 	  	app.Helpers.animation(AnimationParam);
 	},
 	
 	//Injecte le rendu dans le dom ATTENTION sachant que son appel est depuis un objet différent la zone de rendu doit etre passer en argument !!!
-	introductionStart : function (zoneRendu){
+	renderIntro : function (zoneRendu){
 		//Recupère le html générer avec le template
-		template = accueilHTML = _.template($('#templateIntroStreet').html(),{});
+		template = _.template($('#templateIntroStreet').html(),{});
 		zoneRendu.html(template);
 	},
 	nextQuestion : function(){
@@ -201,7 +200,7 @@ app.Views.question = Backbone.View.extend({
 	  		texte : 'ici sera le texte introductif vivement le css3 ça va etre vachement Kikou !! 6S ???',
 	  		template: null,
 	  		render: this.introductionStart,
-	  		delay: 6000
+	  		delay: 2000
 	  	}
 	  	app.Helpers.animation(AnimationParam);
 	},
