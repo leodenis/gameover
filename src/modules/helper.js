@@ -32,13 +32,17 @@ app.Helpers.userIsPlaying = function(options){
 app.Helpers.RenderStreetMapMode = function(options){
 	console.log(options);
 	//Création de ma carte
-	carte = new google.maps.Map(document.getElementById(options.idMap),options.mapOptions);
+	console.log(options.idMap);
+	//carte = new google.maps.Map(document.getElementById('question'),options.mapOptions);
+	//CORIGER PROBLEME GMAO qui ne s'affiche pas
+	
 	//création de ma street View
 	exploration = new google.maps.StreetViewPanorama(document.getElementById(options.idStreet), options.streetOptions);
 	//Je lie la carte à l'exploration
-	carte.setStreetView(exploration);
+	//carte.setStreetView(exploration);
 	
-	console.log(exploration);
+	
+	console.log(carte);
 	
 	
 }
