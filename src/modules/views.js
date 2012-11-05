@@ -22,9 +22,9 @@ app.Views.loader = Backbone.View.extend({
 		//Chargement du bon fichier video ATTTENTION IL FAUT FINIR EN AJOUTER LES AUTRES FORMAT PAR NAVIGATEURS
 		if (Modernizr.video) {
 		  if (Modernizr.video.webm) {
-		    app.Assets.videos.intro = app.loader.addVideo('assets/video/intro.mp4', 'movie', 10);
+		    app.Assets.videos.intro = app.loader.addVideo('assets/video/intro.webm', 'movie', 10);
 		  } else if (Modernizr.video.ogg) {
-		    app.Assets.videos.intro = app.loader.addVideo('assets/video/intro.mp4', 'movie', 10);
+		    app.Assets.videos.intro = app.loader.addVideo('assets/video/intro.ogg', 'movie', 10);
 		  } else if (Modernizr.video.h264){
 		    app.Assets.videos.intro = app.loader.addVideo('assets/video/intro.mp4', 'movie', 10);
 		  }
@@ -154,7 +154,7 @@ app.Views.startGame = Backbone.View.extend({
 	  	// Lance l'animation d'introduction (Voir par la création d'un template html)
 	  	AnimationParam = {
 	  		html : this.$el,
-	  		texte : 'ici sera le texte introductif vivement le css3 ça va etre vachement Kikou !! 6S ???',
+	  		texte : 'Nous sommes 24 jours avant la fin du monde, les mayas avaient raison !<br />Tout le monde est affolé !<br />Tu décides de partir te réfugier dans un endroit ou tu seras en sécurité<br />Quel sera ton choix ?',
 	  		template: null,
 	  		render: this.renderIntro,
 	  		delay: 6000
@@ -197,7 +197,7 @@ app.Views.question = Backbone.View.extend({
 	  	// Lance l'animation d'introduction (Voir par la création d'un template html)
 	  	AnimationParam = {
 	  		html : this.$el,
-	  		texte : 'ici sera le texte introductif vivement le css3 ça va etre vachement Kikou !! 6S ???',
+	  		texte : 'Nous sommes 24 jours avant la fin du monde, les mayas avaient raison !<br />Tout le monde est affolé !<br />Tu décides de partir te réfugier dans un endroit ou tu seras en sécurité<br />Quel sera ton choix ?',
 	  		template: null,
 	  		render: this.introductionStart,
 	  		delay: 2000
