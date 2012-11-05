@@ -6,7 +6,7 @@
  * @requires  backbones.js
  */
 app.Helpers.animation = function(options){
-	options.html.html(_.template($('#introQuestionAnimation').html(),{introQuestion : options.texte}));
+	options.html.html(_.template($('#introAnimation').html(),{introQuestion : options.texte}));
 	setTimeout(function(){
 		//supprime l'animation et bascule vers la question de destination
 		$('#question > h1').remove();
@@ -21,4 +21,24 @@ app.Helpers.animation = function(options){
  */
 app.Helpers.userIsPlaying = function(options){
 	return app.users.get("1").attributes.gameStart;
+}
+
+/**
+ * Initialise le mode StreetView avec sa google map
+ * @param : Objet ->
+ * @author Kévin La Rosa
+ * @requires  backbones.js
+ */
+app.Helpers.RenderStreetMapMode = function(options){
+	console.log(options);
+	//Création de ma carte
+	carte = new google.maps.Map(document.getElementById(options.idMap),options.mapOptions);
+	//création de ma street View
+	exploration = new google.maps.StreetViewPanorama(document.getElementById(options.idStreet), options.streetOptions);
+	//Je lie la carte à l'exploration
+	carte.setStreetView(exploration);
+	
+	console.log(exploration);
+	
+	
 }

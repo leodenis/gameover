@@ -157,7 +157,7 @@ app.Views.startGame = Backbone.View.extend({
 	  		texte : 'Nous sommes 24 jours avant la fin du monde, les mayas avaient raison !<br />Tout le monde est affolé !<br />Tu décides de partir te réfugier dans un endroit ou tu seras en sécurité<br />Quel sera ton choix ?',
 	  		template: null,
 	  		render: this.renderIntro,
-	  		delay: 4000
+	  		delay: 1000
 	  	}
 	  	app.Helpers.animation(AnimationParam);
 	},
@@ -167,6 +167,30 @@ app.Views.startGame = Backbone.View.extend({
 		//Recupère le html générer avec le template
 		template = _.template($('#templateIntroStreet').html(),{});
 		zoneRendu.html(template);
+		var optionModeStreetMap = {
+			idMap : 'carte',
+			idStreet : 'exploration',
+			mapOptions : {
+				center : new google.maps.LatLng(48.867116,2.399231),
+				zoom : 12,
+				mapTypeId: google.maps.MapTypeId.ROADMAP, // type de map
+				streetViewControl: true
+			},
+			streetOptions : {
+				adresseControl : true,
+				adresseControlOptions: {
+                     style: {backgroundColor: 'grey', color: 'yellow'} // modification css
+                },
+                position : new google.maps.LatLng(48.867116,2.399231),
+                pov : {
+                	heading: 550, //Angle de rotation horizontal, en degrés, de la caméra
+                    pitch: 10, //Angle vertical, vers le haut ou le bas, par rapport à l'angle de vertical (CAMERA)
+                    zoom: 0
+                }
+			}
+		}
+		
+		app.Helpers.RenderStreetMapMode(optionModeStreetMap);
 	},
 	nextQuestion : function(){
 		//root vers la question 1
