@@ -10,7 +10,6 @@ app.Views.loader = Backbone.View.extend({
 		this.templateLoader  = $('#templateLoader').html()
 		//Déclaration du noeud html de destination
 		this.noeud
-
 		//Lancement du rendu de chargement
 		this.LoaderRender();
 
@@ -18,7 +17,7 @@ app.Views.loader = Backbone.View.extend({
 	// Chargements des ressources Videos & sons & images
 	LoaderRender : function() {
 		//Définition des ressources (Définir les images)
-		app.Assets.images.background = app.loader.addImage('assets/img/headerbg.jpg'), app.Assets.images.treesImg = app.loader.addImage('assets/img/trees.png'), app.Assets.images.ufoImg = app.loader.addImage('assets/img/ufo.png');
+		//app.Assets.images.background = app.loader.addImage('assets/img/headerbg.jpg'), app.Assets.images.treesImg = app.loader.addImage('assets/img/trees.png'), app.Assets.images.ufoImg = app.loader.addImage('assets/img/ufo.png');
 		
 		//Chargement du bon fichier video ATTTENTION IL FAUT FINIR EN AJOUTER LES AUTRES FORMAT PAR NAVIGATEURS
 		if (Modernizr.video) {
@@ -81,7 +80,7 @@ app.Views.home = Backbone.View.extend({
 	// Fonction appelé automatiquement lors de l'instanciation de la vue
 	initialize : function() {
 		// On cache les div courante
-		$('div:visible').hide();
+		$('body > div:visible').hide();
 		// On affiche les div courante
 		$('#Accueil').show();		
 		// Déclaration des templates
@@ -155,23 +154,90 @@ app.Views.startGame = Backbone.View.extend({
 	  	// Lance l'animation d'introduction (Voir par la création d'un template html)
 	  	AnimationParam = {
 	  		html : this.$el,
-	  		texte : 'ici sera le texte introductif vivement le css3 ça va etre vachement Kikou !! 6S ???',
+	  		texte : 'Nous sommes 24 jours avant la fin du monde, les mayas avaient raison !<br />Tout le monde est affolé !<br />Tu décides de partir te réfugier dans un endroit ou tu seras en sécurité<br />Quel sera ton choix ?',
 	  		template: null,
-	  		render: this.introductionStart,
-	  		delay: 6000
+	  		render: this.renderIntro,
+	  		delay: 1000
 	  	}
 	  	app.Helpers.animation(AnimationParam);
 	},
 	
 	//Injecte le rendu dans le dom ATTENTION sachant que son appel est depuis un objet différent la zone de rendu doit etre passer en argument !!!
-	introductionStart : function (zoneRendu){
+	renderIntro : function (zoneRendu){
 		//Recupère le html générer avec le template
-		template = accueilHTML = _.template($('#templateIntroStreet').html(),{});
+		template = _.template($('#templateIntroStreet').html(),{});
 		zoneRendu.html(template);
+		
+		// Définition des paramètre de la street + map (voir helper)
+		var optionModeStreetMap = {
+			idMap : 'carte',
+			idStreet : 'exploration',
+			mapOptions : {
+				center : new google.maps.LatLng(48.867116,2.399231),
+				zoom : 18,
+				mapTypeId: google.maps.MapTypeId.ROADMAP, // type de map
+				styles: [   { "featureType": "landscape", "stylers": [ { "color": "#808080" } ] }, // les terre en gris
+                            { "featureType": "poi", "stylers": [ { "visibility": "off" } ] }, // Cache les point d'interet ( Hopital,Ecole ect...)
+                            { "featureType": "administrative", "stylers": [ { "visibility": "off" } ] }, // Nom : ville, arondissement : non visible
+                            { "featureType": "road", "stylers": [ { "color": "#c0c0c0" } ] }, // Route en gris clair
+                            { "featureType": "road", "elementType": "labels", "stylers": [ {  "visibility": "off" } ] }, // label des routes non visible
+                            { "featureType": "transit", "stylers": [ { "visibility": "off" } ] } // Transport non affichÃ©
+                        ],
+				streetViewControl: true,
+				navigationControl: false,
+    			mapTypeControl: false,
+    			scaleControl: false,
+    			draggable: false,
+    			zoomControl: false,
+  				scrollwheel: false,
+  				disableDoubleClickZoom: true,
+			},
+			streetOptions : {
+				
+				adresseControl : true,
+				adresseControlOptions: {
+                     style: {backgroundColor: 'grey', color: 'yellow'} // modification css
+                },
+                position : new google.maps.LatLng(48.866818,2.399524),
+                pov : {
+                	heading: 550, //Angle de rotation horizontal, en degrés, de la caméra
+                    pitch: 10, //Angle vertical, vers le haut ou le bas, par rapport à l'angle de vertical (CAMERA)
+                    zoom: 0
+                },
+                    //controler de direction
+                    panControl: true,
+                    // controler de direction par clavier
+                    keyboardShortcuts: true,
+                    //bloque le changement d'adresse
+                    addressControl:false,
+                    scrollwheel:false,
+                    //bloque le click and go
+                    clickToGo:true,
+                    //bloque le clique du sol
+                    linksControl:true
+			},
+		markersMap : [
+			{
+				title : 'voyance',
+				position : new google.maps.LatLng(48.867058,2.399065),
+				title: 'Voyance'
+			}
+			
+		],
+		streetGuide : {
+			depart : new google.maps.LatLng(48.866818,2.399524),
+			arriver : new google.maps.LatLng(48.867404,2.398934),
+		}
+	}
+		app.Helpers.RenderStreetMapMode(optionModeStreetMap);
 	},
 	nextQuestion : function(){
 		//root vers la question 1
 		app.router.navigate('q1', true);
+	},
+	
+	popupInfo : function(){
+		console.log('loule je suis une popup');
 	}
 
 }); 
@@ -195,18 +261,18 @@ app.Views.question = Backbone.View.extend({
 	  	}
 	  	//Affiche la zone de rendu
 	  	this.$el.show();
-	  	
+	  	this.introductionStart(this.$el);
 	},
 	
 	//Injecte le rendu dans le dom ATTENTION sachant que son appel est depuis un objet différent la zone de rendu doit etre passer en argument !!!
 	introductionStart : function (zoneRendu){
 		//Recupère le html générer avec le template
-		template = accueilHTML = _.template($('#templateQ1').html(),{});
+		template = accueilHTML = _.template($('#template').html(),{'titreQuestion':'question vide'});
 		zoneRendu.html(template);
 	},
 	nextQuestion : function(){
 		//root vers la question 1
-		app.router.navigate('q1', true);
+		app.router.navigate('erreur', true);
 	}
 
 });
@@ -218,7 +284,11 @@ Gestion des unlocks a faire
  * */ 
 
 app.Views.q1 = app.Views.question.extend({
-	
+	introductionStart : function (zoneRendu){
+		//Recupère le html générer avec le template
+		template = accueilHTML = _.template($('#template').html(),{'titreQuestion':'question 1'});
+		zoneRendu.html(template);
+	},
 });
 
 app.Views.q2 = app.Views.question.extend({
@@ -280,6 +350,15 @@ app.Views.q8 = app.Views.question.extend({
 	nextQuestion : function(){
 		//root vers la question 1
 		app.router.navigate('q9', true);
+	}
+	
+});
+
+app.Views.q9 = app.Views.question.extend({
+	
+	nextQuestion : function(){
+		//root vers la question 1
+		app.router.navigate('end', true);
 	}
 	
 });
