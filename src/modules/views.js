@@ -232,6 +232,10 @@ app.Views.startGame = Backbone.View.extend({
 		app.Helpers.RenderStreetMapMode(optionModeStreetMap);
 	},
 	nextQuestion : function(){
+		// change le statut de l'utilisateur en mode game
+		app.users.get("1").attributes.etapes[1].unLock = true;
+		//enregistre son statut dans le localstorage
+		app.users.get("1").save();
 		//root vers la question 1
 		app.router.navigate('q1', true);
 	},
@@ -271,6 +275,8 @@ app.Views.question = Backbone.View.extend({
 		zoneRendu.html(template);
 	},
 	nextQuestion : function(){
+		//unlock la question 1
+		
 		//root vers la question 1
 		app.router.navigate('erreur', true);
 	}

@@ -73,4 +73,22 @@ console.log(options);
 	console.log(directionsService);
 
 }
+/**
+ * Vrai ou faux suivant si l'utilisateur a débloqué la question qu'il souhaite lancer
+ * @author Kévin La Rosa
+ * @arguments : int -> level
+ * @requires  backbones.js
+ */
+app.Helpers.questionIsUnlock = function (level){
+	//Récupère les infos de l'utilisateur
+	userCurrent = app.users.get("1").attributes;
+	//je cherche les étapes débloquées
+	etapes = _.where(userCurrent.etapes,{unLock:true});
+	//je recupère le dernier objet
+	lastEtape= _.last(etapes);
+	if(lastEtape.id <= level)
+		return true
+	else
+		return false;
+}
 	

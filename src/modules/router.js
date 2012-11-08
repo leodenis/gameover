@@ -26,11 +26,13 @@ app.Router = Backbone.Router.extend({
   },
   
   startGame: function() {
-		app.views.startGame = new app.Views.startGame	
+  	statut = app.Helpers.questionIsUnlock(1);
+  	app.views.startGame = new app.Views.startGame;
   },
   
   q1: function(){
   	console.log('Lancement de la question 1');
+  	this.controlUser(1);
   	app.views.q1 = new app.Views.q1;
   },
   
@@ -76,6 +78,8 @@ app.Router = Backbone.Router.extend({
   
   end: function(){
   	console.log('A faire ~');
-  }
+  },
+  
+
 });
 
