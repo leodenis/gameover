@@ -153,21 +153,22 @@ app.Views.startGame = Backbone.View.extend({
 	  	this.$el.show();
 	  	// Lance l'animation d'introduction (Voir par la création d'un template html)
 	  	AnimationParam = {
-	  		html : this.$el,
 	  		texte : 'Nous sommes 24 jours avant la fin du monde, les mayas avaient raison !<br />Tout le monde est affolé !<br />Tu décides de partir te réfugier dans un endroit ou tu seras en sécurité<br />Quel sera ton choix ?',
 	  		template: null,
 	  		render: this.renderIntro,
-	  		delay: 1000
+	  		delay: 1000,
+	  		that : this
 	  	}
 	  	app.Helpers.animation(AnimationParam);
 	},
 	
+	
+		
 	//Injecte le rendu dans le dom ATTENTION sachant que son appel est depuis un objet différent la zone de rendu doit etre passer en argument !!!
-	renderIntro : function (zoneRendu){
+	renderIntro : function (that){
 		//Recupère le html générer avec le template
 		template = _.template($('#templateIntroStreet').html(),{});
-		zoneRendu.html(template);
-		
+		that.$el.html(template);
 		// Définition des paramètre de la street + map (voir helper)
 		var optionModeStreetMap = {
 			idMap : 'carte',
@@ -216,14 +217,22 @@ app.Views.startGame = Backbone.View.extend({
                     //bloque le clique du sol
                     linksControl:true
 			},
-		markersMap : [
+		markersStreet : [
 			{
 				title : 'voyance',
 				position : new google.maps.LatLng(48.867058,2.399065),
-				title: 'Voyance'
+				title: 'Voyance',
+				events: [
+					{
+						eventMarker : 'click',
+						functionMarker : that.popupInfo
+						
+					}
+				],
 			}
 			
 		],
+		
 		streetGuide : {
 			depart : new google.maps.LatLng(48.866818,2.399524),
 			arriver : new google.maps.LatLng(48.867404,2.398934),
@@ -231,6 +240,34 @@ app.Views.startGame = Backbone.View.extend({
 	}
 		app.Helpers.RenderStreetMapMode(optionModeStreetMap);
 	},
+	
+	
+	
+	//Evenement qui réagit au click sur le marker en face de la voyante
+	popupInfo : function(){
+
+		new Messi('Souhaitez vous commencez les questions ? .', {
+			title: 'Message d\' information',
+			buttons: [{
+					id: 0, 
+					label: 'Oui', 
+					val: 'O'
+			},
+			{
+					id: 1, 
+					label: 'Non', 
+					val: 'N'
+			}],
+			callback: function(val) { 
+				if(val == 'O'){
+					app.router.navigate('q1', true);
+				}
+			},
+			
+		});
+	},
+	
+	
 	nextQuestion : function(){
 		// change le statut de l'utilisateur en mode game
 		app.users.get("1").attributes.etapes[1].unLock = true;
@@ -238,11 +275,9 @@ app.Views.startGame = Backbone.View.extend({
 		app.users.get("1").save();
 		//root vers la question 1
 		app.router.navigate('q1', true);
-	},
-	
-	popupInfo : function(){
-		console.log('loule je suis une popup');
 	}
+	
+
 
 }); 
 
@@ -278,7 +313,7 @@ app.Views.question = Backbone.View.extend({
 		//unlock la question 1
 		
 		//root vers la question 1
-		app.router.navigate('erreur', true);
+		app.router.navigate('q1', true);
 	}
 
 });
@@ -295,6 +330,9 @@ app.Views.q1 = app.Views.question.extend({
 		template = accueilHTML = _.template($('#template').html(),{'titreQuestion':'question 1'});
 		zoneRendu.html(template);
 	},
+	nextQuestion : function(){
+		app.router.navigate('q2', true);
+	}
 });
 
 app.Views.q2 = app.Views.question.extend({
