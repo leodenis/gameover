@@ -303,6 +303,7 @@ footer > span:nth-of-type(1) {
 	-moz-transition: bottom 2s;
 	-webkit-transition: bottom 2s;
 	-o-transition: bottom 2s;
+	cursor:pointer;
 }
 
 #hand-center:hover {
@@ -318,7 +319,10 @@ footer > span:nth-of-type(1) {
 	height: 270px;
 }
 
+
+
 /* ACCUEIL */
+
 #accueil {
 	width: 100%;
 }
@@ -353,3 +357,19 @@ h2 {
 
 
 
+/* GAME */
+
+#nextQuestion {
+	color: #000;
+	background-color: rgba(200,5,5,1);
+	background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, .4), rgba(0, 0, 0, .1));
+	background-image: -moz-linear-gradient(top, rgba(255, 255, 255, .4), rgba(0, 0, 0, .1));
+	background-image: -ms-linear-gradient(top, rgba(255, 255, 255, .4), rgba(0, 0, 0, .1));
+	background-image: -o-linear-gradient(top, rgba(255, 255, 255, .4), rgba(0, 0, 0, .1));
+	background-image: linear-gradient(top, rgba(255, 255, 255, .4), rgba(0, 0, 0, .1));
+	display: inline-block;
+	height: 30px;
+	line-height: 30px;
+	padding: 0 10px;
+	border-radius:9px;
+}
