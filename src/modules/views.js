@@ -239,12 +239,32 @@ app.Views.startGame = Backbone.View.extend({
 		}
 	}
 		app.Helpers.RenderStreetMapMode(optionModeStreetMap);
-		console.log('zone de test')
 	},
 	
 	
+	
+	//Evenement qui réagit au click sur le marker en face de la voyante
 	popupInfo : function(){
-		alert('loule je suis une popup');
+
+		new Messi('Souhaitez vous commencez les questions ? .', {
+			title: 'Message d\' information',
+			buttons: [{
+					id: 0, 
+					label: 'Oui', 
+					val: 'O'
+			},
+			{
+					id: 1, 
+					label: 'Non', 
+					val: 'N'
+			}],
+			callback: function(val) { 
+				if(val == 'O'){
+					app.router.navigate('q1', true);
+				}
+			},
+			
+		});
 	},
 	
 	
