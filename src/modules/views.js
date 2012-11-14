@@ -278,7 +278,7 @@ app.Views.question = Backbone.View.extend({
 		//unlock la question 1
 		
 		//root vers la question 1
-		app.router.navigate('erreur', true);
+		app.router.navigate('q1', true);
 	}
 
 });
@@ -295,6 +295,9 @@ app.Views.q1 = app.Views.question.extend({
 		template = accueilHTML = _.template($('#template').html(),{'titreQuestion':'question 1'});
 		zoneRendu.html(template);
 	},
+	nextQuestion : function(){
+		app.router.navigate('q2', true);
+	}
 });
 
 app.Views.q2 = app.Views.question.extend({

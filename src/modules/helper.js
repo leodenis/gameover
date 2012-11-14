@@ -86,9 +86,26 @@ app.Helpers.questionIsUnlock = function (level){
 	etapes = _.where(userCurrent.etapes,{unLock:true});
 	//je recupère le dernier objet
 	lastEtape= _.last(etapes);
-	if(lastEtape.id <= level)
+	if(  level <=lastEtape.id )
 		return true
 	else
+		console.log("L'utilisateur n'a pas encore débloquer le level"+level);
 		return false;
 }
+/**
+ * Récupére la dernier question unlock
+ * @author Kévin La Rosa
+ * @arguments : int -> level
+ * @requires  backbones.js
+ */
+app.Helpers.getLastQuestUnlock = function (){
+	//Récupère les infos de l'utilisateur
+	userCurrent = app.users.get("1").attributes;
+	//je cherche les étapes débloquées
+	etapes = _.where(userCurrent.etapes,{unLock:true});
+	//je recupère le dernier objet
+	lastEtape= _.last(etapes);
+	return lastEtape.id;
+}
+
 	
