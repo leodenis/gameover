@@ -137,6 +137,7 @@ app.Views.home = Backbone.View.extend({
  * View du début du jeux
  * @author Kévin La Rosa
  * @requires  backbones.js
+ * @A faire : Stylisé la view, notice de l'action, revoir le blocage sur la streetView
  */
 app.Views.startGame = Backbone.View.extend({
 	el : '#question',

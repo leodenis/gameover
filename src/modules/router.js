@@ -17,7 +17,8 @@ app.Router = Backbone.Router.extend({
     'q7': 'q7',
     'q8': 'q8',
     'q9': 'q9',
-    'end': 'end'
+    'end': 'end',
+    ":whatever": "inconue"
   },
   // Root principal du site internet
   root: function () {
@@ -139,6 +140,12 @@ app.Router = Backbone.Router.extend({
   		// Renvoi l'utilisateur vers son dernier deblocage
   		this.routeQuestion(app.Helpers.getLastQuestUnlock());
   },
+  
+  //En cas de route non déclarer 
+  inconue: function(){
+  	this.routeQuestion(app.Helpers.getLastQuestUnlock());
+  },
+  
   
   //Ne sachant pas comment récupérer l'id de ma variable j'ai crée une fonction de routage suivant l'id je route vers la bonne question manuellement
   routeQuestion: function(route){
