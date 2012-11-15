@@ -212,47 +212,50 @@ table { border-collapse: collapse; border-spacing: 0; }
 */
 
 body {
-	background: url("../img/fond.jpg") left top repeat;
-	color: #FFF;
+	background:url("../img/fond.jpg") left top repeat;
+	color:#FFF;
 }
 
 header {
-	width: 100%;
-	min-height: 100px;
-	line-height: 100px;
+	width:100%;
+	min-height:100px;
+	line-height:100px;
+	background:url("../img/header.png") left top no-repeat;
+	z-index:1;
+	height:184px;
 }
 
 header > a {
-	display: block;
-	background: url("../img/logo.png") left no-repeat;
-	padding-left: 120px;
-	height: 100px;
-	text-decoration: none;
-	margin-left: 3%;
+	display:block;
+	background:url("../img/logo.png") left no-repeat;
+	padding-left:120px;
+	height:100px;
+	text-decoration:none;
+	margin-left:3%;
 }
 
 header > a, header > a:hover, header > a:visited {
-	color: #d8dce8;
+	color:#d8dce8;
 }
 
 #headerDecompte {
-	background: url("../img/decompte.png") center no-repeat;
-	float: right;
-	width: 440px;
-	height: 100px;
+	background:url("../img/decompte.png") center no-repeat;
+	float:right;
+	width:440px;
+	height:100px;
 }
 
 #container {
-	margin: 0 auto;
-	width: 100%;
+	margin:0 auto;
+	width:100%;
 }
 
 footer {
-	text-align: center;
-	width: 100%;
-	min-height: 100px;
-	text-align: left;
-	line-height: 100px;
+	text-align:center;
+	width:100%;
+	min-height:100px;
+	text-align:left;
+	line-height:100px;
 }
 
 header h1, footer p {
@@ -261,51 +264,50 @@ header h1, footer p {
 
 footer > a {
 	display:inline-block;
-	float: left;
-	width: 70px;
-	height: 70px;
-	margin-left: 2%;
-	margin-top: 15px;
-	background: url("../img/twitter.png") center no-repeat;
+	float:left;
+	width:70px;
+	height:70px;
+	margin-left:2%;
+	margin-top:15px;
+	background:url("../img/twitter.png") center no-repeat;
 }
 
 footer a:nth-of-type(1) {
-	background: url("../img/facebook.png") center no-repeat;
+	background:url("../img/facebook.png") center no-repeat;
 }
 
 footer > span {
-	text-transform: uppercase;
-	float: left;
-	margin: 0 2%;
+	text-transform:uppercase;
+	float:left;
+	margin:0 2%;
 }
 
 footer > span:nth-of-type(1) {
-	float: right;
+	float:right;
 }
 
 #hand-left {
 	background: url("../img/hand-left.png") center top no-repeat;
 	position: fixed;
-	left: 20%;
-	bottom: 0;
-	width: 151px;
-	height: 123px;
+	left:20%;
+	bottom:0;
+	width:151px;
+	height:123px;
 }
 
 #hand-center {
-	background: url("../img/hand-center.png") center top no-repeat;
-	position: fixed;
-	left: 50%;
-	bottom: 0;
-	width: 270px;
-	height: 700px;
-	transition: bottom 2s;
-	-moz-transition: bottom 2s;
-	-webkit-transition: bottom 2s;
-	-o-transition: bottom 2s;
+	background:url("../img/hand-center.png") center top no-repeat;
+	position:fixed;
+	left:50%;
+	bottom:-300px;
+	width:270px;
+	height:700px;
+	transition:bottom 2s;
+	-moz-transition:bottom 2s;
+	-webkit-transition:bottom 2s;
+	-o-transition:bottom 2s;
 	cursor:pointer;
 }
-
 #hand-center:hover {
 	bottom: -600px;
 }
@@ -313,45 +315,53 @@ footer > span:nth-of-type(1) {
 #hand-right {
 	background: url("../img/hand-right.png") center top no-repeat;
 	position: fixed;
-	right: 0;
-	bottom: 20%;
-	width: 270px;
-	height: 270px;
+	right:0;
+	bottom:20%;
+	width:270px;
+	height:270px;
+	transition:right 2s;
+	-moz-transition:right 2s;
+	-webkit-transition:right 2s;
+	-o-transition:right 2s;
+	cursor:pointer;
 }
-
+#hand-right:hover {
+	right:-10%;
+}
 
 
 /* ACCUEIL */
 
 #accueil {
-	width: 100%;
+	width:100%;
 }
 
 h2 {
-	text-transform: uppercase;
+	text-transform:uppercase;
 }
 
 #banner {
-	background: url("../img/banner.png") left top repeat-x;
-	width: 100%;
-	height: 593px;
+	background:url("../img/banner.jpg") left top repeat-x;
+	width:100%;
+	height:593px;
+	margin-top:-30px;
 }
 
 #stats, #jeu {
-	width: 40%;
-	height: 330px;
-	float: left;
-	background: rgba(0,0,0,0.5);
-	-webkit-border-radius: 9px;
-	-moz-border-radius: 9px;
-	border-radius: 9px;
-	margin: 3%;
-	padding: 2%;
-	text-align: center;
+	width:40%;
+	height:330px;
+	float:left;
+	background:rgba(0,0,0,0.5);
+	-webkit-border-radius:9px;
+	-moz-border-radius:9px;
+	border-radius:9px;
+	margin:3%;
+	padding:2%;
+	text-align:center;
 }
 
 #jeu img {
-	height: 150px;
+	height:150px;
 	cursor:pointer;
 }
 
@@ -366,15 +376,15 @@ div.messi-content{
 
 #nextQuestion {
 	color: #000;
-	background-color: rgba(200,5,5,1);
-	background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, .4), rgba(0, 0, 0, .1));
-	background-image: -moz-linear-gradient(top, rgba(255, 255, 255, .4), rgba(0, 0, 0, .1));
-	background-image: -ms-linear-gradient(top, rgba(255, 255, 255, .4), rgba(0, 0, 0, .1));
-	background-image: -o-linear-gradient(top, rgba(255, 255, 255, .4), rgba(0, 0, 0, .1));
-	background-image: linear-gradient(top, rgba(255, 255, 255, .4), rgba(0, 0, 0, .1));
-	display: inline-block;
-	height: 30px;
-	line-height: 30px;
-	padding: 0 10px;
+	background-color:rgba(200,5,5,1);
+	background-image:-webkit-linear-gradient(top, rgba(255, 255, 255, .4), rgba(0, 0, 0, .1));
+	background-image:-moz-linear-gradient(top, rgba(255, 255, 255, .4), rgba(0, 0, 0, .1));
+	background-image:-ms-linear-gradient(top, rgba(255, 255, 255, .4), rgba(0, 0, 0, .1));
+	background-image:-o-linear-gradient(top, rgba(255, 255, 255, .4), rgba(0, 0, 0, .1));
+	background-image:linear-gradient(top, rgba(255, 255, 255, .4), rgba(0, 0, 0, .1));
+	display:inline-block;
+	height:30px;
+	line-height:30px;
+	padding:0 10px;
 	border-radius:9px;
 }
