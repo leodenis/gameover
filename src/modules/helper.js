@@ -129,12 +129,12 @@ app.Helpers.filAriane = function(lastQuestionUnlock,currentQuestion){
 		for(i=0;i<=lastQuestionUnlock;i++) {
 			$("footer > span:nth-of-type(1) a:nth-of-type("+i+")").removeClass("doing").addClass("done");
 		}
-		for(i=lastQuestionUnlock;i<=10;i++) {
+		for(i=lastQuestionUnlock;i<=9;i++) {
 			$("footer > span:nth-of-type(1) a:nth-of-type("+i+")").removeClass("doing");
 		}
 		$("footer > span:nth-of-type(1) a:nth-of-type("+(lastQuestionUnlock+1)+")").addClass("doing");
 	} else {
-		for(i=lastQuestionUnlock;i<=10;i++) {
+		for(i=lastQuestionUnlock;i<=9;i++) {
 			$("footer > span:nth-of-type(1) a:nth-of-type("+i+")").removeClass("doing");
 		}
 	}
