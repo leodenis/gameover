@@ -333,7 +333,7 @@ app.Views.q1 = app.Views.question.extend({
 	render : function (){
 		console.log('rlol');
 		//Recupère le html générer avec le template
-		template = accueilHTML = _.template($('#template').html(),{'titreQuestion':'question 1'});
+		template = accueilHTML = _.template($('#templateIntroStreet').html(),{'titreQuestion':'question 1'});
 		this.$el.html(template);
 		return this;
 	},
