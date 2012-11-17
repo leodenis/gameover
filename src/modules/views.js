@@ -150,6 +150,8 @@ app.Views.startGame = Backbone.View.extend({
 	  	if($('#Accueil:visible').length){
 	  		$('#Accueil:visible').hide().empty();
 	  	}
+	  	//Fil ariane
+		app.Helpers.filAriane(app.Helpers.getLastQuestUnlock(),app.Helpers.getCurrentQuestion());
 	  	//Affiche la zone de rendu
 	  	this.$el.show();
 	  	// Lance l'animation d'introduction (Voir par la création d'un template html)
@@ -240,8 +242,6 @@ app.Views.startGame = Backbone.View.extend({
 		}
 	}
 		app.Helpers.RenderStreetMapMode(optionModeStreetMap);
-		//Fil d'ariane
-		app.Helpers.filAriane(app.Helpers.getLastQuestUnlock(),q=0);
 	},
 	
 	//Evenement qui réagit au click sur le marker en face de la voyante
@@ -299,6 +299,10 @@ app.Views.question = Backbone.View.extend({
 	  	if($('#Accueil:visible').length){
 	  		$('#Accueil:visible').hide().empty();
 	  	}
+	  	
+	  	//Fil ariane
+		app.Helpers.filAriane(app.Helpers.getLastQuestUnlock(),app.Helpers.getCurrentQuestion());
+		
 	  	//Affiche la zone de rendu si on vient de l'accueil
 	  	this.$el.show();
 	  	//Affiche la question
@@ -331,9 +335,8 @@ app.Views.question = Backbone.View.extend({
 app.Views.q1 = app.Views.question.extend({
 
 	render : function (){
-		console.log('rlol');
 		//Recupère le html générer avec le template
-		template = accueilHTML = _.template($('#template').html(),{'titreQuestion':'question 1'});
+		template = accueilHTML = _.template($('#templateIntroStreet').html(),{'titreQuestion':'question 1'});
 		this.$el.html(template);
 		return this;
 	},
