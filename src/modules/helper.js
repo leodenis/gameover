@@ -136,10 +136,7 @@ app.Helpers.unlockQuestion = function(question){
  * @author Mathieu Dutto
  * @requires  backbones.js
  */
-app.Helpers.getCurrentQuestion = function(){
-	var currentPage; //url
-	var currentQuestion; //numero correspondant à la page
-	
+app.Helpers.getCurrentQuestion = function(){	
 	// currentPage = la page visionnée
 	currentPage = Backbone.history.fragment;
 	currentPageNum = currentPage.charAt(1);
@@ -172,11 +169,14 @@ app.Helpers.getCurrentQuestion = function(){
 app.Helpers.filAriane = function(lastQuestionUnlock,currentQuestion){
 	currentQuestion++;
 	//gestion fil d'ariane
+	//enlève les classes "doing" et ajoute la classe "done" aux questions précédentes (précédentes à la question en cours) 
 	for(i=1;i<=currentQuestion;i++) {
 		$("footer > span:nth-of-type(1) a:nth-of-type("+i+")").removeClass("doing").addClass("done");
 	}
+	//enlève la classe "doing" aux questions suivantes (et débloquées) à la question en cours
 	for(i=currentQuestion;i<=10;i++) {
 		$("footer > span:nth-of-type(1) a:nth-of-type("+i+")").removeClass("doing");
 	}
+	//ajoute la classe en cours à la question en cours
 	$("footer > span:nth-of-type(1) a:nth-of-type("+currentQuestion+")").addClass("doing");
 }
