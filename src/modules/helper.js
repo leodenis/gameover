@@ -117,4 +117,25 @@ app.Helpers.getLastQuestUnlock = function (){
 	return lastEtape.id;
 }
 
-	
+/**
+ * Gère la progression du fil d'ariane en ajoutant et enlevant des classes css
+ * @author Mathieu Dutto
+ * @arguments : int -> currentQuestion
+ * @requires  backbones.js
+ */
+app.Helpers.filAriane = function(lastQuestionUnlock,currentQuestion){
+	if(lastQuestionUnlock == currentQuestion) {
+		//gestion fil d'ariane
+		for(i=0;i<=lastQuestionUnlock;i++) {
+			$("footer > span:nth-of-type(1) a:nth-of-type("+i+")").removeClass("doing").addClass("done");
+		}
+		for(i=lastQuestionUnlock;i<=10;i++) {
+			$("footer > span:nth-of-type(1) a:nth-of-type("+i+")").removeClass("doing");
+		}
+		$("footer > span:nth-of-type(1) a:nth-of-type("+(lastQuestionUnlock+1)+")").addClass("doing");
+	} else {
+		for(i=lastQuestionUnlock;i<=10;i++) {
+			$("footer > span:nth-of-type(1) a:nth-of-type("+i+")").removeClass("doing");
+		}
+	}
+}
