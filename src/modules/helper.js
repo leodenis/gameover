@@ -117,4 +117,17 @@ app.Helpers.getLastQuestUnlock = function (){
 	return lastEtape.id;
 }
 
+/**
+ * Débloquer une question
+ * @author Kévin La Rosa
+ * @arguments : int -> level a débloqué
+ * @requires  backbones.js
+ */
+app.Helpers.unlockQuestion = function(question){
+	// Débloque la question
+	app.users.get("1").attributes.etapes[question].unLock = true;
+	// Enregistre son edition dans le localstorage
+	app.users.get("1").save();
+}
+
 	

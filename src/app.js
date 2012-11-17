@@ -23,6 +23,7 @@ var app = {
   init: function () {
   	//Initialisation d'un loader
   	this.loader = new PxLoader(); 
+  	console.log(this.loader);
   	//Chargement de la vue loader
   	app.views.loader = new app.Views.loader();
     //Essaye de récupérer un model dans le localstorage

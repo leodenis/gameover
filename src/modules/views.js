@@ -81,7 +81,7 @@ app.Views.home = Backbone.View.extend({
 	initialize : function() {
 		// On cache les div courante
 		$('body > div:visible').hide();
-		// On affiche les div courante
+		// On affiche la div accueil
 		$('#Accueil').show();		
 		// Déclaration des templates
 		this.templateAccueil = $('#templateAccueil').html();
@@ -165,7 +165,7 @@ app.Views.startGame = Backbone.View.extend({
 	
 	
 		
-	//Injecte le rendu dans le dom ATTENTION sachant que son appel est depuis un objet différent la zone de rendu doit etre passer en argument !!!
+	//Attention prend en paramètre that qui est le this courant appelé depuis un objet étranger
 	renderIntro : function (that){
 		//Recupère le html générer avec le template
 		template = _.template($('#templateIntroStreet').html(),{});
@@ -247,8 +247,8 @@ app.Views.startGame = Backbone.View.extend({
 	//Evenement qui réagit au click sur le marker en face de la voyante
 	popupInfo : function(){
 
-		new Messi('Souhaitez vous commencez les questions ? .', {
-			title: 'Message d\' information',
+		new Messi('Nos « ancêtres », les Mayas, qui en savaient plus que nous sur la puissance des astres nous ont dévoilés leurs secrets.', {
+			title: 'Commencer à repondre aux questions',
 			buttons: [{
 					id: 0, 
 					label: 'Oui', 
@@ -261,6 +261,8 @@ app.Views.startGame = Backbone.View.extend({
 			}],
 			callback: function(val) { 
 				if(val == 'O'){
+					$(this.el).remove();
+					app.Helpers.unlockQuestion('1');
 					app.router.navigate('q1', true);
 				}
 			},
@@ -270,12 +272,9 @@ app.Views.startGame = Backbone.View.extend({
 	
 	
 	nextQuestion : function(){
-		// change le statut de l'utilisateur en mode game
-		app.users.get("1").attributes.etapes[1].unLock = true;
-		//enregistre son statut dans le localstorage
-		app.users.get("1").save();
-		//root vers la question 1
-		app.router.navigate('q1', true);
+		
+		app.Helpers.unlockQuestion('1');
+
 	}
 	
 
@@ -289,57 +288,76 @@ app.Views.startGame = Backbone.View.extend({
  * @requires  backbones.js
  */
 app.Views.question = Backbone.View.extend({
+	
+	//Zone de rendering
 	el : '#question',
+	
 	events: {
 		'click #nextQuestion': 'nextQuestion',
 	},
-	// Fonction appelé automatiquement lors de l'instanciation de la vue
+	
+	
+	// Fonction qui est appelé automatiquement lors de l'instanciation des vues questions
 	initialize : function() {
-		// Controle que nous n'ayons pas l'accueil de charger
+		// Controle que nous n'ayons pas l'accueil en non hide
 	  	if($('#Accueil:visible').length){
 	  		$('#Accueil:visible').hide().empty();
 	  	}
-	  	//Affiche la zone de rendu
+	  	//Affiche la zone de rendu si on vient de l'accueil
 	  	this.$el.show();
-	  	this.introductionStart(this.$el);
+	  	//Affiche la question
+	  	this.render();
 	},
 	
-	//Injecte le rendu dans le dom ATTENTION sachant que son appel est depuis un objet différent la zone de rendu doit etre passer en argument !!!
-	introductionStart : function (zoneRendu){
+	
+	render : function (){
 		//Recupère le html générer avec le template
-		template = accueilHTML = _.template($('#template').html(),{'titreQuestion':'question vide'});
+		template = accueilHTML = _.template($('#template').html(),{'titreQuestion':'a faire'});
 		zoneRendu.html(template);
+		return this;
 	},
-	nextQuestion : function(){
-		//unlock la question 1
-		
-		//root vers la question 1
-		app.router.navigate('q1', true);
+	
+	render: function(){
+		console.log('kdjkdjdj');
 	}
 
 });
 
 
 
-/* DÉFINITION DES VIEWS ENFANTS
-Gestion des unlocks a faire
- * */ 
 
+
+/**
+ * QUESTION 1 : 
+ * @author Kévin La Rosa 
+ * @requires  backbones.js
+ */
 app.Views.q1 = app.Views.question.extend({
+	render : function (){
+		console.log('rlol');
+		//Recupère le html générer avec le template
+		template = accueilHTML = _.template($('#template').html(),{'titreQuestion':'question 1'});
+		this.$el.html(template);
+		return this;
+	},
+	nextQuestion : function(){
+		app.Helpers.unlockQuestion('2');
+		app.router.navigate('q2', true);
+	}
+});
+
+
+app.Views.q2 = app.Views.question.extend({
+	
 	introductionStart : function (zoneRendu){
 		//Recupère le html générer avec le template
 		template = accueilHTML = _.template($('#template').html(),{'titreQuestion':'question 1'});
 		zoneRendu.html(template);
 	},
-	nextQuestion : function(){
-		app.router.navigate('q2', true);
-	}
-});
-
-app.Views.q2 = app.Views.question.extend({
 	
 	nextQuestion : function(){
 		//root vers la question 1
+		app.Helpers.unlockQuestion('3');
 		app.router.navigate('q3', true);
 	}
 	

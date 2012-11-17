@@ -27,123 +27,185 @@ app.Router = Backbone.Router.extend({
   },
   
   startGame: function() {
-  	app.views.startGame = new app.Views.startGame;
+  	if(app.Helpers.userIsPlaying()){
+  		app.views.startGame = new app.Views.startGame();
+  	}else{
+  		console.log('le jeux n\' est pas lancé');
+  		this.navigate('', true);
+  	}
   },
   
   q1: function(){
-  	console.log('Lancement de la question 1');
-  	statut = app.Helpers.questionIsUnlock(1);
-  	//console.log(statut);
-  	//routage d'accés
-  	if(statut)
-  		app.views.q1 = new app.Views.q1;
-  	else
-  		// Renvoi l'utilisateur vers son dernier deblocage
-  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
+  	if(app.Helpers.userIsPlaying()){
+	  	console.log('Lancement de la question 1');
+	  	statut = app.Helpers.questionIsUnlock(1);
+	  	//console.log(statut);
+	  	//routage d'accés
+	  	if(statut)
+	  		app.views.q1 = new app.Views.q1;
+	  	else
+	  		// Renvoi l'utilisateur vers son dernier deblocage
+	  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
+	}else{
+		console.log('le jeux n\' est pas lancé');
+  		this.navigate('', true);
+	}
   },
   
   q2: function(){
-  	console.log('Lancement de la question 2');
-  	statut = app.Helpers.questionIsUnlock(2);
-  	// NB : il faut changer statut par true pour sauter le control de validation
-  	if(statut)
-  		app.views.q1 = new app.Views.q1;
-  	else
-  		// Renvoi l'utilisateur vers son dernier deblocage
-  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
+  	if(app.Helpers.userIsPlaying()){
+	  	console.log('Lancement de la question 2');
+	  	statut = app.Helpers.questionIsUnlock(2);
+	  	// NB : il faut changer statut par true pour sauter le control de validation
+	  	if(statut)
+	  		app.views.q1 = new app.Views.q1;
+	  	else
+	  		// Renvoi l'utilisateur vers son dernier deblocage
+	  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
+	}else{
+  		console.log('le jeux n\' est pas lancé');
+  		this.navigate('', true);
+  	}
   },
   
   q3: function(){
-  	console.log('Lancement de la question 3');
-  	statut = app.Helpers.questionIsUnlock(3);
-  	// NB : il faut changer statut par true pour sauter le control de validation
-  	if(statut)
-  		app.views.q3 = new app.Views.q3;
-  	else
-  		// Renvoi l'utilisateur vers son dernier deblocage
-  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
+  	if(app.Helpers.userIsPlaying()){
+	  	console.log('Lancement de la question 3');
+	  	statut = app.Helpers.questionIsUnlock(3);
+	  	// NB : il faut changer statut par true pour sauter le control de validation
+	  	if(statut)
+	  		app.views.q3 = new app.Views.q3;
+	  	else
+	  		// Renvoi l'utilisateur vers son dernier deblocage
+	  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
+	}else{
+  		console.log('le jeux n\' est pas lancé');
+  		this.navigate('', true);
+  	}	  		
   },
   
   q4: function(){
-  	console.log('Lancement de la question 4');
-  	statut = app.Helpers.questionIsUnlock(4);
-  	// NB : il faut changer statut par true pour sauter le control de validation
-  	if(statut)
-  		app.views.q4 = new app.Views.q4;
-  	else
-  		// Renvoi l'utilisateur vers son dernier deblocage
-  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
+  	if(app.Helpers.userIsPlaying()){
+	  	console.log('Lancement de la question 4');
+	  	statut = app.Helpers.questionIsUnlock(4);
+	  	// NB : il faut changer statut par true pour sauter le control de validation
+	  	if(statut)
+	  		app.views.q4 = new app.Views.q4;
+	  	else
+	  		// Renvoi l'utilisateur vers son dernier deblocage
+	  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
+	}else{
+  		console.log('le jeux n\' est pas lancé');
+  		this.navigate('', true);
+  	}	  		
   },
   
   q5: function(){
-  	console.log('Lancement de la question 5');
-  	statut = app.Helpers.questionIsUnlock(5);
-  	// NB : il faut changer statut par true pour sauter le control de validation
-  	if(statut)
-  		app.views.q5 = new app.Views.q5;
-  	else
-  		// Renvoi l'utilisateur vers son dernier deblocage
-  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
+  	if(app.Helpers.userIsPlaying()){
+	  	console.log('Lancement de la question 5');
+	  	statut = app.Helpers.questionIsUnlock(5);
+	  	// NB : il faut changer statut par true pour sauter le control de validation
+	  	if(statut)
+	  		app.views.q5 = new app.Views.q5;
+	  	else
+	  		// Renvoi l'utilisateur vers son dernier deblocage
+	  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
+	}else{
+  		console.log('le jeux n\' est pas lancé');
+  		this.navigate('', true);
+  	}	  		
   },
   
   q6: function(){
-  	console.log('Lancement de la question 6');
-  	statut = app.Helpers.questionIsUnlock(6);
-  	// NB : il faut changer statut par true pour sauter le control de validation
-  	if(statut)
-  		app.views.q6 = new app.Views.q6;
-  	else
-  		// Renvoi l'utilisateur vers son dernier deblocage
-  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
+  	if(app.Helpers.userIsPlaying()){
+	  	console.log('Lancement de la question 6');
+	  	statut = app.Helpers.questionIsUnlock(6);
+	  	// NB : il faut changer statut par true pour sauter le control de validation
+	  	if(statut)
+	  		app.views.q6 = new app.Views.q6;
+	  	else
+	  		// Renvoi l'utilisateur vers son dernier deblocage
+	  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
+	}else{
+  		console.log('le jeux n\' est pas lancé');
+  		this.navigate('', true);
+  	}
   },
   
   q7: function(){
-  	console.log('Lancement de la question 7');
-  	statut = app.Helpers.questionIsUnlock(7);
-  	// NB : il faut changer statut par true pour sauter le control de validation
-  	if(statut)
-  		app.views.q7 = new app.Views.q7;
-  	else
-  		// Renvoi l'utilisateur vers son dernier deblocage
-  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
+  	if(app.Helpers.userIsPlaying()){
+	  	console.log('Lancement de la question 7');
+	  	statut = app.Helpers.questionIsUnlock(7);
+	  	// NB : il faut changer statut par true pour sauter le control de validation
+	  	if(statut)
+	  		app.views.q7 = new app.Views.q7;
+	  	else
+	  		// Renvoi l'utilisateur vers son dernier deblocage
+	  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
+	}else{
+  		console.log('le jeux n\' est pas lancé');
+  		this.navigate('', true);
+  	}	  		
   },
   
   q8: function(){
-  	console.log('Lancement de la question 8');
-  	statut = app.Helpers.questionIsUnlock(8);
-  	// NB : il faut changer statut par true pour sauter le control de validation
-  	if(statut)
-  		app.views.q8 = new app.Views.q8;
-  	else
-  		// Renvoi l'utilisateur vers son dernier deblocage
-  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
+  	if(app.Helpers.userIsPlaying()){
+	  	console.log('Lancement de la question 8');
+	  	statut = app.Helpers.questionIsUnlock(8);
+	  	// NB : il faut changer statut par true pour sauter le control de validation
+	  	if(statut)
+	  		app.views.q8 = new app.Views.q8;
+	  	else
+	  		// Renvoi l'utilisateur vers son dernier deblocage
+	  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
+	}else{
+  		console.log('le jeux n\' est pas lancé');
+  		this.navigate('', true);
+  	}	  		
   },
   
   q9: function(){
-  	console.log('Lancement de la question 9');
-  	statut = app.Helpers.questionIsUnlock(9);
-  	// NB : il faut changer statut par true pour sauter le control de validation
-  	if(statut)
-  		app.views.q9 = new app.Views.q9;
-  	else
-  		// Renvoi l'utilisateur vers son dernier deblocage
-  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
+  	if(app.Helpers.userIsPlaying()){
+	  	console.log('Lancement de la question 9');
+	  	statut = app.Helpers.questionIsUnlock(9);
+	  	// NB : il faut changer statut par true pour sauter le control de validation
+	  	if(statut)
+	  		app.views.q9 = new app.Views.q9;
+	  	else
+	  		// Renvoi l'utilisateur vers son dernier deblocage
+	  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
+	}else{
+  		console.log('le jeux n\' est pas lancé');
+  		this.navigate('', true);
+  	}	  		
   },
   
   end: function(){
-  	console.log('Lancement de la page de fin');
-  	// NB : il faut changer statut par true pour sauter le control de validation
-  	statut = app.Helpers.questionIsUnlock(10);
-  	if(statut)
-  		app.views.q9 = new app.Views.q9;
-  	else
-  		// Renvoi l'utilisateur vers son dernier deblocage
-  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
+  	if(app.Helpers.userIsPlaying()){
+	  	console.log('Lancement de la page de fin');
+	  	// NB : il faut changer statut par true pour sauter le control de validation
+	  	statut = app.Helpers.questionIsUnlock(10);
+	  	if(statut)
+	  		app.views.q9 = new app.Views.q9;
+	  	else
+	  		// Renvoi l'utilisateur vers son dernier deblocage
+	  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
+	}else{
+  		console.log('le jeux n\' est pas lancé');
+  		this.navigate('', true);
+  	}
+	  		
   },
   
   //En cas de route non déclarer 
   inconue: function(){
-  	this.routeQuestion(app.Helpers.getLastQuestUnlock());
+  	if(app.Helpers.userIsPlaying()){
+  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
+  	}else{
+  		console.log('le jeux n\' est pas lancé');
+  		this.navigate('', true);
+  	}
+  		
   },
   
   
