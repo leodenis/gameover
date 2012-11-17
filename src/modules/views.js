@@ -137,16 +137,16 @@ app.Views.home = Backbone.View.extend({
  * View du début du jeux
  * @author Kévin La Rosa
  * @requires  backbones.js
- * @A faire : Stylisé la view, notice de l'action, revoir le blocage sur la streetView
+ * @A faire : Styliser la view, notice de l'action, revoir le blocage sur la streetView
  */
 app.Views.startGame = Backbone.View.extend({
 	el : '#question',
 	events: {
 		'click #nextQuestion': 'nextQuestion',
 	},
-	// Fonction appelé automatiquement lors de l'instanciation de la vue
+	// Fonction appelée automatiquement lors de l'instanciation de la vue
 	initialize : function() {
-		// Controle que nous n'ayons pas l'accueil de charger
+		// Controle que nous n'ayons pas l'accueil de chargé
 	  	if($('#Accueil:visible').length){
 	  		$('#Accueil:visible').hide().empty();
 	  	}
@@ -163,13 +163,13 @@ app.Views.startGame = Backbone.View.extend({
 	  	app.Helpers.animation(AnimationParam);
 	},
 	
-	
-		
 	//Attention prend en paramètre that qui est le this courant appelé depuis un objet étranger
+
 	renderIntro : function (that){
 		//Recupère le html générer avec le template
 		template = _.template($('#templateIntroStreet').html(),{});
 		that.$el.html(template);
+		
 		// Définition des paramètre de la street + map (voir helper)
 		var optionModeStreetMap = {
 			idMap : 'carte',
@@ -178,12 +178,12 @@ app.Views.startGame = Backbone.View.extend({
 				center : new google.maps.LatLng(48.867116,2.399231),
 				zoom : 18,
 				mapTypeId: google.maps.MapTypeId.ROADMAP, // type de map
-				styles: [   { "featureType": "landscape", "stylers": [ { "color": "#808080" } ] }, // les terre en gris
-                            { "featureType": "poi", "stylers": [ { "visibility": "off" } ] }, // Cache les point d'interet ( Hopital,Ecole ect...)
+				styles: [   { "featureType": "landscape", "stylers": [ { "color": "#808080" } ] }, // les terres en gris
+                            { "featureType": "poi", "stylers": [ { "visibility": "off" } ] }, // Cache les points d'interet ( Hopital,Ecole ect...)
                             { "featureType": "administrative", "stylers": [ { "visibility": "off" } ] }, // Nom : ville, arondissement : non visible
                             { "featureType": "road", "stylers": [ { "color": "#c0c0c0" } ] }, // Route en gris clair
                             { "featureType": "road", "elementType": "labels", "stylers": [ {  "visibility": "off" } ] }, // label des routes non visible
-                            { "featureType": "transit", "stylers": [ { "visibility": "off" } ] } // Transport non affichÃ©
+                            { "featureType": "transit", "stylers": [ { "visibility": "off" } ] } // Transport non affiche
                         ],
 				streetViewControl: true,
 				navigationControl: false,
@@ -218,7 +218,7 @@ app.Views.startGame = Backbone.View.extend({
                     //bloque le clique du sol
                     linksControl:true
 			},
-		markersStreet : [
+			markersStreet : [
 			{
 				title : 'voyance',
 				position : new google.maps.LatLng(48.867058,2.399065),
@@ -240,9 +240,9 @@ app.Views.startGame = Backbone.View.extend({
 		}
 	}
 		app.Helpers.RenderStreetMapMode(optionModeStreetMap);
+		//Fil d'ariane
+		app.Helpers.filAriane(app.Helpers.getLastQuestUnlock(),q=0);
 	},
-	
-	
 	
 	//Evenement qui réagit au click sur le marker en face de la voyante
 	popupInfo : function(){
@@ -270,15 +270,11 @@ app.Views.startGame = Backbone.View.extend({
 		});
 	},
 	
-	
 	nextQuestion : function(){
 		
 		app.Helpers.unlockQuestion('1');
 
 	}
-	
-
-
 }); 
 
 
@@ -333,6 +329,7 @@ app.Views.question = Backbone.View.extend({
  * @requires  backbones.js
  */
 app.Views.q1 = app.Views.question.extend({
+
 	render : function (){
 		console.log('rlol');
 		//Recupère le html générer avec le template
@@ -356,6 +353,7 @@ app.Views.q2 = app.Views.question.extend({
 	},
 	
 	nextQuestion : function(){
+
 		//root vers la question 1
 		app.Helpers.unlockQuestion('3');
 		app.router.navigate('q3', true);
@@ -366,7 +364,7 @@ app.Views.q2 = app.Views.question.extend({
 app.Views.q3 = app.Views.question.extend({
 	
 	nextQuestion : function(){
-		//root vers la question 1
+		//root vers la question 4
 		app.router.navigate('q4', true);
 	}
 	
@@ -375,7 +373,7 @@ app.Views.q3 = app.Views.question.extend({
 app.Views.q4 = app.Views.question.extend({
 	
 	nextQuestion : function(){
-		//root vers la question 1
+		//root vers la question 5
 		app.router.navigate('q5', true);
 	}
 	
@@ -384,7 +382,7 @@ app.Views.q4 = app.Views.question.extend({
 app.Views.q5 = app.Views.question.extend({
 	
 	nextQuestion : function(){
-		//root vers la question 1
+		//root vers la question 6
 		app.router.navigate('q6', true);
 	}
 	
@@ -393,7 +391,7 @@ app.Views.q5 = app.Views.question.extend({
 app.Views.q6 = app.Views.question.extend({
 	
 	nextQuestion : function(){
-		//root vers la question 1
+		//root vers la question 7
 		app.router.navigate('q7', true);
 	}
 	
@@ -402,7 +400,7 @@ app.Views.q6 = app.Views.question.extend({
 app.Views.q7 = app.Views.question.extend({
 	
 	nextQuestion : function(){
-		//root vers la question 1
+		//root vers la question 8
 		app.router.navigate('q8', true);
 	}
 	
@@ -411,7 +409,7 @@ app.Views.q7 = app.Views.question.extend({
 app.Views.q8 = app.Views.question.extend({
 	
 	nextQuestion : function(){
-		//root vers la question 1
+		//root vers la question 9
 		app.router.navigate('q9', true);
 	}
 	
@@ -420,7 +418,7 @@ app.Views.q8 = app.Views.question.extend({
 app.Views.q9 = app.Views.question.extend({
 	
 	nextQuestion : function(){
-		//root vers la question 1
+		//root vers la page de fin
 		app.router.navigate('end', true);
 	}
 	
