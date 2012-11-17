@@ -88,12 +88,10 @@ footer > span {
 footer a:nth-of-type(1) {
 	background:url("../img/facebook.png") center no-repeat;
 }
-
 footer > span:nth-of-type(1) {
 	float:right;
 	margin-right:4%;
 }
-
 footer > span:nth-of-type(1) a {
 	display:inline-block;
 	text-decoration:none;
@@ -102,12 +100,12 @@ footer > span:nth-of-type(1) a {
 	cursor:pointer;
 	width:30px;
 	height:30px;
-	color:#fff;
+	color:#999;
+	background-color:#444;
 	text-shadow:0 2px 4px rgba(0,0,0,0.8);
 	-webkit-border-radius:50%;
 	-moz-border-radius:50%;
 	border-radius:50%;
-	background-color:#999;
 	background-image:-webkit-linear-gradient(top, rgba(255,255,255,0.4), rgba(0,0,0,0.3));
 	background-image:-moz-linear-gradient(top, rgba(255,255,255,0.4), rgba(0,0,0,0.3));
 	background-image:-ms-linear-gradient(top, rgba(255,255,255,0.4), rgba(0,0,0,0.3));
@@ -129,17 +127,14 @@ footer > span:nth-of-type(1) a:hover {
 	-o-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset 0 -1px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.5);
 	box-shadow: inset 2px 2px 6px rgba(0,0,0,0.5), inset -2px 2px 6px rgba(0,0,0,0.5),inset 2px -2px 6px rgba(0,0,0,0.5),inset -2px -2px 6px rgba(0,0,0,0.5);
 }
-
 footer > span:nth-of-type(1) a.done {
-	background:#444;
-	color:#999;
+	background-color:#999;
+	color:#fff;
 }
-
 footer > span:nth-of-type(1) a.doing {
-	background:#fff;
+	background-color:#fff;
 	color:#000;
 }
-
 .hands {
 	background: url("../img/hand.png") center top no-repeat;
 	background-size:100%;

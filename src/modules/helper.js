@@ -120,7 +120,7 @@ app.Helpers.getLastQuestUnlock = function (){
 /**
  * Débloquer une question
  * @author Kévin La Rosa
- * @arguments : int -> level a débloqué
+ * @arguments : int -> level à débloquer
  * @requires  backbones.js
  */
 app.Helpers.unlockQuestion = function(question){
@@ -130,26 +130,53 @@ app.Helpers.unlockQuestion = function(question){
 	app.users.get("1").save();
 }
 
+
+/**
+ * Récupère la question en cours (visionée !)
+ * @author Mathieu Dutto
+ * @requires  backbones.js
+ */
+app.Helpers.getCurrentQuestion = function(){	
+	// currentPage = la page visionnée
+	currentPage = Backbone.history.fragment;
+	currentPageNum = currentPage.charAt(1);
+	
+	// si ce n'est pas une question, c'est l'accueil ou la fin
+	if(isNaN(currentPageNum)) {
+		switch (currentPage) {
+			case "startGame":
+				currentQuestion = 0;
+				break;
+		 	case "end":
+				currentQuestion = 10;
+				break;
+		}
+		console.log(currentQuestion);
+	}
+	// si c'est une question (1 à 9)
+	else {
+		currentQuestion = currentPageNum;
+	}
+	return currentQuestion;
+}
 	
 /**
  * Gère la progression du fil d'ariane en ajoutant et enlevant des classes css
  * @author Mathieu Dutto
- * @arguments : int -> currentQuestion
+ * @arguments : int -> dernière question débloquée int -> question en cours (vue)
  * @requires  backbones.js
  */
 app.Helpers.filAriane = function(lastQuestionUnlock,currentQuestion){
-	if(lastQuestionUnlock == currentQuestion) {
-		//gestion fil d'ariane
-		for(i=0;i<=lastQuestionUnlock;i++) {
-			$("footer > span:nth-of-type(1) a:nth-of-type("+i+")").removeClass("doing").addClass("done");
-		}
-		for(i=lastQuestionUnlock;i<=9;i++) {
-			$("footer > span:nth-of-type(1) a:nth-of-type("+i+")").removeClass("doing");
-		}
-		$("footer > span:nth-of-type(1) a:nth-of-type("+(lastQuestionUnlock+1)+")").addClass("doing");
-	} else {
-		for(i=lastQuestionUnlock;i<=9;i++) {
-			$("footer > span:nth-of-type(1) a:nth-of-type("+i+")").removeClass("doing");
-		}
+	currentQuestion++;
+	//gestion fil d'ariane
+	//enlève les classes "doing" et ajoute la classe "done" aux questions précédentes (précédentes à la question en cours) 
+	for(i=1;i<=currentQuestion;i++) {
+		$("footer > span:nth-of-type(1) a:nth-of-type("+i+")").removeClass("doing").addClass("done");
 	}
+	//enlève la classe "doing" aux questions suivantes (et débloquées) à la question en cours
+	for(i=currentQuestion;i<=10;i++) {
+		$("footer > span:nth-of-type(1) a:nth-of-type("+i+")").removeClass("doing");
+	}
+	//ajoute la classe en cours à la question en cours
+	$("footer > span:nth-of-type(1) a:nth-of-type("+currentQuestion+")").addClass("doing");
 }
