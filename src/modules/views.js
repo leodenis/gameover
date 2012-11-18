@@ -262,6 +262,7 @@ app.Views.startGame = Backbone.View.extend({
 			callback: function(val) { 
 				if(val == 'O'){
 					$(this.el).remove();
+					console.log(this.el);
 					app.Helpers.unlockQuestion('1');
 					app.router.navigate('q1', true);
 				}
@@ -336,6 +337,8 @@ app.Views.question = Backbone.View.extend({
 app.Views.q1 = app.Views.question.extend({
 
 	render : function (){
+		this.$el.html(' ');
+		console.log(this.el);
 		//Recupère le html générer avec le template
 		template = accueilHTML = _.template($('#templateIntroStreet').html(),{'titreQuestion':'question 1'});
 		this.$el.html(template);
