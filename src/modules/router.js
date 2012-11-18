@@ -7,7 +7,7 @@ app.Router = Backbone.Router.extend({
   },
   routes: {
     '': 'root',
-    'q0' : 'startGame',
+    'startGame' : 'startGame',
     'q1': 'q1',
     'q2': 'q2',
     'q3': 'q3',
@@ -17,7 +17,7 @@ app.Router = Backbone.Router.extend({
     'q7': 'q7',
     'q8': 'q8',
     'q9': 'q9',
-    'q10': 'end',
+    'end': 'end',
     ":whatever": "inconue"
   },
   // Root principal du site internet
@@ -30,7 +30,7 @@ app.Router = Backbone.Router.extend({
   	if(app.Helpers.userIsPlaying()){
   		app.views.startGame = new app.Views.startGame();
   	}else{
-  		console.log('le jeux n\' est pas lancé');
+  		console.log('le jeu n\' est pas lancé');
   		this.navigate('', true);
   	}
   },
@@ -47,7 +47,7 @@ app.Router = Backbone.Router.extend({
 	  		// Renvoi l'utilisateur vers son dernier deblocage
 	  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
 	}else{
-		console.log('le jeux n\' est pas lancé');
+		console.log('le jeu n\' est pas lancé');
   		this.navigate('', true);
 	}
   },
@@ -63,7 +63,7 @@ app.Router = Backbone.Router.extend({
 	  		// Renvoi l'utilisateur vers son dernier deblocage
 	  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
 	}else{
-  		console.log('le jeux n\' est pas lancé');
+  		console.log('le jeu n\' est pas lancé');
   		this.navigate('', true);
   	}
   },
@@ -79,7 +79,7 @@ app.Router = Backbone.Router.extend({
 	  		// Renvoi l'utilisateur vers son dernier deblocage
 	  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
 	}else{
-  		console.log('le jeux n\' est pas lancé');
+  		console.log('le jeu n\' est pas lancé');
   		this.navigate('', true);
   	}	  		
   },
@@ -95,7 +95,7 @@ app.Router = Backbone.Router.extend({
 	  		// Renvoi l'utilisateur vers son dernier deblocage
 	  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
 	}else{
-  		console.log('le jeux n\' est pas lancé');
+  		console.log('le jeu n\' est pas lancé');
   		this.navigate('', true);
   	}	  		
   },
@@ -111,7 +111,7 @@ app.Router = Backbone.Router.extend({
 	  		// Renvoi l'utilisateur vers son dernier deblocage
 	  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
 	}else{
-  		console.log('le jeux n\' est pas lancé');
+  		console.log('le jeu n\' est pas lancé');
   		this.navigate('', true);
   	}	  		
   },
@@ -127,7 +127,7 @@ app.Router = Backbone.Router.extend({
 	  		// Renvoi l'utilisateur vers son dernier deblocage
 	  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
 	}else{
-  		console.log('le jeux n\' est pas lancé');
+  		console.log('le jeu n\' est pas lancé');
   		this.navigate('', true);
   	}
   },
@@ -143,7 +143,7 @@ app.Router = Backbone.Router.extend({
 	  		// Renvoi l'utilisateur vers son dernier deblocage
 	  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
 	}else{
-  		console.log('le jeux n\' est pas lancé');
+  		console.log('le jeu n\' est pas lancé');
   		this.navigate('', true);
   	}	  		
   },
@@ -159,7 +159,7 @@ app.Router = Backbone.Router.extend({
 	  		// Renvoi l'utilisateur vers son dernier deblocage
 	  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
 	}else{
-  		console.log('le jeux n\' est pas lancé');
+  		console.log('le jeu n\' est pas lancé');
   		this.navigate('', true);
   	}	  		
   },
@@ -175,7 +175,7 @@ app.Router = Backbone.Router.extend({
 	  		// Renvoi l'utilisateur vers son dernier deblocage
 	  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
 	}else{
-  		console.log('le jeux n\' est pas lancé');
+  		console.log('le jeu n\' est pas lancé');
   		this.navigate('', true);
   	}	  		
   },
@@ -191,7 +191,7 @@ app.Router = Backbone.Router.extend({
 	  		// Renvoi l'utilisateur vers son dernier deblocage
 	  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
 	}else{
-  		console.log('le jeux n\' est pas lancé');
+  		console.log('le jeu n\' est pas lancé');
   		this.navigate('', true);
   	}
 	  		
@@ -202,7 +202,7 @@ app.Router = Backbone.Router.extend({
   	if(app.Helpers.userIsPlaying()){
   		this.routeQuestion(app.Helpers.getLastQuestUnlock());
   	}else{
-  		console.log('le jeux n\' est pas lancé');
+  		console.log('le jeu n\' est pas lancé');
   		this.navigate('', true);
   	}
   		
