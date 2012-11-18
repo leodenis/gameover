@@ -97,10 +97,10 @@ footer > span:nth-of-type(1) a {
 	text-decoration:none;
 	line-height:30px;
 	text-align:center;
-	cursor:pointer;
 	width:30px;
 	height:30px;
 	color:#999;
+	cursor:default;
 	background-color:#444;
 	text-shadow:0 2px 4px rgba(0,0,0,0.8);
 	-webkit-border-radius:50%;
@@ -120,13 +120,6 @@ footer > span:nth-of-type(1) a {
 	-o-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset 0 -1px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.5);
 	box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset 0 -1px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.5);
 }
-
-footer > span:nth-of-type(1) a:hover {
-	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset 0 -1px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.5);
-	-moz-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset 0 -1px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.5);
-	-o-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset 0 -1px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.5);
-	box-shadow: inset 2px 2px 6px rgba(0,0,0,0.5), inset -2px 2px 6px rgba(0,0,0,0.5),inset 2px -2px 6px rgba(0,0,0,0.5),inset -2px -2px 6px rgba(0,0,0,0.5);
-}
 footer > span:nth-of-type(1) a.done {
 	background-color:#999;
 	color:#fff;
@@ -134,6 +127,13 @@ footer > span:nth-of-type(1) a.done {
 footer > span:nth-of-type(1) a.doing {
 	background-color:#fff;
 	color:#000;
+}
+footer > span:nth-of-type(1) a.done:hover, footer > span:nth-of-type(1) a.doing:hover {
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset 0 -1px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.5);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset 0 -1px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.5);
+	-o-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset 0 -1px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.5);
+	box-shadow: inset 2px 2px 6px rgba(0,0,0,0.5), inset -2px 2px 6px rgba(0,0,0,0.5),inset 2px -2px 6px rgba(0,0,0,0.5),inset -2px -2px 6px rgba(0,0,0,0.5);
+	cursor:pointer;
 }
 .hands {
 	background: url("../img/hand.png") center top no-repeat;
