@@ -271,8 +271,9 @@ app.Views.startGame = Backbone.View.extend({
 	},
 	
 	nextQuestion : function(){
-		
+		$(this.el).remove();
 		app.Helpers.unlockQuestion('1');
+		app.router.navigate('q1', true);
 
 	}
 }); 
@@ -338,12 +339,86 @@ app.Views.q1 = app.Views.question.extend({
 		//Recupère le html générer avec le template
 		template = accueilHTML = _.template($('#templateIntroStreet').html(),{'titreQuestion':'question 1'});
 		this.$el.html(template);
-		return this;
+		// Définition des paramètre de la street + map (voir helper)
+		var optionModeStreetMap = {
+			idMap : 'carte',
+			idStreet : 'exploration',
+			mapOptions : {
+				center : new google.maps.LatLng(411.862818,2.399524),
+				zoom : 18,
+				mapTypeId: google.maps.MapTypeId.ROADMAP, // type de map
+				styles: [   { "featureType": "landscape", "stylers": [ { "color": "#808080" } ] }, // les terres en gris
+                            { "featureType": "poi", "stylers": [ { "visibility": "off" } ] }, // Cache les points d'interet ( Hopital,Ecole ect...)
+                            { "featureType": "administrative", "stylers": [ { "visibility": "off" } ] }, // Nom : ville, arondissement : non visible
+                            { "featureType": "road", "stylers": [ { "color": "#c0c0c0" } ] }, // Route en gris clair
+                            { "featureType": "road", "elementType": "labels", "stylers": [ {  "visibility": "off" } ] }, // label des routes non visible
+                            { "featureType": "transit", "stylers": [ { "visibility": "off" } ] } // Transport non affiche
+                        ],
+				streetViewControl: true,
+				navigationControl: false,
+    			mapTypeControl: false,
+    			scaleControl: false,
+    			draggable: false,
+    			zoomControl: false,
+  				scrollwheel: false,
+  				disableDoubleClickZoom: true,
+			},
+			streetOptions : {
+				
+				adresseControl : true,
+				adresseControlOptions: {
+                     style: {backgroundColor: 'grey', color: 'yellow'} // modification css
+                },
+                position : new google.maps.LatLng(48.866818,2.399524),
+                pov : {
+                	heading: 550, //Angle de rotation horizontal, en degrés, de la caméra
+                    pitch: 10, //Angle vertical, vers le haut ou le bas, par rapport à l'angle de vertical (CAMERA)
+                    zoom: 0
+                },
+                    //controler de direction
+                    panControl: true,
+                    // controler de direction par clavier
+                    keyboardShortcuts: true,
+                    //bloque le changement d'adresse
+                    addressControl:false,
+                    scrollwheel:false,
+                    //bloque le click and go
+                    clickToGo:true,
+                    //bloque le clique du sol
+                    linksControl:true
+			},
+			markersStreet : [
+			{
+				title : 'voyance',
+				position : new google.maps.LatLng(48.851287,2.276246),
+				title: 'Voyance',
+				events: [
+					{
+						eventMarker : 'click',
+						functionMarker : this
+						
+					}
+				],
+			}
+			
+		],
+		
+		streetGuide : {
+			depart : new google.maps.LatLng(48.866818,2.399524),
+			arriver : new google.maps.LatLng(48.867404,2.398934),
+		}
+	}
+	console.log(optionModeStreetMap);
+		app.Helpers.RenderStreetMapMode(optionModeStreetMap);
+		//return this;
 	},
+	
 	nextQuestion : function(){
 		app.Helpers.unlockQuestion('2');
 		app.router.navigate('q2', true);
 	}
+	
+	
 });
 
 

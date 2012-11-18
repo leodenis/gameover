@@ -30,6 +30,13 @@ app.Helpers.userIsPlaying = function(options){
  * @requires  backbones.js
  */
 app.Helpers.RenderStreetMapMode = function(options){
+	
+	if(carte && exploration){
+		console.log(exploration);
+		//exploration.panorama.setPosition(options.mapOptions.center);
+	}
+	console.log(carte);
+	console.log(options);
 	//Création de ma carte
 	carte = new google.maps.Map(document.getElementById(options.idMap),options.mapOptions);
 	//création de ma street View
