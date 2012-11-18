@@ -178,7 +178,7 @@ app.Views.startGame = Backbone.View.extend({
 			idStreet : 'exploration',
 			mapOptions : {
 				center : new google.maps.LatLng(48.867116,2.399231),
-				zoom : 18,
+				zoom : 17,
 				mapTypeId: google.maps.MapTypeId.ROADMAP, // type de map
 				styles: [   { "featureType": "landscape", "stylers": [ { "color": "#808080" } ] }, // les terres en gris
                             { "featureType": "poi", "stylers": [ { "visibility": "off" } ] }, // Cache les points d'interet ( Hopital,Ecole ect...)
@@ -261,8 +261,6 @@ app.Views.startGame = Backbone.View.extend({
 			}],
 			callback: function(val) { 
 				if(val == 'O'){
-					$(this.el).remove();
-					console.log(this.el);
 					app.Helpers.unlockQuestion('1');
 					app.router.navigate('q1', true);
 				}
@@ -337,18 +335,17 @@ app.Views.question = Backbone.View.extend({
 app.Views.q1 = app.Views.question.extend({
 
 	render : function (){
-		this.$el.html(' ');
-		console.log(this.el);
+		$('#question').empty();
 		//Recupère le html générer avec le template
-		template = accueilHTML = _.template($('#templateIntroStreet').html(),{'titreQuestion':'question 1'});
-		this.$el.html(template);
-		// Définition des paramètre de la street + map (voir helper)
+		accueilHTML = _.template($('#templateIntroStreet').html(),{'titreQuestion':'question 1'});
+		this.$el.html(accueilHTML);
+		//Définition des paramètre de la street + map (voir helper)
 		var optionModeStreetMap = {
 			idMap : 'carte',
 			idStreet : 'exploration',
 			mapOptions : {
-				center : new google.maps.LatLng(411.862818,2.399524),
-				zoom : 18,
+				center : new google.maps.LatLng(48.851287,2.276246),
+				zoom : 17,
 				mapTypeId: google.maps.MapTypeId.ROADMAP, // type de map
 				styles: [   { "featureType": "landscape", "stylers": [ { "color": "#808080" } ] }, // les terres en gris
                             { "featureType": "poi", "stylers": [ { "visibility": "off" } ] }, // Cache les points d'interet ( Hopital,Ecole ect...)
@@ -372,7 +369,7 @@ app.Views.q1 = app.Views.question.extend({
 				adresseControlOptions: {
                      style: {backgroundColor: 'grey', color: 'yellow'} // modification css
                 },
-                position : new google.maps.LatLng(48.866818,2.399524),
+                position : new google.maps.LatLng(48.851287,2.276246),
                 pov : {
                 	heading: 550, //Angle de rotation horizontal, en degrés, de la caméra
                     pitch: 10, //Angle vertical, vers le haut ou le bas, par rapport à l'angle de vertical (CAMERA)
@@ -391,27 +388,14 @@ app.Views.q1 = app.Views.question.extend({
                     linksControl:true
 			},
 			markersStreet : [
-			{
-				title : 'voyance',
-				position : new google.maps.LatLng(48.851287,2.276246),
-				title: 'Voyance',
-				events: [
-					{
-						eventMarker : 'click',
-						functionMarker : this
-						
-					}
-				],
-			}
+
 			
-		],
+			],
 		
 		streetGuide : {
-			depart : new google.maps.LatLng(48.866818,2.399524),
-			arriver : new google.maps.LatLng(48.867404,2.398934),
+
 		}
 	}
-	console.log(optionModeStreetMap);
 		app.Helpers.RenderStreetMapMode(optionModeStreetMap);
 		//return this;
 	},

@@ -18,6 +18,9 @@ var app = {
   collections: {},
   models: {},
   views: {},
+  map:{},
+  street:{},
+
   
   
   init: function () {
