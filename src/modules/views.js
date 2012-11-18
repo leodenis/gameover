@@ -128,7 +128,7 @@ app.Views.home = Backbone.View.extend({
 		//enregistre son statut dans le localstorage
 		app.users.get("1").save();
 		//root vers l'intro du jeux
-		app.router.navigate('startGame', true);
+		app.router.navigate('q0', true);
 	}
 	
 }); 

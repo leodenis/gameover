@@ -137,27 +137,7 @@ app.Helpers.unlockQuestion = function(question){
  * @requires  backbones.js
  */
 app.Helpers.getCurrentQuestion = function(){	
-	// currentPage = la page visionnée
-	currentPage = Backbone.history.fragment;
-	currentPageNum = currentPage.charAt(1);
-	
-	// si ce n'est pas une question, c'est l'accueil ou la fin
-	if(isNaN(currentPageNum)) {
-		switch (currentPage) {
-			case "startGame":
-				currentQuestion = 0;
-				break;
-		 	case "end":
-				currentQuestion = 10;
-				break;
-		}
-		console.log(currentQuestion);
-	}
-	// si c'est une question (1 à 9)
-	else {
-		currentQuestion = currentPageNum;
-	}
-	return currentQuestion;
+	return Backbone.history.fragment.charAt(1);
 }
 	
 /**
@@ -168,7 +148,7 @@ app.Helpers.getCurrentQuestion = function(){
  */
 app.Helpers.filAriane = function(lastQuestionUnlock,currentQuestion){
 	currentQuestion++;
-	//gestion fil d'ariane
+	
 	//enlève les classes "doing" et ajoute la classe "done" aux questions précédentes (précédentes à la question en cours) 
 	for(i=1;i<=currentQuestion;i++) {
 		$("footer > span:nth-of-type(1) a:nth-of-type("+i+")").removeClass("doing").addClass("done");

@@ -7,7 +7,7 @@ app.Router = Backbone.Router.extend({
   },
   routes: {
     '': 'root',
-    'startGame' : 'startGame',
+    'q0' : 'startGame',
     'q1': 'q1',
     'q2': 'q2',
     'q3': 'q3',
@@ -17,7 +17,7 @@ app.Router = Backbone.Router.extend({
     'q7': 'q7',
     'q8': 'q8',
     'q9': 'q9',
-    'end': 'end',
+    'q10': 'end',
     ":whatever": "inconue"
   },
   // Root principal du site internet
