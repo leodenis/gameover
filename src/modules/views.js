@@ -75,7 +75,7 @@ app.Views.home = Backbone.View.extend({
 	el : '#Accueil',
 	
 	events: {
-		'click #startGame': 'launchGame',
+		'click #etape1': 'launchGame',
 	},
 	// Fonction appelé automatiquement lors de l'instanciation de la vue
 	initialize : function() {
@@ -128,7 +128,7 @@ app.Views.home = Backbone.View.extend({
 		//enregistre son statut dans le localstorage
 		app.users.get("1").save();
 		//root vers l'intro du jeux
-		app.router.navigate('startGame', true);
+		app.router.navigate('etape1', true);
 	}
 	
 }); 
@@ -139,7 +139,7 @@ app.Views.home = Backbone.View.extend({
  * @requires  backbones.js
  * @A faire : Styliser la view, notice de l'action, revoir le blocage sur la streetView
  */
-app.Views.startGame = Backbone.View.extend({
+app.Views.etape1 = Backbone.View.extend({
 	el : '#question',
 	events: {
 		'click #nextQuestion': 'nextQuestion',
@@ -263,7 +263,7 @@ app.Views.startGame = Backbone.View.extend({
 			callback: function(val) { 
 				if(val == 'O'){
 					app.Helpers.unlockQuestion('1');
-					app.router.navigate('q1', true);
+					app.router.navigate('etape2', true);
 				}
 			},
 			
@@ -273,7 +273,7 @@ app.Views.startGame = Backbone.View.extend({
 	nextQuestion : function(){
 		$(this.el).remove();
 		app.Helpers.unlockQuestion('1');
-		app.router.navigate('q1', true);
+		app.router.navigate('etape2', true);
 
 	}
 }); 
@@ -331,7 +331,7 @@ app.Views.question = Backbone.View.extend({
  * @author Kévin La Rosa 
  * @requires  backbones.js
  */
-app.Views.q1 = app.Views.question.extend({
+app.Views.etape2 = app.Views.question.extend({
 
 	render : function (){
 		//Recupère le html générer avec le template
@@ -414,14 +414,14 @@ app.Views.q1 = app.Views.question.extend({
 	
 	nextQuestion : function(){
 		app.Helpers.unlockQuestion('2');
-		app.router.navigate('q2', true);
+		app.router.navigate('etape3', true);
 	}
 	
 	
 });
 
 
-app.Views.q2 = app.Views.question.extend({
+app.Views.etape3 = app.Views.question.extend({
 	
 	render : function (){
 		//Recupère le html générer avec le template
@@ -443,61 +443,61 @@ app.Views.q3 = app.Views.question.extend({
 	
 	nextQuestion : function(){
 		//root vers la question 4
-		app.router.navigate('q4', true);
+		app.router.navigate('etape5', true);
 	}
 	
 });
 
-app.Views.q4 = app.Views.question.extend({
+app.Views.etape5 = app.Views.question.extend({
 	
 	nextQuestion : function(){
 		//root vers la question 5
-		app.router.navigate('q5', true);
+		app.router.navigate('etape6', true);
 	}
 	
 });
 
-app.Views.q5 = app.Views.question.extend({
+app.Views.etape6 = app.Views.question.extend({
 	
 	nextQuestion : function(){
 		//root vers la question 6
-		app.router.navigate('q6', true);
+		app.router.navigate('etape7', true);
 	}
 	
 });
 
-app.Views.q6 = app.Views.question.extend({
+app.Views.etape7 = app.Views.question.extend({
 	
 	nextQuestion : function(){
 		//root vers la question 7
-		app.router.navigate('q7', true);
+		app.router.navigate('etape8', true);
 	}
 	
 });
 
-app.Views.q7 = app.Views.question.extend({
+app.Views.etape8 = app.Views.question.extend({
 	
 	nextQuestion : function(){
 		//root vers la question 8
-		app.router.navigate('q8', true);
+		app.router.navigate('etape9', true);
 	}
 	
 });
 
-app.Views.q8 = app.Views.question.extend({
+app.Views.etape9 = app.Views.question.extend({
 	
 	nextQuestion : function(){
 		//root vers la question 9
-		app.router.navigate('q9', true);
+		app.router.navigate('etape10', true);
 	}
 	
 });
 
-app.Views.q9 = app.Views.question.extend({
+app.Views.etape10 = app.Views.question.extend({
 	
 	nextQuestion : function(){
 		//root vers la page de fin
-		app.router.navigate('end', true);
+		app.router.navigate('etape11', true);
 	}
 	
 });
