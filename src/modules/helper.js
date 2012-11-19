@@ -172,15 +172,14 @@ app.Helpers.getCurrentQuestion = function(){
  */
 app.Helpers.filAriane = function(lastQuestionUnlock,currentQuestion){
 	currentQuestion++;
-	
-	//enlève les classes "doing" et ajoute la classe "done" aux questions précédentes (précédentes à la question en cours) 
-	for(i=1;i<=currentQuestion;i++) {
-		$("footer > span:nth-of-type(1) a:nth-of-type("+i+")").removeClass("doing").addClass("done");
+	// enlève les classes
+	for(i=1;i<=10;i++) {
+		$("footer > span:nth-of-type(1) a:nth-of-type("+i+")").removeClass("done").removeClass("doing");
 	}
-	//enlève la classe "doing" aux questions suivantes (et débloquées) à la question en cours
-	for(i=currentQuestion;i<=10;i++) {
-		$("footer > span:nth-of-type(1) a:nth-of-type("+i+")").removeClass("doing");
+	// ajoute classe "done" de la première 
+	for(i=1;i<=lastQuestionUnlock;i++) {
+		$("footer > span:nth-of-type(1) a:nth-of-type("+i+")").addClass("done");
 	}
-	//ajoute la classe en cours à la question en cours
+	// ajoute classe "doing"
 	$("footer > span:nth-of-type(1) a:nth-of-type("+currentQuestion+")").addClass("doing");
 }
