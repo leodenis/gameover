@@ -100,22 +100,23 @@
         </script>
         
         <!---Template question StreetView/Map + startGame-->
-        <script type="text/template" id="templateIntroStreet">
-           <div style='height:600px' id='exploration'>ICI STREET</div>
-           <div style='height: 200px;position: relative;background-color: #E5E3DF;overflow: hidden;-webkit-transform: translateZ(0);left: 0;top: -200px;z-index: 0;width: 200px;' id='carte'>google map</div>
-           <a id='nextQuestion'>Passer à la question 1</a>
+        <script type="text/template" id="templateStreetView">
+        	<h2><%= titreQuestion %></h2>
+			<div style="height:600px" id="exploration"></div>
+			<div style="height:200px;position:relative;background-color:#E5E3DF;overflow:hidden;-webkit-transform:translateZ(0);left:0;top:-200px;z-index:0;width:200px;" id="carte"></div>
+			<a id='nextQuestion'>Question suivante</a>
         </script>
         
         <!---Template question video -->
         <script type="text/template" id="templateVideo">
            <div><%= titreQuestion %></div><br/>
-           <a id='nextQuestion'>Passer à la question 2</a>
+           <a id='nextQuestion'>Question suivante</a>
         </script>
         
         <!---Template question WebGL-->
         <script type="text/template" id="templateWebGl">
            <div><%= titreQuestion %></div><br/>
-           <a id='nextQuestion'>Passer à la question 2</a>
+           <a id='nextQuestion'>Question suivante</a>
         </script>
         
 		<!---Footer statique du site -->

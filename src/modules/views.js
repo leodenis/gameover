@@ -169,7 +169,7 @@ app.Views.startGame = Backbone.View.extend({
 
 	renderIntro : function (that){
 		//Recupère le html générer avec le template
-		template = _.template($('#templateIntroStreet').html(),{});
+		template = _.template($('#templateStreetView').html(),{"titreQuestion":"Recherchez le médium le plus proche afin qu’il vous prédise le futur... "});
 		that.$el.html(template);
 		
 		// Définition des paramètre de la street + map (voir helper)
@@ -248,7 +248,7 @@ app.Views.startGame = Backbone.View.extend({
 	popupInfo : function(){
 
 		new Messi('Nos « ancêtres », les Mayas, qui en savaient plus que nous sur la puissance des astres nous ont dévoilés leurs secrets.', {
-			title: 'Commencer à repondre aux questions',
+			title: 'Commencer l\'aventure',
 			buttons: [{
 					id: 0, 
 					label: 'Oui', 
@@ -312,7 +312,7 @@ app.Views.question = Backbone.View.extend({
 	
 	render : function (){
 		//Recupère le html générer avec le template
-		template = accueilHTML = _.template($('#template').html(),{'titreQuestion':'a faire'});
+		template = accueilHTML = _.template($('#template').html(),{'titreQuestion':'à faire'});
 		zoneRendu.html(template);
 		return this;
 	},
@@ -337,7 +337,7 @@ app.Views.q1 = app.Views.question.extend({
 	render : function (){
 		$('#question').empty();
 		//Recupère le html générer avec le template
-		accueilHTML = _.template($('#templateIntroStreet').html(),{'titreQuestion':'question 1'});
+		accueilHTML = _.template($('#templateStreetView').html(),{'titreQuestion':'question 1'});
 		this.$el.html(accueilHTML);
 		//Définition des paramètre de la street + map (voir helper)
 		var optionModeStreetMap = {
@@ -419,7 +419,7 @@ app.Views.q2 = app.Views.question.extend({
 	
 	nextQuestion : function(){
 
-		//root vers la question 1
+		//root vers la question 3
 		app.Helpers.unlockQuestion('3');
 		app.router.navigate('q3', true);
 	}
