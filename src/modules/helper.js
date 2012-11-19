@@ -31,62 +31,60 @@ app.Helpers.userIsPlaying = function(options){
  */
 app.Helpers.RenderStreetMapMode = function(options){
 	
-	if(carte && exploration){
-		console.log(exploration);
-		//exploration.panorama.setPosition(options.mapOptions.center);
-	}
-	console.log(carte);
-	console.log(options);
+	delete app.map.carte ;
+	delete  app.street.exploration;
+	
 	//Création de ma carte
-	carte = new google.maps.Map(document.getElementById(options.idMap),options.mapOptions);
+	app.map.carte = new google.maps.Map(document.getElementById(options.idMap),options.mapOptions);
 	//création de ma street View
-	exploration = new google.maps.StreetViewPanorama(document.getElementById(options.idStreet), options.streetOptions);
+	app.street.exploration = new google.maps.StreetViewPanorama(document.getElementById(options.idStreet), options.streetOptions);
 	//Je lie la carte à l'exploration
-	carte.setStreetView(exploration);
+	app.map.carte.setStreetView(app.street.exploration);
+	
 	//Création des points sur la streetView avec leurs évenements
-	var i = 0;
-	var j = 0;
-	var markerStreet = [];
-	var markerStreetEvent = [];
-	_.each(options.markersStreet, function(marker){ 
-		markerStreet[i] = new google.maps.Marker({
-                 position: marker.position,
-                 map:exploration,
-                 title: marker.title
-             });
-		
-        _.each(marker.events, function(thisEvent){ 
-        		google.maps.event.addListener(markerStreet[i], thisEvent.eventMarker,thisEvent.functionMarker);  	
-        	j++
-        });     
-		i++;
-	});
-	
-
-	
-	
-	
-	//Définition du guide
-	directionsService = new google.maps.DirectionsService();
-	directionsDisplay = new google.maps.DirectionsRenderer();
-	//https://developers.google.com/maps/documentation/javascript/reference#DirectionsRendererOptions
-	//voir pour empêcher l'utilisateur de sortir de la zone de directionDisplay'
-	directionsDisplay.setMap(carte);
-	directionsDisplay.suppressMarkers = true;
-	var request = {
-     	origin: options.streetGuide.depart,           
-     	destination: options.streetGuide.arriver, 
-     	provideRouteAlternatives: false,  // empêche des route alternative
-     	travelMode: google.maps.DirectionsTravelMode.WALKING // mode de marche
+	if(_.isObject(options.markersStreet[0])){
+		var i = 0;
+		var j = 0;
+		var markerStreet = [];
+		var markerStreetEvent = [];
+		_.each(options.markersStreet, function(marker){ 
+			markerStreet[i] = new google.maps.Marker({
+	                 position: marker.position,
+	                 map:app.street.exploration,
+	                 title: marker.title
+	             });
+			
+	        _.each(marker.events, function(thisEvent){ 
+	        		google.maps.event.addListener(markerStreet[i], thisEvent.eventMarker,thisEvent.functionMarker);  	
+	        	j++
+	        });     
+			i++;
+		});
 	}
-	
-	 directionsService.route(request, function(result, status) {
-    	if (status == google.maps.DirectionsStatus.OK) {
-      		directionsDisplay.setDirections(result);
-      		
-    	}
-  	});
-	console.log(directionsService);
+	if(!_.isUndefined(options.streetGuide.depart)){
+		//Définition du guide
+		directionsService = new google.maps.DirectionsService();
+		directionsDisplay = new google.maps.DirectionsRenderer();
+		//https://developers.google.com/maps/documentation/javascript/reference#DirectionsRendererOptions
+		//voir pour empêcher l'utilisateur de sortir de la zone de directionDisplay'
+		directionsDisplay.setMap(app.map.carte);
+		directionsDisplay.suppressMarkers = true;
+		var request = {
+	     	origin: options.streetGuide.depart,           
+	     	destination: options.streetGuide.arriver, 
+	     	provideRouteAlternatives: false,  // empêche des route alternative
+	     	travelMode: google.maps.DirectionsTravelMode.WALKING // mode de marche
+		}
+		
+		 directionsService.route(request, function(result, status) {
+	    	if (status == google.maps.DirectionsStatus.OK) {
+	      		directionsDisplay.setDirections(result);
+	      		
+	    	}
+	  	});
+	  	
+		console.log(directionsService);
+	}
 
 }
 /**
