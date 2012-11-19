@@ -24,10 +24,10 @@ app.Helpers.userIsPlaying = function(options){
 }
 
 /**
- * Initialise le mode StreetView avec sa google map
+ * Création d'une map reliée avec sa streetwiew avec posibilité d'appliqué un guide sur la map
  * @param : Objet ->
  * @author Kévin La Rosa
- * @requires  backbones.js
+ * @requires  backbones.js, Gmap V3
  */
 app.Helpers.RenderStreetMapMode = function(options){
 	
@@ -61,6 +61,14 @@ app.Helpers.RenderStreetMapMode = function(options){
 			i++;
 		});
 	}
+	
+	
+	//Création des points sur la streetView avec leurs évenements
+	if(_.isObject(options.markersMap[0])){
+		 console.log('makerMap');
+	}
+	
+	//Mise en place d'un guide sur la map
 	if(!_.isUndefined(options.streetGuide.depart)){
 		//Définition du guide
 		directionsService = new google.maps.DirectionsService();
@@ -82,8 +90,6 @@ app.Helpers.RenderStreetMapMode = function(options){
 	      		
 	    	}
 	  	});
-	  	
-		console.log(directionsService);
 	}
 
 }
@@ -100,7 +106,7 @@ app.Helpers.questionIsUnlock = function (level){
 	etapes = _.where(userCurrent.etapes,{unLock:true});
 	//je recupère le dernier objet
 	lastEtape= _.last(etapes);
-	if(  level <=lastEtape.id )
+	if( level <=lastEtape.id )
 		return true
 	else
 		console.log("L'utilisateur n'a pas encore débloquer le level"+level);
