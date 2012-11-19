@@ -171,7 +171,10 @@ app.Helpers.getCurrentQuestion = function(){
  * @requires  backbones.js
  */
 app.Helpers.filAriane = function(lastQuestionUnlock,currentQuestion){
+	// incrémente les id pour correspondre aux indices de position
 	currentQuestion++;
+	lastQuestionUnlock++;
+	
 	// enlève les classes
 	for(i=1;i<=10;i++) {
 		$("footer > span:nth-of-type(1) a:nth-of-type("+i+")").removeClass("done").removeClass("doing");
