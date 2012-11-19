@@ -7,17 +7,17 @@ app.Router = Backbone.Router.extend({
   },
   routes: {
     '': 'root',
-    'startGame' : 'startGame',
-    'q1': 'q1',
-    'q2': 'q2',
-    'q3': 'q3',
-    'q4': 'q4',
-    'q5': 'q5',
-    'q6': 'q6',
-    'q7': 'q7',
-    'q8': 'q8',
-    'q9': 'q9',
-    'end': 'end',
+    'etape1' : 'etape1',
+    'etape2': 'etape2',
+    'etape3': 'etape3',
+    'etape4': 'etape4',
+    'etape5': 'etape5',
+    'etape6': 'etape6',
+    'etape7': 'etape7',
+    'etape8': 'etape8',
+    'etape9': 'etape9',
+    'etape10': 'etape10',
+    'etape11': 'etape11',
     ":whatever": "inconue"
   },
   // Root principal du site internet
@@ -26,23 +26,23 @@ app.Router = Backbone.Router.extend({
   	app.views.home = new app.Views.home();
   },
   
-  startGame: function() {
+  etape1: function() {
   	if(app.Helpers.userIsPlaying()){
-  		app.views.startGame = new app.Views.startGame();
+  		app.views.etape1 = new app.Views.etape1();
   	}else{
   		console.log('le jeu n\' est pas lancé');
   		this.navigate('', true);
   	}
   },
   
-  q1: function(){
+  etape2: function(){
   	if(app.Helpers.userIsPlaying()){
 	  	console.log('Lancement de la question 1');
 	  	statut = app.Helpers.questionIsUnlock(1);
 	  	//console.log(statut);
 	  	//routage d'accés
 	  	if(statut)
-	  		app.views.q1 = new app.Views.q1;
+	  		app.views.etape2 = new app.Views.etape2;
 	  	else
 	  		// Renvoi l'utilisateur vers son dernier deblocage
 	  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
@@ -52,13 +52,13 @@ app.Router = Backbone.Router.extend({
 	}
   },
   
-  q2: function(){
+  etape3: function(){
   	if(app.Helpers.userIsPlaying()){
 	  	console.log('Lancement de la question 2');
 	  	statut = app.Helpers.questionIsUnlock(2);
 	  	// NB : il faut changer statut par true pour sauter le control de validation
 	  	if(statut){
-	  		app.views.q2 = new app.Views.q2;
+	  		app.views.etape3 = new app.Views.etape3;
 	  	}else{
 	  		// Renvoi l'utilisateur vers son dernier deblocage
 	  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
@@ -69,13 +69,13 @@ app.Router = Backbone.Router.extend({
   	}
   },
   
-  q3: function(){
+  etape4: function(){
   	if(app.Helpers.userIsPlaying()){
 	  	console.log('Lancement de la question 3');
 	  	statut = app.Helpers.questionIsUnlock(3);
 	  	// NB : il faut changer statut par true pour sauter le control de validation
 	  	if(statut)
-	  		app.views.q3 = new app.Views.q3;
+	  		app.views.etape4 = new app.Views.etape4;
 	  	else
 	  		// Renvoi l'utilisateur vers son dernier deblocage
 	  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
@@ -85,13 +85,13 @@ app.Router = Backbone.Router.extend({
   	}	  		
   },
   
-  q4: function(){
+  etape5: function(){
   	if(app.Helpers.userIsPlaying()){
 	  	console.log('Lancement de la question 4');
 	  	statut = app.Helpers.questionIsUnlock(4);
 	  	// NB : il faut changer statut par true pour sauter le control de validation
 	  	if(statut)
-	  		app.views.q4 = new app.Views.q4;
+	  		app.views.etape5 = new app.Views.etape5;
 	  	else
 	  		// Renvoi l'utilisateur vers son dernier deblocage
 	  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
@@ -101,13 +101,13 @@ app.Router = Backbone.Router.extend({
   	}	  		
   },
   
-  q5: function(){
+  etape6: function(){
   	if(app.Helpers.userIsPlaying()){
 	  	console.log('Lancement de la question 5');
 	  	statut = app.Helpers.questionIsUnlock(5);
 	  	// NB : il faut changer statut par true pour sauter le control de validation
 	  	if(statut)
-	  		app.views.q5 = new app.Views.q5;
+	  		app.views.etape6 = new app.Views.etape6;
 	  	else
 	  		// Renvoi l'utilisateur vers son dernier deblocage
 	  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
@@ -117,13 +117,13 @@ app.Router = Backbone.Router.extend({
   	}	  		
   },
   
-  q6: function(){
+  etape7: function(){
   	if(app.Helpers.userIsPlaying()){
 	  	console.log('Lancement de la question 6');
 	  	statut = app.Helpers.questionIsUnlock(6);
 	  	// NB : il faut changer statut par true pour sauter le control de validation
 	  	if(statut)
-	  		app.views.q6 = new app.Views.q6;
+	  		app.views.etape7 = new app.Views.etape7;
 	  	else
 	  		// Renvoi l'utilisateur vers son dernier deblocage
 	  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
@@ -133,13 +133,13 @@ app.Router = Backbone.Router.extend({
   	}
   },
   
-  q7: function(){
+  etape8: function(){
   	if(app.Helpers.userIsPlaying()){
 	  	console.log('Lancement de la question 7');
 	  	statut = app.Helpers.questionIsUnlock(7);
 	  	// NB : il faut changer statut par true pour sauter le control de validation
 	  	if(statut)
-	  		app.views.q7 = new app.Views.q7;
+	  		app.views.etape8 = new app.Views.etape8;
 	  	else
 	  		// Renvoi l'utilisateur vers son dernier deblocage
 	  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
@@ -149,13 +149,13 @@ app.Router = Backbone.Router.extend({
   	}	  		
   },
   
-  q8: function(){
+  etape9: function(){
   	if(app.Helpers.userIsPlaying()){
 	  	console.log('Lancement de la question 8');
 	  	statut = app.Helpers.questionIsUnlock(8);
 	  	// NB : il faut changer statut par true pour sauter le control de validation
 	  	if(statut)
-	  		app.views.q8 = new app.Views.q8;
+	  		app.views.etape9 = new app.Views.etape9;
 	  	else
 	  		// Renvoi l'utilisateur vers son dernier deblocage
 	  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
@@ -165,13 +165,13 @@ app.Router = Backbone.Router.extend({
   	}	  		
   },
   
-  q9: function(){
+  etape10: function(){
   	if(app.Helpers.userIsPlaying()){
 	  	console.log('Lancement de la question 9');
 	  	statut = app.Helpers.questionIsUnlock(9);
 	  	// NB : il faut changer statut par true pour sauter le control de validation
 	  	if(statut)
-	  		app.views.q9 = new app.Views.q9;
+	  		app.views.etape10 = new app.Views.etape10;
 	  	else
 	  		// Renvoi l'utilisateur vers son dernier deblocage
 	  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
@@ -181,13 +181,13 @@ app.Router = Backbone.Router.extend({
   	}	  		
   },
   
-  end: function(){
+  etape11: function(){
   	if(app.Helpers.userIsPlaying()){
 	  	console.log('Lancement de la page de fin');
 	  	// NB : il faut changer statut par true pour sauter le control de validation
 	  	statut = app.Helpers.questionIsUnlock(10);
 	  	if(statut)
-	  		app.views.q9 = new app.Views.q9;
+	  		app.views.etape10 = new app.Views.etape10;
 	  	else
 	  		// Renvoi l'utilisateur vers son dernier deblocage
 	  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
@@ -214,37 +214,37 @@ app.Router = Backbone.Router.extend({
   routeQuestion: function(route){
   	switch (route) {
 	 case 0:
-		 this.navigate('startGame', true);
+		 this.navigate('etape1', true);
 		 break;
 	 case 1:
-		 this.navigate('q1', true);
+		 this.navigate('etape2', true);
 		 break;
 	 case 2:
-		this.navigate('q2', true);
+		this.navigate('etape3', true);
 		 break;
 	 case 3: 
-		 this.navigate('q3', true);
+		 this.navigate('etape4', true);
 		 break;
 	 case 4: 
-		this.navigate('q4', true);
+		this.navigate('etape5', true);
 		 break;
 	 case 5: 
-		 this.navigate('q5', true);
+		 this.navigate('etape6', true);
 		 break;
 	 case 6: 
-		 this.navigate('q6', true);
+		 this.navigate('etape7', true);
 		 break
 	 case 7: 
-		 this.navigate('q7', true);
+		 this.navigate('etape8', true);
 		 break;
 	 case 8: 
-		 this.navigate('q8', true);
+		 this.navigate('etape9', true);
 		 break;
 	 case 9: 
-		 this.navigate('q9', true);
+		 this.navigate('etape10', true);
 		 break;
 	 case 10: 
-		 this.navigate('end', true);
+		 this.navigate('etape11', true);
 		 break;
 	}
   }
