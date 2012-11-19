@@ -57,11 +57,12 @@ app.Router = Backbone.Router.extend({
 	  	console.log('Lancement de la question 2');
 	  	statut = app.Helpers.questionIsUnlock(2);
 	  	// NB : il faut changer statut par true pour sauter le control de validation
-	  	if(statut)
-	  		app.views.q1 = new app.Views.q1;
-	  	else
+	  	if(statut){
+	  		app.views.q2 = new app.Views.q2;
+	  	}else{
 	  		// Renvoi l'utilisateur vers son dernier deblocage
 	  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
+	  	}
 	}else{
   		console.log('le jeu n\' est pas lancé');
   		this.navigate('', true);

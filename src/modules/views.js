@@ -21,14 +21,14 @@ app.Views.loader = Backbone.View.extend({
 		
 		//Chargement du bon fichier video ATTTENTION IL FAUT FINIR EN AJOUTER LES AUTRES FORMAT PAR NAVIGATEURS
 		if (Modernizr.video) {
-		  if (Modernizr.video.webm) {
+		  if(Modernizr.video.webm) {
 		    app.Assets.videos.intro = app.loader.addVideo('assets/video/intro.webm', 'movie', 10);
 		  } else if (Modernizr.video.ogg) {
 		    app.Assets.videos.intro = app.loader.addVideo('assets/video/intro.ogg', 'movie', 10);
 		  } else if (Modernizr.video.h264){
 		    app.Assets.videos.intro = app.loader.addVideo('assets/video/intro.mp4', 'movie', 10);
 		  }
-		}else{
+		} else {
 			//proposer du flash !!
 		}
 		
@@ -221,24 +221,25 @@ app.Views.startGame = Backbone.View.extend({
                     linksControl:true
 			},
 			markersStreet : [
-			{
-				title : 'voyance',
-				position : new google.maps.LatLng(48.867058,2.399065),
-				title: 'Voyance',
-				events: [
 					{
-						eventMarker : 'click',
-						functionMarker : that.popupInfo
-						
-					}
-				],
-			}
-			
-		],
+						title : 'voyance',
+						position : new google.maps.LatLng(48.867058,2.399065),
+						title: 'Voyance',
+						events: [
+							{
+								eventMarker : 'click',
+								functionMarker : that.popupInfo
+								
+							}
+						],
+					},
+			],
+			markersMap : [
+			],
 		
-		streetGuide : {
-			depart : new google.maps.LatLng(48.866818,2.399524),
-			arriver : new google.maps.LatLng(48.867404,2.398934),
+			streetGuide : {
+				depart : new google.maps.LatLng(48.866818,2.399524),
+				arriver : new google.maps.LatLng(48.867404,2.398934),
 		}
 	}
 		app.Helpers.RenderStreetMapMode(optionModeStreetMap);
@@ -295,6 +296,8 @@ app.Views.question = Backbone.View.extend({
 	
 	// Fonction qui est appelé automatiquement lors de l'instanciation des vues questions
 	initialize : function() {
+		this.$el.html(' ');
+		console.log(this.el);
 		// Controle que nous n'ayons pas l'accueil en non hide
 	  	if($('#Accueil:visible').length){
 	  		$('#Accueil:visible').hide().empty();
@@ -315,10 +318,6 @@ app.Views.question = Backbone.View.extend({
 		template = accueilHTML = _.template($('#template').html(),{'titreQuestion':'à faire'});
 		zoneRendu.html(template);
 		return this;
-	},
-	
-	render: function(){
-		console.log('kdjkdjdj');
 	}
 
 });
@@ -335,7 +334,6 @@ app.Views.question = Backbone.View.extend({
 app.Views.q1 = app.Views.question.extend({
 
 	render : function (){
-		$('#question').empty();
 		//Recupère le html générer avec le template
 		accueilHTML = _.template($('#templateStreetView').html(),{'titreQuestion':'question 1'});
 		this.$el.html(accueilHTML);
@@ -345,7 +343,7 @@ app.Views.q1 = app.Views.question.extend({
 			idStreet : 'exploration',
 			mapOptions : {
 				center : new google.maps.LatLng(48.851287,2.276246),
-				zoom : 17,
+				zoom : 16,
 				mapTypeId: google.maps.MapTypeId.ROADMAP, // type de map
 				styles: [   { "featureType": "landscape", "stylers": [ { "color": "#808080" } ] }, // les terres en gris
                             { "featureType": "poi", "stylers": [ { "visibility": "off" } ] }, // Cache les points d'interet ( Hopital,Ecole ect...)
@@ -388,7 +386,21 @@ app.Views.q1 = app.Views.question.extend({
                     linksControl:true
 			},
 			markersStreet : [
-
+				{
+						title : 'voyance',
+						position : new google.maps.LatLng(48.851187,2.276370),
+						title: 'Voyance',
+						events: [
+							{
+								eventMarker : 'click',
+								functionMarker : this
+								
+							}
+						],
+				},
+			
+			],
+			markersMap : [
 			
 			],
 		
@@ -411,10 +423,11 @@ app.Views.q1 = app.Views.question.extend({
 
 app.Views.q2 = app.Views.question.extend({
 	
-	introductionStart : function (zoneRendu){
+	render : function (){
 		//Recupère le html générer avec le template
-		template = accueilHTML = _.template($('#template').html(),{'titreQuestion':'question 1'});
-		zoneRendu.html(template);
+		template = accueilHTML = _.template($('#templateWebGl').html(),{'titreQuestion':'question 1'});
+		console.log(template);
+		this.$el.html(template);
 	},
 	
 	nextQuestion : function(){
