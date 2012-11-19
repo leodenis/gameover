@@ -150,24 +150,8 @@ app.Helpers.unlockQuestion = function(question){
 app.Helpers.getCurrentQuestion = function(){ 
 	 // currentPage = la page visionnée
 	 currentPage = Backbone.history.fragment;
-	 currentPageNum = currentPage.charAt(1);
-	 
-	 // si ce n'est pas une question, c'est l'accueil ou la fin
-	 if(isNaN(currentPageNum)) {
-	  switch (currentPage) {
-	   case "startGame":
-	    currentQuestion = 0;
-	    break;
-	    case "end":
-	    currentQuestion = 10;
-	    break;
-	  }
-	 }
-	 // si c'est une question (1 à 9)
-	 else {
-	  currentQuestion = currentPageNum;
-	 }
-	 return currentQuestion;
+	 currentQuestion = currentPage.substring(5); // enleve le mot etape
+	 return parseInt(currentQuestion);
 }
 	
 /**
@@ -178,7 +162,6 @@ app.Helpers.getCurrentQuestion = function(){
  */
 app.Helpers.filAriane = function(lastQuestionUnlock,currentQuestion){
 	// incrémente les id pour correspondre aux indices de position
-	currentQuestion++;
 	lastQuestionUnlock++;
 	
 	// enlève les classes
