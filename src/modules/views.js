@@ -104,8 +104,8 @@ app.Views.home = Backbone.View.extend({
 	
 
 	loaderVideo : function() {
-		$('#videoIntro').show().html(app.Assets.videos.intro);
 		//Crée son aparation avec animation css
+		$('#videoIntro').show().html(app.Assets.videos.intro);
 		app.Assets.videos.intro.play();
 		app.Assets.videos.intro.volume = 0.1;
 		var that = this;
@@ -128,12 +128,17 @@ app.Views.home = Backbone.View.extend({
 	},
 	// evenement lors du click du lancement de l'application
 	launchGame: function(){
-		// change le statut de l'utilisateur en mode game
-		app.users.get("1").set({gameStart:true});
-		//enregistre son statut dans le localstorage
-		app.users.get("1").save();
-		//root vers l'intro du jeux
-		app.router.navigate('etape1', true);
+		// Renvoie l'utilisateur sur sa dernière question débloquer si il a déjà commencer a jouer
+		if(app.Helpers.userIsPlaying()){
+			app.router.routeQuestion(app.Helpers.getLastQuestUnlock());
+		}else{
+			// change le statut de l'utilisateur en mode game
+			app.users.get("1").set({gameStart:true});
+			//enregistre son statut dans le localstorage
+			app.users.get("1").save();
+			//root vers l'intro du jeux
+			app.router.navigate('etape1', true);
+		}
 	}
 	
 }); 
@@ -286,7 +291,7 @@ app.Views.etape1 = Backbone.View.extend({
 
 /**
  * View question qui sert de classe mère aux questions enfants.
- * @author Kévin La Rosa & Tom Forlini
+ * @author Kévin La Rosa & Tom Forlini & Mathieu dutto
  * @requires  backbones.js
  */
 app.Views.question = Backbone.View.extend({
@@ -322,6 +327,11 @@ app.Views.question = Backbone.View.extend({
 		template = accueilHTML = _.template($('#template').html(),{'titreQuestion':'à faire'});
 		zoneRendu.html(template);
 		return this;
+	},
+	nextQuestion : function(){
+		nextQuestion = (app.Helpers.getCurrentQuestion()+1);
+		app.Helpers.unlockQuestion(nextQuestion);
+		app.router.routeQuestion(nextQuestion);
 	}
 
 });
@@ -332,7 +342,7 @@ app.Views.question = Backbone.View.extend({
 
 /**
  * QUESTION 1 : 
- * @author Kévin La Rosa 
+ * @author Kévin La Rosa & Mathieu dutto
  * @requires  backbones.js
  */
 app.Views.etape2 = app.Views.question.extend({
@@ -509,35 +519,22 @@ app.Views.etape3 = app.Views.question.extend({
 		image3 = {'url':'photo-famille.jpg','alt':'photo de famille','titre':'Photo : une photo de famille','description':'Une photo de famille.. quoi de plus réconfortant dans les moments difficiles ? Légère et peu encombrante !'};
 		//Recupère le html générer avec le template
 		template = accueilHTML = _.template($('#templateWebGl').html(),{'titreQuestion':'La place manque dans cette voiture, quel objet choisissez-vous pour survivre ?','image1':image1,'image2':image2,'image3':image3});
-		console.log(template);
 		this.$el.html(template);
 	},
 	
-	nextQuestion : function(){
 
-		//root vers l'étape 3
-		app.Helpers.unlockQuestion('3');
-		app.router.navigate('etape4', true);
-	}
 	
 });
 
 app.Views.etape4 = app.Views.question.extend({
 	
-	nextQuestion : function(){
-		//root vers l'étape 5
-		app.router.navigate('etape5', true);
-	}
+
 	
 });
 
 app.Views.etape5 = app.Views.question.extend({
 	
-	nextQuestion : function(){
-		//root vers l'étape 6
-		app.router.navigate('etape6', true);
-	}
-	
+
 });
 
 app.Views.etape6 = app.Views.question.extend({
@@ -648,48 +645,31 @@ app.Views.etape6 = app.Views.question.extend({
 	}
 		app.Helpers.RenderStreetMapMode(optionModeStreetMap);
 	},
-	nextQuestion : function(){
 
-		//root vers l'étape 3
-		app.Helpers.unlockQuestion('3');
-		app.router.navigate('etape4', true);
-	}
 	
 });
 
 app.Views.etape7 = app.Views.question.extend({
 	
-	nextQuestion : function(){
-		//root vers l'étape 8
-		app.router.navigate('etape8', true);
-	}
+
 	
 });
 
 app.Views.etape8 = app.Views.question.extend({
 	
-	nextQuestion : function(){
-		//root vers l'étape 9
-		app.router.navigate('etape9', true);
-	}
+
 	
 });
 
 app.Views.etape9 = app.Views.question.extend({
 	
-	nextQuestion : function(){
-		//root vers l'étape 10
-		app.router.navigate('etape10', true);
-	}
+
 	
 });
 
 app.Views.etape10 = app.Views.question.extend({
 	
-	nextQuestion : function(){
-		//root vers la page de fin
-		app.router.navigate('etape11', true);
-	}
+
 	
 });
 
