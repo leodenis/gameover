@@ -175,7 +175,7 @@ app.Views.etape1 = Backbone.View.extend({
 	  	app.Helpers.animation(AnimationParam);
 	},
 	
-	//Attention prend en paramètre that qui est le this courant appelé depuis un objet étranger
+	//Attention prend en paramètre that qui est le this courant appelé depuis un objet étrangerdsdsdsds
 
 	renderIntro : function (that){
 		//Fil ariane
@@ -301,7 +301,7 @@ app.Views.question = Backbone.View.extend({
 	
 	events: {
 		'click .nextQuestion': 'nextQuestion',
-		'click #seeInfo': 'info',
+		'click #seeInfo': 'info'
 	},
 	
 	

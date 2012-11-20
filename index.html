@@ -30,7 +30,7 @@
             		Donec et interdum orci. Cras sed convallis ante. Suspendisse sed purus id ligula rutrum ultricies. 
             		Suspendisse nec turpis metus, et laoreet nibh. Pellentesque non erat bibendum velit ultrices ultrices. Fusce euismod quam.</p>
             </div>
-            <div id='seeInfo'><h3>Information ?</h3></div>
+
         </header>
         
         <!---Zone de rendus du loader-->
@@ -107,6 +107,8 @@
         
         <!---Template question StreetView/Map + startGame-->
         <script type="text/template" id="templateStreetView">
+            //bouffon
+            <div id='seeInfo' style='z-index:9909'><h3>Information ?</h3></div>
         	<h2><%= titreQuestion %></h2>
 			<div style="height:600px" id="exploration"></div>
 			<div style="height:200px;position:relative;background-color:#E5E3DF;overflow:hidden;-webkit-transform:translateZ(0);left:0;top:-200px;z-index:0;width:200px;" id="carte"></div>
