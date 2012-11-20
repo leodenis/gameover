@@ -224,7 +224,6 @@ app.Views.etape1 = Backbone.View.extend({
 					{
 						title : 'voyance',
 						position : new google.maps.LatLng(48.867058,2.399065),
-						title: 'Voyance',
 						events: [
 							{
 								eventMarker : 'click',
@@ -297,7 +296,6 @@ app.Views.question = Backbone.View.extend({
 	// Fonction qui est appelé automatiquement lors de l'instanciation des vues questions
 	initialize : function() {
 		this.$el.html(' ');
-		console.log(this.el);
 		// Controle que nous n'ayons pas l'accueil en non hide
 	  	if($('#accueil:visible').length){
 	  		$('#accueil:visible').hide().empty();
@@ -343,7 +341,7 @@ app.Views.etape2 = app.Views.question.extend({
 			idStreet : 'exploration',
 			mapOptions : {
 				center : new google.maps.LatLng(48.851287,2.276246),
-				zoom : 16,
+				zoom : 13,
 				mapTypeId: google.maps.MapTypeId.ROADMAP, // type de map
 				styles: [   { "featureType": "landscape", "stylers": [ { "color": "#808080" } ] }, // les terres en gris
                             { "featureType": "poi", "stylers": [ { "visibility": "off" } ] }, // Cache les points d'interet ( Hopital,Ecole ect...)
@@ -387,21 +385,39 @@ app.Views.etape2 = app.Views.question.extend({
 			},
 			markersStreet : [
 				{
-						title : 'voyance',
+						title : 'Concession Ferrari',
 						position : new google.maps.LatLng(48.851187,2.276370),
-						title: 'Voyance',
 						events: [
 							{
-								eventMarker : 'click',
-								functionMarker : this
+								
 								
 							}
 						],
-				},
+				}
 			
 			],
 			markersMap : [
-			
+					{
+						title : 'Concession ferrari',
+						position : new google.maps.LatLng(48.851187,2.276370),
+						events: [
+							{
+								eventMarker : 'click',
+								functionMarker : this.moveStreet
+								
+							}
+						],
+					},{
+						title : 'Concession Renault',
+						position : new google.maps.LatLng(48.852616,2.286143),
+						events: [
+									{
+										eventMarker : 'click',
+										functionMarker : this.moveStreet
+								
+									}
+								]
+						}
 			],
 		
 		streetGuide : {
@@ -415,6 +431,12 @@ app.Views.etape2 = app.Views.question.extend({
 	nextQuestion : function(){
 		app.Helpers.unlockQuestion('2');
 		app.router.navigate('etape3', true);
+	},
+	
+	//Evenement qui place la streetView sur le marker map ciblé
+	moveStreet: function(marker){
+		console.log(marker);
+		app.street.exploration.setPosition(new google.maps.LatLng(marker.latLng.Ya,marker.latLng.Za));
 	}
 	
 	

@@ -55,8 +55,8 @@ app.Helpers.RenderStreetMapMode = function(options){
 	             });
 			
 	        _.each(marker.events, function(thisEvent){ 
-	        		google.maps.event.addListener(markerStreet[i], thisEvent.eventMarker,thisEvent.functionMarker);  	
-	        	j++
+	        	google.maps.event.addListener(markerStreet[j], thisEvent.eventMarker,thisEvent.functionMarker);  	
+	        	j++;
 	        });     
 			i++;
 		});
@@ -65,7 +65,23 @@ app.Helpers.RenderStreetMapMode = function(options){
 	
 	//Création des points sur la streetView avec leurs évenements
 	if(_.isObject(options.markersMap[0])){
-		 console.log('makerMap');
+		var x = 0;
+		var o = 0;
+		var markerMap = [];
+		var markerMapEvent = [];
+		_.each(options.markersMap,function(marker){
+			markerMap[o] = new google.maps.Marker({
+                position: marker.position, 
+                map: app.map.carte, 
+                title:marker.title
+            });
+			_.each(marker.events, function(thisEvent){ 
+	        	google.maps.event.addListener(markerMap[x], thisEvent.eventMarker,thisEvent.functionMarker);  	
+	        	x++;
+	        });  
+	        o++;   			
+		})
+		
 	}
 	
 	//Mise en place d'un guide sur la map

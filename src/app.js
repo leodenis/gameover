@@ -18,8 +18,13 @@ var app = {
   collections: {},
   models: {},
   views: {},
-  map:{},
-  street:{},
+  map:{
+  	carte:{},
+  },
+  street:{
+  	exploration: {}
+  },
+  
 
   
   
