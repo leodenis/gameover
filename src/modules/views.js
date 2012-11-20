@@ -94,7 +94,6 @@ app.Views.home = Backbone.View.extend({
 		var renderAccueil = this.renderAccueil;
 		
 		//On lance la vidéo si l'utilisateur n'a jamais vu celle-ci
-		
 		if(app.users.get('1').attributes.videoWatch == false){	
 			app.users.get('1').attributes.videoWatch = true;
 			app.users.get('1').save();
@@ -108,8 +107,11 @@ app.Views.home = Backbone.View.extend({
 	
 
 	loaderVideo : function() {
-		$('#videoIntro').html(app.Assets.videos.intro);
+		$('#videoIntro').show().html(app.Assets.videos.intro);
+		//Crée son aparation avec animation css
 		app.Assets.videos.intro.play();
+		console.dir(app.Assets.videos.intro);
+		app.Assets.videos.intro.volume = 0.1;
 		var that = this;
 		app.Assets.videos.intro.addEventListener('ended',function(){
 		 	$('#videoIntro').hide('clip'); 
@@ -118,8 +120,9 @@ app.Views.home = Backbone.View.extend({
 		
 	},
 	
-	renderAccueil: function(){
+	renderAccueil: function(){	
 		accueilHTML = _.template($('#templateAccueil').html(),{});
+		// FAIT MOI UNE FUCKING ANIMTION OPACITY AVEC UN CSS MATH
 		$('#accueil').html(accueilHTML);
 		console.log('Accueil chargé');
 		
