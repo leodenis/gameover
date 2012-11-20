@@ -469,8 +469,9 @@ app.Views.etape2 = app.Views.question.extend({
 		}
 		if(pos == 48.85119 && lat == 2.2762900000000172){
 			options.title = 'Vous souhaitez voler une Porsche ?'
-			options.callback = function(){
+			options.callback = function(val){
 				if(val == 'O'){
+					console.log('boum');
 					app.Helpers.unlockQuestion('2');
 					app.router.navigate('etape3', true);
 				}
@@ -478,12 +479,13 @@ app.Views.etape2 = app.Views.question.extend({
 			new Messi(app.Assets.images.porsche,options);
 		}else{
 			options.title = 'Vous souhaitez voler un kangoo ?'
-			options.callback = function(){
+			options.callback = function(val){
 				if(val == 'O'){
 					app.Helpers.unlockQuestion('2');
 					app.router.navigate('etape3', true);
 				}
 			}
+			app.Assets.images.renault.style.width = '520px';
 			new Messi(app.Assets.images.renault,options);
 		}
 	}
