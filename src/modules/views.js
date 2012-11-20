@@ -17,7 +17,8 @@ app.Views.loader = Backbone.View.extend({
 	// Chargements des ressources Videos & sons & images
 	LoaderRender : function() {
 		//Définition des ressources (Définir les images)
-		//app.Assets.images.background = app.loader.addImage('assets/img/headerbg.jpg'), app.Assets.images.treesImg = app.loader.addImage('assets/img/trees.png'), app.Assets.images.ufoImg = app.loader.addImage('assets/img/ufo.png');
+		app.Assets.images.porsche = app.loader.addImage('assets/img/porsche.jpg');
+		app.Assets.images.renault = app.loader.addImage('assets/img/renault.jpg');
 		
 		//Chargement du bon fichier video ATTTENTION IL FAUT FINIR EN AJOUTER LES AUTRES FORMAT PAR NAVIGATEURS
 		if (Modernizr.video) {
@@ -333,7 +334,7 @@ app.Views.etape2 = app.Views.question.extend({
 
 	render : function (){
 		//Recupère le html générer avec le template
-		accueilHTML = _.template($('#templateStreetView').html(),{'titreQuestion':'question 1'});
+		accueilHTML = _.template($('#templateStreetView').html(),{'titreQuestion':'Maintenant que vous en savez plus, il va falloir déguerpir en vitesse. Rendez vous dans la concession de votre choix pour voler une voiture.'});
 		this.$el.html(accueilHTML);
 		//Définition des paramètre de la street + map (voir helper)
 		var optionModeStreetMap = {
@@ -385,21 +386,32 @@ app.Views.etape2 = app.Views.question.extend({
 			},
 			markersStreet : [
 				{
-						title : 'Concession Ferrari',
-						position : new google.maps.LatLng(48.851187,2.276370),
+						title : 'Concession Porsche',
+						position : new google.maps.LatLng(48.851190,2.276290),
 						events: [
-							{
+									{
+										eventMarker : 'click',
+										functionMarker : this.confirmQuestion
 								
-								
-							}
+									}
 						],
+				},{
+						title : 'Concession Renault',
+						position : new google.maps.LatLng(48.852630,2.286480),
+						events: [
+									{
+										eventMarker : 'click',
+										functionMarker : this.confirmQuestion
+								
+									}
+								]
 				}
 			
 			],
 			markersMap : [
 					{
-						title : 'Concession ferrari',
-						position : new google.maps.LatLng(48.851187,2.276370),
+						title : 'Concession Porsche',
+						position : new google.maps.LatLng(48.851287,2.276246),
 						events: [
 							{
 								eventMarker : 'click',
@@ -409,7 +421,7 @@ app.Views.etape2 = app.Views.question.extend({
 						],
 					},{
 						title : 'Concession Renault',
-						position : new google.maps.LatLng(48.852616,2.286143),
+						position : new google.maps.LatLng(48.852701,2.286263),
 						events: [
 									{
 										eventMarker : 'click',
@@ -435,9 +447,47 @@ app.Views.etape2 = app.Views.question.extend({
 	
 	//Evenement qui place la streetView sur le marker map ciblé
 	moveStreet: function(marker){
-		console.log(marker);
 		app.street.exploration.setPosition(new google.maps.LatLng(marker.latLng.Ya,marker.latLng.Za));
+	},
+	
+	//Evenement de confirmation après avoir cliquer sur un marker d'une view
+	confirmQuestion: function(marker){
+		var pos = marker.latLng.Ya;
+		var lat = marker.latLng.Za;
+		var options = {
+			buttons: [{
+					id: 0, 
+					label: 'Oui', 
+					val: 'O'
+			},
+			{
+					id: 1, 
+					label: 'Non', 
+					val: 'N'
+			}],
+			
+		}
+		if(pos == 48.85119 && lat == 2.2762900000000172){
+			options.title = 'Vous souhaitez voler une Porsche ?'
+			options.callback = function(){
+				if(val == 'O'){
+					app.Helpers.unlockQuestion('2');
+					app.router.navigate('etape3', true);
+				}
+			}
+			new Messi(app.Assets.images.porsche,options);
+		}else{
+			options.title = 'Vous souhaitez voler un kangoo ?'
+			options.callback = function(){
+				if(val == 'O'){
+					app.Helpers.unlockQuestion('2');
+					app.router.navigate('etape3', true);
+				}
+			}
+			new Messi(app.Assets.images.renault,options);
+		}
 	}
+	
 	
 	
 });
