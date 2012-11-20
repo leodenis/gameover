@@ -53,6 +53,37 @@ header > a:nth-of-type(2) {
 	height:100px;
 	margin-right:4%;
 }
+#info {
+	position:absolute;
+	left:40%;
+	top:-9999px;
+	width:20%;
+	min-height:100px;
+	padding:10px 15px;
+	line-height:1.17em;
+	text-align:center;
+	background-color:rgba(0,0,0,0.8);
+	background-image:-webkit-linear-gradient(top, rgba(255,255,255,0.4), rgba(0,0,0,0.3));
+	background-image:-moz-linear-gradient(top, rgba(255,255,255,0.4), rgba(0,0,0,0.3));
+	background-image:-ms-linear-gradient(top, rgba(255,255,255,0.4), rgba(0,0,0,0.3));
+	background-image:-o-linear-gradient(top, rgba(255,255,255,0.4), rgba(0,0,0,0.3));
+	background-image:linear-gradient(top, rgba(255,255,255,0.4), rgba(0,0,0,0.3));
+	-moz-transition:top 2s;
+	-webkit-transition:top 2s;
+	-o-transition:top 2s;
+	transition:top 2s;
+}
+#seeInfo {
+	position:absolute;
+	top:0;
+	left:40%;
+	height:50px;
+	width:20%;
+	cursor:pointer;
+	text-align:center;
+	line-height:1.17em;
+	background-color:rgba(50,100,255,0.8);
+}
 #container {
 	margin:0 auto;
 	width:100%;

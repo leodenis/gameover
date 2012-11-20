@@ -1,6 +1,6 @@
 /**
  * View du loader
- * @author Kévin La Rosa
+ * @author Kévin La Rosa & Mathieu Dutto
  * @requires  backbones.js
  */
 app.Views.loader = Backbone.View.extend({
@@ -69,7 +69,7 @@ app.Views.loader = Backbone.View.extend({
 
 /**
  * View de l'accueil
- * @author Kévin La Rosa
+ * @author Kévin La Rosa & Mathieu Dutto
  * @requires  backbones.js
  */
 app.Views.home = Backbone.View.extend({
@@ -142,7 +142,7 @@ app.Views.home = Backbone.View.extend({
 
 /**
  * View du début du jeux
- * @author Kévin La Rosa
+ * @author Kévin La Rosa & Mathieu Dutto
  * @requires  backbones.js
  * @A faire : Styliser la view, notice de l'action, revoir le blocage sur la streetView
  */
@@ -289,7 +289,7 @@ app.Views.etape1 = Backbone.View.extend({
 
 /**
  * View question qui sert de classe mère aux questions enfants.
- * @author Kévin La Rosa & Tom Forlini
+ * @author Kévin La Rosa & Tom Forlini & Mathieu Dutto
  * @requires  backbones.js
  */
 app.Views.question = Backbone.View.extend({
@@ -299,6 +299,7 @@ app.Views.question = Backbone.View.extend({
 	
 	events: {
 		'click .nextQuestion': 'nextQuestion',
+		'click #seeInfo': 'info',
 	},
 	
 	
@@ -319,8 +320,13 @@ app.Views.question = Backbone.View.extend({
 	  	this.render();
 	},
 	
+	info : function(){
+		//affiche bulle d'info
+		console.log("showInfo1");
+		app.Helpers.showInfo();
+	},
 	
-	render : function (){
+	render : function(){
 		//Recupère le html générer avec le template
 		template = accueilHTML = _.template($('#template').html(),{'titreQuestion':'à faire'});
 		zoneRendu.html(template);

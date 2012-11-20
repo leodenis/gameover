@@ -167,10 +167,10 @@ app.Helpers.getCurrentQuestion = function(){
 	 // currentPage = la page visionnée
 	 currentPage = Backbone.history.fragment;
 	 if(currentPage == null || currentPage == "") {
-	 	return 0;
+	 	return 0; //page d'accueil
 	 }
 	 currentQuestion = currentPage.substring(5); // enleve le mot etape
-	 return parseInt(currentQuestion);
+	 return parseInt(currentQuestion); //retourne le numéro parsé de l'étape
 }
 	
 /**
@@ -182,9 +182,10 @@ app.Helpers.getCurrentQuestion = function(){
 app.Helpers.filAriane = function(lastQuestionUnlock,currentQuestion){
 	console.log("playing?"+app.Helpers.userIsPlaying());
 	if(app.Helpers.userIsPlaying() == false){
-		$("#filAriane").css("display","none");
+		// si l'utilisateur n'est pas en train de jouer
+		$("#filAriane").addClass("hidden"); // cacher le fil d'ariane
 	} else {
-		$("#filAriane").css("display","inline-block");
+		$("#filAriane").removeClass("hidden");
 		// incrémente les id pour correspondre aux indices des positions des <a>
 		lastQuestionUnlock++;
 		// enlève les classes
@@ -198,4 +199,17 @@ app.Helpers.filAriane = function(lastQuestionUnlock,currentQuestion){
 		// ajoute classe "doing"
 		$("#filAriane > a:nth-of-type("+currentQuestion+")").addClass("doing");
 	}
+}
+
+/**
+ * Affiche la bulle d'info
+ * @author Mathieu Dutto
+ * @requires  backbones.js
+ */
+app.Helpers.showInfo = function(){
+	console.log("showInfo");
+	info = $("#info");
+	seeInfo = $("seeInfo");
+	seeInfo.addClass("hidden");
+	info.addClass("");
 }
