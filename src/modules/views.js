@@ -366,7 +366,7 @@ app.Views.etape2 = app.Views.question.extend({
 				adresseControlOptions: {
                      style: {backgroundColor: 'grey', color: 'yellow'} // modification css
                 },
-                position : new google.maps.LatLng(48.851287,2.276246),
+                position : new google.maps.LatLng(48.852630,2.286480),
                 pov : {
                 	heading: 550, //Angle de rotation horizontal, en degrés, de la caméra
                     pitch: 10, //Angle vertical, vers le haut ou le bas, par rapport à l'angle de vertical (CAMERA)
