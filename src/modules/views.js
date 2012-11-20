@@ -72,7 +72,7 @@ app.Views.loader = Backbone.View.extend({
  * @requires  backbones.js
  */
 app.Views.home = Backbone.View.extend({
-	el : '#Accueil',
+	el : '#accueil',
 	
 	events: {
 		'click #etape1': 'launchGame',
@@ -82,7 +82,7 @@ app.Views.home = Backbone.View.extend({
 		// On cache les div courante
 		$('body > div:visible').hide();
 		// On affiche la div accueil
-		$('#Accueil').show();		
+		$('#accueil').show();		
 		// Déclaration des templates
 		this.templateAccueil = $('#templateAccueil').html();
 		
@@ -116,7 +116,7 @@ app.Views.home = Backbone.View.extend({
 	
 	renderAccueil: function(){
 		accueilHTML = _.template($('#templateAccueil').html(),{});
-		$('#Accueil').html(accueilHTML);
+		$('#accueil').html(accueilHTML);
 		console.log('Accueil chargé');
 		
 
@@ -147,8 +147,8 @@ app.Views.etape1 = Backbone.View.extend({
 	// Fonction appelée automatiquement lors de l'instanciation de la vue
 	initialize : function() {
 		// Controle que nous n'ayons pas l'accueil de chargé
-	  	if($('#Accueil:visible').length){
-	  		$('#Accueil:visible').hide().empty();
+	  	if($('#accueil:visible').length){
+	  		$('#accueil:visible').hide().empty();
 	  	}
 	  	//Fil ariane
 		app.Helpers.filAriane(app.Helpers.getLastQuestUnlock(),app.Helpers.getCurrentQuestion());
@@ -299,8 +299,8 @@ app.Views.question = Backbone.View.extend({
 		this.$el.html(' ');
 		console.log(this.el);
 		// Controle que nous n'ayons pas l'accueil en non hide
-	  	if($('#Accueil:visible').length){
-	  		$('#Accueil:visible').hide().empty();
+	  	if($('#accueil:visible').length){
+	  		$('#accueil:visible').hide().empty();
 	  	}
 	  	
 	  	//Fil ariane
@@ -424,25 +424,29 @@ app.Views.etape2 = app.Views.question.extend({
 app.Views.etape3 = app.Views.question.extend({
 	
 	render : function (){
+		//Définition des variables à passer
+		image1 = {'url':'mac-gyver.jpg','alt':'livre Que ferait Mac Gyver ?','titre':'Livre : Que ferait Mac Gyver ?','description':'Le livre pour savoir ce que ferait Mac Gyver dans toutes les situations les plus périeuses. Les astuces du maître de la survie !'};
+		image2 = {'url':'ipad3.png','alt':'iPad 3','titre':'Tablette tactile : iPad 3','description':'Le dernier iPad : le plus puissant et la tablette la plus pratique au monde. Un maximum d\outils en un seul objet !'};
+		image3 = {'url':'photo-famille.jpg','alt':'photo de famille','titre':'Photo : une photo de famille','description':'Une photo de famille.. quoi de plus réconfortant dans les moments difficiles ? Légère et peu encombrante !'};
 		//Recupère le html générer avec le template
-		template = accueilHTML = _.template($('#templateWebGl').html(),{'titreQuestion':'question 1'});
+		template = accueilHTML = _.template($('#templateWebGl').html(),{'titreQuestion':'La place manque dans cette voiture, quel objet choisissez-vous pour survivre ?','image1':image1,'image2':image2,'image3':image3});
 		console.log(template);
 		this.$el.html(template);
 	},
 	
 	nextQuestion : function(){
 
-		//root vers la question 3
+		//root vers l'étape 3
 		app.Helpers.unlockQuestion('3');
-		app.router.navigate('q3', true);
+		app.router.navigate('etape4', true);
 	}
 	
 });
 
-app.Views.q3 = app.Views.question.extend({
+app.Views.etape4 = app.Views.question.extend({
 	
 	nextQuestion : function(){
-		//root vers la question 4
+		//root vers l'étape 5
 		app.router.navigate('etape5', true);
 	}
 	
@@ -451,7 +455,7 @@ app.Views.q3 = app.Views.question.extend({
 app.Views.etape5 = app.Views.question.extend({
 	
 	nextQuestion : function(){
-		//root vers la question 5
+		//root vers l'étape 6
 		app.router.navigate('etape6', true);
 	}
 	
@@ -460,7 +464,7 @@ app.Views.etape5 = app.Views.question.extend({
 app.Views.etape6 = app.Views.question.extend({
 	
 	nextQuestion : function(){
-		//root vers la question 6
+		//root vers l'étape 7
 		app.router.navigate('etape7', true);
 	}
 	
@@ -469,7 +473,7 @@ app.Views.etape6 = app.Views.question.extend({
 app.Views.etape7 = app.Views.question.extend({
 	
 	nextQuestion : function(){
-		//root vers la question 7
+		//root vers l'étape 8
 		app.router.navigate('etape8', true);
 	}
 	
@@ -478,7 +482,7 @@ app.Views.etape7 = app.Views.question.extend({
 app.Views.etape8 = app.Views.question.extend({
 	
 	nextQuestion : function(){
-		//root vers la question 8
+		//root vers l'étape 9
 		app.router.navigate('etape9', true);
 	}
 	
@@ -487,7 +491,7 @@ app.Views.etape8 = app.Views.question.extend({
 app.Views.etape9 = app.Views.question.extend({
 	
 	nextQuestion : function(){
-		//root vers la question 9
+		//root vers l'étape 10
 		app.router.navigate('etape10', true);
 	}
 	
