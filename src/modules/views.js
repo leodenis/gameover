@@ -86,7 +86,7 @@ app.Views.home = Backbone.View.extend({
 		$('#accueil').show();		
 		// Déclaration des templates
 		this.templateAccueil = $('#templateAccueil').html();
-		
+	
 		// Déclaration de référance 
 		var renderAccueil = this.renderAccueil;
 		
@@ -174,8 +174,7 @@ app.Views.etape1 = Backbone.View.extend({
 	renderIntro : function (that){
 		//Recupère le html générer avec le template
 		template = _.template($('#templateStreetView').html(),{"titreQuestion":"Recherchez le médium le plus proche afin qu’il vous prédise le futur... "});
-		that.$el.html(template);
-		
+		that.$el.html(template);		
 		// Définition des paramètre de la street + map (voir helper)
 		var optionModeStreetMap = {
 			idMap : 'carte',
@@ -440,7 +439,6 @@ app.Views.etape2 = app.Views.question.extend({
 		}
 	}
 		app.Helpers.RenderStreetMapMode(optionModeStreetMap);
-		//return this;
 	},
 	
 	nextQuestion : function(){
@@ -458,6 +456,7 @@ app.Views.etape2 = app.Views.question.extend({
 		var pos = marker.latLng.Ya;
 		var lat = marker.latLng.Za;
 		var options = {
+			closeButton: true,
 			buttons: [{
 					id: 0, 
 					label: 'Oui', 
@@ -540,9 +539,117 @@ app.Views.etape5 = app.Views.question.extend({
 
 app.Views.etape6 = app.Views.question.extend({
 	
+	render: function(){
+		//Recupère le html générer avec le template
+		accueilHTML = _.template($('#templateStreetView').html(),{'titreQuestion':'Vous semblez fatigué. Trouvez donc un endroit pour passer la nuit. Vous pouvez choisir entre un Bunker, un Hôtel 5* ou l’arche la plus proche de votre position.'});
+		this.$el.html(accueilHTML);
+		//Définition des paramètre de la street + map (voir helper)
+		var optionModeStreetMap = {
+			idMap : 'carte',
+			idStreet : 'exploration',
+			mapOptions : {
+				center : new google.maps.LatLng(48.867903,2.329117),
+				zoom : 13,
+				mapTypeId: google.maps.MapTypeId.ROADMAP, // type de map
+				styles: [   { "featureType": "landscape", "stylers": [ { "color": "#808080" } ] }, // les terres en gris
+                            { "featureType": "poi", "stylers": [ { "visibility": "off" } ] }, // Cache les points d'interet ( Hopital,Ecole ect...)
+                            { "featureType": "administrative", "stylers": [ { "visibility": "off" } ] }, // Nom : ville, arondissement : non visible
+                            { "featureType": "road", "stylers": [ { "color": "#c0c0c0" } ] }, // Route en gris clair
+                            { "featureType": "road", "elementType": "labels", "stylers": [ {  "visibility": "off" } ] }, // label des routes non visible
+                            { "featureType": "transit", "stylers": [ { "visibility": "off" } ] } // Transport non affiche
+                        ],
+				streetViewControl: true,
+				navigationControl: false,
+    			mapTypeControl: false,
+    			scaleControl: false,
+    			draggable: false,
+    			zoomControl: false,
+  				scrollwheel: false,
+  				disableDoubleClickZoom: true,
+			},
+			streetOptions : {
+				
+				adresseControl : true,
+				adresseControlOptions: {
+                     style: {backgroundColor: 'grey', color: 'yellow'} // modification css
+                },
+                position : new google.maps.LatLng(48.852630,2.286480),
+                pov : {
+                	heading: 550, //Angle de rotation horizontal, en degrés, de la caméra
+                    pitch: 10, //Angle vertical, vers le haut ou le bas, par rapport à l'angle de vertical (CAMERA)
+                    zoom: 0
+                },
+                    //controler de direction
+                    panControl: true,
+                    // controler de direction par clavier
+                    keyboardShortcuts: true,
+                    //bloque le changement d'adresse
+                    addressControl:false,
+                    scrollwheel:false,
+                    //bloque le click and go
+                    clickToGo:true,
+                    //bloque le clique du sol
+                    linksControl:true
+			},
+			markersStreet : [
+				{
+						title : 'Concession Porsche',
+						position : new google.maps.LatLng(48.851190,2.276290),
+						events: [
+									{
+										eventMarker : 'click',
+										functionMarker : this
+								
+									}
+						],
+				},{
+						title : 'Concession Renault',
+						position : new google.maps.LatLng(48.852630,2.286480),
+						events: [
+									{
+										eventMarker : 'click',
+										functionMarker : this
+								
+									}
+								]
+				}
+			
+			],
+			markersMap : [
+					{
+						title : 'Concession Porsche',
+						position : new google.maps.LatLng(48.851287,2.276246),
+						events: [
+							{
+								eventMarker : 'click',
+								functionMarker : this
+								
+							}
+						],
+					},{
+						title : 'Concession Renault',
+						position : new google.maps.LatLng(48.852701,2.286263),
+						events: [
+									{
+										eventMarker : 'click',
+										functionMarker : this
+								
+									}
+								]
+						}
+			],
+		
+		streetGuide : {
+
+		}
+	}
+		app.Helpers.RenderStreetMapMode(optionModeStreetMap);
+	},
 	nextQuestion : function(){
-		//root vers l'étape 7
-		app.router.navigate('etape7', true);
+
+		//root vers l'étape 3
+		app.Helpers.unlockQuestion('3');
+		app.router.navigate('etape4', true);
 	}
 	
 });
