@@ -92,11 +92,8 @@ app.Views.home = Backbone.View.extend({
 	
 		// Déclaration de référance 
 		var renderAccueil = this.renderAccueil;
-		
 		//On lance la vidéo si l'utilisateur n'a jamais vu celle-ci
 		if(app.users.get('1').attributes.videoWatch == false){	
-			app.users.get('1').attributes.videoWatch = true;
-			app.users.get('1').save();
 			this.loaderVideo();
 		}else{
 			renderAccueil();
@@ -110,11 +107,12 @@ app.Views.home = Backbone.View.extend({
 		$('#videoIntro').show().html(app.Assets.videos.intro);
 		//Crée son aparation avec animation css
 		app.Assets.videos.intro.play();
-		console.dir(app.Assets.videos.intro);
 		app.Assets.videos.intro.volume = 0.1;
 		var that = this;
 		app.Assets.videos.intro.addEventListener('ended',function(){
-		 	$('#videoIntro').hide('clip'); 
+			$('#videoIntro').hide('clip'); 
+			app.users.get('1').attributes.videoWatch = true;
+			app.users.get('1').save();
 		 	that.renderAccueil();
 		})
 		
@@ -578,9 +576,9 @@ app.Views.etape6 = app.Views.question.extend({
 				adresseControlOptions: {
                      style: {backgroundColor: 'grey', color: 'yellow'} // modification css
                 },
-                position : new google.maps.LatLng(48.852630,2.286480),
+                position : new google.maps.LatLng(48.867903,2.329117),
                 pov : {
-                	heading: 550, //Angle de rotation horizontal, en degrés, de la caméra
+                	heading: 650, //Angle de rotation horizontal, en degrés, de la caméra
                     pitch: 10, //Angle vertical, vers le haut ou le bas, par rapport à l'angle de vertical (CAMERA)
                     zoom: 0
                 },
