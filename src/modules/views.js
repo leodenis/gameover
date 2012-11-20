@@ -80,6 +80,9 @@ app.Views.home = Backbone.View.extend({
 	},
 	// Fonction appelé automatiquement lors de l'instanciation de la vue
 	initialize : function() {
+		//Fil ariane
+		app.Helpers.filAriane(app.Helpers.getLastQuestUnlock(),app.Helpers.getCurrentQuestion());
+		
 		// On cache les div courante
 		$('body > div:visible').hide();
 		// On affiche la div accueil
@@ -143,7 +146,7 @@ app.Views.home = Backbone.View.extend({
 app.Views.etape1 = Backbone.View.extend({
 	el : '#question',
 	events: {
-		'click #nextQuestion': 'nextQuestion',
+		'click .nextQuestion': 'nextQuestion',
 	},
 	// Fonction appelée automatiquement lors de l'instanciation de la vue
 	initialize : function() {
@@ -169,6 +172,8 @@ app.Views.etape1 = Backbone.View.extend({
 	//Attention prend en paramètre that qui est le this courant appelé depuis un objet étranger
 
 	renderIntro : function (that){
+		//Fil ariane
+		app.Helpers.filAriane(app.Helpers.getLastQuestUnlock(),app.Helpers.getCurrentQuestion());
 		//Recupère le html générer avec le template
 		template = _.template($('#templateStreetView').html(),{"titreQuestion":"Recherchez le médium le plus proche afin qu’il vous prédise le futur... "});
 		that.$el.html(template);
@@ -290,7 +295,7 @@ app.Views.question = Backbone.View.extend({
 	el : '#question',
 	
 	events: {
-		'click #nextQuestion': 'nextQuestion',
+		'click .nextQuestion': 'nextQuestion',
 	},
 	
 	
@@ -334,7 +339,7 @@ app.Views.etape2 = app.Views.question.extend({
 
 	render : function (){
 		//Recupère le html générer avec le template
-		accueilHTML = _.template($('#templateStreetView').html(),{'titreQuestion':'Maintenant que vous en savez plus, il va falloir déguerpir en vitesse. Rendez vous dans la concession de votre choix pour voler une voiture.'});
+		accueilHTML = _.template($('#templateStreetView').html(),{'titreQuestion':'Vous devez déguerpir en vitesse, volez une voiture dans une concession proche.'});
 		this.$el.html(accueilHTML);
 		//Définition des paramètre de la street + map (voir helper)
 		var optionModeStreetMap = {

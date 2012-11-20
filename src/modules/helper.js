@@ -166,6 +166,9 @@ app.Helpers.unlockQuestion = function(question){
 app.Helpers.getCurrentQuestion = function(){ 
 	 // currentPage = la page visionnée
 	 currentPage = Backbone.history.fragment;
+	 if(currentPage == null || currentPage == "") {
+	 	return 0;
+	 }
 	 currentQuestion = currentPage.substring(5); // enleve le mot etape
 	 return parseInt(currentQuestion);
 }
@@ -177,17 +180,22 @@ app.Helpers.getCurrentQuestion = function(){
  * @requires  backbones.js
  */
 app.Helpers.filAriane = function(lastQuestionUnlock,currentQuestion){
-	// incrémente les id pour correspondre aux indices de position
-	lastQuestionUnlock++;
-	
-	// enlève les classes
-	for(i=1;i<=10;i++) {
-		$("footer > span:nth-of-type(1) a:nth-of-type("+i+")").removeClass("done").removeClass("doing");
+	console.log("playing?"+app.Helpers.userIsPlaying());
+	if(app.Helpers.userIsPlaying() == false){
+		$("#filAriane").css("display","none");
+	} else {
+		$("#filAriane").css("display","inline-block");
+		// incrémente les id pour correspondre aux indices des positions des <a>
+		lastQuestionUnlock++;
+		// enlève les classes
+		for(i=1;i<=10;i++) {
+			$("#filAriane > a:nth-of-type("+i+")").removeClass("done").removeClass("doing");
+		}
+		// ajoute classe "done" de la première 
+		for(i=1;i<=lastQuestionUnlock;i++) {
+			$("#filAriane > a:nth-of-type("+i+")").addClass("done");
+		}
+		// ajoute classe "doing"
+		$("#filAriane > a:nth-of-type("+currentQuestion+")").addClass("doing");
 	}
-	// ajoute classe "done" de la première 
-	for(i=1;i<=lastQuestionUnlock;i++) {
-		$("footer > span:nth-of-type(1) a:nth-of-type("+i+")").addClass("done");
-	}
-	// ajoute classe "doing"
-	$("footer > span:nth-of-type(1) a:nth-of-type("+currentQuestion+")").addClass("doing");
 }

@@ -83,7 +83,7 @@
 	                    <h4 itemprop="keywords">Vérifies tes chances de survie !</h4>
 	                    <br />
 	                    <a itemprop="url" id="etape1">
-	                    	<img itemprop="image "src="assets/img/go-m.png" alt="GO !" title="GO !" />
+	                    	<img itemprop="image "src="assets/img/go.png" alt="GO !" title="GO !" />
 	                    </a>
 	                </section>
                 	<div class="clearfix"> </div>
@@ -101,13 +101,13 @@
         	<h2><%= titreQuestion %></h2>
 			<div style="height:600px" id="exploration"></div>
 			<div style="height:200px;position:relative;background-color:#E5E3DF;overflow:hidden;-webkit-transform:translateZ(0);left:0;top:-200px;z-index:0;width:200px;" id="carte"></div>
-			<a id='nextQuestion'>Question suivante</a>
+			<a class='nextQuestion'>Question suivante</a>
         </script>
         
         <!---Template question video -->
         <script type="text/template" id="templateVideo">
            <div><%= titreQuestion %></div><br/>
-           <a id='nextQuestion'>Question suivante</a>
+           <a class='nextQuestion'>Question suivante</a>
         </script>
         
         <!---Template question WebGL-->
@@ -119,7 +119,7 @@
 			<div class="webgl">
 				<h3><%= image1.titre %></h3>
 				<figure>
-					<img id="nextQuestion" src="assets/img/<%= image1.url %>" alt="<%= image1.alt %>" />
+					<img class="nextQuestion" src="assets/img/<%= image1.url %>" alt="<%= image1.alt %>" />
 					<figcaption><%= image1.description %></figcaption>
 				</figure>
 			</div>
@@ -127,7 +127,7 @@
 			<div class="webgl">
 				<h3><%= image2.titre %></h3>
 				<figure>
-					<img id="nextQuestion" src="assets/img/<%= image2.url %>" alt="<%= image2.alt %>" />
+					<img class="nextQuestion" src="assets/img/<%= image2.url %>" alt="<%= image2.alt %>" />
 					<figcaption><%= image2.description %></figcaption>
 				</figure>
 			</div>
@@ -135,7 +135,7 @@
 			<div class="webgl">
 				<h3><%= image3.titre %></h3>
 				<figure>
-					<img id="nextQuestion"  src="assets/img/<%= image3.url %>" alt="<%= image3.alt %>" />
+					<img class="nextQuestion"  src="assets/img/<%= image3.url %>" alt="<%= image3.alt %>" />
 					<figcaption><%= image3.description %></figcaption>
 				</figure>
 			</div>
@@ -147,7 +147,7 @@
         
 		<!---Footer statique du site -->
         <footer itemscope itemtype="http://schema.org/ItemList" itemprop="copyrightYear">
-        	<span>
+        	<span id="filAriane">
         		<a href="#etape1">1</a>
         		<a href="#etape2">2</a>
         		<a href="#etape3">3</a>
