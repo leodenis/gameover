@@ -89,14 +89,11 @@ app.Views.home = Backbone.View.extend({
 		$('#accueil').show();		
 		// Déclaration des templates
 		this.templateAccueil = $('#templateAccueil').html();
-		
+	
 		// Déclaration de référance 
 		var renderAccueil = this.renderAccueil;
-		
 		//On lance la vidéo si l'utilisateur n'a jamais vu celle-ci
 		if(app.users.get('1').attributes.videoWatch == false){	
-			app.users.get('1').attributes.videoWatch = true;
-			app.users.get('1').save();
 			this.loaderVideo();
 		}else{
 			renderAccueil();
@@ -107,14 +104,15 @@ app.Views.home = Backbone.View.extend({
 	
 
 	loaderVideo : function() {
-		$('#videoIntro').show().html(app.Assets.videos.intro);
 		//Crée son aparation avec animation css
+		$('#videoIntro').show().html(app.Assets.videos.intro);
 		app.Assets.videos.intro.play();
-		console.dir(app.Assets.videos.intro);
 		app.Assets.videos.intro.volume = 0.1;
 		var that = this;
 		app.Assets.videos.intro.addEventListener('ended',function(){
-		 	$('#videoIntro').hide('clip'); 
+			$('#videoIntro').hide('clip'); 
+			app.users.get('1').attributes.videoWatch = true;
+			app.users.get('1').save();
 		 	that.renderAccueil();
 		})
 		
@@ -130,12 +128,17 @@ app.Views.home = Backbone.View.extend({
 	},
 	// evenement lors du click du lancement de l'application
 	launchGame: function(){
-		// change le statut de l'utilisateur en mode game
-		app.users.get("1").set({gameStart:true});
-		//enregistre son statut dans le localstorage
-		app.users.get("1").save();
-		//root vers l'intro du jeux
-		app.router.navigate('etape1', true);
+		// Renvoie l'utilisateur sur sa dernière question débloquer si il a déjà commencer a jouer
+		if(app.Helpers.userIsPlaying()){
+			app.router.routeQuestion(app.Helpers.getLastQuestUnlock());
+		}else{
+			// change le statut de l'utilisateur en mode game
+			app.users.get("1").set({gameStart:true});
+			//enregistre son statut dans le localstorage
+			app.users.get("1").save();
+			//root vers l'intro du jeux
+			app.router.navigate('etape1', true);
+		}
 	}
 	
 }); 
@@ -179,8 +182,7 @@ app.Views.etape1 = Backbone.View.extend({
 		app.Helpers.filAriane(app.Helpers.getLastQuestUnlock(),app.Helpers.getCurrentQuestion());
 		//Recupère le html générer avec le template
 		template = _.template($('#templateStreetView').html(),{"titreQuestion":"Recherchez le médium le plus proche afin qu’il vous prédise le futur... "});
-		that.$el.html(template);
-		
+		that.$el.html(template);		
 		// Définition des paramètre de la street + map (voir helper)
 		var optionModeStreetMap = {
 			idMap : 'carte',
@@ -331,6 +333,11 @@ app.Views.question = Backbone.View.extend({
 		template = accueilHTML = _.template($('#template').html(),{'titreQuestion':'à faire'});
 		zoneRendu.html(template);
 		return this;
+	},
+	nextQuestion : function(){
+		nextQuestion = (app.Helpers.getCurrentQuestion()+1);
+		app.Helpers.unlockQuestion(nextQuestion);
+		app.router.routeQuestion(nextQuestion);
 	}
 
 });
@@ -341,7 +348,7 @@ app.Views.question = Backbone.View.extend({
 
 /**
  * QUESTION 1 : 
- * @author Kévin La Rosa 
+ * @author Kévin La Rosa & Mathieu dutto
  * @requires  backbones.js
  */
 app.Views.etape2 = app.Views.question.extend({
@@ -451,7 +458,6 @@ app.Views.etape2 = app.Views.question.extend({
 		}
 	}
 		app.Helpers.RenderStreetMapMode(optionModeStreetMap);
-		//return this;
 	},
 	
 	nextQuestion : function(){
@@ -469,6 +475,7 @@ app.Views.etape2 = app.Views.question.extend({
 		var pos = marker.latLng.Ya;
 		var lat = marker.latLng.Za;
 		var options = {
+			closeButton: true,
 			buttons: [{
 					id: 0, 
 					label: 'Oui', 
@@ -518,79 +525,157 @@ app.Views.etape3 = app.Views.question.extend({
 		image3 = {'url':'photo-famille.jpg','alt':'photo de famille','titre':'Photo : une photo de famille','description':'Une photo de famille.. quoi de plus réconfortant dans les moments difficiles ? Légère et peu encombrante !'};
 		//Recupère le html générer avec le template
 		template = accueilHTML = _.template($('#templateWebGl').html(),{'titreQuestion':'La place manque dans cette voiture, quel objet choisissez-vous pour survivre ?','image1':image1,'image2':image2,'image3':image3});
-		console.log(template);
 		this.$el.html(template);
 	},
 	
-	nextQuestion : function(){
 
-		//root vers l'étape 3
-		app.Helpers.unlockQuestion('3');
-		app.router.navigate('etape4', true);
-	}
 	
 });
 
 app.Views.etape4 = app.Views.question.extend({
 	
-	nextQuestion : function(){
-		//root vers l'étape 5
-		app.router.navigate('etape5', true);
-	}
+
 	
 });
 
 app.Views.etape5 = app.Views.question.extend({
 	
-	nextQuestion : function(){
-		//root vers l'étape 6
-		app.router.navigate('etape6', true);
-	}
-	
+
 });
 
 app.Views.etape6 = app.Views.question.extend({
 	
-	nextQuestion : function(){
-		//root vers l'étape 7
-		app.router.navigate('etape7', true);
+	render: function(){
+		//Recupère le html générer avec le template
+		accueilHTML = _.template($('#templateStreetView').html(),{'titreQuestion':'Vous semblez fatigué. Trouvez donc un endroit pour passer la nuit. Vous pouvez choisir entre un Bunker, un Hôtel 5* ou l’arche la plus proche de votre position.'});
+		this.$el.html(accueilHTML);
+		//Définition des paramètre de la street + map (voir helper)
+		var optionModeStreetMap = {
+			idMap : 'carte',
+			idStreet : 'exploration',
+			mapOptions : {
+				center : new google.maps.LatLng(48.867903,2.329117),
+				zoom : 13,
+				mapTypeId: google.maps.MapTypeId.ROADMAP, // type de map
+				styles: [   { "featureType": "landscape", "stylers": [ { "color": "#808080" } ] }, // les terres en gris
+                            { "featureType": "poi", "stylers": [ { "visibility": "off" } ] }, // Cache les points d'interet ( Hopital,Ecole ect...)
+                            { "featureType": "administrative", "stylers": [ { "visibility": "off" } ] }, // Nom : ville, arondissement : non visible
+                            { "featureType": "road", "stylers": [ { "color": "#c0c0c0" } ] }, // Route en gris clair
+                            { "featureType": "road", "elementType": "labels", "stylers": [ {  "visibility": "off" } ] }, // label des routes non visible
+                            { "featureType": "transit", "stylers": [ { "visibility": "off" } ] } // Transport non affiche
+                        ],
+				streetViewControl: true,
+				navigationControl: false,
+    			mapTypeControl: false,
+    			scaleControl: false,
+    			draggable: false,
+    			zoomControl: false,
+  				scrollwheel: false,
+  				disableDoubleClickZoom: true,
+			},
+			streetOptions : {
+				
+				adresseControl : true,
+				adresseControlOptions: {
+                     style: {backgroundColor: 'grey', color: 'yellow'} // modification css
+                },
+                position : new google.maps.LatLng(48.867903,2.329117),
+                pov : {
+                	heading: 650, //Angle de rotation horizontal, en degrés, de la caméra
+                    pitch: 10, //Angle vertical, vers le haut ou le bas, par rapport à l'angle de vertical (CAMERA)
+                    zoom: 0
+                },
+                    //controler de direction
+                    panControl: true,
+                    // controler de direction par clavier
+                    keyboardShortcuts: true,
+                    //bloque le changement d'adresse
+                    addressControl:false,
+                    scrollwheel:false,
+                    //bloque le click and go
+                    clickToGo:true,
+                    //bloque le clique du sol
+                    linksControl:true
+			},
+			markersStreet : [
+				{
+						title : 'Concession Porsche',
+						position : new google.maps.LatLng(48.851190,2.276290),
+						events: [
+									{
+										eventMarker : 'click',
+										functionMarker : this
+								
+									}
+						],
+				},{
+						title : 'Concession Renault',
+						position : new google.maps.LatLng(48.852630,2.286480),
+						events: [
+									{
+										eventMarker : 'click',
+										functionMarker : this
+								
+									}
+								]
+				}
+			
+			],
+			markersMap : [
+					{
+						title : 'Concession Porsche',
+						position : new google.maps.LatLng(48.851287,2.276246),
+						events: [
+							{
+								eventMarker : 'click',
+								functionMarker : this
+								
+							}
+						],
+					},{
+						title : 'Concession Renault',
+						position : new google.maps.LatLng(48.852701,2.286263),
+						events: [
+									{
+										eventMarker : 'click',
+										functionMarker : this
+								
+									}
+								]
+						}
+			],
+		
+		streetGuide : {
+
+		}
 	}
+		app.Helpers.RenderStreetMapMode(optionModeStreetMap);
+	},
+
 	
 });
 
 app.Views.etape7 = app.Views.question.extend({
 	
-	nextQuestion : function(){
-		//root vers l'étape 8
-		app.router.navigate('etape8', true);
-	}
+
 	
 });
 
 app.Views.etape8 = app.Views.question.extend({
 	
-	nextQuestion : function(){
-		//root vers l'étape 9
-		app.router.navigate('etape9', true);
-	}
+
 	
 });
 
 app.Views.etape9 = app.Views.question.extend({
 	
-	nextQuestion : function(){
-		//root vers l'étape 10
-		app.router.navigate('etape10', true);
-	}
+
 	
 });
 
 app.Views.etape10 = app.Views.question.extend({
 	
-	nextQuestion : function(){
-		//root vers la page de fin
-		app.router.navigate('etape11', true);
-	}
+
 	
 });
 
