@@ -19,6 +19,8 @@ app.Views.loader = Backbone.View.extend({
 		//Définition des ressources (Définir les images)
 		app.Assets.images.porsche = app.loader.addImage('assets/img/porsche.jpg');
 		app.Assets.images.renault = app.loader.addImage('assets/img/renault.jpg');
+		app.Assets.images.bunker = app.loader.addImage('assets/img/bunker.jpg');
+		app.Assets.images.ritz = app.loader.addImage('assets/img/ritz.jpg');
 		
 		//Chargement du bon fichier video ATTTENTION IL FAUT FINIR EN AJOUTER LES AUTRES FORMAT PAR NAVIGATEURS
 		if (Modernizr.video) {
@@ -175,7 +177,7 @@ app.Views.etape1 = Backbone.View.extend({
 	  	app.Helpers.animation(AnimationParam);
 	},
 	
-	//Attention prend en paramètre that qui est le this courant appelé depuis un objet étrangerdsdsdsds
+	//Attention prend en paramètre that qui est le this courant appelé depuis un objet étranger
 
 	renderIntro : function (that){
 		//Fil ariane
@@ -467,13 +469,14 @@ app.Views.etape2 = app.Views.question.extend({
 	
 	//Evenement qui place la streetView sur le marker map ciblé
 	moveStreet: function(marker){
-		app.street.exploration.setPosition(new google.maps.LatLng(marker.latLng.Ya,marker.latLng.Za));
+		console.log(marker.latLng);
+		app.street.exploration.setPosition(new google.maps.LatLng(marker.latLng.$a,marker.latLng.ab));
 	},
 	
 	//Evenement de confirmation après avoir cliquer sur un marker d'une view
 	confirmQuestion: function(marker){
-		var pos = marker.latLng.Ya;
-		var lat = marker.latLng.Za;
+		var pos = marker.latLng.$a;
+		var lat = marker.latLng.ab;
 		var options = {
 			closeButton: true,
 			buttons: [{
@@ -555,7 +558,7 @@ app.Views.etape6 = app.Views.question.extend({
 			idStreet : 'exploration',
 			mapOptions : {
 				center : new google.maps.LatLng(48.867903,2.329117),
-				zoom : 13,
+				zoom : 11,
 				mapTypeId: google.maps.MapTypeId.ROADMAP, // type de map
 				styles: [   { "featureType": "landscape", "stylers": [ { "color": "#808080" } ] }, // les terres en gris
                             { "featureType": "poi", "stylers": [ { "visibility": "off" } ] }, // Cache les points d'interet ( Hopital,Ecole ect...)
@@ -599,22 +602,22 @@ app.Views.etape6 = app.Views.question.extend({
 			},
 			markersStreet : [
 				{
-						title : 'Concession Porsche',
-						position : new google.maps.LatLng(48.851190,2.276290),
+						title : 'Ritz hotel 5 étoiles',
+						position : new google.maps.LatLng(48.86796,2.328900),
 						events: [
 									{
 										eventMarker : 'click',
-										functionMarker : this
+										functionMarker : this.confirmQuestion
 								
 									}
 						],
 				},{
-						title : 'Concession Renault',
-						position : new google.maps.LatLng(48.852630,2.286480),
+						title : 'Bunker',
+						position : new google.maps.LatLng(48.868050,2.27053),
 						events: [
 									{
 										eventMarker : 'click',
-										functionMarker : this
+										functionMarker : this.confirmQuestion
 								
 									}
 								]
@@ -623,22 +626,22 @@ app.Views.etape6 = app.Views.question.extend({
 			],
 			markersMap : [
 					{
-						title : 'Concession Porsche',
-						position : new google.maps.LatLng(48.851287,2.276246),
+						title : 'Ritz hotel 5 étoiles',
+						position : new google.maps.LatLng(48.867903,2.329117),
 						events: [
 							{
 								eventMarker : 'click',
-								functionMarker : this
+								functionMarker : this.moveStreet
 								
 							}
 						],
 					},{
-						title : 'Concession Renault',
-						position : new google.maps.LatLng(48.852701,2.286263),
+						title : 'Bunker',
+						position : new google.maps.LatLng(48.867961,2.271100),
 						events: [
 									{
 										eventMarker : 'click',
-										functionMarker : this
+										functionMarker : this.moveStreet
 								
 									}
 								]
@@ -651,6 +654,53 @@ app.Views.etape6 = app.Views.question.extend({
 	}
 		app.Helpers.RenderStreetMapMode(optionModeStreetMap);
 	},
+		//Evenement qui place la streetView sur le marker map ciblé
+	moveStreet: function(marker){
+		console.log(marker.latLng);
+		app.street.exploration.setPosition(new google.maps.LatLng(marker.latLng.$a,marker.latLng.ab));
+	},
+	
+		//Evenement de confirmation après avoir cliquer sur un marker d'une view
+	confirmQuestion: function(marker){
+		var pos = marker.latLng.$a;
+		var lat = marker.latLng.ab;
+		var options = {
+			closeButton: true,
+			buttons: [{
+					id: 0, 
+					label: 'Oui', 
+					val: 'O'
+			},
+			{
+					id: 1, 
+					label: 'Non', 
+					val: 'N'
+			}],
+			
+		}
+		console.log(marker);
+		if(pos == 48.86796 && lat == 2.328899999999976){
+			options.title = 'Vous souhaitez dormir dans un hôtel 5 étoiles ?'
+			options.callback = function(val){
+				if(val == 'O'){
+					console.log('boum');
+					app.Helpers.unlockQuestion('6');
+					app.router.navigate('etape7', true);
+				}
+			}
+			new Messi(app.Assets.images.ritz,options);
+		}else{
+			options.title = 'Vous souhaitez dormir dans un bunker ?'
+			options.callback = function(val){
+				if(val == 'O'){
+					app.Helpers.unlockQuestion('6');
+					app.router.navigate('etape7', true);
+				}
+			}
+			app.Assets.images.bunker.style.width ='600px';
+			new Messi(app.Assets.images.bunker,options);
+		}
+	}
 
 	
 });
