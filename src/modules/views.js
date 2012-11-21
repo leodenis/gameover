@@ -685,6 +685,8 @@ app.Views.etape6 = app.Views.question.extend({
 				if(val == 'O'){
 					console.log('boum');
 					app.Helpers.unlockQuestion('6');
+					//app.Helpers.unlockQuestion('7');
+					//app.Helpers.unlockQuestion('8');
 					app.router.navigate('etape7', true);
 				}
 			}
@@ -713,12 +715,248 @@ app.Views.etape7 = app.Views.question.extend({
 
 app.Views.etape8 = app.Views.question.extend({
 	
+	render : function (){
+		//Fil ariane
+		app.Helpers.filAriane(app.Helpers.getLastQuestUnlock(),app.Helpers.getCurrentQuestion());
+		//Recupère le html générer avec le template
+		template = _.template($('#templateStreetView').html(),{"titreQuestion":"Baladez vous dans central park afin de trouver de l’aide pour survivre à la fin du monde."});
+		this.$el.html(template);		
+		// Définition des paramètre de la street + map (voir helper)
+		var optionModeStreetMap = {
+			idMap : 'carte',
+			idStreet : 'exploration',
+			mapOptions : {
+				center : new google.maps.LatLng(48.866338,2.261403),
+				zoom : 15,
+				mapTypeId: google.maps.MapTypeId.ROADMAP, // type de map
+				styles: [   { "featureType": "landscape", "stylers": [ { "color": "#808080" } ] }, // les terres en gris
+                            { "featureType": "poi", "stylers": [ { "visibility": "off" } ] }, // Cache les points d'interet ( Hopital,Ecole ect...)
+                            { "featureType": "administrative", "stylers": [ { "visibility": "off" } ] }, // Nom : ville, arondissement : non visible
+                            { "featureType": "road", "stylers": [ { "color": "#c0c0c0" } ] }, // Route en gris clair
+                            { "featureType": "road", "elementType": "labels", "stylers": [ {  "visibility": "off" } ] }, // label des routes non visible
+                            { "featureType": "transit", "stylers": [ { "visibility": "off" } ] } // Transport non affiche
+                        ],
+				streetViewControl: true,
+				navigationControl: false,
+    			mapTypeControl: false,
+    			scaleControl: false,
+    			draggable: false,
+    			zoomControl: false,
+  				scrollwheel: false,
+  				disableDoubleClickZoom: true,
+			},
+			streetOptions : {
+				
+				adresseControl : true,
+				adresseControlOptions: {
+                     style: {backgroundColor: 'grey', color: 'yellow'} // modification css
+                },
+                position : new google.maps.LatLng(48.866338,2.261403),
+                pov : {
+                	heading: 550, //Angle de rotation horizontal, en degrés, de la caméra
+                    pitch: 10, //Angle vertical, vers le haut ou le bas, par rapport à l'angle de vertical (CAMERA)
+                    zoom: 0
+                },
+                    //controler de direction
+                    panControl: true,
+                    // controler de direction par clavier
+                    keyboardShortcuts: true,
+                    //bloque le changement d'adresse
+                    addressControl:false,
+                    scrollwheel:false,
+                    //bloque le click and go
+                    clickToGo:true,
+                    //bloque le clique du sol
+                    linksControl:true
+			},
+			markersStreet : [
+					{
+						title : 'voyance',
+						position : new google.maps.LatLng(48.866338,2.261403),
+						events: [
+							{
+								eventMarker : 'click',
+								functionMarker : this.popupInfo
+								
+							}
+						],
+					},
+			],
+			markersMap : [
+			],
+		
+			streetGuide : {
 
+			}
+	}
+		app.Helpers.RenderStreetMapMode(optionModeStreetMap);
+	},
 	
+	//Evenement qui réagit au click sur le marker en face de la voyante
+	popupInfo : function(){
+
+		new Messi('Nos « ancêtres », les Mayas, qui en savaient plus que nous sur la puissance des astres nous ont dévoilés leurs secrets.', {
+			title: 'Commencer l\'aventure',
+			buttons: [{
+					id: 0, 
+					label: 'Oui', 
+					val: 'O'
+			},
+			{
+					id: 1, 
+					label: 'Non', 
+					val: 'N'
+			}],
+			callback: function(val) { 
+				if(val == 'O'){
+					app.Helpers.unlockQuestion('1');
+					app.router.navigate('etape2', true);
+				}
+			},
+			
+		});
+	},
+	
+	nextQuestion : function(){
+		$(this.el).remove();
+		app.Helpers.unlockQuestion('1');
+		app.router.navigate('etape2', true);
+
+	}	
+
 });
 
 app.Views.etape9 = app.Views.question.extend({
+	render : function (){
+		//Fil ariane
+		app.Helpers.filAriane(app.Helpers.getLastQuestUnlock(),app.Helpers.getCurrentQuestion());
+		//Recupère le html générer avec le template
+		template = _.template($('#templateStreetView').html(),{"titreQuestion":"Sélectioner ce qui vous semble le plus utile pour survivre dans cette situation."});
+		this.$el.html(template);		
+		// Définition des paramètre de la street + map (voir helper)
+		var optionModeStreetMap = {
+			idMap : 'carte',
+			idStreet : 'exploration',
+			mapOptions : {
+				center : new google.maps.LatLng(9.08534,123.272578),
+				zoom : 15,
+				mapTypeId: google.maps.MapTypeId.ROADMAP, // type de map
+				styles: [   { "featureType": "landscape", "stylers": [ { "color": "#808080" } ] }, // les terres en gris
+                            { "featureType": "poi", "stylers": [ { "visibility": "off" } ] }, // Cache les points d'interet ( Hopital,Ecole ect...)
+                            { "featureType": "administrative", "stylers": [ { "visibility": "off" } ] }, // Nom : ville, arondissement : non visible
+                            { "featureType": "road", "stylers": [ { "color": "#c0c0c0" } ] }, // Route en gris clair
+                            { "featureType": "road", "elementType": "labels", "stylers": [ {  "visibility": "off" } ] }, // label des routes non visible
+                            { "featureType": "transit", "stylers": [ { "visibility": "off" } ] } // Transport non affiche
+                        ],
+				streetViewControl: false,
+				navigationControl: false,
+    			mapTypeControl: false,
+    			scaleControl: false,
+    			draggable: false,
+    			zoomControl: false,
+  				scrollwheel: false,
+  				disableDoubleClickZoom: true,
+			},
+			streetOptions : {
+				
+				adresseControl : true,
+				adresseControlOptions: {
+                     style: {backgroundColor: 'grey', color: 'yellow'} // modification css
+                },
+                position : new google.maps.LatLng(9.08534,123.272578),
+                pov : {
+                	heading: 550, //Angle de rotation horizontal, en degrés, de la caméra
+                    pitch: 10, //Angle vertical, vers le haut ou le bas, par rapport à l'angle de vertical (CAMERA)
+                    zoom: 0
+                },
+                    //controler de direction
+                    panControl: true,
+                    // controler de direction par clavier
+                    keyboardShortcuts: true,
+                    //bloque le changement d'adresse
+                    addressControl:false,
+                    scrollwheel:false,
+                    //bloque le click and go
+                    clickToGo:false,
+                    //bloque le clique du sol
+                    linksControl:false
+			},
+			markersStreet : [
+					{
+						title : 'voyance',
+						position : new google.maps.LatLng(9.08534,123.272700),
+						events: [
+							{
+								eventMarker : 'click',
+								functionMarker : this.popupInfo
+								
+							}
+						],
+					},
+					{
+						title : 'voyance',
+						position : new google.maps.LatLng(9.08534,123.272400),
+						events: [
+							{
+								eventMarker : 'click',
+								functionMarker : this.popupInfo
+								
+							}
+						],
+					},
+					{
+						title : 'voyance',
+						position : new google.maps.LatLng(9.08534,123.272150),
+						events: [
+							{
+								eventMarker : 'click',
+								functionMarker : this.popupInfo
+								
+							}
+						],
+					},
+			],
+			markersMap : [
+			],
+		
+			streetGuide : {
+
+			}
+	}
+		app.Helpers.RenderStreetMapMode(optionModeStreetMap);
+	},
 	
+	//Evenement qui réagit au click sur le marker en face de la voyante
+	popupInfo : function(){
+
+		new Messi('Nos « ancêtres », les Mayas, qui en savaient plus que nous sur la puissance des astres nous ont dévoilés leurs secrets.', {
+			title: 'Commencer l\'aventure',
+			buttons: [{
+					id: 0, 
+					label: 'Oui', 
+					val: 'O'
+			},
+			{
+					id: 1, 
+					label: 'Non', 
+					val: 'N'
+			}],
+			callback: function(val) { 
+				if(val == 'O'){
+					app.Helpers.unlockQuestion('1');
+					app.router.navigate('etape2', true);
+				}
+			},
+			
+		});
+	},
+	
+	nextQuestion : function(){
+		$(this.el).remove();
+		app.Helpers.unlockQuestion('1');
+		app.router.navigate('etape2', true);
+
+	}		
 
 	
 });
