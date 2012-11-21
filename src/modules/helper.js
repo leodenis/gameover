@@ -34,12 +34,17 @@ app.Helpers.RenderStreetMapMode = function(options){
 	delete app.map.carte ;
 	delete  app.street.exploration;
 	
-	//Création de ma carte
-	app.map.carte = new google.maps.Map(document.getElementById(options.idMap),options.mapOptions);
 	//création de ma street View
 	app.street.exploration = new google.maps.StreetViewPanorama(document.getElementById(options.idStreet), options.streetOptions);
-	//Je lie la carte à l'exploration
-	app.map.carte.setStreetView(app.street.exploration);
+	
+	if(_.isObject(options.mapOptions.center)){
+		//Création de ma carte
+		app.map.carte = new google.maps.Map(document.getElementById(options.idMap),options.mapOptions);
+		//Je lie la carte à l'exploration
+		app.map.carte.setStreetView(app.street.exploration);
+	}else{
+		$('#'+options.idMap).hide();
+	}
 	
 	//Création des points sur la streetView avec leurs évenements
 	if(_.isObject(options.markersStreet[0])){
@@ -51,7 +56,8 @@ app.Helpers.RenderStreetMapMode = function(options){
 			markerStreet[i] = new google.maps.Marker({
 	                 position: marker.position,
 	                 map:app.street.exploration,
-	                 title: marker.title
+	                 title: marker.title,
+	                 icon : marker.icon
 	             });
 			
 	        _.each(marker.events, function(thisEvent){ 

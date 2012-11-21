@@ -838,24 +838,7 @@ app.Views.etape9 = app.Views.question.extend({
 			idMap : 'carte',
 			idStreet : 'exploration',
 			mapOptions : {
-				center : new google.maps.LatLng(9.08534,123.272578),
-				zoom : 15,
-				mapTypeId: google.maps.MapTypeId.ROADMAP, // type de map
-				styles: [   { "featureType": "landscape", "stylers": [ { "color": "#808080" } ] }, // les terres en gris
-                            { "featureType": "poi", "stylers": [ { "visibility": "off" } ] }, // Cache les points d'interet ( Hopital,Ecole ect...)
-                            { "featureType": "administrative", "stylers": [ { "visibility": "off" } ] }, // Nom : ville, arondissement : non visible
-                            { "featureType": "road", "stylers": [ { "color": "#c0c0c0" } ] }, // Route en gris clair
-                            { "featureType": "road", "elementType": "labels", "stylers": [ {  "visibility": "off" } ] }, // label des routes non visible
-                            { "featureType": "transit", "stylers": [ { "visibility": "off" } ] } // Transport non affiche
-                        ],
-				streetViewControl: false,
-				navigationControl: false,
-    			mapTypeControl: false,
-    			scaleControl: false,
-    			draggable: false,
-    			zoomControl: false,
-  				scrollwheel: false,
-  				disableDoubleClickZoom: true,
+				
 			},
 			streetOptions : {
 				
@@ -883,7 +866,8 @@ app.Views.etape9 = app.Views.question.extend({
 			},
 			markersStreet : [
 					{
-						title : 'voyance',
+						title : 'Tuba',
+						icon : new google.maps.MarkerImage('assets/img/tuba.png'), 
 						position : new google.maps.LatLng(9.08534,123.272700),
 						events: [
 							{
@@ -894,8 +878,9 @@ app.Views.etape9 = app.Views.question.extend({
 						],
 					},
 					{
-						title : 'voyance',
+						title : 'Bouteille de plongée',
 						position : new google.maps.LatLng(9.08534,123.272400),
+						icon : new google.maps.MarkerImage('assets/img/bouteille.png'), 
 						events: [
 							{
 								eventMarker : 'click',
