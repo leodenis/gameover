@@ -155,6 +155,8 @@ app.Views.etape1 = Backbone.View.extend({
 	el : '#question',
 	events: {
 		'click .nextQuestion': 'nextQuestion',
+		'click #btnHelp': 'showHelp',
+		'click .shown': 'hideHelp'
 	},
 	// Fonction appelée automatiquement lors de l'instanciation de la vue
 	initialize : function() {
@@ -282,6 +284,16 @@ app.Views.etape1 = Backbone.View.extend({
 		});
 	},
 	
+	showHelp : function(){
+		//affiche aide
+		app.Helpers.showHelp();
+	},
+	
+	hideHelp : function(){
+		//cache aide
+		app.Helpers.hideHelp();
+	},
+	
 	nextQuestion : function(){
 		$(this.el).remove();
 		app.Helpers.unlockQuestion('1');
@@ -303,7 +315,8 @@ app.Views.question = Backbone.View.extend({
 	
 	events: {
 		'click .nextQuestion': 'nextQuestion',
-		'click #seeInfo': 'info'
+		'click #btnHelp': 'showHelp',
+		'click .shown': 'hideHelp'
 	},
 	
 	
@@ -324,18 +337,23 @@ app.Views.question = Backbone.View.extend({
 	  	this.render();
 	},
 	
-	info : function(){
-		//affiche bulle d'info
-		console.log("showInfo1");
-		app.Helpers.showInfo();
-	},
-	
 	render : function(){
 		//Recupère le html générer avec le template
 		template = accueilHTML = _.template($('#template').html(),{'titreQuestion':'à faire'});
 		zoneRendu.html(template);
 		return this;
 	},
+	
+	showHelp : function(){
+		//affiche aide
+		app.Helpers.showHelp();
+	},
+	
+	hideHelp : function(){
+		//cache aide
+		app.Helpers.hideHelp();
+	},
+	
 	nextQuestion : function(){
 		nextQuestion = (app.Helpers.getCurrentQuestion()+1);
 		app.Helpers.unlockQuestion(nextQuestion);
@@ -685,8 +703,8 @@ app.Views.etape6 = app.Views.question.extend({
 				if(val == 'O'){
 					console.log('boum');
 					app.Helpers.unlockQuestion('6');
-					//app.Helpers.unlockQuestion('7');
-					//app.Helpers.unlockQuestion('8');
+					app.Helpers.unlockQuestion('7');
+					app.Helpers.unlockQuestion('8');
 					app.router.navigate('etape7', true);
 				}
 			}

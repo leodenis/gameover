@@ -22,15 +22,6 @@
             <a href="" title="Accueil"> </a><a href="" title="Accueil">
             	<h1 itemprop="keywords">2012 : GAME OVER ?</h1>
             </a>
-            <div id="info">
-            	<h3>Information</h3>
-            	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin gravida, tellus sed sollicitudin ullamcorper, purus orci dictum purus, eu tincidunt odio massa vel dui. 
-            		Sed vel consequat augue. In et lacinia sem. In hac habitasse platea dictumst. Sed aliquam consequat tempus. 
-            		Nam tempus, lectus vel condimentum ultrices, sem arcu lobortis orci, sit amet fermentum lacus lorem ut dui. Etiam quam magna, bibendum quis dapibus quis, accumsan quis quam. 
-            		Donec et interdum orci. Cras sed convallis ante. Suspendisse sed purus id ligula rutrum ultricies. 
-            		Suspendisse nec turpis metus, et laoreet nibh. Pellentesque non erat bibendum velit ultrices ultrices. Fusce euismod quam.</p>
-            </div>
-
         </header>
         
         <!---Zone de rendus du loader-->
@@ -107,9 +98,8 @@
         
         <!---Template question StreetView/Map + startGame-->
         <script type="text/template" id="templateStreetView">
-            //bouffon
-            <div id='seeInfo' style='z-index:9909'><h3>Information ?</h3></div>
-        	<h2><%= titreQuestion %></h2>
+        	<h2><a id='btnHelp'>?</a><%= titreQuestion %></h2>
+        	<div> </div>
 			<div style="height:600px" id="exploration"></div>
 			<div style="height:200px;position:relative;background-color:#E5E3DF;overflow:hidden;-webkit-transform:translateZ(0);left:0;top:-200px;z-index:0;width:200px;" id="carte"></div>
 			<a class='nextQuestion'>Question suivante</a>
@@ -117,13 +107,15 @@
         
         <!---Template question video -->
         <script type="text/template" id="templateVideo">
-           <div><%= titreQuestion %></div><br/>
+           <h2><a id='btnHelp'>?</a><%= titreQuestion %></h2>
+           <div> </div>
            <a class='nextQuestion'>Question suivante</a>
         </script>
         
         <!---Template question WebGL-->
         <script type="text/template" id="templateWebGl">
-        	<h2><%= titreQuestion %></h2>
+        	<h2><a id='btnHelp'>?</a><%= titreQuestion %></h2>
+        	<div> </div>
         	
         	<div class="clearfix"> </div>
 			
@@ -158,16 +150,18 @@
 		<!---Footer statique du site -->
         <footer itemscope itemtype="http://schema.org/ItemList" itemprop="copyrightYear">
         	<span id="filAriane">
-        		<a href="#etape1">1</a>
-        		<a href="#etape2">2</a>
-        		<a href="#etape3">3</a>
-        		<a href="#etape4">4</a>
-        		<a href="#etape5">5</a>
-        		<a href="#etape6">6</a>
-        		<a href="#etape7">7</a>
-        		<a href="#etape8">8</a>
-        		<a href="#etape9">9</a>
-        		<a href="#etape10">10</a>
+        		<a title="Couper/Activer le son" class="doing"><i> </i></a>
+        		<a title="Aller à l'étape 1" href="#etape1">1</a>
+        		<a title="Aller à l'étape 2" href="#etape2">2</a>
+        		<a title="Aller à l'étape 3" href="#etape3">3</a>
+        		<a title="Aller à l'étape 4" href="#etape4">4</a>
+        		<a title="Aller à l'étape 5" href="#etape5">5</a>
+        		<a title="Aller à l'étape 6" href="#etape6">6</a>
+        		<a title="Aller à l'étape 7" href="#etape7">7</a>
+        		<a title="Aller à l'étape 8" href="#etape8">8</a>
+        		<a title="Aller à l'étape 9" href="#etape9">9</a>
+        		<a title="Aller à l'étape 10" href="#etape10">10</a>
+        		<a title="Recommencer le jeu" class="doing"><i> </i></a>
         	</span>
         	<a itemprop="url" href="http://facebook.com/gameover" title="Voir notre page Facebook"></a>
         	<a itemprop="url" href="http://twitter.com/gameover" title="Voir notre compte Twitter"></a>
