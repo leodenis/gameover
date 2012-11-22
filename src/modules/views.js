@@ -14,6 +14,7 @@ app.Views.loader = Backbone.View.extend({
 		this.LoaderRender();
 
 	},
+
 	// Chargements des ressources Videos & sons & images
 	LoaderRender : function() {
 		//Définition des ressources (Définir les images)
@@ -21,8 +22,10 @@ app.Views.loader = Backbone.View.extend({
 		app.Assets.images.renault = app.loader.addImage('assets/img/renault.jpg');
 		app.Assets.images.bunker = app.loader.addImage('assets/img/bunker.jpg');
 		app.Assets.images.ritz = app.loader.addImage('assets/img/ritz.jpg');
+		app.Assets.images.rue = app.loader.addImage('assets/img/rue.jpg');
+		app.Assets.images.apocalysme = app.loader.addImage('assets/img/apocalypse.jpg');
 		
-		//Chargement du bon fichier video ATTTENTION IL FAUT FINIR EN AJOUTER LES AUTRES FORMAT PAR NAVIGATEURS
+		//Chargement du bon fichier video 
 		if (Modernizr.video) {
 		  if(Modernizr.video.webm) {
 		    app.Assets.videos.intro = app.loader.addVideo('assets/video/intro.webm', 'movie', 10);
@@ -34,6 +37,40 @@ app.Views.loader = Backbone.View.extend({
 		} else {
 			//proposer du flash !!
 		}
+		
+		
+		//Initialisation du sound manager avec ces paramètre http://www.schillmania.com/projects/soundmanager2/doc/#sm-config
+		soundManager.url = 'assets/js/soundManager2/swf/'; 
+		soundManager.flashVersion = 9; 
+		soundManager.useConsole =  false,
+		soundManager.debugMode = false,
+		soundManager.useFlashBlock= true;
+		useHTML5Audio: true,
+		soundManager.useHighPerformance = true; 
+		soundManager.flashLoadTimeout = 500; 
+		soundManager.audioFormats.mp3.required = false;
+		soundManager.ontimeout(function(status) { 
+		    soundManager.useHTML5Audio = true; 
+		    soundManager.preferFlash = false; 
+		    soundManager.reboot(); 
+		}); 
+		
+
+		soundManager.onready(function(that) { 
+			if(Modernizr.audio.mp3){
+   			 	app.Assets.sounds.boum = app.loader.addSound('boum', 'assets/audio/mp3/boum.mp3');
+   			 	app.Assets.sounds.ambiant = app.loader.addSound('fond', 'assets/audio/mp3/ambiant.mp3');
+   			 	app.Assets.sounds.tranquille = app.loader.addSound('tranquille', 'assets/audio/mp3/tranquille.mp3');
+   			}else{
+   				 if (Modernizr.audio.ogg){
+   			 		app.Assets.sounds.boum = app.loader.addSound('boum', 'assets/audio/ogg/boum.ogg');
+   			 		app.Assets.sounds.ambiant = app.loader.addSound('fond', 'assets/audio/ogg/ambiant.ogg');
+   			 		app.Assets.sounds.boum = app.loader.addSound('tranquille', 'assets/audio/ogg/tranquille.ogg');
+   			 	}
+   			 }
+   				        
+		});
+
 		
 		//Référence vers mon template de chargement
 		app.loader.templateLoader = this.templateLoader;
@@ -62,10 +99,11 @@ app.Views.loader = Backbone.View.extend({
 			
 			
 		});
-		
 		//Lance le loader
 		app.loader.start();
+		
 	},
+
 });
 
 
@@ -704,7 +742,7 @@ app.Views.etape6 = app.Views.question.extend({
 					console.log('boum');
 					app.Helpers.unlockQuestion('6');
 					app.Helpers.unlockQuestion('7');
-					app.Helpers.unlockQuestion('8');
+					app.Helpers.unlockQuestion('10');
 					app.router.navigate('etape7', true);
 				}
 			}
@@ -946,8 +984,9 @@ app.Views.etape9 = app.Views.question.extend({
 			}],
 			callback: function(val) { 
 				if(val == 'O'){
-					app.Helpers.unlockQuestion('1');
-					app.router.navigate('etape2', true);
+					//app.Helpers.unlockQuestion('1');
+					//app.router.navigate('etape2', true);
+					app.Helpers.unlockQuestion('10');
 				}
 			},
 			
@@ -965,7 +1004,129 @@ app.Views.etape9 = app.Views.question.extend({
 });
 
 app.Views.etape10 = app.Views.question.extend({
+
+	render : function (){
+		console.log('ici');
+		//Fil ariane
+		app.Helpers.filAriane(app.Helpers.getLastQuestUnlock(),app.Helpers.getCurrentQuestion());
+		//Recupère le html générer avec le template
+		template = _.template($('#templateStreetView').html(),{"titreQuestion":"Entendez-vous ? Je crois que l’heure à sonner... Choisissez la direction dans laquelle vous souhaitez partir."});
+		this.$el.html(template);		
+		// Définition des paramètre de la street + map (voir helper)
+		var optionModeStreetMap = {
+			idMap : 'carte',
+			idStreet : 'exploration',
+			mapOptions : {
+				
+			},
+			streetOptions : {
+				
+				adresseControl : false,
+				adresseControlOptions: {
+                     style: {backgroundColor: 'grey', color: 'yellow'} // modification css
+                },
+                position : new google.maps.LatLng(48.851885,2.421000),
+                pov : {
+                	heading: 450, //Angle de rotation horizontal, en degrés, de la caméra
+                    pitch: 10, //Angle vertical, vers le haut ou le bas, par rapport à l'angle de vertical (CAMERA)
+                    zoom: 0
+                },
+				streetViewControl: false,
+				navigationControl: false,
+    			mapTypeControl: false,
+    			scaleControl: false,
+    			draggable: false,
+    			zoomControl: false,
+  				scrollwheel: false,
+  				disableDoubleClickZoom: true,
+			},
+			markersStreet : [
+					{
+						title : 'Partir à gauche',
+						position : new google.maps.LatLng(48.851960,2.421070),
+						events: [
+							{
+								eventMarker : 'click',
+								functionMarker : this.popupInfo
+								
+							}
+						],
+					},
+					{
+						title : 'Partir à droite',
+						position : new google.maps.LatLng(48.85185,2.421125),
+						events: [
+							{
+								eventMarker : 'click',
+								functionMarker : this.popupInfo
+								
+							}
+						],
+					}
+			],
+			markersMap : [
+			],
+		
+			streetGuide : {
+
+			}
+	}
+		app.Helpers.RenderStreetMapMode(optionModeStreetMap);
+	},
 	
+	nextQuestion : function(){
+		$(this.el).remove();
+		app.Helpers.unlockQuestion('1');
+		app.router.navigate('etape2', true);
+
+	},
+	
+	popupInfo : function(marker){
+		console.log(marker);
+		var pos = marker.latLng.$a;
+		var lat = marker.latLng.ab;
+		var options = {
+			closeButton: true,
+			buttons: [{
+					id: 0, 
+					label: 'Oui', 
+					val: 'O'
+			},
+			{
+					id: 1, 
+					label: 'Non', 
+					val: 'N'
+			}],
+			
+		}
+		if(pos == 48.85196 && lat == 2.421069999999986){
+			app.Assets.sounds.boum.play();
+		 	options.title = 'Vous comptez aller à droite ?'
+			options.callback = function(val){
+				if(val == 'O'){
+					console.log('boum');
+					app.Helpers.unlockQuestion('2');
+					app.router.navigate('etape3', true);
+				}
+			}
+			app.Assets.images.apocalysme.style.width ='600px';
+			new Messi(app.Assets.images.apocalysme,options);
+			
+		}else{
+			app.Assets.sounds.tranquille.play();
+			options.title = 'Vous comptez aller à gauche ?'
+			options.callback = function(val){
+				if(val == 'O'){
+					console.log('boum');
+					app.Helpers.unlockQuestion('2');
+					app.router.navigate('etape3', true);
+				}
+			}
+			app.Assets.images.rue.style.width ='600px';
+			new Messi(app.Assets.images.rue,options);
+		 	
+		 }
+	}		
 
 	
 });
