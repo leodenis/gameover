@@ -31,11 +31,10 @@ var app = {
   init: function () {
   	//Initialisation d'un loader
   	this.loader = new PxLoader(); 
-  	console.log(this.loader);
   	//Chargement de la vue loader
-  	app.views.loader = new app.Views.loader();
+  	app.views.loader = new app.Views.loader;
     //Essaye de récupérer un model dans le localstorage
-    this.users = new app.Collections.users();
+    this.users = new app.Collections.users;
     this.users.fetch();
     //si il n'existe pas je crée mon model de l'utilisateur 
     if (typeof(this.users.get("1")) == 'undefined'){

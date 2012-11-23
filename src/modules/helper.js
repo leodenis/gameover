@@ -24,6 +24,16 @@ app.Helpers.userIsPlaying = function(options){
 }
 
 /**
+ * Récupère l'useragent de l'utilisateur
+ * @author Kévin La Rosa
+ * @requires  backbones.js
+ */
+app.Helpers.getUserAgent = function(options){
+	return app.users.get('1').attributes.userAgent;
+}
+
+
+/**
  * Création d'une map reliée avec sa streetwiew avec posibilité d'appliqué un guide sur la map
  * @param : Objet ->
  * @author Kévin La Rosa
@@ -188,7 +198,7 @@ app.Helpers.getCurrentQuestion = function(){
 app.Helpers.filAriane = function(lastQuestionUnlock,currentQuestion){
 	if(app.Helpers.userIsPlaying()==false){
 		// si l'utilisateur n'est pas en train de jouer
-		document.getElementById('#filAriane').addClass('hidden'); // cacher le fil d'ariane
+		$('#filAriane').addClass('hidden'); // cacher le fil d'ariane
 	} else {
 		$('#filAriane').removeClass('hidden');
 		// incrémente les id pour correspondre aux indices des positions des <a>
@@ -230,4 +240,21 @@ app.Helpers.showHelp = function(){
  */
 app.Helpers.hideHelp = function(){
 	$('#question h2 + div.shown').removeClass('shown');
+}
+
+
+/**
+ * Cache la bulle d'info
+ * @author Mathieu Dutto
+ * @requires  backbones.js
+ */
+app.Helpers.getOneInfo = function(){
+	tab = [
+		'djdkjdfdfdkdjdkj',
+		'djdkdfdfdfdkdjdkj',
+		'djdkjddkdjdkj'
+	];
+	rand = Math.floor(Math.random() * tab.length) + 1;
+	return tab[rand];
+	
 }

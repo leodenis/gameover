@@ -1,10 +1,8 @@
 app.Router = Backbone.Router.extend({
   initialize: function () {
-  	// Regarde si l'utilisateur est dans le jeux si oui alors rootage vers le home
-	if(!app.Helpers.userIsPlaying()){
-		this.root();
-	}
+
   },
+  
   routes: {
     '': 'root',
     'etape1' : 'etape1',
@@ -22,8 +20,14 @@ app.Router = Backbone.Router.extend({
   },
   // Root principal du site internet
   root: function () {
-  	//Lancement de la view accueil
-  	app.views.home = new app.Views.home();
+  	console.log(navigator.userAgent);
+  	if((navigator.userAgent.match(/iPhone/i))||(navigator.userAgent.match(/iPad/i))){
+  		app.views.mobile = new app.Views.mobileExperience();
+  	}else{
+  		console.log('lol');
+  		//Lancement de la view accueil
+  		app.views.home = new app.Views.home();
+  	}
   },
   
   etape1: function() {

@@ -55,7 +55,7 @@ app.Views.loader = Backbone.View.extend({
 		    soundManager.reboot(); 
 		}); 
 		
-
+       /*
 		soundManager.onready(function(that) { 
 			if(Modernizr.audio.mp3){
    			 	app.Assets.sounds.boum = app.loader.addSound('boum', 'assets/audio/mp3/boum.mp3');
@@ -70,6 +70,8 @@ app.Views.loader = Backbone.View.extend({
    			 }
    				        
 		});
+		
+	*/
 
 		
 		//Référence vers mon template de chargement
@@ -121,8 +123,7 @@ app.Views.home = Backbone.View.extend({
 	// Fonction appelé automatiquement lors de l'instanciation de la vue
 	initialize : function() {
 		//Fil ariane
-		app.Helpers.filAriane(app.Helpers.getLastQuestUnlock(),app.Helpers.getCurrentQuestion());
-		
+		app.Helpers.filAriane(app.Helpers.getLastQuestUnlock(),app.Helpers.getCurrentQuestion());	
 		// On cache les div courante
 		$('body > div:visible').hide();
 		// On affiche la div accueil
@@ -136,7 +137,7 @@ app.Views.home = Backbone.View.extend({
 		if(app.users.get('1').attributes.videoWatch == false){	
 			this.loaderVideo();
 		}else{
-			renderAccueil();
+			this.renderAccueil()
 		}
 		
 		
@@ -1006,7 +1007,6 @@ app.Views.etape9 = app.Views.question.extend({
 app.Views.etape10 = app.Views.question.extend({
 
 	render : function (){
-		console.log('ici');
 		//Fil ariane
 		app.Helpers.filAriane(app.Helpers.getLastQuestUnlock(),app.Helpers.getCurrentQuestion());
 		//Recupère le html générer avec le template
@@ -1126,8 +1126,52 @@ app.Views.etape10 = app.Views.question.extend({
 			new Messi(app.Assets.images.rue,options);
 		 	
 		 }
-	}		
+	}
 
 	
+});
+
+app.Views.mobileExperience = Backbone.View.extend({
+	el : '#question',
+	// Fonction appelé automatiquement lors de l'instanciation de la vue
+	initialize : function() {
+		$('#filAriane').addClass('hidden'); // cacher le fil d'ariane
+		this.render();
+		
+	},
+	
+	render : function(){		
+		template = _.template($('#templateMobile').html(),{test:'kjjk'});
+		this.$el.show().html(template);
+		//Controle si le navigateur peut utiliser le gyroscope
+		if (typeof window.DeviceMotionEvent != 'undefined') {
+			
+	    // Définit la sensibilité du shake
+	    var sensitivity = 20;
+	
+	    // variable de position
+	    var x1 = 0, y1 = 0, z1 = 0, x2 = 0, y2 = 0, z2 = 0;
+	
+	    // ecoute pour bouger les evenement et update la position 
+	    window.addEventListener('devicemotion', function (e) {
+	        x1 = e.accelerationIncludingGravity.x;
+	        y1 = e.accelerationIncludingGravity.y;
+	        z1 = e.accelerationIncludingGravity.z;
+	    }, false);
+	
+	    setInterval(function () {
+	        var change = Math.abs(x1-x2+y1-y2+z1-z2);
+	        if (change > sensitivity) {        	
+				template = _.template($('#templateMobile').html(),{test:app.Helpers.getOneInfo()});
+				$('#question').html(template);
+	        }
+	
+	        // Update new position
+	        x2 = x1;
+	        y2 = y1;
+	        z2 = z1;
+	    }, 150);
+	}
+	}	
 });
 
