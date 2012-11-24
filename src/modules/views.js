@@ -45,14 +45,14 @@ app.Views.loader = Backbone.View.extend({
 		console.dir(Modernizr);
 		//Chargement du bon fichier video 
 		if (Modernizr.video) {
-		  if(Modernizr.video.webm == 'probably' || 'maybe') {
+		  if(Modernizr.video.webm == 'probably' || Modernizr.video.webm == 'maybe') {
 		  	app.Assets.videos.intro = app.loader.addVideo('assets/video/intro.webm', 'movie', 10);
 		  }else {
-		  	if (Modernizr.video.ogg == 'probably'|| 'maybe') {
+		  	if (Modernizr.video.ogg == 'probably'|| Modernizr.video.ogg == 'maybe') {
 		  		console.log('je me lance');
 		    	app.Assets.videos.intro = app.loader.addVideo('assets/video/intro.ogg', 'movie', 10);
 		   	}else{ 
-				if (Modernizr.video.h264 =='probably'|| 'maybe'){
+				if (Modernizr.video.h264 =='probably'|| Modernizr.video.h264 == 'maybe'){
 		   			app.Assets.videos.intro = app.loader.addVideo('assets/video/intro.mp4', 'movie', 10);
 		   		}
 		   	}
@@ -66,11 +66,11 @@ app.Views.loader = Backbone.View.extend({
 		//Chargement du bon fichier audio
 		if (Modernizr.audio) {
 			console.log(Modernizr.audio);
-		  if(Modernizr.audio.mp3 == 'probably' || 'maybe') {
+		  if(Modernizr.audio.mp3 == 'probably' || Modernizr.audio.mp3 == 'maybe') {
 		       	app.Assets.sounds.boum = app.loader.addaudio('assets/audio/mp3/boum.mp3','boum',10);
    			 	app.Assets.sounds.ambiant = app.loader.addaudio('assets/audio/mp3/ambiant.mp3','fond',10);
    			 	app.Assets.sounds.tranquille = app.loader.addaudio('assets/audio/mp3/tranquille.mp3','tranquille',10);
-		  } else if (Modernizr.audio.ogg == 'probably'|| 'maybe') {
+		  } else if (Modernizr.audio.ogg == 'probably'|| Modernizr.audio.ogg == 'maybe') {
 		       	app.Assets.sounds.boum = app.loader.addaudio('assets/audio/ogg/boum.ogg','boum',10);
    			 	app.Assets.sounds.ambiant = app.loader.addaudio('assets/audio/ogg/ambiant.ogg','fond',10);
    			 	app.Assets.sounds.tranquille = app.loader.addaudio('assets/audio/ogg/tranquille.ogg','tranquille',10);
@@ -237,7 +237,7 @@ app.Views.etape1 = Backbone.View.extend({
 	  		},
 	  		template: $('#introAnimation').html(),
 	  		render: this.renderIntro,
-	  		delay: 40000,
+	  		delay: 4000,
 	  		that : this
 	  	}
 	  	app.Helpers.animation(AnimationParam);
@@ -557,6 +557,7 @@ app.Views.etape2 = app.Views.question.extend({
 	
 	//Evenement de confirmation après avoir cliquer sur un marker d'une view
 	confirmQuestion: function(marker){
+		//console.log(Messi);
 		var pos = marker.latLng.$a;
 		var lat = marker.latLng.ab;
 		var options = {
