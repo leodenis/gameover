@@ -325,7 +325,6 @@ app.Views.etape1 = Backbone.View.extend({
 	
 	//Evenement qui réagit au click sur le marker en face de la voyante
 	popupInfo : function(){
-
 		new Messi('Nos « ancêtres », les Mayas, qui en savaient plus que nous sur la puissance des astres nous ont dévoilés leurs secrets.', {
 			title: 'Commencer l\'aventure',
 			buttons: [{
