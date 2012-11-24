@@ -2,14 +2,18 @@
  * S'occupe de l'animation de transition entre chaque question
  * @param Objet : html -> zone de rendu// texte-> texte a animé// template -> zone de rendu// render ->fonction de rendu de la question view 
  * delay -> définit le temps d'attente avant la transition
- * @author Kévin La Rosa
+ * @author Kévin La Rosa & Léo Denis
  * @requires  backbones.js
  */
 app.Helpers.animation = function(options){
-	options.that.$el.html(_.template($('#introAnimation').html(),{introQuestion : options.texte}));
+	//templating et injection dom ok
+	options.that.$el.html(_.template(options.template,options.variables));
+	
+	
 	setTimeout(function(){
 		//supprime l'animation et bascule vers la question de destination
 		$('#question > h1').remove();
+		//lance la question 
 		options.render(options.that);  	
 	},options.delay);
 }
