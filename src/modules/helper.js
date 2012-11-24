@@ -8,7 +8,7 @@
 app.Helpers.animation = function(options){
 	//templating et injection dom ok
 	options.that.$el.html(_.template(options.template,options.variables));
-	
+	//evenement a définir
 	
 	setTimeout(function(){
 		//supprime l'animation et bascule vers la question de destination

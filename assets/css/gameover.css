@@ -338,7 +338,17 @@ div.messi-content{
 	cursor:pointer;
 }
 
-
+#question .carte {
+	z-index:1000;
+	height:200px;
+	position:relative;
+	background-color:#E5E3DF;
+	overflow:hidden;
+	-webkit-transform:translateZ(0);
+	left:0;
+	top:-200px;
+	width:200px;
+}
 
 /*=========================================
  * intro question animation Léo

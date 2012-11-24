@@ -20,6 +20,7 @@ app.Views.loader = Backbone.View.extend({
 					app.Assets.sounds.ambiant.pause();
 				}
 		});
+
 		//Lancement du rendu de chargement si ce n'est pas un iphone ou ipad
 		if((navigator.userAgent.match(/iPhone/i))||(navigator.userAgent.match(/iPad/i))){
 			// Initialisation du router, c'est lui qui va instancier nos vues
@@ -40,44 +41,47 @@ app.Views.loader = Backbone.View.extend({
 		app.Assets.images.ritz = app.loader.addImage('assets/img/ritz.jpg');
 		app.Assets.images.rue = app.loader.addImage('assets/img/rue.jpg');
 		app.Assets.images.apocalysme = app.loader.addImage('assets/img/apocalypse.jpg');
-		
+			
+		console.dir(Modernizr);
 		//Chargement du bon fichier video 
 		if (Modernizr.video) {
-		  if(Modernizr.video.webm) {
-		    app.Assets.videos.intro = app.loader.addVideo('assets/video/intro.webm', 'movie', 10);
-		  } else if (Modernizr.video.ogg) {
-		    app.Assets.videos.intro = app.loader.addVideo('assets/video/intro.ogg', 'movie', 10);
-		  } else if (Modernizr.video.h264){
-		    app.Assets.videos.intro = app.loader.addVideo('assets/video/intro.mp4', 'movie', 10);
+		  if(Modernizr.video.webm == 'probably' || 'maybe') {
+		  	app.Assets.videos.intro = app.loader.addVideo('assets/video/intro.webm', 'movie', 10);
+		  }else {
+		  	if (Modernizr.video.ogg == 'probably'|| 'maybe') {
+		  		console.log('je me lance');
+		    	app.Assets.videos.intro = app.loader.addVideo('assets/video/intro.ogg', 'movie', 10);
+		   	}else{ 
+				if (Modernizr.video.h264 =='probably'|| 'maybe'){
+		   			app.Assets.videos.intro = app.loader.addVideo('assets/video/intro.mp4', 'movie', 10);
+		   		}
+		   	}
 		  }
+		   	
 		} else {
 			//proposer du flash !!
 		}
+		
+		
 		//Chargement du bon fichier audio
 		if (Modernizr.audio) {
-		  if(Modernizr.audio.mp3) {
+			console.log(Modernizr.audio);
+		  if(Modernizr.audio.mp3 == 'probably' || 'maybe') {
 		       	app.Assets.sounds.boum = app.loader.addaudio('assets/audio/mp3/boum.mp3','boum',10);
    			 	app.Assets.sounds.ambiant = app.loader.addaudio('assets/audio/mp3/ambiant.mp3','fond',10);
    			 	app.Assets.sounds.tranquille = app.loader.addaudio('assets/audio/mp3/tranquille.mp3','tranquille',10);
-		  } else if (Modernizr.audio.ogg) {
+		  } else if (Modernizr.audio.ogg == 'probably'|| 'maybe') {
 		       	app.Assets.sounds.boum = app.loader.addaudio('assets/audio/ogg/boum.ogg','boum',10);
    			 	app.Assets.sounds.ambiant = app.loader.addaudio('assets/audio/ogg/ambiant.ogg','fond',10);
    			 	app.Assets.sounds.tranquille = app.loader.addaudio('assets/audio/ogg/tranquille.ogg','tranquille',10);
 		  } else if (Modernizr.audio.wav){
 		    	console.log('a encoder');
 		  }
-		} else {
-			//proposer du flash !!
+		} else{
+			console.log('flash');
 		}
 		
-		//Configuration du Son ambiant
-		app.Assets.sounds.ambiant.loop = true;
-		app.Assets.sounds.ambiant.volume = 0.1;
-		console.dir(app.Assets.sounds.ambiant);
 		
-		//console.log($('<audio></audio>'));
-		//app.Assets.sounds.test = app.loader.addaudio('assets/audio/mp3/boum.mp3','boum',10);
-		//console.log(app.Assets.sounds.test);
 	
 		//Référence vers mon template de chargement
 		app.loader.templateLoader = this.templateLoader;
@@ -88,6 +92,10 @@ app.Views.loader = Backbone.View.extend({
 		
 		//Ecoute et répond jusqu'au moment ou toutes les ressources sont chargés
 		app.loader.addCompletionListener(function() {
+			//Configuration du Son ambiant
+			console.log(app.Assets);
+			app.Assets.sounds.ambiant.loop = true;
+			app.Assets.sounds.ambiant.volume = 0.1;
 			//supprime le loader
 			console.log('loader chargé');
 			$('#loader').remove();
@@ -156,12 +164,13 @@ app.Views.home = Backbone.View.extend({
 	loaderVideo : function() {
 		//Crée son aparation avec animation css
 		$('#videoIntro').show().html(app.Assets.videos.intro);
+		console.log(app.Assets.videos.intro);
 		app.Assets.videos.intro.play();
 		app.Assets.videos.intro.volume = 0.3;
 		var that = this;
 		app.Assets.videos.intro.addEventListener('ended',function(){
 			$('#videoIntro').hide('clip'); 
-			app.users.get('1').attributes.videoWatch = true;
+			app.users.get('1').attributes.videoWatch = 'true';
 			app.users.get('1').save();
 		 	that.renderAccueil();
 		 	app.Assets.sounds.ambiant.play();
@@ -202,6 +211,7 @@ app.Views.home = Backbone.View.extend({
  */
 app.Views.etape1 = Backbone.View.extend({
 	el : '#question',
+	
 	events: {
 		'click .nextQuestion': 'nextQuestion',
 		'click #btnHelp': 'showHelp',

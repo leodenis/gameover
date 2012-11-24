@@ -8,7 +8,7 @@ function PxLoaderaudio(url, tags, priority) {
     var loader = null;
 
     try {
-        this.aud = new audeo();
+        this.aud = new audio();
     } catch(e) {
         this.aud = document.createElement('audio');
     }
