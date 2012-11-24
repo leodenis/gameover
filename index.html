@@ -19,7 +19,7 @@
         <!---Header statique du site-->
         <header itemscope itemtype="http://schema.org/ItemList">
         	<div id="countdown"> </div>
-            <a href="" title="Accueil"> </a><a href="" title="Accueil">
+            <a href="#home" title="Accueil"> </a><a href="#home" title="Accueil">
             	<h1 itemprop="keywords">2012 : GAME OVER ?</h1>
             </a>
         </header>
@@ -97,7 +97,7 @@
         <!---Template question mobile-->
         <script type="text/template" id="templateMobile">
               <section>
-                  <header><%= test %>ff</header>
+                  <header><%= test %></header>
                   <article>
                       <p>dkjdkd</p>
                   </article>
@@ -164,7 +164,7 @@
 		<!---Footer statique du site -->
         <footer itemscope itemtype="http://schema.org/ItemList" itemprop="copyrightYear">
         	<span id="filAriane">
-        		<a title="Couper/Activer le son" class="doing"><i> </i></a>
+        		<a title="Couper/Activer le son" id='optionSon' class="doing pause"><i> </i></a>
         		<a title="Aller à l'étape 1" href="#etape1">1</a>
         		<a title="Aller à l'étape 2" href="#etape2">2</a>
         		<a title="Aller à l'étape 3" href="#etape3">3</a>
@@ -195,10 +195,9 @@
     <script type="text/javascript" src="assets/js/underscore-min.js"></script>
     <script type="text/javascript" src="assets/js/backbone.js"></script>
     <script type="text/javascript" src="assets/js/backbone-localstorage.js"></script>
-    <script type="text/javascript" src="assets/js/soundmanager2-jsmin.js"></script>
     <script type="text/javascript" src="assets/js/pxLoader/PxLoader.js"></script>
     <script type="text/javascript" src="assets/js/pxLoader/PxLoaderImage.js"></script>
-    <script type="text/javascript" src="assets/js/pxLoader/PxLoaderSound.js"></script>
+    <script type="text/javascript" src="assets/js/pxLoader/PxLoaderAudio.js"></script>
     <script type="text/javascript" src="assets/js/pxLoader/PxLoaderVideo.js"></script>
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script type="text/javascript" src="assets/js/messi.min.js"></script>

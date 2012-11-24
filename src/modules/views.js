@@ -10,7 +10,23 @@ app.Views.loader = Backbone.View.extend({
 		this.templateLoader  = $('#templateLoader').html()
 		//Déclaration du noeud html de destination
 		this.noeud
-		//Lancement du rendu de chargement
+		//Déclaration des events du footer
+		//Gestion de la mise en pause ou non du son ambiant
+		//Optiomisation -> changement de l'image sur le bouton en fonction de l'element
+		$('#optionSon').bind('click',function(){
+				if(app.Assets.sounds.ambiant.paused == true){
+					app.Assets.sounds.ambiant.play();
+				}else{
+					app.Assets.sounds.ambiant.pause();
+				}
+		});
+		//Lancement du rendu de chargement si ce n'est pas un iphone ou ipad
+		if((navigator.userAgent.match(/iPhone/i))||(navigator.userAgent.match(/iPad/i))){
+			// Initialisation du router, c'est lui qui va instancier nos vues
+    		app.router = new app.Router();
+    		//Met en route la surveillance de l'url
+    		Backbone.history.start();
+		}else
 		this.LoaderRender();
 
 	},
@@ -37,43 +53,32 @@ app.Views.loader = Backbone.View.extend({
 		} else {
 			//proposer du flash !!
 		}
+		//Chargement du bon fichier audio
+		if (Modernizr.audio) {
+		  if(Modernizr.audio.mp3) {
+		       	app.Assets.sounds.boum = app.loader.addaudio('assets/audio/mp3/boum.mp3','boum',10);
+   			 	app.Assets.sounds.ambiant = app.loader.addaudio('assets/audio/mp3/ambiant.mp3','fond',10);
+   			 	app.Assets.sounds.tranquille = app.loader.addaudio('assets/audio/mp3/tranquille.mp3','tranquille',10);
+		  } else if (Modernizr.audio.ogg) {
+		       	app.Assets.sounds.boum = app.loader.addaudio('assets/audio/ogg/boum.ogg','boum',10);
+   			 	app.Assets.sounds.ambiant = app.loader.addaudio('assets/audio/ogg/ambiant.ogg','fond',10);
+   			 	app.Assets.sounds.tranquille = app.loader.addaudio('assets/audio/ogg/tranquille.ogg','tranquille',10);
+		  } else if (Modernizr.audio.wav){
+		    	console.log('a encoder');
+		  }
+		} else {
+			//proposer du flash !!
+		}
 		
+		//Configuration du Son ambiant
+		app.Assets.sounds.ambiant.loop = true;
+		app.Assets.sounds.ambiant.volume = 0.1;
+		console.dir(app.Assets.sounds.ambiant);
 		
-		//Initialisation du sound manager avec ces paramètre http://www.schillmania.com/projects/soundmanager2/doc/#sm-config
-		soundManager.url = 'assets/js/soundManager2/swf/'; 
-		soundManager.flashVersion = 9; 
-		soundManager.useConsole =  false,
-		soundManager.debugMode = false,
-		soundManager.useFlashBlock= true;
-		useHTML5Audio: true,
-		soundManager.useHighPerformance = true; 
-		soundManager.flashLoadTimeout = 500; 
-		soundManager.audioFormats.mp3.required = false;
-		soundManager.ontimeout(function(status) { 
-		    soundManager.useHTML5Audio = true; 
-		    soundManager.preferFlash = false; 
-		    soundManager.reboot(); 
-		}); 
-		
-       /*
-		soundManager.onready(function(that) { 
-			if(Modernizr.audio.mp3){
-   			 	app.Assets.sounds.boum = app.loader.addSound('boum', 'assets/audio/mp3/boum.mp3');
-   			 	app.Assets.sounds.ambiant = app.loader.addSound('fond', 'assets/audio/mp3/ambiant.mp3');
-   			 	app.Assets.sounds.tranquille = app.loader.addSound('tranquille', 'assets/audio/mp3/tranquille.mp3');
-   			}else{
-   				 if (Modernizr.audio.ogg){
-   			 		app.Assets.sounds.boum = app.loader.addSound('boum', 'assets/audio/ogg/boum.ogg');
-   			 		app.Assets.sounds.ambiant = app.loader.addSound('fond', 'assets/audio/ogg/ambiant.ogg');
-   			 		app.Assets.sounds.boum = app.loader.addSound('tranquille', 'assets/audio/ogg/tranquille.ogg');
-   			 	}
-   			 }
-   				        
-		});
-		
-	*/
-
-		
+		//console.log($('<audio></audio>'));
+		//app.Assets.sounds.test = app.loader.addaudio('assets/audio/mp3/boum.mp3','boum',10);
+		//console.log(app.Assets.sounds.test);
+	
 		//Référence vers mon template de chargement
 		app.loader.templateLoader = this.templateLoader;
 		// On prépare notre noeud HTML a partir de son template
@@ -98,8 +103,6 @@ app.Views.loader = Backbone.View.extend({
 			console.log('Chargement des assets en cours  : '+ progression);
 			templateLoader  = $('#templateLoader').html()		
 			loaderHTML = _.template(app.loader.templateLoader,{avancement:progression});
-			
-			
 		});
 		//Lance le loader
 		app.loader.start();
@@ -108,7 +111,10 @@ app.Views.loader = Backbone.View.extend({
 
 });
 
-
+//gerer lacement son + mute
+//app.Assets.sounds.ambiant.pause();
+//app.Assets.sounds.ambiant.play();
+//app.Assets.sounds.ambiant.volume = 0,1
 /**
  * View de l'accueil
  * @author Kévin La Rosa & Mathieu Dutto
@@ -135,9 +141,12 @@ app.Views.home = Backbone.View.extend({
 		var renderAccueil = this.renderAccueil;
 		//On lance la vidéo si l'utilisateur n'a jamais vu celle-ci
 		if(app.users.get('1').attributes.videoWatch == false){	
+			//app.Assets.sounds.ambiant.stop();
 			this.loaderVideo();
 		}else{
 			this.renderAccueil()
+			app.Assets.sounds.ambiant.play();
+			
 		}
 		
 		
@@ -148,13 +157,14 @@ app.Views.home = Backbone.View.extend({
 		//Crée son aparation avec animation css
 		$('#videoIntro').show().html(app.Assets.videos.intro);
 		app.Assets.videos.intro.play();
-		app.Assets.videos.intro.volume = 0.1;
+		app.Assets.videos.intro.volume = 0.3;
 		var that = this;
 		app.Assets.videos.intro.addEventListener('ended',function(){
 			$('#videoIntro').hide('clip'); 
 			app.users.get('1').attributes.videoWatch = true;
 			app.users.get('1').save();
 		 	that.renderAccueil();
+		 	app.Assets.sounds.ambiant.play();
 		})
 		
 	},
@@ -199,6 +209,7 @@ app.Views.etape1 = Backbone.View.extend({
 	},
 	// Fonction appelée automatiquement lors de l'instanciation de la vue
 	initialize : function() {
+		app.Assets.sounds.ambiant.play();
 		// Controle que nous n'ayons pas l'accueil de chargé
 	  	if($('#accueil:visible').length){
 	  		$('#accueil:visible').hide().empty();
@@ -361,6 +372,7 @@ app.Views.question = Backbone.View.extend({
 	
 	// Fonction qui est appelé automatiquement lors de l'instanciation des vues questions
 	initialize : function() {
+		app.Assets.sounds.ambiant.play();
 		this.$el.html(' ');
 		// Controle que nous n'ayons pas l'accueil en non hide
 	  	if($('#accueil:visible').length){
@@ -1038,7 +1050,15 @@ app.Views.etape10 = app.Views.question.extend({
     			draggable: false,
     			zoomControl: false,
   				scrollwheel: false,
+  				//controler de direction
+                panControl: false,
+                // controler de direction par clavier
+                keyboardShortcuts: false,
   				disableDoubleClickZoom: true,
+  				//bloque le click and go
+                clickToGo:false,
+                //bloque le clique du sol
+                linksControl:false
 			},
 			markersStreet : [
 					{
@@ -1100,6 +1120,7 @@ app.Views.etape10 = app.Views.question.extend({
 			
 		}
 		if(pos == 48.85196 && lat == 2.421069999999986){
+			//app.Assets.sounds.boum.play();
 			app.Assets.sounds.boum.play();
 		 	options.title = 'Vous comptez aller à droite ?'
 			options.callback = function(val){
@@ -1113,6 +1134,7 @@ app.Views.etape10 = app.Views.question.extend({
 			new Messi(app.Assets.images.apocalysme,options);
 			
 		}else{
+			console.log(app.Assets.sounds.tranquille);
 			app.Assets.sounds.tranquille.play();
 			options.title = 'Vous comptez aller à gauche ?'
 			options.callback = function(val){

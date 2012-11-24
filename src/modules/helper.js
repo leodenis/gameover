@@ -244,17 +244,19 @@ app.Helpers.hideHelp = function(){
 
 
 /**
- * Cache la bulle d'info
- * @author Mathieu Dutto
+ * Renvoie une question sur la fin du monde
+ * @author Kévin La Rosa & Mathieu Dutto
  * @requires  backbones.js
  */
 app.Helpers.getOneInfo = function(){
-	tab = [
-		'djdkjdfdfdkdjdkj',
-		'djdkdfdfdfdkdjdkj',
-		'djdkjddkdjdkj'
-	];
-	rand = Math.floor(Math.random() * tab.length) + 1;
-	return tab[rand];
+var textInfos = new Array (
+		'Le 21 Décembre 2012 correspondrait à la fin d’un cycle du calendrier maya et marquerait, selon les spécialistes, un grand changement dans la conscience mondiale et le début d’une ère nouvelle. Plongeant la terre dans un chaos le plus total.',
+		'Une planète appelée Nibiru entrera en collision avec la Terre. Ce qui entraînera un cataclysme détruisant toute forme de vie sur terre.',
+		'Un programme informatique pouvant prédire le futur en utilisant les discussions sur internet, nommé Web bot nous indiquent que 2012 sera perturbé par un énorme choc. Tellement intense qu’il affectera personnellement presque tous les Humains sur Terre.',
+		'Le 21 Décembre 2012 se produira également une inversion du champ magnétique terrestre, déclenché par une éruption solaire massive. Cette éruption solaire libérerait autant d\'énergie que cent milliards de bombes nucléaires. Cette croyance est soutenue par les astrologues les plus performants. Le champ magnétique terrestre s\'affaiblit depuis de nombreuses années ce qui donnerait bientôt naissance à l’inversion des pôles magnétiques de la Terre.',
+		'Des événements comme des tsunamis, des tremblements de terre, des éruptions de super-volcans et d\'autres phénomènes catastrophiques devraient également survenir en 2012.',
+		'Le village Bugarach, est un lieu de refuge pour la fin du monde de 2012. Cette affirmation s\'appuierait sur un ancien texte datant du passage d\'Attila, surnommé « le fléau de Dieu » écrit à Lemud, le 4 mai 451. Date à laquelle les Huns auraient enterré le « trésor de l\'Apocalypse » sur les bords de la Nied, après avoir brûlé Metz (7 avril). Ce mystérieux trésor protégerait les survivants de la fin du monde. Ainsi, quiconque se trouverait à proximité du « trésor de l\'Apocaypse » serait épargné par la fin du monde.'
+	);
+	return textInfos[Math.floor(Math.random() * textInfos.length) + 1];
 	
 }
