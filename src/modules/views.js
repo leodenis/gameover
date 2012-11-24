@@ -221,6 +221,7 @@ app.Views.etape1 = Backbone.View.extend({
 	  	// Lance l'animation d'introduction (Voir par la création d'un template html)
 	  	AnimationParam = {
 	  		variables : {
+
 	  			introQuestion : 'Nous sommes 24 jours avant la fin du monde, les mayas avaient raison',
 	  			toto: 'dkjdj'
 	  		},

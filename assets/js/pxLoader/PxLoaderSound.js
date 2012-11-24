@@ -40,8 +40,7 @@ function PxLoaderSound(id, url, tags, priority) {
 
     this.start = function(pxLoader) {
         // we need the loader ref so we can notify upon completion
-        loader = pxLoader;
-
+        loader = pxLoader; 
         // On iOS, soundManager2 uses a global audio object so we can't
         // preload multiple sounds. We'll have to hope they load quickly
         // when we need to play them. Unfortunately, SM2 doesn't expose
@@ -51,7 +50,7 @@ function PxLoaderSound(id, url, tags, priority) {
         if (iDevice) {
             loader.onTimeout(self);
         } else {
-            this.sound['load']();
+            this.sound['play']();
         }
     };
 

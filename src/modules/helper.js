@@ -12,8 +12,6 @@ app.Helpers.animation = function(options){
     var texte = document.getElementById("changetexte");
     texte.className="played";
      
-     
-
 	setTimeout(function(){
 		//supprime l'animation et bascule vers la question de destination
 		$('#question > h1').remove();
