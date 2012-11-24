@@ -2,14 +2,22 @@
  * S'occupe de l'animation de transition entre chaque question
  * @param Objet : html -> zone de rendu// texte-> texte a animé// template -> zone de rendu// render ->fonction de rendu de la question view 
  * delay -> définit le temps d'attente avant la transition
- * @author Kévin La Rosa
+ * @author Kévin La Rosa & Léo Denis
  * @requires  backbones.js
  */
 app.Helpers.animation = function(options){
-	options.that.$el.html(_.template($('#introAnimation').html(),{introQuestion : options.texte}));
+	//templating et injection dom ok
+	options.that.$el.html(_.template(options.template,options.variables));
+
+    var texte = document.getElementById("changetexte");
+    texte.className="played";
+     
+     
+
 	setTimeout(function(){
 		//supprime l'animation et bascule vers la question de destination
 		$('#question > h1').remove();
+		//lance la question 
 		options.render(options.that);  	
 	},options.delay);
 }
@@ -20,8 +28,18 @@ app.Helpers.animation = function(options){
  * @requires  backbones.js
  */
 app.Helpers.userIsPlaying = function(options){
-	return app.users.get("1").attributes.gameStart;
+	return app.users.get('1').attributes.gameStart;
 }
+
+/**
+ * Récupère l'useragent de l'utilisateur
+ * @author Kévin La Rosa
+ * @requires  backbones.js
+ */
+app.Helpers.getUserAgent = function(options){
+	return app.users.get('1').attributes.userAgent;
+}
+
 
 /**
  * Création d'une map reliée avec sa streetwiew avec posibilité d'appliqué un guide sur la map
@@ -123,7 +141,7 @@ app.Helpers.RenderStreetMapMode = function(options){
  */
 app.Helpers.questionIsUnlock = function (level){
 	//Récupère les infos de l'utilisateur
-	userCurrent = app.users.get("1").attributes;
+	userCurrent = app.users.get('1').attributes;
 	//je cherche les étapes débloquées
 	etapes = _.where(userCurrent.etapes,{unLock:true});
 	//je recupère le dernier objet
@@ -131,7 +149,7 @@ app.Helpers.questionIsUnlock = function (level){
 	if( level <=lastEtape.id )
 		return true
 	else
-		console.log("L'utilisateur n'a pas encore débloquer le level"+level);
+		console.log('L\'utilisateur n\'a pas encore débloquer le level'+level);
 		return false;
 }
 /**
@@ -142,7 +160,7 @@ app.Helpers.questionIsUnlock = function (level){
  */
 app.Helpers.getLastQuestUnlock = function (){
 	//Récupère les infos de l'utilisateur
-	userCurrent = app.users.get("1").attributes;
+	userCurrent = app.users.get('1').attributes;
 	//je cherche les étapes débloquées
 	etapes = _.where(userCurrent.etapes,{unLock:true});
 	//je recupère le dernier objet
@@ -158,9 +176,9 @@ app.Helpers.getLastQuestUnlock = function (){
  */
 app.Helpers.unlockQuestion = function(question){
 	// Débloque la question
-	app.users.get("1").attributes.etapes[question].unLock = true;
+	app.users.get('1').attributes.etapes[question].unLock = true;
 	// Enregistre son edition dans le localstorage
-	app.users.get("1").save();
+	app.users.get('1').save();
 }
 
 
@@ -172,7 +190,7 @@ app.Helpers.unlockQuestion = function(question){
 app.Helpers.getCurrentQuestion = function(){ 
 	 // currentPage = la page visionnée
 	 currentPage = Backbone.history.fragment;
-	 if(currentPage == null || currentPage == "") {
+	 if(currentPage == null || currentPage == '') {
 	 	return 0; //page d'accueil
 	 }
 	 currentQuestion = currentPage.substring(5); // enleve le mot etape
@@ -186,24 +204,23 @@ app.Helpers.getCurrentQuestion = function(){
  * @requires  backbones.js
  */
 app.Helpers.filAriane = function(lastQuestionUnlock,currentQuestion){
-	console.log("playing?"+app.Helpers.userIsPlaying());
-	if(app.Helpers.userIsPlaying() == false){
+	if(app.Helpers.userIsPlaying()==false){
 		// si l'utilisateur n'est pas en train de jouer
-		$("#filAriane").addClass("hidden"); // cacher le fil d'ariane
+		$('#filAriane').addClass('hidden'); // cacher le fil d'ariane
 	} else {
-		$("#filAriane").removeClass("hidden");
+		$('#filAriane').removeClass('hidden');
 		// incrémente les id pour correspondre aux indices des positions des <a>
-		lastQuestionUnlock++;
+		lastQuestionUnlock=lastQuestionUnlock+2;
 		// enlève les classes
-		for(i=1;i<=10;i++) {
-			$("#filAriane > a:nth-of-type("+i+")").removeClass("done").removeClass("doing");
+		for(i=2;i<=11;i++) {
+			$('#filAriane > a:nth-of-type('+i+')').removeClass('done').removeClass('doing');
 		}
-		// ajoute classe "done" de la première 
-		for(i=1;i<=lastQuestionUnlock;i++) {
-			$("#filAriane > a:nth-of-type("+i+")").addClass("done");
+		// ajoute classe "done" de la première à la dernière question débloquée
+		for(i=2;i<=lastQuestionUnlock;i++) {
+			$('#filAriane > a:nth-of-type('+i+')').addClass('done');
 		}
 		// ajoute classe "doing"
-		$("#filAriane > a:nth-of-type("+currentQuestion+")").addClass("doing");
+		$('#filAriane > a:nth-of-type('+(currentQuestion+1)+')').addClass('doing');
 	}
 }
 
@@ -212,10 +229,42 @@ app.Helpers.filAriane = function(lastQuestionUnlock,currentQuestion){
  * @author Mathieu Dutto
  * @requires  backbones.js
  */
-app.Helpers.showInfo = function(){
-	console.log("showInfo");
-	info = $("#info");
-	seeInfo = $("seeInfo");
-	seeInfo.addClass("hidden");
-	info.addClass("");
+app.Helpers.showHelp = function(){
+	var textInfos = new Array (
+		'Le 21 Décembre 2012 correspondrait à la fin d’un cycle du calendrier maya et marquerait, selon les spécialistes, un grand changement dans la conscience mondiale et le début d’une ère nouvelle. Plongeant la terre dans un chaos le plus total.',
+		'Une planète appelée Nibiru entrera en collision avec la Terre. Ce qui entraînera un cataclysme détruisant toute forme de vie sur terre.',
+		'Un programme informatique pouvant prédire le futur en utilisant les discussions sur internet, nommé Web bot nous indiquent que 2012 sera perturbé par un énorme choc. Tellement intense qu’il affectera personnellement presque tous les Humains sur Terre.',
+		'Le 21 Décembre 2012 se produira également une inversion du champ magnétique terrestre, déclenché par une éruption solaire massive. Cette éruption solaire libérerait autant d\'énergie que cent milliards de bombes nucléaires. Cette croyance est soutenue par les astrologues les plus performants. Le champ magnétique terrestre s\'affaiblit depuis de nombreuses années ce qui donnerait bientôt naissance à l’inversion des pôles magnétiques de la Terre.',
+		'Des événements comme des tsunamis, des tremblements de terre, des éruptions de super-volcans et d\'autres phénomènes catastrophiques devraient également survenir en 2012.',
+		'Le village Bugarach, est un lieu de refuge pour la fin du monde de 2012. Cette affirmation s\'appuierait sur un ancien texte datant du passage d\'Attila, surnommé « le fléau de Dieu » écrit à Lemud, le 4 mai 451. Date à laquelle les Huns auraient enterré le « trésor de l\'Apocalypse » sur les bords de la Nied, après avoir brûlé Metz (7 avril). Ce mystérieux trésor protégerait les survivants de la fin du monde. Ainsi, quiconque se trouverait à proximité du « trésor de l\'Apocaypse » serait épargné par la fin du monde.'
+	);
+	$('#question h2 + div').addClass('shown').text(textInfos[Math.round(Math.random()*textInfos.length)]);
+}
+
+/**
+ * Cache la bulle d'info
+ * @author Mathieu Dutto
+ * @requires  backbones.js
+ */
+app.Helpers.hideHelp = function(){
+	$('#question h2 + div.shown').removeClass('shown');
+}
+
+
+/**
+ * Renvoie une question sur la fin du monde
+ * @author Kévin La Rosa & Mathieu Dutto
+ * @requires  backbones.js
+ */
+app.Helpers.getOneInfo = function(){
+var textInfos = new Array (
+		'Le 21 Décembre 2012 correspondrait à la fin d’un cycle du calendrier maya et marquerait, selon les spécialistes, un grand changement dans la conscience mondiale et le début d’une ère nouvelle. Plongeant la terre dans un chaos le plus total.',
+		'Une planète appelée Nibiru entrera en collision avec la Terre. Ce qui entraînera un cataclysme détruisant toute forme de vie sur terre.',
+		'Un programme informatique pouvant prédire le futur en utilisant les discussions sur internet, nommé Web bot nous indiquent que 2012 sera perturbé par un énorme choc. Tellement intense qu’il affectera personnellement presque tous les Humains sur Terre.',
+		'Le 21 Décembre 2012 se produira également une inversion du champ magnétique terrestre, déclenché par une éruption solaire massive. Cette éruption solaire libérerait autant d\'énergie que cent milliards de bombes nucléaires. Cette croyance est soutenue par les astrologues les plus performants. Le champ magnétique terrestre s\'affaiblit depuis de nombreuses années ce qui donnerait bientôt naissance à l’inversion des pôles magnétiques de la Terre.',
+		'Des événements comme des tsunamis, des tremblements de terre, des éruptions de super-volcans et d\'autres phénomènes catastrophiques devraient également survenir en 2012.',
+		'Le village Bugarach, est un lieu de refuge pour la fin du monde de 2012. Cette affirmation s\'appuierait sur un ancien texte datant du passage d\'Attila, surnommé « le fléau de Dieu » écrit à Lemud, le 4 mai 451. Date à laquelle les Huns auraient enterré le « trésor de l\'Apocalypse » sur les bords de la Nied, après avoir brûlé Metz (7 avril). Ce mystérieux trésor protégerait les survivants de la fin du monde. Ainsi, quiconque se trouverait à proximité du « trésor de l\'Apocaypse » serait épargné par la fin du monde.'
+	);
+	return textInfos[Math.floor(Math.random() * textInfos.length) + 1];
+	
 }
