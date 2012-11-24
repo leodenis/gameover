@@ -353,3 +353,20 @@ div.messi-content{
 /*=========================================
  * intro question animation Léo
  * =======================================*/
+
+
+ #changetexte {
+   width: 0%;
+   max-height: 40px;
+   overflow:hidden ;
+   transition:All 4.5388s ease;
+   -webkit-transition:All 4.5388s ease;
+   -moz-transition:All 4.5388s ease;
+   -o-transition:All 4.5388s ease;
+
+    }
+
+  #changetexte.played{
+    width:100%;
+    }
+    
