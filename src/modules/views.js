@@ -939,10 +939,24 @@ app.Views.etape7 = app.Views.question.extend({
 	
 });
 
-app.Views.etape9 = app.Views.question.extend({
+app.Views.etape9 = Backbone.View.extend({
 
-	render : function (){
-		console.log('lalal');
+	//Zone de rendering
+	el : '#end',
+	
+	events: {
+
+	},
+	
+	
+	// Fonction qui est appelé automatiquement lors de l'instanciation
+	initialize : function() {
+		console.log('a codé');
+		render();
+	},
+	
+	render : function(){
+		
 	}
 
 	
@@ -962,6 +976,8 @@ app.Views.etape9 = app.Views.question.extend({
 
 
 app.Views.mobileExperience = Backbone.View.extend({
+	
+	//zone de rendering kIkou math ? a quand une intégration de accueilMobile  en Mquery. . . 
 	el : '#question',
 	// Fonction appelé automatiquement lors de l'instanciation de la vue
 	initialize : function() {

@@ -38,6 +38,9 @@
         
         <!---Zone de rendu question -->
         <div id="question" style='display:none;'> </div>
+        
+        <!---Zone de rendu de la fin -->
+        <div id="end" style='display:none;'> </div>
                 
         <!---Template du loader-->
         <script type="text/template" id="templateLoader">
@@ -161,9 +164,40 @@
             </div>
             
             <div class="clearfix"> </div>
-            
+	
+        </script>
+        
+        <!---Template question WebGL-->
+        <script type="text/template" id="end">
+           <div itemscope itemtype="http://schema.org/ItemList" id="container">
+                <section>
+                    <p>Félicitaions !</p>
+                </section> 
+                
+                <section id="accueil">
+                
+                    <section itemprop="image" id="banner"> 
+                        
+                    </section>
+                    
+                    <section itemprop="text" id="stats_final">
+                        
+                    </section>
+    
+                    <section itemprop="text" id="questions_final">
+                        
+                    </section>
+                                
+                    <section itemprop="text" id="facebook">  
+                        <p>Tu as aimé l'expérience ? Partages-la sur FaceBook !</p>
+                    </section>
+    
+                    <section itemprop="text" id="newsletter">  
+                        <p>Newsletter</p>
+                    </section>
 
-        	
+               </section>
+            </div>
         </script>
         
         <!---Footer statique du site -->
@@ -191,6 +225,7 @@
             
         </footer>
     </body>
+    
     <!-- Librairies (l'ordre compte) -->
     <script type="text/javascript" src="assets/js/browser_detect.js"></script>
     <script type="text/javascript" src="assets/js/jquery-1.8.2.min.js"></script>
