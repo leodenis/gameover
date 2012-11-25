@@ -85,7 +85,6 @@ app.Views.loader = Backbone.View.extend({
 			console.log('flash');
 		}
 		
-		
 	
 		//Référence vers mon template de chargement
 		app.loader.templateLoader = this.templateLoader;
@@ -99,6 +98,8 @@ app.Views.loader = Backbone.View.extend({
 			//Configuration du Son ambiant
 			app.Assets.sounds.ambiant.loop = true;
 			app.Assets.sounds.ambiant.volume = 0.1;
+			app.Assets.sounds.boum.volume = 0.1;
+			app.Assets.sounds.tranquille.volume = 0.1;
 			//supprime le loader
 			console.log('loader chargé');
 			$('#loader').remove();
@@ -156,7 +157,9 @@ app.Views.home = Backbone.View.extend({
 			this.loaderVideo();
 		}else{
 			this.renderAccueil()
-			app.Assets.sounds.ambiant.play();
+			if(app.Assets.sounds.ambiant.pause == true){
+				app.Assets.sounds.ambiant.play();
+			}
 			
 		}
 		
@@ -222,7 +225,9 @@ app.Views.etape1 = Backbone.View.extend({
 	},
 	// Fonction appelée automatiquement lors de l'instanciation de la vue
 	initialize : function() {
-		app.Assets.sounds.ambiant.play();
+		if(app.Assets.sounds.ambiant.pause == true){
+			app.Assets.sounds.ambiant.play();
+		}
 		// Controle que nous n'ayons pas l'accueil de chargé
 	  	if($('#accueil:visible').length){
 	  		$('#accueil:visible').hide().empty();
@@ -389,7 +394,9 @@ app.Views.question = Backbone.View.extend({
 	
 	// Fonction qui est appelé automatiquement lors de l'instanciation des vues questions
 	initialize : function() {
-		app.Assets.sounds.ambiant.play();
+		if(app.Assets.sounds.ambiant.pause == true){
+			app.Assets.sounds.ambiant.play();
+		}
 		this.$el.html(' ');
 		// Controle que nous n'ayons pas l'accueil en non hide
 	  	if($('#accueil:visible').length){
