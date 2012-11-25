@@ -16,8 +16,6 @@ app.Models.user = Backbone.Model.extend({
 				{id:6,unLock:false,point:0},
 				{id:7,unLock:false,point:0},
 				{id:8,unLock:false,point:0},
-				{id:9,unLock:false,point:0},
-				{id:10,unLock:false,point:0},
 			],
 			totalPoint:0
 		},

@@ -15,8 +15,6 @@ app.Router = Backbone.Router.extend({
     'etape7': 'etape7',
     'etape8': 'etape8',
     'etape9': 'etape9',
-    'etape10': 'etape10',
-    'etape11': 'etape11',
     ":whatever": "inconue"
   },
   // Root principal du site internet
@@ -154,7 +152,7 @@ app.Router = Backbone.Router.extend({
   
   etape9: function(){
   	if(app.Helpers.userIsPlaying()){
-	  	console.log('Lancement de la question 8');
+	  	console.log('question de fin');
 	  	statut = app.Helpers.questionIsUnlock(8);
 	  	// NB : il faut changer statut par true pour sauter le control de validation
 	  	if(statut)
@@ -166,39 +164,6 @@ app.Router = Backbone.Router.extend({
   		console.log('le jeu n\' est pas lancé');
   		this.navigate('', true);
   	}	  		
-  },
-  
-  etape10: function(){
-  	if(app.Helpers.userIsPlaying()){
-	  	console.log('Lancement de la question 9');
-	  	statut = app.Helpers.questionIsUnlock(9);
-	  	// NB : il faut changer statut par true pour sauter le control de validation
-	  	if(statut)
-	  		app.views.etape10 = new app.Views.etape10;
-	  	else
-	  		// Renvoi l'utilisateur vers son dernier deblocage
-	  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
-	}else{
-  		console.log('le jeu n\' est pas lancé');
-  		this.navigate('', true);
-  	}	  		
-  },
-  
-  etape11: function(){
-  	if(app.Helpers.userIsPlaying()){
-	  	console.log('Lancement de la page de fin');
-	  	// NB : il faut changer statut par true pour sauter le control de validation
-	  	statut = app.Helpers.questionIsUnlock(10);
-	  	if(statut)
-	  		app.views.etape10 = new app.Views.etape10;
-	  	else
-	  		// Renvoi l'utilisateur vers son dernier deblocage
-	  		this.routeQuestion(app.Helpers.getLastQuestUnlock());
-	}else{
-  		console.log('le jeu n\' est pas lancé');
-  		this.navigate('', true);
-  	}
-	  		
   },
   
   //En cas de route non déclarer 
@@ -245,9 +210,6 @@ app.Router = Backbone.Router.extend({
 		 break;
 	 case 9: 
 		 this.navigate('etape10', true);
-		 break;
-	 case 10: 
-		 this.navigate('etape11', true);
 		 break;
 	}
   }

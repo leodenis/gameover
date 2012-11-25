@@ -8,8 +8,7 @@
 app.Helpers.animation = function(options){
 	//templating et injection dom ok
 	options.that.$el.html(_.template(options.template,options.variables));
-    var texte = document.getElementById("changetexte");
-    texte.className="played";
+    $('#changetexte').toggleClass('played');
 
 	setTimeout(function(){
 		//supprime l'animation et bascule vers la question de destination
@@ -264,4 +263,48 @@ var textInfos = new Array (
 	);
 	return textInfos[Math.floor(Math.random() * textInfos.length) + 1];
 	
+}
+
+
+/**
+ * Change le score a une question et incrément le total
+ * @arguments etape -> Int // nb de point -> Int 
+ * @author Kévin La Rosa 
+ * @requires  backbones.js
+ */
+app.Helpers.setPointEtape = function(etape,points){
+	//Récupère le model
+	user = app.users.get('1');
+	//Change le score dans le model
+	user.attributes.etapes[etape-1].point = points;
+	//Gére le score total
+	total = 0;
+	total = user.attributes.totalPoint*10;
+	total = total+points;
+	user.attributes.totalPoint = total/10;
+	// Enregistre son edition dans le localstorage
+	app.users.get('1').save();
+}
+
+/**
+ * Réinitialise l'expérience
+ * @author Kévin La Rosa 
+ * @requires  backbones.js
+ */
+
+app.Helpers.reinitialize = function(){
+	console.log('reset');
+	//Récupère le model
+	user = app.users.get('1');
+	_.each(user.attributes.etapes, function(etape){ 
+		if(etape.id != 0){
+			etape.unLock = false;
+			etape.point = 0;
+		} 
+	});
+	user.attributes.totalPoint = 0;
+	// Enregistre son edition dans le localstorage
+	app.users.get('1').save();
+	//root vers l'intro du jeux
+	app.router.navigate('etape1', true);
 }

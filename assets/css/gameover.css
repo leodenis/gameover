@@ -879,18 +879,18 @@ button.messi .btn::-moz-focus-inner {
  * =======================================*/
 
 
- #changetexte {
+#changetexte {
    width: 0%;
    max-height: 40px;
-   overflow:hidden ;
-   transition:All 4.5388s ease;
-   -webkit-transition:All 4.5388s ease;
-   -moz-transition:All 4.5388s ease;
-   -o-transition:All 4.5388s ease;
+   -webkit-transition: width 4.5388s ease;
+   -moz-transition: width 4.5388s ease;
+   -o-transition: width 4.5388s ease;
+   transition: background 4.5388s ease;
+   overflow:hidden;
+}
 
-    }
-
-  #changetexte.played{
-    width:100%;
-    }
+#changetexte.played{
+   width:100%;
+  -moz-transition: background 4.5388s ease;
+}
     

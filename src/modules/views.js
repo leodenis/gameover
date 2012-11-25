@@ -10,6 +10,7 @@ app.Views.loader = Backbone.View.extend({
 		this.templateLoader  = $('#templateLoader').html()
 		//Déclaration du noeud html de destination
 		this.noeud
+		
 		//Déclaration des events du footer
 		//Gestion de la mise en pause ou non du son ambiant
 		//Optiomisation -> changement de l'image sur le bouton en fonction de l'element
@@ -20,6 +21,11 @@ app.Views.loader = Backbone.View.extend({
 					app.Assets.sounds.ambiant.pause();
 				}
 		});
+		
+		$('#resetGame').bind('click',function(){
+				app.Helpers.reinitialize();
+		});
+		
 
 		//Lancement du rendu de chargement si ce n'est pas un iphone ou ipad
 		if((navigator.userAgent.match(/iPhone/i))||(navigator.userAgent.match(/iPad/i))){
@@ -42,7 +48,6 @@ app.Views.loader = Backbone.View.extend({
 		app.Assets.images.rue = app.loader.addImage('assets/img/rue.jpg');
 		app.Assets.images.apocalysme = app.loader.addImage('assets/img/apocalypse.jpg');
 			
-		console.dir(Modernizr);
 		//Chargement du bon fichier video 
 		if (Modernizr.video) {
 		  if(Modernizr.video.webm == 'probably' || Modernizr.video.webm == 'maybe') {
@@ -65,7 +70,6 @@ app.Views.loader = Backbone.View.extend({
 		
 		//Chargement du bon fichier audio
 		if (Modernizr.audio) {
-			console.log(Modernizr.audio);
 		  if(Modernizr.audio.mp3 == 'probably' || Modernizr.audio.mp3 == 'maybe') {
 		       	app.Assets.sounds.boum = app.loader.addaudio('assets/audio/mp3/boum.mp3','boum',10);
    			 	app.Assets.sounds.ambiant = app.loader.addaudio('assets/audio/mp3/ambiant.mp3','fond',10);
@@ -93,7 +97,6 @@ app.Views.loader = Backbone.View.extend({
 		//Ecoute et répond jusqu'au moment ou toutes les ressources sont chargés
 		app.loader.addCompletionListener(function() {
 			//Configuration du Son ambiant
-			console.log(app.Assets);
 			app.Assets.sounds.ambiant.loop = true;
 			app.Assets.sounds.ambiant.volume = 0.1;
 			//supprime le loader
@@ -231,7 +234,6 @@ app.Views.etape1 = Backbone.View.extend({
 	  	// Lance l'animation d'introduction (Voir par la création d'un template html)
 	  	AnimationParam = {
 	  		variables : {
-
 	  			introQuestion : 'Nous sommes 24 jours avant la fin du monde, les mayas avaient raison',
 	  			toto: 'dkjdj'
 	  		},
@@ -246,6 +248,7 @@ app.Views.etape1 = Backbone.View.extend({
 	//Attention prend en paramètre that qui est le this courant appelé depuis un objet étranger
 
 	renderIntro : function (that){
+		app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),50);
 		//Fil ariane
 		app.Helpers.filAriane(app.Helpers.getLastQuestUnlock(),app.Helpers.getCurrentQuestion());
 		//Recupère le html générer avec le template
@@ -339,6 +342,7 @@ app.Views.etape1 = Backbone.View.extend({
 			}],
 			callback: function(val) { 
 				if(val == 'O'){
+					app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),50);
 					app.Helpers.unlockQuestion('1');
 					app.router.navigate('etape2', true);
 				}
@@ -578,7 +582,7 @@ app.Views.etape2 = app.Views.question.extend({
 			options.title = 'Vous souhaitez voler une Porsche ?'
 			options.callback = function(val){
 				if(val == 'O'){
-					console.log('boum');
+					app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),50);
 					app.Helpers.unlockQuestion('2');
 					app.router.navigate('etape3', true);
 				}
@@ -588,6 +592,7 @@ app.Views.etape2 = app.Views.question.extend({
 			options.title = 'Vous souhaitez voler un kangoo ?'
 			options.callback = function(val){
 				if(val == 'O'){
+					app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),0);
 					app.Helpers.unlockQuestion('2');
 					app.router.navigate('etape3', true);
 				}
@@ -766,10 +771,11 @@ app.Views.etape6 = app.Views.question.extend({
 			options.title = 'Vous souhaitez dormir dans un hôtel 5 étoiles ?'
 			options.callback = function(val){
 				if(val == 'O'){
-					console.log('boum');
+					app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),0);
 					app.Helpers.unlockQuestion('6');
 					app.Helpers.unlockQuestion('7');
-					app.Helpers.unlockQuestion('10');
+					app.Helpers.unlockQuestion('8');
+					app.Helpers.unlockQuestion('9');
 					app.router.navigate('etape7', true);
 				}
 			}
@@ -778,6 +784,7 @@ app.Views.etape6 = app.Views.question.extend({
 			options.title = 'Vous souhaitez dormir dans un bunker ?'
 			options.callback = function(val){
 				if(val == 'O'){
+					app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),50);
 					app.Helpers.unlockQuestion('6');
 					app.router.navigate('etape7', true);
 				}
@@ -796,241 +803,7 @@ app.Views.etape7 = app.Views.question.extend({
 	
 });
 
-app.Views.etape8 = app.Views.question.extend({
-	
-	render : function (){
-		//Fil ariane
-		app.Helpers.filAriane(app.Helpers.getLastQuestUnlock(),app.Helpers.getCurrentQuestion());
-		//Recupère le html générer avec le template
-		template = _.template($('#templateStreetView').html(),{"titreQuestion":"Baladez vous dans central park afin de trouver de l’aide pour survivre à la fin du monde."});
-		this.$el.html(template);		
-		// Définition des paramètre de la street + map (voir helper)
-		var optionModeStreetMap = {
-			idMap : 'carte',
-			idStreet : 'exploration',
-			mapOptions : {
-				center : new google.maps.LatLng(48.866338,2.261403),
-				zoom : 15,
-				mapTypeId: google.maps.MapTypeId.ROADMAP, // type de map
-				styles: [   { "featureType": "landscape", "stylers": [ { "color": "#808080" } ] }, // les terres en gris
-                            { "featureType": "poi", "stylers": [ { "visibility": "off" } ] }, // Cache les points d'interet ( Hopital,Ecole ect...)
-                            { "featureType": "administrative", "stylers": [ { "visibility": "off" } ] }, // Nom : ville, arondissement : non visible
-                            { "featureType": "road", "stylers": [ { "color": "#c0c0c0" } ] }, // Route en gris clair
-                            { "featureType": "road", "elementType": "labels", "stylers": [ {  "visibility": "off" } ] }, // label des routes non visible
-                            { "featureType": "transit", "stylers": [ { "visibility": "off" } ] } // Transport non affiche
-                        ],
-				streetViewControl: true,
-				navigationControl: false,
-    			mapTypeControl: false,
-    			scaleControl: false,
-    			draggable: false,
-    			zoomControl: false,
-  				scrollwheel: false,
-  				disableDoubleClickZoom: true,
-			},
-			streetOptions : {
-				
-				adresseControl : true,
-				adresseControlOptions: {
-                     style: {backgroundColor: 'grey', color: 'yellow'} // modification css
-                },
-                position : new google.maps.LatLng(48.866338,2.261403),
-                pov : {
-                	heading: 550, //Angle de rotation horizontal, en degrés, de la caméra
-                    pitch: 10, //Angle vertical, vers le haut ou le bas, par rapport à l'angle de vertical (CAMERA)
-                    zoom: 0
-                },
-                    //controler de direction
-                    panControl: true,
-                    // controler de direction par clavier
-                    keyboardShortcuts: true,
-                    //bloque le changement d'adresse
-                    addressControl:false,
-                    scrollwheel:false,
-                    //bloque le click and go
-                    clickToGo:true,
-                    //bloque le clique du sol
-                    linksControl:true
-			},
-			markersStreet : [
-					{
-						title : 'voyance',
-						position : new google.maps.LatLng(48.866338,2.261403),
-						events: [
-							{
-								eventMarker : 'click',
-								functionMarker : this.popupInfo
-								
-							}
-						],
-					},
-			],
-			markersMap : [
-			],
-		
-			streetGuide : {
-
-			}
-	}
-		app.Helpers.RenderStreetMapMode(optionModeStreetMap);
-	},
-	
-	//Evenement qui réagit au click sur le marker en face de la voyante
-	popupInfo : function(){
-
-		new Messi('Nos « ancêtres », les Mayas, qui en savaient plus que nous sur la puissance des astres nous ont dévoilés leurs secrets.', {
-			title: 'Commencer l\'aventure',
-			buttons: [{
-					id: 0, 
-					label: 'Oui', 
-					val: 'O'
-			},
-			{
-					id: 1, 
-					label: 'Non', 
-					val: 'N'
-			}],
-			callback: function(val) { 
-				if(val == 'O'){
-					app.Helpers.unlockQuestion('1');
-					app.router.navigate('etape2', true);
-				}
-			},
-			
-		});
-	},
-	
-	nextQuestion : function(){
-		$(this.el).remove();
-		app.Helpers.unlockQuestion('1');
-		app.router.navigate('etape2', true);
-
-	}	
-
-});
-
-app.Views.etape9 = app.Views.question.extend({
-	render : function (){
-		//Fil ariane
-		app.Helpers.filAriane(app.Helpers.getLastQuestUnlock(),app.Helpers.getCurrentQuestion());
-		//Recupère le html générer avec le template
-		template = _.template($('#templateStreetView').html(),{"titreQuestion":"Sélectioner ce qui vous semble le plus utile pour survivre dans cette situation."});
-		this.$el.html(template);		
-		// Définition des paramètre de la street + map (voir helper)
-		var optionModeStreetMap = {
-			idMap : 'carte',
-			idStreet : 'exploration',
-			mapOptions : {
-				
-			},
-			streetOptions : {
-				
-				adresseControl : true,
-				adresseControlOptions: {
-                     style: {backgroundColor: 'grey', color: 'yellow'} // modification css
-                },
-                position : new google.maps.LatLng(9.08534,123.272578),
-                pov : {
-                	heading: 550, //Angle de rotation horizontal, en degrés, de la caméra
-                    pitch: 10, //Angle vertical, vers le haut ou le bas, par rapport à l'angle de vertical (CAMERA)
-                    zoom: 0
-                },
-                    //controler de direction
-                    panControl: true,
-                    // controler de direction par clavier
-                    keyboardShortcuts: true,
-                    //bloque le changement d'adresse
-                    addressControl:false,
-                    scrollwheel:false,
-                    //bloque le click and go
-                    clickToGo:false,
-                    //bloque le clique du sol
-                    linksControl:false
-			},
-			markersStreet : [
-					{
-						title : 'Tuba',
-						icon : new google.maps.MarkerImage('assets/img/tuba.png'), 
-						position : new google.maps.LatLng(9.08534,123.272700),
-						events: [
-							{
-								eventMarker : 'click',
-								functionMarker : this.popupInfo
-								
-							}
-						],
-					},
-					{
-						title : 'Bouteille de plongée',
-						position : new google.maps.LatLng(9.08534,123.272400),
-						icon : new google.maps.MarkerImage('assets/img/bouteille.png'), 
-						events: [
-							{
-								eventMarker : 'click',
-								functionMarker : this.popupInfo
-								
-							}
-						],
-					},
-					{
-						title : 'voyance',
-						position : new google.maps.LatLng(9.08534,123.272150),
-						events: [
-							{
-								eventMarker : 'click',
-								functionMarker : this.popupInfo
-								
-							}
-						],
-					},
-			],
-			markersMap : [
-			],
-		
-			streetGuide : {
-
-			}
-	}
-		app.Helpers.RenderStreetMapMode(optionModeStreetMap);
-	},
-	
-	//Evenement qui réagit au click sur le marker en face de la voyante
-	popupInfo : function(){
-
-		new Messi('Nos « ancêtres », les Mayas, qui en savaient plus que nous sur la puissance des astres nous ont dévoilés leurs secrets.', {
-			title: 'Commencer l\'aventure',
-			buttons: [{
-					id: 0, 
-					label: 'Oui', 
-					val: 'O'
-			},
-			{
-					id: 1, 
-					label: 'Non', 
-					val: 'N'
-			}],
-			callback: function(val) { 
-				if(val == 'O'){
-					//app.Helpers.unlockQuestion('1');
-					//app.router.navigate('etape2', true);
-					app.Helpers.unlockQuestion('10');
-				}
-			},
-			
-		});
-	},
-	
-	nextQuestion : function(){
-		$(this.el).remove();
-		app.Helpers.unlockQuestion('1');
-		app.router.navigate('etape2', true);
-
-	}		
-
-	
-});
-
-app.Views.etape10 = app.Views.question.extend({
+ app.Views.etape8 = app.Views.question.extend({
 
 	render : function (){
 		//Fil ariane
@@ -1139,23 +912,22 @@ app.Views.etape10 = app.Views.question.extend({
 		 	options.title = 'Vous comptez aller à droite ?'
 			options.callback = function(val){
 				if(val == 'O'){
-					console.log('boum');
+					app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),50);
 					app.Helpers.unlockQuestion('2');
-					app.router.navigate('etape3', true);
+					app.router.navigate('etape9', true);
 				}
 			}
 			app.Assets.images.apocalysme.style.width ='600px';
 			new Messi(app.Assets.images.apocalysme,options);
 			
 		}else{
-			console.log(app.Assets.sounds.tranquille);
 			app.Assets.sounds.tranquille.play();
 			options.title = 'Vous comptez aller à gauche ?'
 			options.callback = function(val){
 				if(val == 'O'){
-					console.log('boum');
+					app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),0);
 					app.Helpers.unlockQuestion('2');
-					app.router.navigate('etape3', true);
+					app.router.navigate('etape9', true);
 				}
 			}
 			app.Assets.images.rue.style.width ='600px';
@@ -1166,6 +938,28 @@ app.Views.etape10 = app.Views.question.extend({
 
 	
 });
+
+app.Views.etape9 = app.Views.question.extend({
+
+	render : function (){
+		console.log('lalal');
+	}
+
+	
+});
+
+
+
+
+
+
+
+/**
+ * Page du site mobile avec gestion du gyroscope
+ * @author Kévin La Rosa 
+ * @requires  backbones.js
+ */
+
 
 app.Views.mobileExperience = Backbone.View.extend({
 	el : '#question',
