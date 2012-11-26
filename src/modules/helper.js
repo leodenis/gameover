@@ -27,6 +27,29 @@ app.Helpers.userIsPlaying = function(options){
 	return app.users.get('1').attributes.gameStart;
 }
 
+app.Helpers.SetResultSurvive = function(survive){
+	console.log('je survie ou non'+survive);
+}
+
+/**
+ * Retourne l'identifiant unique de l'utilisateur
+ * @author Kévin La Rosa
+ * @requires  backbones.js
+ */
+app.Helpers.getCuid = function(options){
+	return app.users.get('1').attributes.cuid;
+}
+
+/**
+ * Retourne le score de l'utilisateur
+ * @author Kévin La Rosa
+ * @requires  backbones.js
+ */
+app.Helpers.getScore = function(options){
+	return app.users.get('1').attributes.totalPoint;
+}
+
+
 /**
  * Récupère l'useragent de l'utilisateur
  * @author Kévin La Rosa

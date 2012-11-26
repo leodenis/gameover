@@ -2,6 +2,7 @@ app.Models.user = Backbone.Model.extend({
 	
 		defaults: {
 			id:1,
+			cuid:null,
 			userAgent:'?',
 			version:'?',
 			videoWatch: false,

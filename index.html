@@ -20,8 +20,8 @@
             <div id="countdown"> </div>
             <a href="#home" title="Accueil"> </a><a href="#home" title="Accueil">
                 <h1 itemprop="keywords">2012 : GAME OVER ?</h1>
-
             </a>
+            <div class="fb-like" data-href="http://kevinlarosa.fr/gameover" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true" data-action="recommend"></div>
         </header>
         
         <!---Zone de rendus du loader-->
@@ -167,8 +167,8 @@
 	
         </script>
         
-        <!---Template question WebGL-->
-        <script type="text/template" id="end">
+        <!---Template question end -->
+        <script type="text/template" id="endTemplate">
            <div itemscope itemtype="http://schema.org/ItemList" id="container">
                 <section>
                     <p>Félicitaions !</p>
@@ -224,6 +224,14 @@
             <div itemprop="image" id="hand-right" class="hands"></div>
             
         </footer>
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/fr_CA/all.js#xfbml=1&appId=133026203516839";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
     </body>
     
     <!-- Librairies (l'ordre compte) -->
@@ -241,6 +249,7 @@
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script type="text/javascript" src="assets/js/messi.min.js"></script>
     <script type="text/javascript" src="assets/js/shake.js"></script>
+    <script type="text/javascript" src="assets/js/Math.uuid.js"></script>
     
     <!-- Base de l'application Backbone JS -->
     <script type="text/javascript" src="src/app.js"></script>
@@ -251,4 +260,7 @@
     <script type="text/javascript" src="src/modules/models.js"></script>
     <script type="text/javascript" src="src/modules/collections.js"></script>
     <script type="text/javascript" src="src/modules/helper.js"></script>
+
+    
+    
 </html>

@@ -40,7 +40,7 @@ var app = {
     if (typeof(this.users.get("1")) == 'undefined'){
     	console.log("Création du model & collections");
 	    //Initialisation du model user
-	    this.user = new app.Models.user({userAgent:BrowserDetect.browser,version:BrowserDetect.version});
+	    this.user = new app.Models.user({cuid:Math.uuid(),userAgent:BrowserDetect.browser,version:BrowserDetect.version});
 	  	//Intialisation de la collection users et insertion de notre utilisateur
 	  	this.users = new app.Collections.users().add(this.user);
 	  	this.user.save();

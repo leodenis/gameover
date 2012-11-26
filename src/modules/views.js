@@ -140,6 +140,12 @@ app.Views.home = Backbone.View.extend({
 	},
 	// Fonction appelé automatiquement lors de l'instanciation de la vue
 	initialize : function() {
+		if($('#question:visible').length){	  		
+	  		$('#question:visible').hide().empty();
+	  	}
+	  	if($('#div:visible').length){	  		
+	  		$('#div:visible').hide().empty();
+	  	}
 		//Fil ariane
 		app.Helpers.filAriane(app.Helpers.getLastQuestUnlock(),app.Helpers.getCurrentQuestion());	
 		// On cache les div courante
@@ -231,6 +237,9 @@ app.Views.etape1 = Backbone.View.extend({
 		// Controle que nous n'ayons pas l'accueil de chargé
 	  	if($('#accueil:visible').length){
 	  		$('#accueil:visible').hide().empty();
+	  	}
+	  	if($('#end:visible').length){	  		
+	  		$('#end:visible').hide().empty();
 	  	}
 	  	//Fil ariane
 		app.Helpers.filAriane(app.Helpers.getLastQuestUnlock(),app.Helpers.getCurrentQuestion());
@@ -349,6 +358,9 @@ app.Views.etape1 = Backbone.View.extend({
 				if(val == 'O'){
 					app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),50);
 					app.Helpers.unlockQuestion('1');
+					app.Helpers.unlockQuestion('6');
+					app.Helpers.unlockQuestion('7');
+					app.Helpers.unlockQuestion('8');
 					app.router.navigate('etape2', true);
 				}
 			},
@@ -402,7 +414,9 @@ app.Views.question = Backbone.View.extend({
 	  	if($('#accueil:visible').length){
 	  		$('#accueil:visible').hide().empty();
 	  	}
-	  	
+	  	if($('#end:visible').length){	  		
+	  		$('#end:visible').hide().empty();
+	  	}
 	  	//Fil ariane
 		app.Helpers.filAriane(app.Helpers.getLastQuestUnlock(),app.Helpers.getCurrentQuestion());
 		
@@ -779,10 +793,6 @@ app.Views.etape6 = app.Views.question.extend({
 			options.callback = function(val){
 				if(val == 'O'){
 					app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),0);
-					app.Helpers.unlockQuestion('6');
-					app.Helpers.unlockQuestion('7');
-					app.Helpers.unlockQuestion('8');
-					app.Helpers.unlockQuestion('9');
 					app.router.navigate('etape7', true);
 				}
 			}
@@ -896,7 +906,6 @@ app.Views.etape7 = app.Views.question.extend({
 	},
 	
 	popupInfo : function(marker){
-		console.log(marker);
 		var pos = marker.latLng.$a;
 		var lat = marker.latLng.ab;
 		var options = {
@@ -958,12 +967,35 @@ app.Views.etape9 = Backbone.View.extend({
 	
 	// Fonction qui est appelé automatiquement lors de l'instanciation
 	initialize : function() {
-		console.log('a codé');
-		render();
+		// Controle que nous n'ayons pas l'accueil de chargé
+		console.log()
+	  	if($('#accueil:visible').length){
+	  		$('#accueil:visible').hide().empty();
+	  	}
+	  	
+	  	console.log($('#question:visible'));
+	  	if($('#question:visible').length){	  		
+	  		$('#question:visible').hide().empty();
+	  	}
+	  	this.$el.show();
+		this.render();
 	},
 	
 	render : function(){
+		this.$el.html(_.template($('#endTemplate').html(),{}));
+		//score
 		
+		console.log(app.Helpers.getCuid());
+		score = app.Helpers.getScore();
+		alert(score);
+		if(score <= 50){
+			alert('tu vas crever :X');
+			//push sur le serveur le score
+			app.Helpers.SetResultSurvive(false);
+		}else{
+			alert('tu vas survivre champion !!');
+			app.Helpers.SetResultSurvive(true);
+		}
 	}
 
 	
