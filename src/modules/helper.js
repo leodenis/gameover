@@ -8,7 +8,11 @@
 app.Helpers.animation = function(options){
 	//templating et injection dom ok
 	options.that.$el.html(_.template(options.template,options.variables));
-    $('#changetexte').toggleClass('played');
+	$('#changetexte').toggleClass('played');
+	$('#changetexte2').toggleClass('played2');
+	$('#changetexte3').toggleClass('played3');
+	$('#changetexte4').toggleClass('played4');
+
 
 	setTimeout(function(){
 		//supprime l'animation et bascule vers la question de destination

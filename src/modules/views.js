@@ -247,13 +247,16 @@ app.Views.etape1 = Backbone.View.extend({
 	  	this.$el.show();
 	  	// Lance l'animation d'introduction (Voir par la création d'un template html)
 	  	AnimationParam = {
-	  		variables : {
+			variables : {
 	  			introQuestion : 'Nous sommes 24 jours avant la fin du monde, les mayas avaient raison',
-	  			toto: 'dkjdj'
+	  			introQuestion2: 'Tout le monde est affolé !',
+	  			introQuestion3: 'Tu décides de partir te réfugier dans un endroit ou tu seras en sécurité',
+	  			introQuestion4: 'Quel sera ton choix ?'
+
 	  		},
 	  		template: $('#introAnimation').html(),
 	  		render: this.renderIntro,
-	  		delay: 4000,
+	  		delay: 7500,
 	  		that : this
 	  	}
 	  	app.Helpers.animation(AnimationParam);
