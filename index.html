@@ -137,28 +137,19 @@
             <div class="clearfix"> </div>
             
             <div class="webgl">
-                <h3><%= image1.titre %></h3>
-                <figure>
-                    <img class="nextQuestion" src="assets/img/<%= image1.url %>" alt="<%= image1.alt %>" />
-                    <figcaption><%= image1.description %></figcaption>
-                </figure>
+               <h3><%= image1.titre %></h3>
+                <div class="elements1" id="elements1">
+                </div>
+                <a id=''>Choix 1</a>
             </div>
-            
+
             <div class="webgl">
-                <h3><%= image2.titre %></h3>
-                <figure>
-                    <img class="nextQuestion" src="assets/img/<%= image2.url %>" alt="<%= image2.alt %>" />
-                    <figcaption><%= image2.description %></figcaption>
-                </figure>
+               <h3><%= image2.titre %></h3>
+                <div class="elements2" id="elements2">
+                </div>
+                <a id=''>Choix 2</a>
             </div>
-            
-            <div class="webgl">
-                <h3><%= image3.titre %></h3>
-                <figure>
-                    <img class="nextQuestion"  src="assets/img/<%= image3.url %>" alt="<%= image3.alt %>" />
-                    <figcaption><%= image3.description %></figcaption>
-                </figure>
-            </div>
+
             
             <div class="clearfix"> </div>
 	
@@ -247,6 +238,9 @@
     <script type="text/javascript" src="assets/js/messi.min.js"></script>
     <script type="text/javascript" src="assets/js/shake.js"></script>
     <script type="text/javascript" src="assets/js/Math.uuid.js"></script>
+    <script type="text/javascript" src="assets/js/WebGL/three.min.js.js"></script>
+    <script type="text/javascript" src="assets/js/WebGL/ColladaLoader.js"></script>
+
     
     <!-- Base de l'application Backbone JS -->
     <script type="text/javascript" src="src/app.js"></script>
