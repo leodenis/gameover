@@ -637,10 +637,147 @@ app.Views.etape3 = app.Views.question.extend({
 		//Définition des variables à passer
 		image1 = {'url':'mac-gyver.jpg','alt':'livre Que ferait Mac Gyver ?','titre':'Livre : Que ferait Mac Gyver ?','description':'Le livre pour savoir ce que ferait Mac Gyver dans toutes les situations les plus périeuses. Les astuces du maître de la survie !'};
 		image2 = {'url':'ipad3.png','alt':'iPad 3','titre':'Tablette tactile : iPad 3','description':'Le dernier iPad : le plus puissant et la tablette la plus pratique au monde. Un maximum d\outils en un seul objet !'};
-		image3 = {'url':'photo-famille.jpg','alt':'photo de famille','titre':'Photo : une photo de famille','description':'Une photo de famille.. quoi de plus réconfortant dans les moments difficiles ? Légère et peu encombrante !'};
+
 		//Recupère le html générer avec le template
-		template = accueilHTML = _.template($('#templateWebGl').html(),{'titreQuestion':'La place manque dans cette voiture, quel objet choisissez-vous pour survivre ?','image1':image1,'image2':image2,'image3':image3});
+		template = accueilHTML = _.template($('#templateWebGl').html(),{'titreQuestion':'La place manque dans cette voiture, quel objet choisissez-vous pour survivre ?','image1':image1,'image2':image2});
 		this.$el.html(template);
+
+		var camera_livre, camera_ipad, scene_livre, scene_iPad, renderer_livre, renderer_ipad;
+		var particleLight_livre, particleLight_ipad, pointLight;
+		var dae;
+
+
+		livre_MacGyver();
+		iPad_Apple();
+
+		function livre_MacGyver(){
+			var loader = new THREE.ColladaLoader();
+			loader.options.convertUpAxis = true;
+			loader.load( 'assets/models/Untitled.dae', function ( collada ) {
+
+				dae = collada.scene;
+				//dae.rotation.z = -Math.PI/2;
+				dae.updateMatrix();
+
+				// Scale-up the model so that we can see it:
+				dae.scale.x = dae.scale.y = dae.scale.z = 40;
+
+				init_livre();
+				animate_livre();
+
+			} );
+		}		
+		function init_livre() {
+		    camera_livre = new THREE.OrthographicCamera(
+			      	window.innerWidth / -2,   // Left
+			      	window.innerWidth / 2,    // Right
+			      	window.innerHeight / 2,   // Top
+		     		window.innerHeight / -2,  // Bottom
+			      	-2000,            // Near clipping plane
+			      	1000 );           // Far clipping plane
+			scene_livre = new THREE.Scene();
+			scene_livre.add( dae );
+			scene_livre.add( new THREE.AmbientLight( 0xcccccc ) );
+			renderer_livre = new THREE.WebGLRenderer();
+			renderer_livre.setSize( window.innerWidth/2.2, window.innerHeight/2.2 );
+			$('#elements1').html( renderer_livre.domElement ) ;
+			window.addEventListener( 'resize', onWindowResize, false );
+		}
+		function animate_livre() {
+			requestAnimationFrame( animate_livre );
+			var timer = Date.now() * 0.0005;
+			camera_livre.position.x = Math.cos( timer ) * 10;
+			camera_livre.position.y = 2;
+			camera_livre.position.z = Math.sin( timer ) * 10;
+			camera_livre.lookAt( scene_livre.position );
+			renderer_livre.render( scene_livre, camera_livre );
+		}
+		function iPad_Apple(){
+
+			var loader = new THREE.ColladaLoader();
+			loader.options.convertUpAxis = true;
+			loader.load( 'assets/models/Apple iPad.dae', function ( collada ) {
+
+				dae = collada.scene;
+				skin = collada.skins[ 0 ];
+
+				// Scale-up the model so that we can see it:
+				dae.scale.x = dae.scale.y = dae.scale.z = 45;
+				dae.updateMatrix();
+
+				init_iPad();
+				animate_iPad();
+
+			} );
+		}
+		function init_iPad() {
+		    camera_ipad = new THREE.OrthographicCamera(
+			      	window.innerWidth / -2,   // Left
+			      	window.innerWidth / 2,    // Right
+			      	window.innerHeight / 2,   // Top
+		     		window.innerHeight / -2,  // Bottom
+			      	-2000,            // Near clipping plane
+			      	1000 );           // Far clipping plane
+
+
+
+			scene_iPad = new THREE.Scene();
+			scene_iPad.add( dae );
+
+			particleLight_ipad = new THREE.Mesh( new THREE.SphereGeometry( 4, 8, 8 ), new THREE.MeshBasicMaterial( { color: 0xffffff } ) );
+			scene_iPad.add( particleLight_ipad );
+			scene_iPad.add( new THREE.AmbientLight( 0xcccccc ) );
+
+			var directionalLight = new THREE.DirectionalLight(0xeeeeee);
+			directionalLight.position.x = Math.random() - 0.5;
+			directionalLight.position.y = Math.random() - 0.5;
+			directionalLight.position.z = Math.random() - 0.5;
+			directionalLight.position.normalize();
+			scene_iPad.add( directionalLight );
+
+			pointLight = new THREE.PointLight( 0xffffff, 3 );
+			pointLight.position = particleLight_ipad.position;
+			scene_iPad.add( pointLight );
+
+			renderer_ipad = new THREE.WebGLRenderer();
+			renderer_ipad.setSize( window.innerWidth/2.2, window.innerHeight/2.2 );
+
+			$('#elements2').html( renderer_ipad.domElement ) ;
+			window.addEventListener( 'resize', onWindowResize, false );
+		}
+		function animate_iPad() {
+			requestAnimationFrame( animate_iPad );
+
+			var timer = Date.now() * 0.0005;
+
+			camera_ipad.position.x = Math.cos( -timer ) * 10;
+			camera_ipad.position.y = 2;
+			camera_ipad.position.z = Math.sin( -timer ) * 10;
+
+			camera_ipad.lookAt( scene_iPad.position );
+
+			particleLight_ipad.position.x = Math.sin( timer * 4 ) * 3009;
+			particleLight_ipad.position.y = Math.cos( timer * 5 ) * 4000;
+			particleLight_ipad.position.z = Math.cos( timer * 4 ) * 3009;
+
+			renderer_ipad.render( scene_iPad, camera_ipad );
+		}
+		function onWindowResize() {
+			var width = window.innerWidth;
+			var height = window.innerHeight;
+
+			var ratioW = width/3;
+			var ratioH = height/3;
+
+			camera_livre.aspect = width / height;
+			camera_livre.updateProjectionMatrix();
+
+			camera_ipad.aspect = width / height;
+			camera_ipad.updateProjectionMatrix();
+
+			renderer_livre.setSize( ratioW, ratioH );
+			renderer_ipad.setSize( ratioW, ratioH );
+		}
 	},
 	
 
