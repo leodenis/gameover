@@ -162,7 +162,7 @@ footer > span {
 #filAriane > a.muted > i {
 	background:url('../img/sound-muted.png') center no-repeat;
 }
-#filAriane > a:nth-of-type(12) > i {
+#filAriane > a:last-of-type > i {
 	background:url('../img/repeat.png') center no-repeat;
 }
 .hands {
