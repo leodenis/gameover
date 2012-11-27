@@ -17,8 +17,12 @@ app.Views.loader = Backbone.View.extend({
 		$('#optionSon').bind('click',function(){
 				if(app.Assets.sounds.ambiant.paused == true){
 					app.Assets.sounds.ambiant.play();
+					$(this).removeClass('muted');
+					$(this).attr('title','Couper le son');
 				}else{
 					app.Assets.sounds.ambiant.pause();
+					$(this).addClass('muted');
+					$(this).attr('title','Activer le son');
 				}
 		});
 		
@@ -216,7 +220,7 @@ app.Views.home = Backbone.View.extend({
 }); 
 
 /**
- * View du début du jeux
+ * ETAPE 1 : View du début du jeu
  * @author Kévin La Rosa & Mathieu Dutto
  * @requires  backbones.js
  * @A faire : Styliser la view, notice de l'action, revoir le blocage sur la streetView
@@ -459,7 +463,7 @@ app.Views.question = Backbone.View.extend({
 
 
 /**
- * QUESTION 1 : 
+ * ETAPE 2 : 
  * @author Kévin La Rosa & Mathieu dutto
  * @requires  backbones.js
  */
@@ -642,20 +646,28 @@ app.Views.etape3 = app.Views.question.extend({
 		template = accueilHTML = _.template($('#templateWebGl').html(),{'titreQuestion':'La place manque dans cette voiture, quel objet choisissez-vous pour survivre ?','image1':image1,'image2':image2,'image3':image3});
 		this.$el.html(template);
 	},
-	
-
-	
 });
 
 app.Views.etape4 = app.Views.question.extend({
-	
-
-	
+	render : function (){
+		//Définition des variables à passer
+		video1 = {'url':'23608259','titre':'Un chat mais pas que..','description':''};
+		video2 = {'url':'22451867','titre':'Un perroquet...','description':''};
+		//Recupère le html générer avec le template
+		template = accueilHTML = _.template($('#templateVideos').html(),{'titreQuestion':'La solitude peut tuer ! Choisissez-vous un animal de compagnie qui vous remontera le moral.','video1':video1,'video2':video2});
+		this.$el.html(template);
+	},
 });
 
 app.Views.etape5 = app.Views.question.extend({
-	
-
+	render : function (){
+		//Définition des variables à passer
+		video1 = {'url':'23608259','titre':'Un chat mais pas que..','description':''};
+		video2 = {'url':'22451867','titre':'Un perroquet...','description':''};
+		//Recupère le html générer avec le template
+		template = accueilHTML = _.template($('#templateVideos').html(),{'titreQuestion':'La solitude peut tuer ! Choisissez-vous un animal de compagnie qui vous remontera le moral.','video1':video1,'video2':video2});
+		this.$el.html(template);
+	},
 });
 
 app.Views.etape6 = app.Views.question.extend({

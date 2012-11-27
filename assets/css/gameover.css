@@ -25,12 +25,12 @@ header > a {
 }
 header > a, header > a:hover, header > a:visited {
 	color:#d8dce8;
+	margin-right:1%;
 }
 header > a:nth-of-type(1) {
 	background:url("../img/logo.png") left no-repeat;
 	width:100px;
 	margin-left:4%;
-	margin-right:1%;
 	-webkit-transition-property:all;
 	-moz-transition-property:all;
 	-ms-transition-property:all;
@@ -863,7 +863,7 @@ button.messi .btn::-moz-focus-inner {
 }
 
 #question .carte {
-	z-index:1000;
+	z-index:98;
 	height:200px;
 	position:relative;
 	background-color:#E5E3DF;

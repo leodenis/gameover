@@ -197,11 +197,32 @@
             </div>
         </script>
         
+        <!---Template question Vidéos-->
+        <script type="text/template" id="templateVideos">
+            <h2><a id='btnHelp'>?</a><%= titreQuestion %></h2>
+            <div> </div>
+            
+            <div class="clearfix"> </div>
+            
+            <div class="videos">
+                <h3><%= video1.titre %></h3>
+                
+            </div>
+            
+            <div class="videos">
+                <h3><%= video2.titre %></h3>
+				
+            </div>
+            
+            <div class="clearfix"> </div>
+	
+        </script>
+        
         <!---Footer statique du site -->
         <footer itemscope itemtype="http://schema.org/ItemList" itemprop="copyrightYear">
 
             <span id="filAriane">
-                <a title="Couper/Activer le son" id='optionSon' class="doing pause"><i> </i></a>
+                <a title="Couper le son" id='optionSon' class="doing pause"><i> </i></a>
                 <a title="Aller à l'étape 1" href="#etape1">1</a>
                 <a title="Aller à l'étape 2" href="#etape2">2</a>
                 <a title="Aller à l'étape 3" href="#etape3">3</a>

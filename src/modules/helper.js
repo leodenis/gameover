@@ -235,7 +235,7 @@ app.Helpers.filAriane = function(lastQuestionUnlock,currentQuestion){
 		// incrémente les id pour correspondre aux indices des positions des <a>
 		lastQuestionUnlock=lastQuestionUnlock+2;
 		// enlève les classes
-		for(i=2;i<=11;i++) {
+		for(i=2;i<=9;i++) {
 			$('#filAriane > a:nth-of-type('+i+')').removeClass('done').removeClass('doing');
 		}
 		// ajoute classe "done" de la première à la dernière question débloquée
