@@ -118,41 +118,45 @@
         	<div> </div>
 			<div style="height:600px" id="exploration"></div>
 			<div class='carte' id="carte"></div>
-			<a class='nextQuestion'>Question suivante</a>
-
+			<!--<a class='nextQuestion'>Question suivante</a>-->
         </script>
         
         <!---Template question video -->
-        <script type="text/template" id="templateVideo">
-           <h2><a id='btnHelp'>?</a><%= titreQuestion %></h2>
-           <div> </div>
-           <a class='nextQuestion'>Question suivante</a>
+        <script type="text/template" id="templateVideos">
+            <h2><a id='btnHelp'>?</a><%= titreQuestion %></h2>
+            <div> </div>
+            <div class="clearfix"> </div>
+            <div class="videos">
+                <h3><%= video1.titre %></h3>
+                <iframe id="player1" src="http://player.vimeo.com/video/<%= video1.url %>?api=1&amp;player_id=player1&amp;title=0&amp;byline=0&amp;autoplay=0&amp;portrait=0" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+            </div>
+            <div class="videos">
+                <h3><%= video2.titre %></h3>
+                <iframe id="player2" src="http://player.vimeo.com/video/<%= video2.url %>?api=1&amp;player_id=player2&amp;title=0&amp;byline=0&amp;autoplay=0&amp;portrait=0" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+            </div>
+            <div class="clearfix"> </div>
+           <!--<a class='nextQuestion'>Question suivante</a>-->
         </script>
         
         <!---Template question WebGL-->
         <script type="text/template" id="templateWebGl">
             <h2><a id='btnHelp'>?</a><%= titreQuestion %></h2>
             <div> </div>
-            
             <div class="clearfix"> </div>
-            
             <div class="webgl">
                <h3><%= image1.titre %></h3>
                 <div class="elements1" id="elements1">
                 </div>
                 <a id=''>Choix 1</a>
             </div>
-
             <div class="webgl">
                <h3><%= image2.titre %></h3>
                 <div class="elements2" id="elements2">
                 </div>
                 <a id=''>Choix 2</a>
             </div>
-
-            
             <div class="clearfix"> </div>
-	
+			<!--<a class='nextQuestion'>Question suivante</a>-->
         </script>
         
         <!---Template question end -->
@@ -188,27 +192,6 @@
             </div>
         </script>
         
-        <!---Template question Vidéos-->
-        <script type="text/template" id="templateVideos">
-            <h2><a id='btnHelp'>?</a><%= titreQuestion %></h2>
-            <div> </div>
-            
-            <div class="clearfix"> </div>
-            
-            <div class="videos">
-                <h3><%= video1.titre %></h3>
-                
-            </div>
-            
-            <div class="videos">
-                <h3><%= video2.titre %></h3>
-				
-            </div>
-            
-            <div class="clearfix"> </div>
-	
-        </script>
-        
         <!---Footer statique du site -->
         <footer itemscope itemtype="http://schema.org/ItemList" itemprop="copyrightYear">
 
@@ -234,13 +217,15 @@
             
         </footer>
         <div id="fb-root"></div>
-        <script>(function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) return;
-          js = d.createElement(s); js.id = id;
-          js.src = "//connect.facebook.net/fr_CA/all.js#xfbml=1&appId=133026203516839";
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
+        <script>
+        	(function(d, s, id) {
+	          var js, fjs = d.getElementsByTagName(s)[0];
+	          if (d.getElementById(id)) return;
+	          js = d.createElement(s); js.id = id;
+	          js.src = "//connect.facebook.net/fr_CA/all.js#xfbml=1&appId=133026203516839";
+	          fjs.parentNode.insertBefore(js, fjs);
+	        }(document, 'script', 'facebook-jssdk'));
+        </script>
     </body>
     
     <!-- Librairies (l'ordre compte) -->
@@ -264,7 +249,11 @@
     
     <!-- Base de l'application Backbone JS -->
     <script type="text/javascript" src="src/app.js"></script>
-
+	
+	<!-- Froogaloop et script fait main -->
+	<script type="text/javascript" src="assets/js/froogaloop.js"></script>
+    <script type="text/javascript" src="assets/js/videosVimeo.js"></script>
+	
     <!-- Les modules de l'application, l'ordre ne compte pas -->
     <script type="text/javascript" src="src/modules/router.js"></script>
     <script type="text/javascript" src="src/modules/views.js"></script>

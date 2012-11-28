@@ -789,7 +789,7 @@ app.Views.etape4 = app.Views.question.extend({
 	render : function (){
 		//Définition des variables à passer
 		video1 = {'url':'23608259','titre':'Un chat mais pas que..','description':''};
-		video2 = {'url':'22451867','titre':'Un perroquet...','description':''};
+		video2 = {'url':'5169262','titre':'Un perroquet mais pas que...','description':''};
 		//Recupère le html générer avec le template
 		template = accueilHTML = _.template($('#templateVideos').html(),{'titreQuestion':'La solitude peut tuer ! Choisissez-vous un animal de compagnie qui vous remontera le moral.','video1':video1,'video2':video2});
 		this.$el.html(template);
@@ -799,10 +799,10 @@ app.Views.etape4 = app.Views.question.extend({
 app.Views.etape5 = app.Views.question.extend({
 	render : function (){
 		//Définition des variables à passer
-		video1 = {'url':'23608259','titre':'Un chat mais pas que..','description':''};
-		video2 = {'url':'22451867','titre':'Un perroquet...','description':''};
+		video1 = {'url':'35132562','titre':'Will Smith - I am a Legend','description':''};
+		video2 = {'url':'3431743','titre':'Chuck Norris','description':''};
 		//Recupère le html générer avec le template
-		template = accueilHTML = _.template($('#templateVideos').html(),{'titreQuestion':'La solitude peut tuer ! Choisissez-vous un animal de compagnie qui vous remontera le moral.','video1':video1,'video2':video2});
+		template = accueilHTML = _.template($('#templateVideos').html(),{'titreQuestion':'Les conseils de quelle star préféreriez-vous entendre pour vous préparer à la fin du monde ?','video1':video1,'video2':video2});
 		this.$el.html(template);
 	},
 });

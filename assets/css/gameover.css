@@ -845,7 +845,7 @@ button.messi .btn::-moz-focus-inner {
 }
 #question .webgl {
 	float:left;
-	width: 45%;
+	width: 46%;
 	text-align:center;
 	background-color:rgba(0,0,0,0.5);
 	-webkit-border-radius:9px;
@@ -854,10 +854,17 @@ button.messi .btn::-moz-focus-inner {
 	margin:6% 1%;
 	padding:1%;
 }
-#question .webgl:nth-of-type(3) {
-	margin:6% 0;
+#question .videos {
+	float:left;
+	width: 46%;
+	text-align:center;
+	background-color:rgba(0,0,0,0.5);
+	-webkit-border-radius:9px;
+	-moz-border-radius:9px;
+	border-radius:9px;
+	margin:6% 1%;
+	padding:1%;
 }
-
 .nextQuestion {
 	cursor:pointer;
 }
