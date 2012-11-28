@@ -967,9 +967,153 @@ app.Views.etape6 = app.Views.question.extend({
 });
 
 app.Views.etape7 = app.Views.question.extend({
-	
 
-	
+	render : function (){
+		//Définition des variables à passer
+		image1 = {'url':'mac-gyver.jpg','alt':'gun','titre':'Pistolet semi-automatique E-45','description':'Choisissez le pistolet à 11 coups'};
+		image2 = {'url':'ipad3.png','alt':'cut','titre':'Couteau','description':'Choisissez le couteau utile et perène !!!'};
+
+		//Recupère le html générer avec le template
+		template = accueilHTML = _.template($('#templateWebGl').html(),{'titreQuestion':'BLA BLA ?','image1':image1,'image2':image2});
+		this.$el.html(template);
+
+		var camera_gun, camera_cut, scene_gun, scene_cut, renderer_gun, renderer_cut;
+		var particleLight_gun, particleLight_cut, pointLight;
+		var dae;
+
+
+		cut();
+		gun();
+
+		function gun(){
+			var loader = new THREE.ColladaLoader();
+			loader.options.convertUpAxis = true;
+			loader.load( 'assets/models/projet PST2.dae', function ( collada ) {
+
+				dae = collada.scene;
+				//dae.rotation.z = -Math.PI/2;
+				dae.updateMatrix();
+
+				// Scale-up the model so that we can see it:
+				dae.scale.x = dae.scale.y = dae.scale.z = 0.5;
+
+				init_gun();
+				animate_gun();
+
+			} );
+		}		
+		function init_gun() {
+		    camera_gun = new THREE.OrthographicCamera(
+			      	window.innerWidth / -2,   // Left
+			      	window.innerWidth / 2,    // Right
+			      	window.innerHeight / 2,   // Top
+		     		window.innerHeight / -2,  // Bottom
+			      	-2000,            // Near clipping plane
+			      	1000 );           // Far clipping plane
+			scene_gun = new THREE.Scene();
+			scene_gun.add( dae );
+			scene_gun.add( new THREE.AmbientLight( 0xcccccc ) );
+			renderer_gun = new THREE.WebGLRenderer();
+			renderer_gun.setSize( window.innerWidth/2.2, window.innerHeight/2.2 );
+			$('#elements1').html( renderer_gun.domElement ) ;
+			window.addEventListener( 'resize', onWindowResize, false );
+		}
+		function animate_gun() {
+			requestAnimationFrame( animate_gun );
+			var timer = Date.now() * 0.0005;
+			camera_gun.position.x = Math.cos( timer ) * 10;
+			camera_gun.position.y = 2;
+			camera_gun.position.z = Math.sin( timer ) * 10;
+			camera_gun.lookAt( scene_gun.position );
+			renderer_gun.render( scene_gun, camera_gun );
+		}
+		function cut(){
+
+			var loader = new THREE.ColladaLoader();
+			loader.options.convertUpAxis = false;
+			loader.load( 'assets/models/shlass 3.dae', function ( collada ) {
+
+				dae = collada.scene;
+				skin = collada.skins[ 0 ];
+
+				// Scale-up the model so that we can see it:
+				dae.scale.x = dae.scale.y = dae.scale.z = 0.5;
+				dae.updateMatrix();
+
+				init_cut();
+				animate_cut();
+
+			} );
+		}
+		function init_cut() {
+		    camera_cut = new THREE.OrthographicCamera(
+			      	window.innerWidth / -2,   // Left
+			      	window.innerWidth / 2,    // Right
+			      	window.innerHeight / 2,   // Top
+		     		window.innerHeight / -2,  // Bottom
+			      	-2000,            // Near clipping plane
+			      	1000 );           // Far clipping plane
+
+
+
+			scene_cut = new THREE.Scene();
+			scene_cut.add( dae );
+
+			particleLight_cut = new THREE.Mesh( new THREE.SphereGeometry( 4, 8, 8 ), new THREE.MeshBasicMaterial( { color: 0xffffff } ) );
+			scene_cut.add( particleLight_cut );
+			scene_cut.add( new THREE.AmbientLight( 0xcccccc ) );
+
+			var directionalLight = new THREE.DirectionalLight(0xeeeeee);
+			directionalLight.position.x = Math.random() - 0.5;
+			directionalLight.position.y = Math.random() - 0.5;
+			directionalLight.position.z = Math.random() - 0.5;
+			directionalLight.position.normalize();
+			scene_cut.add( directionalLight );
+
+			pointLight = new THREE.PointLight( 0xffffff, 3 );
+			pointLight.position = particleLight_cut.position;
+			scene_cut.add( pointLight );
+
+			renderer_cut = new THREE.WebGLRenderer();
+			renderer_cut.setSize( window.innerWidth/2.2, window.innerHeight/2.2 );
+
+			$('#elements2').html( renderer_cut.domElement ) ;
+			window.addEventListener( 'resize', onWindowResize, false );
+		}
+		function animate_cut() {
+			requestAnimationFrame( animate_cut );
+
+			var timer = Date.now() * 0.0005;
+
+			camera_cut.position.x = Math.cos( -timer ) * 10;
+			camera_cut.position.y = 2;
+			camera_cut.position.z = Math.sin( -timer ) * 10;
+
+			camera_cut.lookAt( scene_cut.position );
+
+			particleLight_cut.position.x = Math.sin( timer * 4 ) * 3009;
+			particleLight_cut.position.y = Math.cos( timer * 5 ) * 4000;
+			particleLight_cut.position.z = Math.cos( timer * 4 ) * 3009;
+
+			renderer_cut.render( scene_cut, camera_cut );
+		}
+		function onWindowResize() {
+			var width = window.innerWidth;
+			var height = window.innerHeight;
+
+			var ratioW = width/3;
+			var ratioH = height/3;
+
+			camera_gun.aspect = width / height;
+			camera_gun.updateProjectionMatrix();
+
+			camera_cut.aspect = width / height;
+			camera_cut.updateProjectionMatrix();
+
+			renderer_gun.setSize( ratioW, ratioH );
+			renderer_cut.setSize( ratioW, ratioH );
+		}
+	},	
 });
 
  app.Views.etape8 = app.Views.question.extend({
