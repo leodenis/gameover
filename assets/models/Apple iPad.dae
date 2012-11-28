@@ -4,8 +4,8 @@
         <contributor>
             <authoring_tool>Google SketchUp 8.0.3117</authoring_tool>
         </contributor>
-        <created>2012-11-24T15:38:38Z</created>
-        <modified>2012-11-24T15:38:38Z</modified>
+        <created>2012-11-28T18:11:44Z</created>
+        <modified>2012-11-28T18:11:44Z</modified>
         <unit meter="0.02539999969303608" name="inch" />
         <up_axis>Z_UP</up_axis>
     </asset>
@@ -13,7 +13,7 @@
         <visual_scene id="ID1">
             <node name="SketchUp">
                 <node id="ID2" name="group_0">
-                    <matrix>0.04201890000000001 0 0 -1.52422414134712e-015 0 0.04201890000000001 0 0 0 0 0.04201890000000001 0 0 0 0 1</matrix>
+                    <matrix>0.04201890000000001 0 0 -0.1840394734355737 0 0.04201890000000001 0 -3.729031322324421 0 0 0.04201890000000001 -4.779851278572657 0 0 0 1</matrix>
                     <instance_geometry url="#ID65">
                         <bind_material>
                             <technique_common>
