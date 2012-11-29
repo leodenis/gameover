@@ -654,6 +654,17 @@ app.Views.etape3 = app.Views.question.extend({
 		livre_MacGyver();
 		iPad_Apple();
 
+		$('#choix1').bind('click',function(){
+				app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),50);
+				app.Helpers.unlockQuestion('3');
+				app.router.navigate('etape4', true);
+		});
+		$('#choix2').bind('click',function(){
+				app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),0);
+				app.Helpers.unlockQuestion('3');
+				app.router.navigate('etape4', true);
+		});
+
 		function livre_MacGyver(){
 			var loader = new THREE.ColladaLoader();
 			loader.options.convertUpAxis = true;
@@ -985,6 +996,17 @@ app.Views.etape7 = app.Views.question.extend({
 		cut();
 		gun();
 
+		$('#choix1').bind('click',function(){
+				app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),0);
+				app.Helpers.unlockQuestion('7');
+				app.router.navigate('etape8', true);
+		});
+		$('#choix2').bind('click',function(){
+				app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),50);
+				app.Helpers.unlockQuestion('7');
+				app.router.navigate('etape8', true);
+		});
+
 		function gun(){
 			var loader = new THREE.ColladaLoader();
 			loader.options.convertUpAxis = true;
@@ -1116,7 +1138,7 @@ app.Views.etape7 = app.Views.question.extend({
 	},	
 });
 
- app.Views.etape8 = app.Views.question.extend({
+app.Views.etape8 = app.Views.question.extend({
 
 	render : function (){
 		//Fil ariane
