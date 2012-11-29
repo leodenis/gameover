@@ -128,7 +128,7 @@
             <div class="clearfix"> </div>
             <div class="videos">
                 <h3><%= video1.titre %></h3>
-                <iframe id="player1" src="http://player.vimeo.com/video/<%= video1.url %>?api=1&amp;player_id=player1&amp;title=0&amp;byline=0&amp;autoplay=0&amp;portrait=0" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                <iframe id="player1" src="http://player.vimeo.com/video/<%= video1.url %>?api=1&amp;player_id=player1&amp;title=0&amp;byline=0&amp;autoplay=0&amp;portrait=0" frameborder="0" height="auto" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
             </div>
             <div class="videos">
                 <h3><%= video2.titre %></h3>
@@ -250,9 +250,8 @@
     <!-- Base de l'application Backbone JS -->
     <script type="text/javascript" src="src/app.js"></script>
 	
-	<!-- Froogaloop et script fait main -->
+	<!-- Froogaloop -->
 	<script type="text/javascript" src="assets/js/froogaloop.js"></script>
-    <script type="text/javascript" src="assets/js/videosVimeo.js"></script>
 	
     <!-- Les modules de l'application, l'ordre ne compte pas -->
     <script type="text/javascript" src="src/modules/router.js"></script>
