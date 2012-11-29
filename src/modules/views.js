@@ -127,7 +127,7 @@ app.Views.loader = Backbone.View.extend({
 
 });
 
-//gerer lacement son + mute
+//gerer lancement son + mute
 //app.Assets.sounds.ambiant.pause();
 //app.Assets.sounds.ambiant.play();
 //app.Assets.sounds.ambiant.volume = 0,1
@@ -635,6 +635,11 @@ app.Views.etape2 = app.Views.question.extend({
 });
 
 
+/**
+ * ETAPE 3 : 
+ * @author Tom Forlini
+ * @requires backbones.js
+ */
 app.Views.etape3 = app.Views.question.extend({
 	
 	render : function (){
@@ -796,6 +801,11 @@ app.Views.etape3 = app.Views.question.extend({
 	},
 });
 
+/**
+ * ETAPE 4 : 
+ * @author Mathieu Dutto
+ * @requires backbones.js
+ */
 app.Views.etape4 = app.Views.question.extend({
 	render : function (){
 		//Définition des variables à passer
@@ -804,9 +814,16 @@ app.Views.etape4 = app.Views.question.extend({
 		//Recupère le html générer avec le template
 		template = accueilHTML = _.template($('#templateVideos').html(),{'titreQuestion':'La solitude peut tuer ! Choisissez-vous un animal de compagnie qui vous remontera le moral.','video1':video1,'video2':video2});
 		this.$el.html(template);
+		
+		app.Helpers.videosVimeo();
 	},
 });
 
+/**
+ * ETAPE 5 : 
+ * @author Mathieu Dutto
+ * @requires backbones.js
+ */
 app.Views.etape5 = app.Views.question.extend({
 	render : function (){
 		//Définition des variables à passer
@@ -815,9 +832,16 @@ app.Views.etape5 = app.Views.question.extend({
 		//Recupère le html générer avec le template
 		template = accueilHTML = _.template($('#templateVideos').html(),{'titreQuestion':'Les conseils de quelle star préféreriez-vous entendre pour vous préparer à la fin du monde ?','video1':video1,'video2':video2});
 		this.$el.html(template);
+		
+		app.Helpers.videosVimeo();
 	},
 });
 
+/**
+ * ETAPE 6 : 
+ * @author Kevin La Rosa
+ * @requires backbones.js
+ */
 app.Views.etape6 = app.Views.question.extend({
 	
 	render: function(){

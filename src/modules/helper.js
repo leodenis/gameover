@@ -23,7 +23,7 @@ app.Helpers.animation = function(options){
 }
 
 /**
- * S'occupe de dire si l'utilisateur a commencé à jouer au jeux réponse boléen
+ * S'occupe de dire si l'utilisateur a commencé à jouer au jeu réponse boléen
  * @author Kévin La Rosa
  * @requires  backbones.js
  */
@@ -65,7 +65,7 @@ app.Helpers.getUserAgent = function(options){
 
 
 /**
- * Création d'une map reliée avec sa streetwiew avec posibilité d'appliqué un guide sur la map
+ * Création d'une map reliée avec sa streetwiew avec posibilité d'appliquer un guide sur la map
  * @param : Objet ->
  * @author Kévin La Rosa
  * @requires  backbones.js, Gmap V3
@@ -334,4 +334,52 @@ app.Helpers.reinitialize = function(){
 	app.users.get('1').save();
 	//root vers l'intro du jeux
 	app.router.navigate('etape1', true);
+}
+
+
+/**
+ * Contrôle des vidéos Vimeo avec froogaloop
+ * @author Mathieu Dutto 
+ * @requires  backbones.js
+ */
+
+app.Helpers.videosVimeo = function(){
+	// écoute l'évènement Ready pour chaque vidéo sur la page
+    var vimeoPlayers = document.getElementById('question').querySelectorAll('iframe'), player;
+
+    for (var i = 0, length = vimeoPlayers.length; i < length; i++) {
+        player = vimeoPlayers[i];
+        $f(player).addEvent('ready', ready);
+    }
+    
+    function ready(player_id) {
+        // garde une référence à Froogalopp pour cette vidéo (player_id)
+        var player = $f(player_id);
+        
+        // parametres définis au début
+        player.api('setColor', '111');
+        player.api('setVolume', 0.1);
+        
+        // lorsqu'on clique sur le bouton play d'une video
+        player.addEvent('play', function(data) {
+        	// coupe la musique d'ambiance du site
+        	app.Assets.sounds.ambiant.pause();
+        	// joue la vidéo
+        	player.api('play');
+    	}, false);
+    	
+    	// lorsqu'on met la vidéo sur pause
+    	player.addEvent('pause', function(data) {
+    		// joue la musique d'ambiance du site'
+			app.Assets.sounds.ambiant.play();
+        });
+    	
+    	// lorsque la vidéo se finit
+    	player.addEvent('finish', function(data) {
+    		// joue la musique d'ambiance du site'
+			app.Assets.sounds.ambiant.play();
+        });
+	}
+	
+	
 }
