@@ -29,7 +29,42 @@ app.Views.loader = Backbone.View.extend({
 		$('#resetGame').bind('click',function(){
 				app.Helpers.reinitialize();
 		});
-		
+
+		// Compteur dans le header !!!
+		$(function(){
+			var note = $('#note'),
+			// new Date(year, month, day, hours, minutes, seconds, milliseconds)
+			// ts = new Date(2012, 12, 21),
+			ts = new Date("December 21, 2012") ;
+			newYear = true;
+			if((new Date()) > ts){
+				// The new year is here! Count towards something else.
+				// Notice the *1000 at the end - time must be in milliseconds
+				ts = (new Date()).getTime() + 10*24*60*60*1000;
+				newYear = false;
+			}
+			$('#countdown').countdown({
+				timestamp	: ts,
+				callback	: function(days, hours, minutes, seconds){
+					
+					var message = "";
+					
+					message += days + " day" + ( days==1 ? '':'s' ) + ", ";
+					message += hours + " hour" + ( hours==1 ? '':'s' ) + ", ";
+					message += minutes + " minute" + ( minutes==1 ? '':'s' ) + " and ";
+					message += seconds + " second" + ( seconds==1 ? '':'s' ) + " <br />";
+					
+					if(newYear){
+						message += "avant la fin du monde!";
+					}
+					else {
+						message += "left to 10 days from now!";
+					}
+					
+					note.html(message);
+				}
+			});
+		});
 
 		//Lancement du rendu de chargement si ce n'est pas un iphone ou ipad
 		if((navigator.userAgent.match(/iPhone/i))||(navigator.userAgent.match(/iPad/i))){
