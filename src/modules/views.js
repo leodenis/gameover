@@ -144,7 +144,7 @@ app.Views.home = Backbone.View.extend({
 	},
 	// Fonction appelé automatiquement lors de l'instanciation de la vue
 	initialize : function() {
-		if($('#question:visible').length){	  		
+		if($('#question:visible').length){	  	
 	  		$('#question:visible').hide().empty();
 	  	}
 	  	if($('#div:visible').length){	  		
@@ -195,6 +195,7 @@ app.Views.home = Backbone.View.extend({
 	},
 	
 	renderAccueil: function(){	
+		// JS DE LEO
 		accueilHTML = _.template($('#templateAccueil').html(),{});
 		// FAIT MOI UNE FUCKING ANIMTION OPACITY AVEC UN CSS MATH
 		$('#accueil').html(accueilHTML);
@@ -364,9 +365,6 @@ app.Views.etape1 = Backbone.View.extend({
 			callback: function(val) { 
 				if(val == 'O'){
 					app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),50);
-					app.Helpers.unlockQuestion('1');
-					app.Helpers.unlockQuestion('6');
-					app.Helpers.unlockQuestion('7');
 					app.Helpers.unlockQuestion('8');
 					app.router.navigate('etape2', true);
 				}
