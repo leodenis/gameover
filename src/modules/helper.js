@@ -213,7 +213,7 @@ app.Helpers.unlockQuestion = function(question){
 app.Helpers.getCurrentQuestion = function(){ 
 	 // currentPage = la page visionnée
 	 currentPage = Backbone.history.fragment;
-	 if(currentPage == null || currentPage == '') {
+	 if(currentPage == null || currentPage == '' || currentPage == 'home') {
 	 	return 0; //page d'accueil
 	 }
 	 currentQuestion = currentPage.substring(5); // enleve le mot etape
@@ -381,5 +381,15 @@ app.Helpers.videosVimeo = function(){
         });
 	}
 	
-	
 }
+/**
+ * Création d'un sondage
+ * @author Mathieu Dutto 
+ * @requires  backbones.js
+ */
+
+
+
+
+
+

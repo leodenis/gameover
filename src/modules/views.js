@@ -230,9 +230,65 @@ app.Views.home = Backbone.View.extend({
 	},
 	
 	renderAccueil: function(){	
-		// JS DE LEO
+		/*
+		//JS DE LEO
+		var oui = 45;
+ 		var non = 55;
+ 		var chart;
+		chart = new Highcharts.Chart({
+	                 chart: {
+	                    renderTo: 'container_sondage',
+	                     plotBackgroundColor: '#FFFFFF',
+	                     plotBorderWidth: 0,
+	                     plotShadow: false
+	                 },
+	                 title: {
+	                     text: ''
+	                 },
+	                 tooltip: {
+	                     pointFormat: '{series.name}: <b>{point.percentage}%</b>',
+	                     percentageDecimals: 1
+	                 },
+	                 plotOptions: {
+	                     pie: {
+	                         allowPointSelect: false,
+	                         cursor: 'pointer',
+	                         dataLabels: {
+	                             enabled: false,
+	                             color: '#FFFFFF',
+	                             connectorColor: '#FFFFFF',
+	                             formatter: function() {
+	                                 return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+	                             }
+	                            
+	                         }
+	                     }
+	                 },
+	                 series: [{
+	                 type: 'pie',
+	                 name: 'Survival',
+	                 data: [
+	               
+	                     {
+	                         name: 'oui',
+	                         color:'#7FDD4C',
+	                         y: oui,
+	                  
+	                     },
+	                     {
+	                         name: 'non',
+	                         y: non,
+	                     
+	                     }
+	                 ]
+	                 }]
+	             });
+	        
+        
+   */
 		accueilHTML = _.template($('#templateAccueil').html(),{});
 		// FAIT MOI UNE FUCKING ANIMTION OPACITY AVEC UN CSS MATH
+	
 		$('#accueil').html(accueilHTML);
 		console.log('Accueil chargé');
 		

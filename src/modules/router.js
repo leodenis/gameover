@@ -4,8 +4,8 @@ app.Router = Backbone.Router.extend({
   },
   
   routes: {
-    '': 'root',
-    'home':'root',
+     '': 'root',
+    'home':'home',
     'etape1' : 'etape1',
     'etape2': 'etape2',
     'etape3': 'etape3',
@@ -23,6 +23,16 @@ app.Router = Backbone.Router.extend({
   		app.views.mobile = new app.Views.mobileExperience();
   	}else{
   		//Lancement de la view accueil
+  		app.views.home = new app.Views.home();
+  	}
+  },
+  
+  home : function(){
+  	if(_.isObject(app.views.home) ){
+  		console.log('elle existe deja dans le dom');
+  		delete app.views.home;
+  		app.views.home = new app.Views.home();
+  	}else{
   		app.views.home = new app.Views.home();
   	}
   },
