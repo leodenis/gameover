@@ -10,7 +10,6 @@ app.Views.loader = Backbone.View.extend({
 		this.templateLoader  = $('#templateLoader').html()
 		//Déclaration du noeud html de destination
 		this.noeud
-		
 		//Déclaration des events du footer
 		//Gestion de la mise en pause ou non du son ambiant
 		//Optiomisation -> changement de l'image sur le bouton en fonction de l'element
@@ -31,15 +30,10 @@ app.Views.loader = Backbone.View.extend({
 		});
 
 		// Compteur dans le header !!!
-		$(function(){
 			var note = $('#note'),
-			// new Date(year, month, day, hours, minutes, seconds, milliseconds)
-			// ts = new Date(2012, 12, 21),
 			ts = new Date("December 21, 2012") ;
 			newYear = true;
 			if((new Date()) > ts){
-				// The new year is here! Count towards something else.
-				// Notice the *1000 at the end - time must be in milliseconds
 				ts = (new Date()).getTime() + 10*24*60*60*1000;
 				newYear = false;
 			}
@@ -48,7 +42,6 @@ app.Views.loader = Backbone.View.extend({
 				callback	: function(days, hours, minutes, seconds){
 					
 					var message = "";
-					
 					message += days + " day" + ( days==1 ? '':'s' ) + ", ";
 					message += hours + " hour" + ( hours==1 ? '':'s' ) + ", ";
 					message += minutes + " minute" + ( minutes==1 ? '':'s' ) + " and ";
@@ -64,7 +57,6 @@ app.Views.loader = Backbone.View.extend({
 					note.html(message);
 				}
 			});
-		});
 
 		//Lancement du rendu de chargement si ce n'est pas un iphone ou ipad
 		if((navigator.userAgent.match(/iPhone/i))||(navigator.userAgent.match(/iPad/i))){
@@ -106,17 +98,16 @@ app.Views.loader = Backbone.View.extend({
 			//proposer du flash !!
 		}
 		
-		
 		//Chargement du bon fichier audio
 		if (Modernizr.audio) {
-		  if(Modernizr.audio.mp3 == 'probably' || Modernizr.audio.mp3 == 'maybe') {
+		  if(Modernizr.audio.mp3 == 'probably' || Modernizr.audio.mp3 == 'maybe') {	
 		       	app.Assets.sounds.boum = app.loader.addaudio('assets/audio/mp3/boum.mp3','boum',10);
    			 	app.Assets.sounds.ambiant = app.loader.addaudio('assets/audio/mp3/ambiant.mp3','fond',10);
    			 	app.Assets.sounds.tranquille = app.loader.addaudio('assets/audio/mp3/tranquille.mp3','tranquille',10);
 		  } else if (Modernizr.audio.ogg == 'probably'|| Modernizr.audio.ogg == 'maybe') {
-		       	app.Assets.sounds.boum = app.loader.addaudio('assets/audio/ogg/boum.ogg','boum',10);
-   			 	app.Assets.sounds.ambiant = app.loader.addaudio('assets/audio/ogg/ambiant.ogg','fond',10);
-   			 	app.Assets.sounds.tranquille = app.loader.addaudio('assets/audio/ogg/tranquille.ogg','tranquille',10);
+		       app.Assets.sounds.boum = app.loader.addaudio('assets/audio/ogg/boum.ogg','boum',10);
+   			   app.Assets.sounds.ambiant = app.loader.addaudio('assets/audio/ogg/ambiant.ogg','fond',10);
+   			   app.Assets.sounds.tranquille = app.loader.addaudio('assets/audio/ogg/tranquille.ogg','tranquille',10);
 		  } else if (Modernizr.audio.wav){
 		    	console.log('a encoder');
 		  }
@@ -135,8 +126,8 @@ app.Views.loader = Backbone.View.extend({
 		//Ecoute et répond jusqu'au moment ou toutes les ressources sont chargés
 		app.loader.addCompletionListener(function() {
 			//Configuration du Son ambiant
-			app.Assets.sounds.ambiant.loop = true;
-			app.Assets.sounds.ambiant.volume = 0.1;
+			//app.Assets.sounds.ambiant.loop = true;
+			//app.Assets.sounds.ambiant.volume = 0.1;
 			app.Assets.sounds.boum.volume = 0.1;
 			app.Assets.sounds.tranquille.volume = 0.1;
 			//supprime le loader
@@ -286,8 +277,12 @@ app.Views.home = Backbone.View.extend({
 	                 ]
 	                 }]
 	             };	
+<<<<<<< HEAD
 
 	     
+=======
+	    // génere un sondage
+>>>>>>> e9334ea88c2f55f7c1ededb12fe08b948887bb9d
 		app.Helpers.renderCharts(paramChart);
 		console.log('Accueil chargé');
 		
