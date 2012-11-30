@@ -230,12 +230,13 @@ app.Views.home = Backbone.View.extend({
 	},
 	
 	renderAccueil: function(){	
-		/*
-		//JS DE LEO
+		accueilHTML = _.template($('#templateAccueil').html(),{});
+		// FAIT MOI UNE FUCKING ANIMTION OPACITY AVEC UN CSS MATH
+		$('#accueil').html(accueilHTML);
+		//Valeur a récupérer par une requête ajax
 		var oui = 45;
  		var non = 55;
- 		var chart;
-		chart = new Highcharts.Chart({
+		paramChart = {
 	                 chart: {
 	                    renderTo: 'container_sondage',
 	                     plotBackgroundColor: '#FFFFFF',
@@ -282,14 +283,8 @@ app.Views.home = Backbone.View.extend({
 	                     }
 	                 ]
 	                 }]
-	             });
-	        
-        
-   */
-		accueilHTML = _.template($('#templateAccueil').html(),{});
-		// FAIT MOI UNE FUCKING ANIMTION OPACITY AVEC UN CSS MATH
-	
-		$('#accueil').html(accueilHTML);
+	             };	
+		app.Helpers.renderCharts(paramChart);
 		console.log('Accueil chargé');
 		
 

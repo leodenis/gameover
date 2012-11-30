@@ -383,12 +383,16 @@ app.Helpers.videosVimeo = function(){
 	
 }
 /**
- * Création d'un sondage
- * @author Mathieu Dutto 
- * @requires  backbones.js
+ * Création d'un sondage avec Hightcharts
+ * @author Kévin La Rosa / Léo Denis
+ * @requires  backbones.js & Hightcharts
+ * @arguments prend en paramètre les options pour construire un hightcharts voir doc
  */
 
-
+app.Helpers.renderCharts = function(param){
+ 		var chart;
+		chart = new Highcharts.Chart(param);
+}
 
 
 
