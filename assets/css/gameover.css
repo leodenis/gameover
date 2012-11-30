@@ -1269,4 +1269,41 @@ button.messi .btn::-moz-focus-inner {
     -ms-transform: rotate(-22.5deg);
     -o-transform: rotate(-22.5deg);
 }
-    
+
+/*=========================================
+ * Commentaire sondage Léo
+ * =======================================*/
+
+#container_sondage{
+  background-color: ;
+  width:400px;
+  height:400px;
+  float:left;
+      }
+
+#commentaire{
+   width: 100px;
+   height: 100px;
+   float: left;
+   margin-top: 143px;
+   margin-left: -22px;
+   position: relative;
+   opacity: 1;
+   transition:All 2.5388s ease;
+   -webkit-transition:All 2.5388s ease;
+   -moz-transition:All 2.5388s ease;
+   -o-transition:All 2.5388s ease;
+}
+            
+#commentaire.played {
+    opacity: 1;
+}
+.commentaire_survivant{
+  color:#3c3b36;
+  font-weight: bold;
+}
+
+.commentaire_non_survivant{
+  color:#a6a094;
+  font-weight: bold;
+}
