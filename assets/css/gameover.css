@@ -30,11 +30,7 @@ header > a {
 
 
 body > div.show{
-	opacity:100%;
-	-webkit-transition: opacity 3s;
-    -moz-transition: opacity 3s;
-    -o-transition: opacity 3s;
-    transition: opacity 3s;
+	opacity:1;
 }
 
 header .countdown{
@@ -212,7 +208,11 @@ footer > span {
 }
 
 body > div {
-	opacity: 0;
+	opacity: 1;
+	-webkit-transition: opacity 3s;
+    -moz-transition: opacity 3s;
+    -o-transition: opacity 3s;
+    transition: opacity 3s;
 }
 
 #filAriane {

@@ -284,12 +284,8 @@ app.Views.home = Backbone.View.extend({
 	                 ]
 	                 }]
 	             };	
-<<<<<<< HEAD
 
-	     
-=======
 	    // génere un sondage
->>>>>>> e9334ea88c2f55f7c1ededb12fe08b948887bb9d
 		app.Helpers.renderCharts(paramChart);
 		console.log('Accueil chargé');
 		
@@ -333,15 +329,15 @@ app.Views.etape1 = Backbone.View.extend({
 		}
 		// Controle que nous n'ayons pas l'accueil de chargé
 	  	if($('#accueil:visible').length){
-	  		$('#accueil:visible').hide().empty();
+	  		$('#accueil:visible').removeClass('show').empty();
 	  	}
 	  	if($('#end:visible').length){	  		
-	  		$('#end:visible').hide().empty();
+	  		$('#end:visible').removeClass('show').empty();
 	  	}
 	  	//Fil ariane
 		app.Helpers.filAriane(app.Helpers.getLastQuestUnlock(),app.Helpers.getCurrentQuestion());
 	  	//Affiche la zone de rendu
-	  	this.$el.show();
+	  	this.$el.toggleClass('show');
 	  	// Lance l'animation d'introduction (Voir par la création d'un template html)
 	  	AnimationParam = {
 			variables : {
@@ -509,16 +505,16 @@ app.Views.question = Backbone.View.extend({
 		this.$el.html(' ');
 		// Controle que nous n'ayons pas l'accueil en non hide
 	  	if($('#accueil:visible').length){
-	  		$('#accueil:visible').hide().empty();
+	  		$('#accueil:visible').removeClass('show').empty();
 	  	}
 	  	if($('#end:visible').length){	  		
-	  		$('#end:visible').hide().empty();
+	  		$('#end:visible').removeClass('show').empty();
 	  	}
 	  	//Fil ariane
 		app.Helpers.filAriane(app.Helpers.getLastQuestUnlock(),app.Helpers.getCurrentQuestion());
 		
 	  	//Affiche la zone de rendu si on vient de l'accueil
-	  	this.$el.show();
+	  	this.$el.toggleClass('show');
 	  	//Affiche la question
 	  	this.render();
 	},
@@ -1453,10 +1449,8 @@ app.Views.mobileExperience = Backbone.View.extend({
 	// Fonction appelé automatiquement lors de l'instanciation de la vue
 	initialize : function() {
 		$('#filAriane').addClass('hidden'); // cacher le fil d'ariane
-		this.render();
-		
+		this.render();		
 	},
-	
 	render : function(){		
 		template = _.template($('#templateMobile').html(),{test:'kjjk'});
 		this.$el.show().html(template);
