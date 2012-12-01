@@ -1,3 +1,7 @@
 AddType video/webm .webm
 AddType video/ogg  .ogv
 AddType audio/ogg .ogg
+AddType video/webmv .webmv
+<filesMatch "\.(jpg|jpeg|png|gif|swf|m4v|mp4|ogv|webm|flv)$">
+Header set Cache-Control "max-age=604800, public"
+</filesMatch>

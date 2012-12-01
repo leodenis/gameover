@@ -56,7 +56,7 @@ app.Views.loader = Backbone.View.extend({
 					
 					note.html(message);
 				}
-			});
+			}).toggleClass('show');
 
 		//Lancement du rendu de chargement si ce n'est pas un iphone ou ipad
 		if((navigator.userAgent.match(/iPhone/i))||(navigator.userAgent.match(/iPad/i))){
@@ -71,63 +71,63 @@ app.Views.loader = Backbone.View.extend({
 
 	// Chargements des ressources Videos & sons & images
 	LoaderRender : function() {
-		//Définition des ressources (Définir les images)
-		app.Assets.images.porsche = app.loader.addImage('assets/img/porsche.jpg');
-		app.Assets.images.renault = app.loader.addImage('assets/img/renault.jpg');
-		app.Assets.images.bunker = app.loader.addImage('assets/img/bunker.jpg');
-		app.Assets.images.ritz = app.loader.addImage('assets/img/ritz.jpg');
-		app.Assets.images.rue = app.loader.addImage('assets/img/rue.jpg');
-		app.Assets.images.apocalysme = app.loader.addImage('assets/img/apocalypse.jpg');
-			
-		//Chargement du bon fichier video 
-		if (Modernizr.video) {
-		  if(Modernizr.video.webm == 'probably' || Modernizr.video.webm == 'maybe') {
-		  	app.Assets.videos.intro = app.loader.addVideo('assets/video/intro.webm', 'movie', 10);
-		  }else {
-		  	if (Modernizr.video.ogg == 'probably'|| Modernizr.video.ogg == 'maybe') {
-		  		console.log('je me lance');
-		    	app.Assets.videos.intro = app.loader.addVideo('assets/video/intro.ogg', 'movie', 10);
-		   	}else{ 
-				if (Modernizr.video.h264 =='probably'|| Modernizr.video.h264 == 'maybe'){
-		   			app.Assets.videos.intro = app.loader.addVideo('assets/video/intro.mp4', 'movie', 10);
-		   		}
-		   	}
-		  }
-		   	
-		} else {
-			//proposer du flash !!
-		}
+
+		//INSTANCE DU LOADER
+		app.loader = html5Preloader();
 		
-		//Chargement du bon fichier audio
+		//Déclaration des images
+		app.loader.addFiles('porsche*:assets/img/porsche.jpg','renault*:assets/img/renault.jpg','bunker*:assets/img/bunker.jpg','ritz*:assets/img/ritz.jpg','rue*:assets/img/rue.jpg','apocalysme*:assets/img/apocalypse.jpg'
+		); 
+		
+		
+		//Déclaration des sons
 		if (Modernizr.audio) {
 		  if(Modernizr.audio.mp3 == 'probably' || Modernizr.audio.mp3 == 'maybe') {	
-		       	app.Assets.sounds.boum = app.loader.addaudio('assets/audio/mp3/boum.mp3','boum',10);
-   			 	app.Assets.sounds.ambiant = app.loader.addaudio('assets/audio/mp3/ambiant.mp3','fond',10);
-   			 	app.Assets.sounds.tranquille = app.loader.addaudio('assets/audio/mp3/tranquille.mp3','tranquille',10);
+		       	app.loader.addFiles('boum*:assets/audio/mp3/boum.mp3');
+   			 	app.loader.addFiles('ambiance*:assets/audio/mp3/ambiant.mp3');
+   			 	app.loader.addFiles('tranquille*:assets/audio/mp3/tranquille.mp3');
 		  } else if (Modernizr.audio.ogg == 'probably'|| Modernizr.audio.ogg == 'maybe') {
-		       app.Assets.sounds.boum = app.loader.addaudio('assets/audio/ogg/boum.ogg','boum',10);
-   			   app.Assets.sounds.ambiant = app.loader.addaudio('assets/audio/ogg/ambiant.ogg','fond',10);
-   			   app.Assets.sounds.tranquille = app.loader.addaudio('assets/audio/ogg/tranquille.ogg','tranquille',10);
-		  } else if (Modernizr.audio.wav){
-		    	console.log('a encoder');
+   				app.loader.addFiles('boum*:assets/audio/ogg/boum.ogg');
+   			 	app.loader.addFiles('ambiance*:assets/audio/ogg/ambiant.ogg');
+   			 	app.loader.addFiles('tranquille*:assets/audio/ogg/tranquille.ogg');
+
+		  } else if (Modernizr.audio.wav == 'probably'|| Modernizr.audio.wav == 'maybe'){
+		       	app.loader.addFiles('boum*:assets/audio/wav/boum.wav');
+   			 	app.loader.addFiles('ambiance*:assets/audio/wav/ambiant.wav');
+   			 	app.loader.addFiles('tranquille*:assets/audio/wav/tranquille.wav');
 		  }
 		} else{
 			console.log('flash');
 		}
-		
-	
-		//Référence vers mon template de chargement
-		app.loader.templateLoader = this.templateLoader;
-		// On prépare notre noeud HTML a partir de son template
-		loaderHTML = _.template(this.templateLoader,{avancement:""});
-		// On l'affiche
-		$('#loader').html(loaderHTML);
-		
-		//Ecoute et répond jusqu'au moment ou toutes les ressources sont chargés
-		app.loader.addCompletionListener(function() {
+				
+
+		//Lorsque mon loader a fini de télécharger 
+		app.loader.on('finish', function(){ 
+			//Mise en place des corespondances avec les étapes
+			app.Assets.sounds = {
+				ambiant : app.loader.getFile("ambiance"),
+				boum : app.loader.getFile("boum"),
+				tranquille : app.loader.getFile("tranquille")
+			};
+			
+			//Probleme avec le loader en attente de réponse de son créateur 	
+			app.Assets.videos = {
+				//intro : app.loader.getFile("intro")
+			}
+			
+			app.Assets.images = {
+				intro : app.loader.getFile("porsche"),
+				porsche : app.loader.getFile("porsche"),
+				renault : app.loader.getFile("renault"),
+				bunker : app.loader.getFile("bunker"),
+				ritz : app.loader.getFile("ritz"),
+				rue : app.loader.getFile("rue"),
+				apocalysme : app.loader.getFile("apocalysme"),
+			}
+			
 			//Configuration du Son ambiant
-			//app.Assets.sounds.ambiant.loop = true;
-			//app.Assets.sounds.ambiant.volume = 0.1;
+			app.Assets.sounds.ambiant.loop = true;
+			app.Assets.sounds.ambiant.volume = 0.1;
 			app.Assets.sounds.boum.volume = 0.1;
 			app.Assets.sounds.tranquille.volume = 0.1;
 			//supprime le loader
@@ -139,24 +139,11 @@ app.Views.loader = Backbone.View.extend({
     		Backbone.history.start();
 		});
 		
-		//Ecoute et répond a chaque avancement du chargement
-		app.loader.addProgressListener(function(e) {
-			progression = e.completedCount+'/'+e.totalCount;
-			console.log('Chargement des assets en cours  : '+ progression);
-			templateLoader  = $('#templateLoader').html()		
-			loaderHTML = _.template(app.loader.templateLoader,{avancement:progression});
-		});
-		//Lance le loader
-		app.loader.start();
-		
-	},
+		app.loader.onerror = function(e){alert('Error occured while loading '+this.loadingFile); return true; };},
 
 });
 
-//gerer lancement son + mute
-//app.Assets.sounds.ambiant.pause();
-//app.Assets.sounds.ambiant.play();
-//app.Assets.sounds.ambiant.volume = 0,1
+
 /**
  * View de l'accueil
  * @author Kévin La Rosa & Mathieu Dutto
@@ -171,17 +158,17 @@ app.Views.home = Backbone.View.extend({
 	// Fonction appelé automatiquement lors de l'instanciation de la vue
 	initialize : function() {
 		if($('#question:visible').length){	  	
-	  		$('#question:visible').hide().empty();
+	  		$('#question:visible').removeClass('show').empty();
 	  	}
 	  	if($('#div:visible').length){	  		
-	  		$('#div:visible').hide().empty();
+	  		$('#div:visible').removeClass('show').empty();
 	  	}
 		//Fil ariane
 		app.Helpers.filAriane(app.Helpers.getLastQuestUnlock(),app.Helpers.getCurrentQuestion());	
 		// On cache les div courante
-		$('body > div:visible').hide();
+		$('body > div:visible').removeClass('show');
 		// On affiche la div accueil
-		$('#accueil').show();		
+		$('#accueil').toggleClass('show');
 		// Déclaration des templates
 		this.templateAccueil = $('#templateAccueil').html();
 	
@@ -204,14 +191,34 @@ app.Views.home = Backbone.View.extend({
 	
 
 	loaderVideo : function() {
-		//Crée son aparation avec animation css
-		$('#videoIntro').show().html(app.Assets.videos.intro);
-		console.log(app.Assets.videos.intro);
-		app.Assets.videos.intro.play();
+		app.Assets.videos.intro =  $('<video>');
+		if (Modernizr.video) {
+		  if(Modernizr.video.webm == 'probably' || Modernizr.video.webm == 'maybe') {
+		  		app.Assets.videos.intro.attr('src','assets/video/intro.webm');
+		  }else {
+		  	if (Modernizr.video.ogg == 'probably'|| Modernizr.video.ogg == 'maybe') {
+		    	app.Assets.videos.intro.attr('src','assets/video/intro.ogg');
+		   	}else{ 
+				if (Modernizr.video.h264 =='probably'|| Modernizr.video.h264 == 'maybe'){
+		   			app.Assets.videos.intro.attr('src','assets/video/intro.mp4');
+		   		}
+		   	}
+		  }
+		   	
+		} else {
+			//proposer du flash !!
+		}
 		app.Assets.videos.intro.volume = 0.3;
+		//Crée son aparation avec animation css
+		app.Assets.videos.intro.bind('canplaythrough',function(){
+			console.log('ici');
+			app.Assets.videos.intro[0].play();
+			app.Assets.videos.intro.className ='played';
+		});
+		$('#videoIntro').toggleClass('show').html(app.Assets.videos.intro);
 		var that = this;
-		app.Assets.videos.intro.addEventListener('ended',function(){
-			$('#videoIntro').hide('clip'); 
+		app.Assets.videos.intro.bind('ended',function(){
+			$('#videoIntro').removeClass('show');
 			app.users.get('1').attributes.videoWatch = 'true';
 			app.users.get('1').save();
 		 	that.renderAccueil();
