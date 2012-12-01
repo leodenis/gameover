@@ -234,10 +234,11 @@ app.Views.home = Backbone.View.extend({
 		//Valeur a récupérer par une requête ajax
 		var oui = 45;
  		var non = 55;
+ 		var chang = document.getElementById('commentaire');
+        chang.className="played"
 		paramChart = {
 	                 chart: {
 	                    renderTo: 'container_sondage',
-	                     plotBackgroundColor: '#FFFFFF',
 	                     plotBorderWidth: 0,
 	                     plotShadow: false
 	                 },
@@ -270,19 +271,25 @@ app.Views.home = Backbone.View.extend({
 	               
 	                     {
 	                         name: 'oui',
-	                         color:'#7FDD4C',
+	                         color:'#3c3b36',
 	                         y: oui,
 	                  
 	                     },
 	                     {
 	                         name: 'non',
+	                        color:'#a6a094',
 	                         y: non,
 	                     
 	                     }
 	                 ]
 	                 }]
 	             };	
+<<<<<<< HEAD
+
+	     
+=======
 	    // génere un sondage
+>>>>>>> e9334ea88c2f55f7c1ededb12fe08b948887bb9d
 		app.Helpers.renderCharts(paramChart);
 		console.log('Accueil chargé');
 		
