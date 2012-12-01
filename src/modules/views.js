@@ -218,7 +218,7 @@ app.Views.home = Backbone.View.extend({
 		$('#videoIntro').toggleClass('show').html(app.Assets.videos.intro);
 		var that = this;
 		app.Assets.videos.intro.bind('ended',function(){
-			$('#videoIntro').removeClass('show');
+			$('#videoIntro').removeClass('show').empty();
 			app.users.get('1').attributes.videoWatch = 'true';
 			app.users.get('1').save();
 		 	that.renderAccueil();
