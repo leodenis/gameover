@@ -88,9 +88,9 @@ app.Views.loader = Backbone.View.extend({
 					apocalysme : app.Assets.files[5],
 				}
 				app.Assets.sounds = {
-					ambiant : app.Assets.files[7],
+					ambiant : app.Assets.files[5],
 					boum : app.Assets.files[6],
-					tranquille : app.Assets.files[5]
+					tranquille : app.Assets.files[7]
 				};
 				//Configuration du Son ambiant
 				app.Assets.sounds.ambiant.loop = true;
