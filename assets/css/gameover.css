@@ -34,7 +34,6 @@ header > a {
 
 body > div.show{
 	opacity:1;
-	height:200px;
 	
 }
 
@@ -213,7 +212,7 @@ footer > span {
 }
 
 body > div {
-	opacity: 1;
+	opacity: 0;
 	-webkit-transition: opacity 3s;
     -moz-transition: opacity 3s;
     -o-transition: opacity 3s;

@@ -483,7 +483,7 @@ app.Views.question = Backbone.View.extend({
 		app.Helpers.filAriane(app.Helpers.getLastQuestUnlock(),app.Helpers.getCurrentQuestion());
 		
 	  	//Affiche la zone de rendu si on vient de l'accueil
-	  	this.$el.toggleClass('show');
+	  	this.$el.attr('class','show');
 	  	//Affiche la question
 	  	this.render();
 	},
