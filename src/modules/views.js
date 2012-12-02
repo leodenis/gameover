@@ -410,6 +410,7 @@ app.Views.etape1 = Backbone.View.extend({
 	popupInfo : function(){
 		new Messi('Nos « ancêtres », les Mayas, qui en savaient plus que nous sur la puissance des astres nous ont dévoilés leurs secrets.', {
 			title: 'Commencer l\'aventure',
+			modal: true,
 			buttons: [{
 					id: 0, 
 					label: 'Oui', 
@@ -649,6 +650,7 @@ app.Views.etape2 = app.Views.question.extend({
 		var pos = marker.latLng.$a;
 		var lat = marker.latLng.ab;
 		var options = {
+			modal: true,
 			closeButton: true,
 			buttons: [{
 					id: 0, 
@@ -1017,6 +1019,7 @@ app.Views.etape6 = app.Views.question.extend({
 		var lat = marker.latLng.ab;
 		var options = {
 			closeButton: true,
+			modal: true,
 			buttons: [{
 					id: 0, 
 					label: 'Oui', 
@@ -1305,6 +1308,7 @@ app.Views.etape8 = app.Views.question.extend({
 		var pos = marker.latLng.$a;
 		var lat = marker.latLng.ab;
 		var options = {
+			modal: true,
 			closeButton: true,
 			buttons: [{
 					id: 0, 
