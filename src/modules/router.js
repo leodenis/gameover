@@ -4,7 +4,7 @@ app.Router = Backbone.Router.extend({
   },
   
   routes: {
-     '': '',
+     '': 'root',
     'home':'home',
     'etape1' : 'etape1',
     'etape2': 'etape2',
