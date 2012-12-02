@@ -74,7 +74,7 @@ header > a:nth-of-type(2) {
   float:right;
   width:440px;
   height:100px;
-  margin-right:4%;
+  margin:1% 0 0 5%;
 }
 
 .countdownHolder{
@@ -370,6 +370,10 @@ h2 {
  * ========================================*/
 div.messi-content{
 	color:black;
+}
+div.messi-content > img{
+	text-align:center;
+	width:482px;
 }
 /* Messi CSS */
 
@@ -1333,3 +1337,27 @@ button.messi .btn::-moz-focus-inner {
   color:#a6a094;
   font-weight: bold;
 }
+/*=========================================
+ * loader css
+ * =======================================*/
+
+#loader{
+	top:0;
+	left:0;
+	opacity:1;
+	background-color:black;
+	background-color:rgba(0,0,0,0.95);
+	position:fixed;
+	z-index:9999;
+}
+#loader .fallback {
+	top:50%;
+	position:absolute;
+	text-align:center;
+	width:100%;
+	color:white;
+	vertical-align: middle;
+	display: block;
+	font-style: normal;
+}
+

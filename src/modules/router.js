@@ -1,6 +1,5 @@
 app.Router = Backbone.Router.extend({
   initialize: function () {
-
   },
   
   routes: {
@@ -50,8 +49,6 @@ app.Router = Backbone.Router.extend({
   	if(app.Helpers.userIsPlaying()){
 	  	console.log('Lancement de la question 1');
 	  	statut = app.Helpers.questionIsUnlock(1);
-	  	//console.log(statut);
-	  	//routage d'accés
 	  	if(statut)
 	  		app.views.etape2 = new app.Views.etape2;
 	  	else
