@@ -78,10 +78,9 @@ app.Views.loader = Backbone.View.extend({
             getFilesToLoadJSON:"assets/json/confLoader.json",
             onBeforeLoad:       function () {},
             onComplete:         function () {
-<<<<<<< HEAD
-=======
+
             	console.log(app.Assets.files);
->>>>>>> 03959fa54b4ce814b903e76e5a7ab542420d0557
+
             	app.Assets.images = {
 					porsche : app.Assets.files[0],
 					renault : app.Assets.files[1],
@@ -91,11 +90,7 @@ app.Views.loader = Backbone.View.extend({
 					apocalysme : app.Assets.files[5],
 				}
 				app.Assets.sounds = {
-<<<<<<< HEAD
-					ambiant : app.Assets.files[5],
-=======
 					ambiant : app.Assets.files[8],
->>>>>>> 03959fa54b4ce814b903e76e5a7ab542420d0557
 					boum : app.Assets.files[6],
 					tranquille : app.Assets.files[7]
 				};

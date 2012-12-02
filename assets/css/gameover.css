@@ -5,6 +5,9 @@ body {
 	background:url("../img/fond.jpg") center top repeat fixed;
 	color:#FFF;
 }
+video{
+	z-index: 200;
+}
 /*************** HEADER ****************/
 header {
 	width:100%;
@@ -31,6 +34,7 @@ header > a {
 
 body > div.show{
 	opacity:1;
+	
 }
 
 header .countdown{
@@ -208,7 +212,7 @@ footer > span {
 }
 
 body > div {
-	opacity: 1;
+	opacity: 0;
 	-webkit-transition: opacity 3s;
     -moz-transition: opacity 3s;
     -o-transition: opacity 3s;
@@ -370,6 +374,10 @@ h2 {
  * ========================================*/
 div.messi-content{
 	color:black;
+}
+div.messi-content > img{
+	text-align:center;
+	width:482px;
 }
 /* Messi CSS */
 
@@ -1333,3 +1341,27 @@ button.messi .btn::-moz-focus-inner {
   color:#a6a094;
   font-weight: bold;
 }
+/*=========================================
+ * loader css
+ * =======================================*/
+
+#loader{
+	top:0;
+	left:0;
+	opacity:1;
+	background-color:black;
+	background-color:rgba(0,0,0,0.95);
+	position:fixed;
+	z-index:9999;
+}
+#loader .fallback {
+	top:50%;
+	position:absolute;
+	text-align:center;
+	width:100%;
+	color:white;
+	vertical-align: middle;
+	display: block;
+	font-style: normal;
+}
+
