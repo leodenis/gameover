@@ -71,76 +71,45 @@ app.Views.loader = Backbone.View.extend({
 
 	// Chargements des ressources Videos & sons & images
 	LoaderRender : function() {
-
-		//INSTANCE DU LOADER
-		app.loader = html5Preloader();
-		
-		//Déclaration des images
-		app.loader.addFiles('porsche*:assets/img/porsche.jpg','renault*:assets/img/renault.jpg','bunker*:assets/img/bunker.jpg','ritz*:assets/img/ritz.jpg','rue*:assets/img/rue.jpg','apocalysme*:assets/img/apocalypse.jpg'
-		); 
-		
-		
-		//Déclaration des sons
-		if (Modernizr.audio) {
-		  if(Modernizr.audio.mp3 == 'probably' || Modernizr.audio.mp3 == 'maybe') {	
-		       	app.loader.addFiles('boum*:assets/audio/mp3/boum.mp3');
-   			 	app.loader.addFiles('ambiance*:assets/audio/mp3/ambiant.mp3');
-   			 	app.loader.addFiles('tranquille*:assets/audio/mp3/tranquille.mp3');
-		  } else if (Modernizr.audio.ogg == 'probably'|| Modernizr.audio.ogg == 'maybe') {
-   				app.loader.addFiles('boum*:assets/audio/ogg/boum.ogg');
-   			 	app.loader.addFiles('ambiance*:assets/audio/ogg/ambiant.ogg');
-   			 	app.loader.addFiles('tranquille*:assets/audio/ogg/tranquille.ogg');
-
-		  } else if (Modernizr.audio.wav == 'probably'|| Modernizr.audio.wav == 'maybe'){
-		       	app.loader.addFiles('boum*:assets/audio/wav/boum.wav');
-   			 	app.loader.addFiles('ambiance*:assets/audio/wav/ambiant.wav');
-   			 	app.loader.addFiles('tranquille*:assets/audio/wav/tranquille.wav');
-		  }
-		} else{
-			console.log('flash');
-		}
-				
-
-		//Lorsque mon loader a fini de télécharger 
-		app.loader.on('finish', function(){ 
-			//Mise en place des corespondances avec les étapes
-			app.Assets.sounds = {
-				ambiant : app.loader.getFile("ambiance"),
-				boum : app.loader.getFile("boum"),
-				tranquille : app.loader.getFile("tranquille")
-			};
-			
-			//Probleme avec le loader en attente de réponse de son créateur 	
-			app.Assets.videos = {
-				//intro : app.loader.getFile("intro")
-			}
-			
-			app.Assets.images = {
-				intro : app.loader.getFile("porsche"),
-				porsche : app.loader.getFile("porsche"),
-				renault : app.loader.getFile("renault"),
-				bunker : app.loader.getFile("bunker"),
-				ritz : app.loader.getFile("ritz"),
-				rue : app.loader.getFile("rue"),
-				apocalysme : app.loader.getFile("apocalysme"),
-			}
-			
-			//Configuration du Son ambiant
-			app.Assets.sounds.ambiant.loop = true;
-			app.Assets.sounds.ambiant.volume = 0.1;
-			app.Assets.sounds.boum.volume = 0.1;
-			app.Assets.sounds.tranquille.volume = 0.1;
-			//supprime le loader
-			console.log('loader chargé');
-			$('#loader').remove();
-			// Initialisation du router, c'est lui qui va instancier nos vues
-    		app.router = new app.Router();
-    		//Met en route la surveillance de l'url
-    		Backbone.history.start();
-		});
-		
-		app.loader.onerror = function(e){alert('Error occured while loading '+this.loadingFile); return true; };},
-
+		var i = 0;
+		var data = [];
+		var loaderAnimation = $("#loader").toggleClass('show').LoaderAnimation();
+		$.html5Loader({
+            getFilesToLoadJSON:"assets/json/confLoader.json",
+            onBeforeLoad:       function () {},
+            onComplete:         function () {
+            	app.Assets.images = {
+					porsche : app.Assets.files[0],
+					renault : app.Assets.files[1],
+					bunker : app.Assets.files[2],
+					ritz : app.Assets.files[3],
+					rue : app.Assets.files[4],
+					apocalysme : app.Assets.files[5],
+				}
+				app.Assets.sounds = {
+					ambiant : app.Assets.files[5],
+					boum : app.Assets.files[6],
+					tranquille : app.Assets.files[7]
+				};
+				//Configuration du Son ambiant
+				app.Assets.sounds.ambiant.loop = true;
+				app.Assets.sounds.ambiant.volume = 0.1;
+				app.Assets.sounds.boum.volume = 0.1;
+				app.Assets.sounds.tranquille.volume = 0.1;
+				//supprime le loader
+				console.log('loader chargé');
+				$('#loader').remove();
+				// Initialisation du router, c'est lui qui va instancier nos vues
+	    		app.router = new app.Router();
+	    		//Met en route la surveillance de l'url
+	    		Backbone.history.start();
+            },
+            onElementLoaded:    function ( obj, elm) { 
+            	app.Assets.files.push(elm);
+            },
+            onUpdate:function ( percentage ) {loaderAnimation.update}      
+		}); 
+	}
 });
 
 
@@ -229,13 +198,13 @@ app.Views.home = Backbone.View.extend({
 	
 	renderAccueil: function(){	
 		accueilHTML = _.template($('#templateAccueil').html(),{});
-		// FAIT MOI UNE FUCKING ANIMTION OPACITY AVEC UN CSS MATH
 		$('#accueil').html(accueilHTML);
 		//Valeur a récupérer par une requête ajax
 		var oui = 45;
  		var non = 55;
  		var chang = document.getElementById('commentaire');
         chang.className="played"
+        //paramètre du sondage
 		paramChart = {
 	                 chart: {
 	                    renderTo: 'container_sondage',
@@ -711,7 +680,6 @@ app.Views.etape2 = app.Views.question.extend({
 					app.router.navigate('etape3', true);
 				}
 			}
-			app.Assets.images.renault.style.width = '520px';
 			new Messi(app.Assets.images.renault,options);
 		}
 	}
@@ -1079,7 +1047,6 @@ app.Views.etape6 = app.Views.question.extend({
 					app.router.navigate('etape7', true);
 				}
 			}
-			app.Assets.images.bunker.style.width ='600px';
 			new Messi(app.Assets.images.bunker,options);
 		}
 	}
@@ -1351,7 +1318,6 @@ app.Views.etape8 = app.Views.question.extend({
 			
 		}
 		if(pos == 48.85196 && lat == 2.421069999999986){
-			//app.Assets.sounds.boum.play();
 			app.Assets.sounds.boum.play();
 		 	options.title = 'Vous comptez aller à droite ?'
 			options.callback = function(val){
@@ -1361,7 +1327,6 @@ app.Views.etape8 = app.Views.question.extend({
 					app.router.navigate('etape9', true);
 				}
 			}
-			app.Assets.images.apocalysme.style.width ='600px';
 			new Messi(app.Assets.images.apocalysme,options);
 			
 		}else{
@@ -1374,7 +1339,6 @@ app.Views.etape8 = app.Views.question.extend({
 					app.router.navigate('etape9', true);
 				}
 			}
-			app.Assets.images.rue.style.width ='600px';
 			new Messi(app.Assets.images.rue,options);
 		 	
 		 }
@@ -1398,32 +1362,37 @@ app.Views.etape9 = Backbone.View.extend({
 		// Controle que nous n'ayons pas l'accueil de chargé
 		console.log()
 	  	if($('#accueil:visible').length){
-	  		$('#accueil:visible').hide().empty();
+	  		$('#accueil:visible').removeClass('show').empty();
 	  	}
 	  	
 	  	console.log($('#question:visible'));
 	  	if($('#question:visible').length){	  		
-	  		$('#question:visible').hide().empty();
+	  		$('#question:visible').removeClass('show').empty();
 	  	}
-	  	this.$el.show();
+	  	this.$el.toggleClass('show');
 		this.render();
 	},
 	
 	render : function(){
-		this.$el.html(_.template($('#endTemplate').html(),{}));
-		//score
-		
 		console.log(app.Helpers.getCuid());
 		score = app.Helpers.getScore();
-		alert(score);
+		console.log(score);
 		if(score <= 50){
-			alert('tu vas crever :X');
 			//push sur le serveur le score
 			app.Helpers.SetResultSurvive(false);
+			resultat = {
+				resultatTitle : 'Aie ! la fin est proche pour toi', 
+				resultatAnalyse: ''
+			}
 		}else{
-			alert('tu vas survivre champion !!');
 			app.Helpers.SetResultSurvive(true);
+			resultat = {
+				resultatTitle : 'tu vas survivre champion !!', 
+				resultatAnalyse: ''
+			}
 		}
+		console.log(_.template($('#endTemplate').html(),resultat));
+		this.$el.html(_.template($('#endTemplate').html(),resultat));
 	}
 
 	

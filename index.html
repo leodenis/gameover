@@ -79,8 +79,8 @@
                         <div id="container_sondage">
                         </div>
                         <div id="commentaire">
-                            <p class="commentaire_survivant">Survivent</p>
-                            <p class="commentaire_non_survivant">ne survivent pas</p> 
+                            <p class="commentaire_survivant">66% Survivent</p>
+                            <p class="commentaire_non_survivant">44% Ne survivent pas</p> 
                         </div>
                     </section>
                     
@@ -168,33 +168,21 @@
         <!---Template question end -->
         <script type="text/template" id="endTemplate">
            <div itemscope itemtype="http://schema.org/ItemList" id="container">
-                <section>
-                    <p>Félicitaions !</p>
-                </section> 
-                
-                <section id="accueil">
-                
-                    <section itemprop="image" id="banner"> 
-                        
+               <section itemprop="image" id="banner"> </section>
+               <section>
+                    <div class="clearfix"> </div>
+                    <section itemprop="text" id="stats">
+                        <h2 itemprop="keywords"><%= resultatTitle %></h2>
+                        <div id="commentaire">
+                            <p><%= resultatAnalyse %></p>
+                        </div>
                     </section>
                     
-                    <section itemprop="text" id="stats_final">
-                        
+                    <section itemprop="text" id="jeu">
+                        <h2 itemprop="keywords">Invite tes amies !</h2>
                     </section>
-    
-                    <section itemprop="text" id="questions_final">
-                        
-                    </section>
-                                
-                    <section itemprop="text" id="facebook">  
-                        <p>Tu as aimé lexpérience ? Partages-la sur FaceBook !</p>
-                    </section>
-    
-                    <section itemprop="text" id="newsletter">  
-                        <p>Newsletter</p>
-                    </section>
-
-               </section>
+                    <div class="clearfix"> </div>
+                </section>
             </div>
         </script>
         
@@ -216,7 +204,6 @@
             <a itemprop="url" href="http://facebook.com/gameover" title="Voir notre page Facebook"></a>
             <a itemprop="url" href="http://twitter.com/gameover" title="Voir notre compte Twitter"></a>
             <span>&copy; hétic 2012 - tous droits réservés</span>
-            <span>à propos - contact</span>
             <div itemprop="image" id="hand-left" class="hands"><div></div></div>
             <div itemprop="image" id="hand-center" class="hands"></div>
             <div itemprop="image" id="hand-right" class="hands"></div>
@@ -242,12 +229,6 @@
     <script type="text/javascript" src="assets/js/underscore-min.js"></script>
     <script type="text/javascript" src="assets/js/backbone.js"></script>
     <script type="text/javascript" src="assets/js/backbone-localstorage.js"></script>
-  
-    <script type="text/javascript" src="assets/js/pxLoader/PxLoader.js"></script>
-    <!--
-    <script type="text/javascript" src="assets/js/pxLoader/PxLoaderImage.js"></script>
-    <script type="text/javascript" src="assets/js/pxLoader/PxLoaderAudio.js"></script>
-    <script type="text/javascript" src="assets/js/pxLoader/PxLoaderVideo.js"></script>-->
     <script type="text/javascript" src="assets/js/html5Preloader.js"></script>
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script type="text/javascript" src="assets/js/messi.min.js"></script>
@@ -256,13 +237,15 @@
     <script type="text/javascript" src="assets/js/WebGL/three.min.js"></script>
     <script type="text/javascript" src="assets/js/WebGL/ColladaLoader.js"></script>
     <script type="text/javascript" src="assets/js/jquery.countdown.js"></script>
+    <script type="text/javascript" src="assets/js/froogaloop.js"></script>
     <script type="text/javascript" src="assets/js/highcharts.js"></script>
-
+    <script type="text/javascript" src="assets/js/jQuery.html5Loader.min.js"></script>
+    <script type="text/javascript" src="assets/js/jQuery.html5Loader.circular.js"></script>
     <!-- Base de l'application Backbone JS -->
     <script type="text/javascript" src="src/app.js"></script>
 	
 	<!-- Froogaloop -->
-	<script type="text/javascript" src="assets/js/froogaloop.js"></script>
+
 	
     <!-- Les modules de l'application, l'ordre ne compte pas -->
     <script type="text/javascript" src="src/modules/router.js"></script>
