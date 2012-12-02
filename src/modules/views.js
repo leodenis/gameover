@@ -78,7 +78,6 @@ app.Views.loader = Backbone.View.extend({
             getFilesToLoadJSON:"assets/json/confLoader.json",
             onBeforeLoad:       function () {},
             onComplete:         function () {
-            	console.log(app.Assets.files)
             	app.Assets.images = {
 					porsche : app.Assets.files[0],
 					renault : app.Assets.files[1],
@@ -1363,20 +1362,21 @@ app.Views.etape9 = Backbone.View.extend({
 		// Controle que nous n'ayons pas l'accueil de chargé
 		console.log()
 	  	if($('#accueil:visible').length){
-	  		$('#accueil:visible').hide().empty();
+	  		$('#accueil:visible').removeClass('show').empty();
 	  	}
 	  	
 	  	console.log($('#question:visible'));
 	  	if($('#question:visible').length){	  		
-	  		$('#question:visible').hide().empty();
+	  		$('#question:visible').removeClass('show').empty();
 	  	}
-	  	this.$el.show();
+	  	this.$el.toggleClass('show');
 		this.render();
 	},
 	
 	render : function(){
 		console.log(app.Helpers.getCuid());
 		score = app.Helpers.getScore();
+		console.log(score);
 		if(score <= 50){
 			//push sur le serveur le score
 			app.Helpers.SetResultSurvive(false);
