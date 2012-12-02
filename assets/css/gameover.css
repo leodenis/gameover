@@ -6,6 +6,9 @@ body {
 	color:#FFF;
 	padding:0 0 167px 0;
 }
+video{
+	z-index: 200;
+}
 /*************** HEADER ****************/
 header {
 	width:100%;
@@ -31,6 +34,8 @@ header > a {
 
 body > div.show{
 	opacity:1;
+	height:200px;
+	
 }
 
 header .countdown{
