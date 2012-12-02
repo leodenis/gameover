@@ -78,6 +78,10 @@ app.Views.loader = Backbone.View.extend({
             getFilesToLoadJSON:"assets/json/confLoader.json",
             onBeforeLoad:       function () {},
             onComplete:         function () {
+<<<<<<< HEAD
+=======
+            	console.log(app.Assets.files);
+>>>>>>> 03959fa54b4ce814b903e76e5a7ab542420d0557
             	app.Assets.images = {
 					porsche : app.Assets.files[0],
 					renault : app.Assets.files[1],
@@ -87,7 +91,11 @@ app.Views.loader = Backbone.View.extend({
 					apocalysme : app.Assets.files[5],
 				}
 				app.Assets.sounds = {
+<<<<<<< HEAD
 					ambiant : app.Assets.files[5],
+=======
+					ambiant : app.Assets.files[8],
+>>>>>>> 03959fa54b4ce814b903e76e5a7ab542420d0557
 					boum : app.Assets.files[6],
 					tranquille : app.Assets.files[7]
 				};
@@ -306,7 +314,7 @@ app.Views.etape1 = Backbone.View.extend({
 	  	//Fil ariane
 		app.Helpers.filAriane(app.Helpers.getLastQuestUnlock(),app.Helpers.getCurrentQuestion());
 	  	//Affiche la zone de rendu
-	  	this.$el.toggleClass('show');
+	  	this.$el.attr('class','show');
 	  	// Lance l'animation d'introduction (Voir par la création d'un template html)
 	  	AnimationParam = {
 			variables : {
@@ -409,6 +417,7 @@ app.Views.etape1 = Backbone.View.extend({
 	popupInfo : function(){
 		new Messi('Nos « ancêtres », les Mayas, qui en savaient plus que nous sur la puissance des astres nous ont dévoilés leurs secrets.', {
 			title: 'Commencer l\'aventure',
+			modal: true,
 			buttons: [{
 					id: 0, 
 					label: 'Oui', 
@@ -483,7 +492,7 @@ app.Views.question = Backbone.View.extend({
 		app.Helpers.filAriane(app.Helpers.getLastQuestUnlock(),app.Helpers.getCurrentQuestion());
 		
 	  	//Affiche la zone de rendu si on vient de l'accueil
-	  	this.$el.toggleClass('show');
+	  	this.$el.attr('class','show');
 	  	//Affiche la question
 	  	this.render();
 	},
@@ -648,6 +657,7 @@ app.Views.etape2 = app.Views.question.extend({
 		var pos = marker.latLng.$a;
 		var lat = marker.latLng.ab;
 		var options = {
+			modal: true,
 			closeButton: true,
 			buttons: [{
 					id: 0, 
@@ -1016,6 +1026,7 @@ app.Views.etape6 = app.Views.question.extend({
 		var lat = marker.latLng.ab;
 		var options = {
 			closeButton: true,
+			modal: true,
 			buttons: [{
 					id: 0, 
 					label: 'Oui', 
@@ -1304,6 +1315,7 @@ app.Views.etape8 = app.Views.question.extend({
 		var pos = marker.latLng.$a;
 		var lat = marker.latLng.ab;
 		var options = {
+			modal: true,
 			closeButton: true,
 			buttons: [{
 					id: 0, 

@@ -6,6 +6,7 @@
  * @requires  backbones.js
  */
 app.Helpers.animation = function(options){
+	
 	//templating et injection dom ok
 	options.that.$el.html(_.template(options.template,options.variables));
 	$('#changetexte').toggleClass('played');
