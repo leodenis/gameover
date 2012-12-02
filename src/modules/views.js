@@ -78,6 +78,7 @@ app.Views.loader = Backbone.View.extend({
             getFilesToLoadJSON:"assets/json/confLoader.json",
             onBeforeLoad:       function () {},
             onComplete:         function () {
+            	console.log(app.Assets.files);
             	app.Assets.images = {
 					porsche : app.Assets.files[0],
 					renault : app.Assets.files[1],
@@ -87,7 +88,7 @@ app.Views.loader = Backbone.View.extend({
 					apocalysme : app.Assets.files[5],
 				}
 				app.Assets.sounds = {
-					ambiant : app.Assets.files[5],
+					ambiant : app.Assets.files[8],
 					boum : app.Assets.files[6],
 					tranquille : app.Assets.files[7]
 				};
@@ -306,7 +307,7 @@ app.Views.etape1 = Backbone.View.extend({
 	  	//Fil ariane
 		app.Helpers.filAriane(app.Helpers.getLastQuestUnlock(),app.Helpers.getCurrentQuestion());
 	  	//Affiche la zone de rendu
-	  	this.$el.toggleClass('show');
+	  	this.$el.attr('class','show');
 	  	// Lance l'animation d'introduction (Voir par la création d'un template html)
 	  	AnimationParam = {
 			variables : {
