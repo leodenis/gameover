@@ -12,6 +12,7 @@
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="stylesheet" href="assets/css/style.css" type="text/css" media="screen"  />
         <link rel="stylesheet" href="assets/css/gameover.css" type="text/css" media="screen"  />
+        <link type="text/css" rel="stylesheet" media="only screen and (max-device-width: 480px)" href="assets/css/mobile.css" />
         <!--[if lt IE 9]><script src="assets/js/html5shiv.js"></script><![endif]-->
     </head>
     <body>
@@ -100,12 +101,8 @@
         
         <!---Template question mobile-->
         <script type="text/template" id="templateMobile">
-              <section>
-                  <header><%= test %></header>
-                  <article>
-                      <p>dkjdkd</p>
-                  </article>
-              </section>
+                  <h1><%= phrase %></h1>
+  
         </script>
         
         
@@ -247,9 +244,6 @@
     <script type="text/javascript" src="assets/js/jQuery.html5Loader.circular.js"></script>
     <!-- Base de l'application Backbone JS -->
     <script type="text/javascript" src="src/app.js"></script>
-	
-	<!-- Froogaloop -->
-
 	
     <!-- Les modules de l'application, l'ordre ne compte pas -->
     <script type="text/javascript" src="src/modules/router.js"></script>
