@@ -361,11 +361,59 @@ app.Helpers.videosVimeo = function(){
         player.api('setColor', '111');
         player.api('setVolume', 0.1);
         
+        player.input = $("#"+player_id+" + div > .progressionButton");
+		player.div = player.input.parent();
+		
+		// pour une progression en décompte secondes :
+		player.max = player.input.data('min');
+		
+		// trace les canvas pour afficher la progression
+		player.circle = $('<canvas />');
+		player.color = $('<canvas />');
+		player.div.append(player.circle);
+		player.div.append(player.color);
+		
+		player.ctx = player.circle[0].getContext('2d');
+		player.ctx.beginPath();
+		player.ctx.arc(50,50,47,0,2*Math.PI);
+		player.ctx.lineWidth = 6;
+		player.ctx.strokeStyle = "rgba(226,15,15,1)";
+		player.ctx.stroke();
+        
         // lorsqu'on clique sur le bouton play d'une video
         player.addEvent('play', function(data) {
         	// coupe la musique d'ambiance du site
         	app.Assets.sounds.ambiant.pause();
-        	// joue la vidéo
+        	
+        	// toutes les 1 seconde
+            setInterval(function(){
+				// récupère le temps actuel dans la vidéo
+				player.api('getCurrentTime', function (value, player_id) {
+					player.currentTimeValue = Math.round(value);
+				});
+				// récupère la durée de la vidéo
+				player.api('getDuration', function (value, player_id) {
+					player.durationValue = Math.round(value);
+					// inverse min et max par rapport au décompte et non la progression
+					player.min = player.durationValue;
+					
+					// affecte le temps restant à la valeur de l'input progression
+					player.timeLeft = player.durationValue - player.currentTimeValue;
+					player.input.val(player.timeLeft);
+				
+					// tracé de la progression par rapport à la valeur de l'input et les valeurs min / max
+					player.ratio = (player.input.val() - player.min) / (player.max - player.min);
+					player.ctx = player.color[0].getContext('2d');
+					player.ctx.clearRect(0,0,100,100);
+					player.ctx.beginPath();
+					player.ctx.arc(50, 50, 47, -1/2 * Math.PI, player.ratio * 2 * Math.PI -1/2 * Math.PI);
+					player.ctx.lineWidth = 6;
+					player.ctx.strokeStyle = "000";
+					player.ctx.stroke();
+				});
+				
+	        },1000);
+	        // joue la vidéo
         	player.api('play');
     	}, false);
     	
@@ -381,7 +429,6 @@ app.Helpers.videosVimeo = function(){
 			app.Assets.sounds.ambiant.play();
         });
 	}
-	
 }
 /**
  * Création d'un sondage avec Hightcharts

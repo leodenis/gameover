@@ -688,9 +688,6 @@ app.Views.etape2 = app.Views.question.extend({
 			new Messi(app.Assets.images.renault,options);
 		}
 	}
-	
-	
-	
 });
 
 
@@ -772,13 +769,12 @@ app.Views.etape3 = app.Views.question.extend({
 			renderer_livre.render( scene_livre, camera_livre );
 		}
 		function iPad_Apple(){
-
 			var loader = new THREE.ColladaLoader();
 			loader.options.convertUpAxis = true;
 			loader.load( 'assets/models/Apple iPad.dae', function ( collada ) {
 
 				dae = collada.scene;
-				skin = collada.skins[ 0 ];
+				skin = collada.skins[0];
 
 				// Scale-up the model so that we can see it:
 				dae.scale.x = dae.scale.y = dae.scale.z = 45;
@@ -786,7 +782,6 @@ app.Views.etape3 = app.Views.question.extend({
 
 				init_iPad();
 				animate_iPad();
-
 			} );
 		}
 		function init_iPad() {

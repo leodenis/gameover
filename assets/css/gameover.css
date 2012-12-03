@@ -5,7 +5,7 @@ body {
 	background:url("../img/fond.jpg") center top repeat fixed;
 	color:#FFF;
 }
-video{
+video {
 	z-index: 200;
 }
 /*************** HEADER ****************/
@@ -91,41 +91,32 @@ header > a:nth-of-type(2) {
 
 /* Position des divs contenants les chiffres */
 .position{
-  display: inline-block;
-  height: 1.6em;
-  overflow: hidden;
-  position: relative;
-  width: 1.05em;
+	display: inline-block;
+	height: 1.6em;
+	overflow: hidden;
+	position: relative;
+	width: 1.05em;
 }
 
 /* Transition entre les chiffres */
 .digit{
-  position:absolute;
-  display:block;
-  width:1em;
-  background-color:#C0C0BF;
-  border-radius:0.2em;
-  text-align:center;
-  color:#403f3e;
-  letter-spacing:-1px;
+	position:absolute;
+	display:block;
+	width:1em;
+	background-color:#C0C0BF;
+	border-radius:0.2em;
+	text-align:center;
+	color:#403f3e;
+	letter-spacing:-1px;
 }
 
 .digit.static{
-  box-shadow:1px 1px 1px rgba(4, 4, 4, 0.35);
-  /*background-color:#c0c0bf;*/
-  background-image: linear-gradient(bottom, #c0c0bf 50%, #bbbbba 50%);
-  background-image: -o-linear-gradient(bottom, #c0c0bf 50%, #bbbbba 50%);
-  background-image: -moz-linear-gradient(bottom, #c0c0bf 50%, #bbbbba 50%);
-  background-image: -webkit-linear-gradient(bottom, #c0c0bf 50%, #bbbbba 50%);
-  background-image: -ms-linear-gradient(bottom, #c0c0bf 50%, #bbbbba 50%);
-  
-  background-image: -webkit-gradient(
-    linear,
-    left bottom,
-    left top,
-    color-stop(0.5, #bbbbba),
-    color-stop(0.5, #c0c0bf)
-  );
+	box-shadow:1px 1px 1px rgba(4, 4, 4, 0.35);
+	background-image:-webkit-linear-gradient(top, rgba(255,255,255,0.4), rgba(0,0,0,0.3));
+	background-image:-moz-linear-gradient(top, rgba(255,255,255,0.4), rgba(0,0,0,0.3));
+	background-image:-ms-linear-gradient(top, rgba(255,255,255,0.4), rgba(0,0,0,0.3));
+	background-image:-o-linear-gradient(top, rgba(255,255,255,0.4), rgba(0,0,0,0.3));
+	background-image:linear-gradient(top, rgba(255,255,255,0.4), rgba(0,0,0,0.3));
 }
 
 /**
@@ -379,6 +370,7 @@ div.messi-content > img{
 	text-align:center;
 	width:482px;
 }
+
 /* Messi CSS */
 
 .messi-modal {
@@ -391,7 +383,6 @@ div.messi-content > img{
   background-color: #000;
   opacity: 0;
 }
-
 .messi {
   position: absolute;
   padding: 0;
@@ -399,7 +390,6 @@ div.messi-content > img{
   font-size: 16px;
   text-shadow: none;
 }
-
 .messi-box {
   position: relative;
   width: 500px;
@@ -411,13 +401,11 @@ div.messi-content > img{
   opacity: 1;
   box-shadow: 0 0 1em #444;
 }
-
 .messi-wrapper {
   position: relative;
   background-color: #fff;
   border-radius: 5px;
 }
-
 .messi-titlebox {
   padding: 10px;
   overflow: hidden;
@@ -438,7 +426,6 @@ div.messi-content > img{
   -moz-border-radius-bottomleft: 0;
   -moz-border-radius-topleft: 5px;
 }
-
 .messi-titlebox.info {
   background-color: #4ea5cd;
   background-image: none;
@@ -448,17 +435,14 @@ div.messi-content > img{
   background-color: #de4343;
   background-image: none;
 }
-
 .messi-titlebox.warning {
   background-color: #eaaf51;
   background-image: none;
 }
-
 .messi-titlebox.success {
   background-color: #61b832;
   background-image: none;
 }
-
 .messi-closebtn {
   position: absolute;
   top: 8px;
@@ -472,7 +456,6 @@ div.messi-content > img{
   border: 1px solid rgba(255, 255, 255, .1);
   border-radius: 40px;
 }
-
 .messi-closebtn::before {
   position: relative;
   top: 2px;
@@ -482,18 +465,15 @@ div.messi-content > img{
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
   content: '\00D7';
 }
-
 .messi-content {
   padding: 10px;
   overflow: hidden;
   font: .9em normal helvetica, arial;
 }
-
 .messi-content p {
   margin: 0 0 1.3em;
   line-height: 1.3em;
 }
-
 .messi-content .messi-closebtn {
   top: 7px;
   font: 1.3em bold helvetica, arial;
@@ -505,17 +485,14 @@ div.messi-content > img{
        -o-transition: opacity .25s linear, visibility .1s linear .5s;
           transition: opacity .25s linear, visibility .1s linear .5s;
 }
-
 .messi-content:hover .messi-closebtn {
   opacity: 1;
 }
-
 .messi-footbox {
   width: 100%;
   height: 55px;
   overflow: hidden;
 }
-
 .messi-actions {
   display: -webkit-box;
   display: -moz-box;
@@ -527,18 +504,15 @@ div.messi-content > img{
      -moz-box-orient: horizontal;
           box-orient: horizontal;
 }
-
 .messi-actions .btnbox {
   text-align: center;
   -webkit-box-flex: 1;
      -moz-box-flex: 1;
           box-flex: 1;
 }
-
 .messi-actions .btnbox .btn {
   min-width: 75px;
 }
-
 .messi-titlebox.anim {
   background-color: #666;
   background-image: -o-linear-gradient(135deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.05) 75%, transparent 75%, transparent);
@@ -556,23 +530,18 @@ div.messi-content > img{
   -webkit-animation: animate-bg 5s linear infinite;
      -moz-animation: animate-bg 5s linear infinite;
 }
-
 .messi-titlebox.anim.info {
   background-color: #4ea5cd;
 }
-
 .messi-titlebox.anim.error {
   background-color: #de4343;
 }
-
 .messi-titlebox.anim.warning {
   background-color: #eaaf51;
 }
-
 .messi-titlebox.anim.success {
   background-color: #61b832;
 }
-
 @-webkit-keyframes animate-bg {
   from {
     background-position: 0 0;
@@ -581,7 +550,6 @@ div.messi-content > img{
     background-position: -80px 0;
   }
 }
-
 @-moz-keyframes animate-bg {
   from {
     background-position: 0 0;
@@ -621,8 +589,8 @@ div.messi-content > img{
   border-color: #e6e6e6 #e6e6e6 #bfbfbf;
   border-bottom-color: #b3b3b3;
   -webkit-border-radius: 4px;
-     -moz-border-radius: 4px;
-          border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
   filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ffffff', endColorstr='#e6e6e6', GradientType=0);
   filter: progid:dximagetransform.microsoft.gradient(enabled=false);
   *zoom: 1;
@@ -630,7 +598,6 @@ div.messi-content > img{
      -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
           box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
 }
-
 .messi .btn:hover,
 .messi .btn:active,
 .messi .btn.active,
@@ -639,16 +606,14 @@ div.messi-content > img{
   background-color: #e6e6e6;
   *background-color: #d9d9d9;
 }
-
 .messi .btn:active,
 .messi .btn.active {
-  background-color: #cccccc \9;
+  background-color: #cccccc;
 }
 
 .messi .btn:first-child {
   *margin-left: 0;
 }
-
 .messi .btn:hover {
   color: #333333;
   text-decoration: none;
@@ -661,24 +626,21 @@ div.messi-content > img{
        -o-transition: background-position 0.1s linear;
           transition: background-position 0.1s linear;
 }
-
 .messi .btn:focus {
   outline: thin dotted #333;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-
 .messi .btn.active,
 .messi .btn:active {
   background-color: #e6e6e6;
-  background-color: #d9d9d9 \9;
+  background-color: #d9d9d9;
   background-image: none;
   outline: 0;
   -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
      -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
           box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
 }
-
 .messi .btn-primary,
 .messi .btn-primary:hover,
 .messi .btn-warning,
@@ -694,7 +656,6 @@ div.messi-content > img{
   color: #ffffff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
-
 .messi .btn-primary.active,
 .messi .btn-warning.active,
 .messi .btn-danger.active,
@@ -703,12 +664,10 @@ div.messi-content > img{
 .messi .btn-inverse.active {
   color: rgba(255, 255, 255, 0.75);
 }
-
 .messi .btn {
   border-color: #ccc;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
 }
-
 .messi .btn-primary {
   background-color: #0074cc;
   *background-color: #0055cc;
@@ -724,7 +683,6 @@ div.messi-content > img{
   filter: progid:dximagetransform.microsoft.gradient(startColorstr='#0088cc', endColorstr='#0055cc', GradientType=0);
   filter: progid:dximagetransform.microsoft.gradient(enabled=false);
 }
-
 .messi .btn-primary:hover,
 .messi .btn-primary:active,
 .messi .btn-primary.active,
@@ -733,12 +691,10 @@ div.messi-content > img{
   background-color: #0055cc;
   *background-color: #004ab3;
 }
-
 .messi .btn-primary:active,
 .messi .btn-primary.active {
-  background-color: #004099 \9;
+  background-color: #004099;
 }
-
 .messi .btn-warning {
   background-color: #faa732;
   *background-color: #f89406;
@@ -754,7 +710,6 @@ div.messi-content > img{
   filter: progid:dximagetransform.microsoft.gradient(startColorstr='#fbb450', endColorstr='#f89406', GradientType=0);
   filter: progid:dximagetransform.microsoft.gradient(enabled=false);
 }
-
 .messi .btn-warning:hover,
 .messi .btn-warning:active,
 .messi .btn-warning.active,
@@ -763,12 +718,10 @@ div.messi-content > img{
   background-color: #f89406;
   *background-color: #df8505;
 }
-
 .messi .btn-warning:active,
 .messi .btn-warning.active {
-  background-color: #c67605 \9;
+  background-color: #c67605;
 }
-
 .messi .btn-danger {
   background-color: #da4f49;
   *background-color: #bd362f;
@@ -784,7 +737,6 @@ div.messi-content > img{
   filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ee5f5b', endColorstr='#bd362f', GradientType=0);
   filter: progid:dximagetransform.microsoft.gradient(enabled=false);
 }
-
 .messi .btn-danger:hover,
 .messi .btn-danger:active,
 .messi .btn-danger.active,
@@ -793,12 +745,10 @@ div.messi-content > img{
   background-color: #bd362f;
   *background-color: #a9302a;
 }
-
 .messi .btn-danger:active,
 .messi .btn-danger.active {
-  background-color: #942a25 \9;
+  background-color: #942a25;
 }
-
 .messi .btn-success {
   background-color: #5bb75b;
   *background-color: #51a351;
@@ -814,7 +764,6 @@ div.messi-content > img{
   filter: progid:dximagetransform.microsoft.gradient(startColorstr='#62c462', endColorstr='#51a351', GradientType=0);
   filter: progid:dximagetransform.microsoft.gradient(enabled=false);
 }
-
 .messi .btn-success:hover,
 .messi .btn-success:active,
 .messi .btn-success.active,
@@ -823,12 +772,10 @@ div.messi-content > img{
   background-color: #51a351;
   *background-color: #499249;
 }
-
 .messi .btn-success:active,
 .messi .btn-success.active {
-  background-color: #408140 \9;
+  background-color: #408140;
 }
-
 .messi .btn-info {
   background-color: #49afcd;
   *background-color: #2f96b4;
@@ -844,7 +791,6 @@ div.messi-content > img{
   filter: progid:dximagetransform.microsoft.gradient(startColorstr='#5bc0de', endColorstr='#2f96b4', GradientType=0);
   filter: progid:dximagetransform.microsoft.gradient(enabled=false);
 }
-
 .messi .btn-info:hover,
 .messi .btn-info:active,
 .messi .btn-info.active,
@@ -856,9 +802,8 @@ div.messi-content > img{
 
 .messi .btn-info:active,
 .messi .btn-info.active {
-  background-color: #24748c \9;
+  background-color: #24748c;
 }
-
 .messi .btn-inverse {
   background-color: #414141;
   *background-color: #222222;
@@ -874,7 +819,6 @@ div.messi-content > img{
   filter: progid:dximagetransform.microsoft.gradient(startColorstr='#555555', endColorstr='#222222', GradientType=0);
   filter: progid:dximagetransform.microsoft.gradient(enabled=false);
 }
-
 .messi .btn-inverse:hover,
 .messi .btn-inverse:active,
 .messi .btn-inverse.active,
@@ -883,30 +827,29 @@ div.messi-content > img{
   background-color: #222222;
   *background-color: #151515;
 }
-
 .messi .btn-inverse:active,
 .messi .btn-inverse.active {
-  background-color: #080808 \9;
+  background-color: #080808;
 }
-
 button.messi .btn,
 input[type="submit"].messi .btn {
   *padding-top: 2px;
   *padding-bottom: 2px;
 }
-
 .messi button {
   cursor: pointer;
   -webkit-appearance: button;
 }
-
 button.messi .btn::-moz-focus-inner {
   padding: 0;
   border: 0;
 }
+
+
 /*=========================================
  * GAME
  * =======================================*/
+
 #question {
 	padding-top:100px;
 	min-width:960px;
@@ -948,6 +891,12 @@ button.messi .btn::-moz-focus-inner {
 	background-color:rgba(255,255,255,0.5);
 	text-shadow:0 2px 4px rgba(0,0,0,0.3);
 	color:rgba(0,0,0,1);
+	-webkit-border-top-left-radius: 9px;
+	-webkit-border-bottom-left-radius: 9px;
+	-moz-border-radius-topleft: 9px;
+	-moz-border-radius-bottomleft: 9px;
+	border-top-left-radius: 9px;
+	border-bottom-left-radius: 9px;
 }
 #question h2 + div {
 	position:fixed;
@@ -989,15 +938,38 @@ button.messi .btn::-moz-focus-inner {
 	margin:6% 1%;
 	padding:1%;
 }
-
 #question .videos iframe {
 	width:400px;
 	height:300px;
 }
 .nextQuestion {
 	cursor:pointer;
+	padding:9px 6px;
+	background-color:#000;
+	-webkit-border-radius:9px;
+	-moz-border-radius:9px;
+	border-radius:9px;
+	color:#fff;
+	transition: all 0.5s ease-in-out;
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	-ms-transition: all 0.5s ease-in-out;
+	background-image:-webkit-linear-gradient(top, rgba(255,255,255,0.2), rgba(0,0,0,0.2));
+	background-image:-moz-linear-gradient(top, rgba(255,255,255,0.2), rgba(0,0,0,0.2));
+	background-image:-ms-linear-gradient(top, rgba(255,255,255,0.2), rgba(0,0,0,0.2));
+	background-image:-o-linear-gradient(top, rgba(255,255,255,0.2), rgba(0,0,0,0.2));
+	background-image:linear-gradient(top, rgba(255,255,255,0.2), rgba(0,0,0,0.2));
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset 0 -1px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.5);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset 0 -1px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.5);
+	-o-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset 0 -1px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.5);
+	box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset 0 -1px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.5);
+	-webkit-perspective:800px;
 }
-
+.nextQuestion:hover {
+	padding:12px 9px;
+	font-size:1.5em;
+}
 #question .carte {
 	z-index:98;
 	height:200px;
@@ -1009,11 +981,41 @@ button.messi .btn::-moz-focus-inner {
 	top:-200px;
 	width:200px;
 }
+.videos .round {
+	width: 100px;
+	height: 100px;
+	position: relative;
+	top:-100px;
+	margin-left:50px;
+	border-radius: 50%;
+	background: #000;
+	display: inline-block;
+}
+.videos .round canvas {
+	position: absolute;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+}
+.progressionButton {
+	position: absolute;
+	text-align: center;
+	width: 100px;
+	top: 33px;
+	left: 0;
+	border: none;
+	background: none;
+	outline: none;
+	color: #e20f0f;
+	font-size:1.8em;
+	font-weight: bold;
+}
+
 
 /*=========================================
  * intro question animation Léo
  * =======================================*/
-
 
 #changetexte {
    width: 0%;
@@ -1024,12 +1026,10 @@ button.messi .btn::-moz-focus-inner {
    transition: background 4.5s ease;
    overflow:hidden;
 }
-
 #changetexte.played{
    width:100%;
   -moz-transition: background 4.5s ease;
 }
-    
 #changetexte2 {
    width: 0%;
    max-height: 40px;
@@ -1040,7 +1040,6 @@ button.messi .btn::-moz-focus-inner {
    overflow:hidden;
 
 }
-
 #changetexte2.played2{
    width:100%;
   -webkit-transition-delay: 2.5s;
@@ -1048,7 +1047,6 @@ button.messi .btn::-moz-focus-inner {
   -o-transition-delay:2.5s;
   -moz-transition: background 4.5s ease;
 }
-
 #changetexte3 {
    width: 0%;
    max-height: 40px;
@@ -1058,7 +1056,6 @@ button.messi .btn::-moz-focus-inner {
    transition: background 4.5s ease;
    overflow:hidden;
 }
-
 #changetexte3.played3{
    width:100%;
   -webkit-transition-delay: 3.5s;
@@ -1066,8 +1063,6 @@ button.messi .btn::-moz-focus-inner {
   -o-transition-delay:3.5s;
   -moz-transition: background 4.5s ease;
 }
-    
-
 #changetexte4 {
    width: 0%;
    max-height: 40px;
@@ -1077,7 +1072,6 @@ button.messi .btn::-moz-focus-inner {
    transition: background 4.5s ease;
    overflow:hidden;
 }
-
 #changetexte4.played4{
    width:100%;
   -webkit-transition-delay: 6s;
@@ -1085,6 +1079,7 @@ button.messi .btn::-moz-focus-inner {
   -o-transition-delay:6s;
   -moz-transition: background 4.5s ease;
 }
+
 
 /*=========================================
  * Loader Léo
@@ -1100,50 +1095,38 @@ button.messi .btn::-moz-focus-inner {
   margin-top: -50px;
 
 }
- 
 .piece {
     background: #FFFFFF;
     width: 50%;
     height: 14%;
     position: relative;
 }
- 
 .spinner div {
     opacity: 0.2;
 }
- 
 @-webkit-keyframes fade { 
- 
     5% { opacity: 0.8; } 
     30% { opacity: 0.5; }
- 
 }
 @-ms-keyframes fade { 
- 
     5% { opacity: 0.8; } 
     30% { opacity: 0.5; }
- 
 }
-@-moz-keyframes fade { 
- 
-    5% { opacity: 0.8; } 
+@-moz-keyframes fade {
+	5% { opacity: 0.8; } 
     30% { opacity: 0.5; }
- 
 }
- 
 .a, .p {
     height: 50%;
     width: 14%;
     left: 99%;
 }
- 
 .a {
     top: 5%;
     -webkit-animation: fade 3.2s ease-in infinite;
     -moz-animation: fade 3.2s ease-in infinite;
     -ms-animation: fade 3.2s ease-in infinite;
 }
- 
 .b {
     bottom: 21%;
     left: 50%;
@@ -1151,7 +1134,6 @@ button.messi .btn::-moz-focus-inner {
     -moz-animation: fade 3.2s ease-in-out 3s infinite;
     -ms-animation: fade 3.2s ease-in-out 3s infinite;
 }
- 
 .c {
     bottom: 34%;
     left: 110%;
@@ -1159,7 +1141,6 @@ button.messi .btn::-moz-focus-inner {
     -moz-animation: fade 3.2s ease-in-out 0.2s infinite;
     -ms-animation: fade 3.2s ease-in-out 0.2s infinite;
 }
- 
 .d {
     bottom: 31%;
     left: 27%;
@@ -1167,7 +1148,6 @@ button.messi .btn::-moz-focus-inner {
     -moz-animation: fade 3.2s ease-in-out 2.8s infinite;
     -ms-animation: fade 3.2s ease-in-out 2.8s infinite;
 }
- 
 .e {
     bottom: 43%;
     left: 134%;
@@ -1175,7 +1155,6 @@ button.messi .btn::-moz-focus-inner {
     -moz-animation: fade 3.2s ease-in-out 0.4s infinite;
     -ms-animation: fade 3.2s ease-in-out 0.4s infinite;
 }
- 
 .f {
     bottom: 32%;
     left: 11%;
@@ -1183,7 +1162,6 @@ button.messi .btn::-moz-focus-inner {
     -moz-animation: fade 3.2s ease-in-out 2.6s infinite;
     -ms-animation: fade 3.2s ease-in-out 2.6s infinite;
 }
- 
 .g {
     bottom: 45%;
     left: 149%;
@@ -1191,7 +1169,6 @@ button.messi .btn::-moz-focus-inner {
     -moz-animation: fade 3.2s ease-in-out 0.6s infinite;
     -ms-animation: fade 3.2s ease-in-out 0.6s infinite;
 }
- 
 .h {
     bottom: 30%;
     left: 6%;
@@ -1199,7 +1176,6 @@ button.messi .btn::-moz-focus-inner {
     -moz-animation: fade 3.2s ease-in-out 2.4s infinite;
     -ms-animation: fade 3.2s ease-in-out 2.4s infinite;
 }
- 
 .i {
     bottom: 43%;
     left: 155%;
@@ -1214,16 +1190,13 @@ button.messi .btn::-moz-focus-inner {
     -moz-animation: fade 3.2s ease-in-out 2.2s infinite;
     -ms-animation: fade 3.2s ease-in-out 2.2s infinite;
 }
- 
 .k {
     left: 149%;
     bottom: 41%;
     -webkit-animation: fade 3.2s ease-in-out 1s infinite;
     -moz-animation: fade 3.2s ease-in-out 1s infinite;
     -ms-animation: fade 3.2s ease-in-out 1s infinite;
-} 
- 
- 
+}
 .l {
     bottom: 30%;
     left: 28%;
@@ -1239,7 +1212,6 @@ button.messi .btn::-moz-focus-inner {
     -moz-animation: fade 3.2s ease-in-out 1.2s infinite;
     -ms-animation: fade 3.2s ease-in-out 1.2s infinite;
 }
- 
 .n {
     bottom: 40%;
     left: 50%;
@@ -1247,7 +1219,6 @@ button.messi .btn::-moz-focus-inner {
     -moz-animation: fade 3.2s ease-in-out 1.8s infinite;
     -ms-animation: fade 3.2s ease-in-out 1.8s infinite;
 }
- 
 .o {
     left: 110%;
     bottom: 52%;
@@ -1261,21 +1232,18 @@ button.messi .btn::-moz-focus-inner {
     -moz-animation: fade 3.2s ease-in-out 1.6s infinite;
     -ms-animation: fade 3.2s ease-in-out 1.6s infinite;
 }
- 
 .b, .o {
     -webkit-transform: rotate(67.5deg);
     -moz-transform: rotate(67.5deg);
     -ms-transform: rotate(67.5deg);
     -o-transform: rotate(67.5deg);
 }
- 
 .d, .m {
     -webkit-transform: rotate(45deg);
     -moz-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     -o-transform: rotate(45deg);
 }
- 
 .f, .k {
     -webkit-transform: rotate(22.5deg);
     -moz-transform: rotate(22.5deg);
@@ -1283,13 +1251,12 @@ button.messi .btn::-moz-focus-inner {
     -o-transform: rotate(22.5deg);
  
 }
- 
 .n, .c {
     -webkit-transform: rotate(-67.5deg);
     -moz-transform: rotate(-67.5deg);
     -ms-transform: rotate(-67.5deg);
-    -o-transform: rotate(-67.5deg);}
- 
+    -o-transform: rotate(-67.5deg);
+}
 .l, .e {
     -webkit-transform: rotate(-45deg);
     -moz-transform: rotate(-45deg);
@@ -1314,7 +1281,6 @@ button.messi .btn::-moz-focus-inner {
   height:400px;
   float:left;
 }
-
 #commentaire{
    width: 100px;
    height: 100px;
@@ -1327,8 +1293,7 @@ button.messi .btn::-moz-focus-inner {
    -webkit-transition:All 2.5388s ease;
    -moz-transition:All 2.5388s ease;
    -o-transition:All 2.5388s ease;
-}
-            
+}         
 #commentaire.played {
     opacity: 1;
 }
@@ -1336,11 +1301,12 @@ button.messi .btn::-moz-focus-inner {
   color:#3c3b36;
   font-weight: bold;
 }
-
 .commentaire_non_survivant{
   color:#a6a094;
   font-weight: bold;
 }
+
+
 /*=========================================
  * loader css
  * =======================================*/
@@ -1364,4 +1330,3 @@ button.messi .btn::-moz-focus-inner {
 	display: block;
 	font-style: normal;
 }
-
