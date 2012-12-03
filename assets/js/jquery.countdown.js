@@ -91,8 +91,8 @@
 				/* Les 2 points qui séparents les chiffres */
 				elem.append('<span class="countDiv countDiv'+i+'"></span>');
 			}
+			
 		});
-
 	}
 
 	// Creates an animated transition between the two numbers

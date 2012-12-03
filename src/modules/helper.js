@@ -155,7 +155,6 @@ app.Helpers.RenderStreetMapMode = function(options){
 	    	}
 	  	});
 	}
-
 }
 /**
  * Vrai ou faux suivant si l'utilisateur a débloqué la question qu'il souhaite lancer
@@ -177,7 +176,7 @@ app.Helpers.questionIsUnlock = function (level){
 		return false;
 }
 /**
- * Récupére la dernier question unlock
+ * Récupére la derniere question unlock
  * @author Kévin La Rosa
  * @arguments : int -> level
  * @requires  backbones.js
@@ -341,7 +340,7 @@ app.Helpers.reinitialize = function(){
 /**
  * Contrôle des vidéos Vimeo avec froogaloop
  * @author Mathieu Dutto 
- * @requires  backbones.js
+ * @requires  backbones.js & froogaloop.js
  */
 
 app.Helpers.videosVimeo = function(){
