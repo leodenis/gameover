@@ -1279,7 +1279,7 @@ button.messi .btn::-moz-focus-inner {
  * =======================================*/
 
 #container_sondage{
-	width:400px;
+	width:60%;
 	height:400px;
 	float:left;
 }
@@ -1287,7 +1287,7 @@ button.messi .btn::-moz-focus-inner {
 	width: 40%;
 	height: 100%;
 	float: left;
-	margin-top: 20%;
+	margin-top: 145px;
 	position: relative;
 	opacity: 1;
 	transition:all 2s ease;
