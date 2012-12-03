@@ -74,19 +74,14 @@ header > a:nth-of-type(2) {
 
 /**** COUNTDOWN ****/
 
-#countdown {
-  float:right;
-  width:440px;
-  height:100px;
-  margin:20px 4% 0 0;
-}
-
 .countdownHolder{
-  width:450px;
-  margin:0 auto;
-  font: 40px/1.5 'Open Sans Condensed',sans-serif;
-  text-align:center;
-  letter-spacing:-10px;
+	float:right;
+	width:250px;
+	height:100px;
+	margin:20px 4% 0 0;
+ 	font: 1.5em 'Open Sans Condensed',sans-serif;
+	text-align:center;
+	letter-spacing:-7px;
 }
 
 /* Position des divs contenants les chiffres */
@@ -980,6 +975,7 @@ button.messi .btn::-moz-focus-inner {
 	left:0;
 	top:-200px;
 	width:200px;
+	margin-bottom:-150px;
 }
 .videos .round {
 	width: 100px;
@@ -1277,33 +1273,33 @@ button.messi .btn::-moz-focus-inner {
  * =======================================*/
 
 #container_sondage{
-  width:400px;
-  height:400px;
-  float:left;
+	width:400px;
+	height:400px;
+	float:left;
 }
 #commentaire{
-   width: 100px;
-   height: 100px;
-   float: left;
-   margin-top: 143px;
-   margin-left: -22px;
-   position: relative;
-   opacity: 1;
-   transition:All 2.5388s ease;
-   -webkit-transition:All 2.5388s ease;
-   -moz-transition:All 2.5388s ease;
-   -o-transition:All 2.5388s ease;
+	width: 100px;
+	height: 100px;
+	float: left;
+	margin-top: 143px;
+	margin-left: -22px;
+	position: relative;
+	opacity: 1;
+	transition:All 2.5388s ease;
+	-webkit-transition:All 2.5388s ease;
+	-moz-transition:All 2.5388s ease;
+	-o-transition:All 2.5388s ease;
 }         
 #commentaire.played {
     opacity: 1;
 }
 .commentaire_survivant{
-  color:#3c3b36;
-  font-weight: bold;
+	color:#a6a094;
+	font-weight: bold;
 }
 .commentaire_non_survivant{
-  color:#a6a094;
-  font-weight: bold;
+	color:#3c3b36;
+	font-weight: bold;
 }
 
 
