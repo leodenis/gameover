@@ -938,6 +938,9 @@ button.messi .btn::-moz-focus-inner {
 	width:400px;
 	height:300px;
 }
+#question .elements {
+	cursor:pointer;
+}
 .nextQuestion {
 	cursor:pointer;
 	padding:9px 6px;
