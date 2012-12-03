@@ -893,6 +893,7 @@ button.messi .btn::-moz-focus-inner {
 	-moz-border-radius-bottomleft: 9px;
 	border-top-left-radius: 9px;
 	border-bottom-left-radius: 9px;
+	margin-left:40px;
 }
 #question h2 + div {
 	position:fixed;
@@ -931,7 +932,7 @@ button.messi .btn::-moz-focus-inner {
 	-webkit-border-radius:9px;
 	-moz-border-radius:9px;
 	border-radius:9px;
-	margin:6% 1%;
+	margin:130px 1% 20% 1%;
 	padding:1%;
 	position:relative;
 }
@@ -943,6 +944,7 @@ button.messi .btn::-moz-focus-inner {
 	left:45%;
 	border-radius: 50%;
 	background: #000;
+	margin-bottom:150px;
 	display: inline-block;
 }
 .videos .round canvas {
