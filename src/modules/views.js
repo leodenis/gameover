@@ -337,7 +337,7 @@ app.Views.etape1 = Backbone.View.extend({
 		//Fil ariane
 		app.Helpers.filAriane(app.Helpers.getLastQuestUnlock(),app.Helpers.getCurrentQuestion());
 		//Recupère le html générer avec le template
-		template = _.template($('#templateStreetView').html(),{"titreQuestion":"Trouvez le medium chez qui vous avez rendez-vous pour connaître votre futur.. "});
+		template = _.template($('#templateStreetView').html(),{"titreQuestion":"Trouvez le medium chez qui vous avez rendez-vous pour connaître votre futur.."});
 		that.$el.html(template);		
 		// Définition des paramètre de la street + map (voir helper)
 		var optionModeStreetMap = {
