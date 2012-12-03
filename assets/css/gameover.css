@@ -939,8 +939,8 @@ button.messi .btn::-moz-focus-inner {
 	width: 100px;
 	height: 100px;
 	position: absolute;
-	top:120%;
-	left:50%;
+	top:110%;
+	left:45%;
 	border-radius: 50%;
 	background: #000;
 	display: inline-block;
