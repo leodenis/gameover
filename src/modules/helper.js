@@ -368,8 +368,8 @@ app.Helpers.videosVimeo = function(){
 		player.max = player.input.data('min');
 		
 		// trace les canvas pour afficher la progression
-		player.circle = $('<canvas />');
-		player.color = $('<canvas />');
+		player.circle = $('<canvas width="100px" height="100px" />');
+		player.color = $('<canvas width="100px" height="100px" />');
 		player.div.append(player.circle);
 		player.div.append(player.color);
 		
