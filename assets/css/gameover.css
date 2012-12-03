@@ -898,6 +898,8 @@ button.messi .btn::-moz-focus-inner {
 #question h2 + div {
 	position:fixed;
 	top:0;
+	left:0;
+	right:0;
 	bottom:0;
 	opacity:0;
 	z-index:-1;
@@ -932,7 +934,7 @@ button.messi .btn::-moz-focus-inner {
 	-webkit-border-radius:9px;
 	-moz-border-radius:9px;
 	border-radius:9px;
-	margin:130px 1% 20% 1%;
+	margin:130px 1% 200px 1%;
 	padding:1%;
 	position:relative;
 }
