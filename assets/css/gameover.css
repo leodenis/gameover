@@ -893,6 +893,7 @@ button.messi .btn::-moz-focus-inner {
 	-moz-border-radius-bottomleft: 9px;
 	border-top-left-radius: 9px;
 	border-bottom-left-radius: 9px;
+	margin-left:40px;
 }
 #question h2 + div {
 	position:fixed;
@@ -931,8 +932,40 @@ button.messi .btn::-moz-focus-inner {
 	-webkit-border-radius:9px;
 	-moz-border-radius:9px;
 	border-radius:9px;
-	margin:6% 1%;
+	margin:130px 1% 20% 1%;
 	padding:1%;
+	position:relative;
+}
+.videos .round {
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	top:110%;
+	left:45%;
+	border-radius: 50%;
+	background: #000;
+	margin-bottom:150px;
+	display: inline-block;
+}
+.videos .round canvas {
+	position: absolute;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+}
+.progressionButton {
+	position: absolute;
+	text-align: center;
+	width: 100px;
+	top: 33px;
+	left: 0;
+	border: none;
+	background: none;
+	outline: none;
+	color: #e20f0f;
+	font-size:1.8em;
+	font-weight: bold;
 }
 #question .videos iframe {
 	width:400px;
@@ -979,36 +1012,6 @@ button.messi .btn::-moz-focus-inner {
 	top:-200px;
 	width:200px;
 	margin-bottom:-150px;
-}
-.videos .round {
-	width: 100px;
-	height: 100px;
-	position: relative;
-	top:-100px;
-	margin-left:50px;
-	border-radius: 50%;
-	background: #000;
-	display: inline-block;
-}
-.videos .round canvas {
-	position: absolute;
-	top:0;
-	left:0;
-	right:0;
-	bottom:0;
-}
-.progressionButton {
-	position: absolute;
-	text-align: center;
-	width: 100px;
-	top: 33px;
-	left: 0;
-	border: none;
-	background: none;
-	outline: none;
-	color: #e20f0f;
-	font-size:1.8em;
-	font-weight: bold;
 }
 
 

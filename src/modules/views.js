@@ -337,7 +337,7 @@ app.Views.etape1 = Backbone.View.extend({
 		//Fil ariane
 		app.Helpers.filAriane(app.Helpers.getLastQuestUnlock(),app.Helpers.getCurrentQuestion());
 		//Recupère le html générer avec le template
-		template = _.template($('#templateStreetView').html(),{"titreQuestion":"Recherchez le médium le plus proche afin qu’il vous prédise le futur... "});
+		template = _.template($('#templateStreetView').html(),{"titreQuestion":"Trouvez le medium chez qui vous avez rendez-vous pour connaître votre futur.."});
 		that.$el.html(template);		
 		// Définition des paramètre de la street + map (voir helper)
 		var optionModeStreetMap = {
@@ -413,7 +413,7 @@ app.Views.etape1 = Backbone.View.extend({
 	
 	//Evenement qui réagit au click sur le marker en face de la voyante
 	popupInfo : function(){
-		new Messi('Nos « ancêtres », les Mayas, qui en savaient plus que nous sur la puissance des astres nous ont dévoilés leurs secrets.', {
+		new Messi('Nos ancêtres les Mayas, qui en savaient plus que nous sur la puissance des astres, nous ont dévoilé leurs secrets.', {
 			title: 'Commencer l\'aventure',
 			modal: true,
 			buttons: [{
@@ -707,7 +707,7 @@ app.Views.etape3 = app.Views.question.extend({
 		image2 = {'url':'ipad3.png','alt':'iPad 3','titre':'Tablette tactile : iPad 3','description':'Le dernier iPad : le plus puissant et la tablette la plus pratique au monde. Un maximum d\outils en un seul objet !'};
 
 		//Recupère le html générer avec le template
-		template = accueilHTML = _.template($('#templateWebGl').html(),{'titreQuestion':'La place manque dans cette voiture, quel objet choisissez-vous pour survivre ?','image1':image1,'image2':image2});
+		template = accueilHTML = _.template($('#templateWebGl').html(),{'titreQuestion':'Quel objet choisissez-vous pour survivre ?','image1':image1,'image2':image2});
 		this.$el.html(template);
 
 		var camera_livre, camera_ipad, scene_livre, scene_iPad, renderer_livre, renderer_ipad;
@@ -866,10 +866,10 @@ app.Views.etape3 = app.Views.question.extend({
 app.Views.etape4 = app.Views.question.extend({
 	render : function (){
 		//Définition des variables à passer
-		video1 = {'url':'23608259','titre':'Un chat mais pas que..','description':''};
-		video2 = {'url':'5169262','titre':'Un perroquet mais pas que...','description':''};
+		video1 = {'url':'23608259','titre':'Un chat.. peu commun !','description':''};
+		video2 = {'url':'5169262','titre':'Un perroquet.. atypique !','description':''};
 		//Recupère le html générer avec le template
-		template = accueilHTML = _.template($('#templateVideos').html(),{'titreQuestion':'La solitude peut tuer ! Choisissez-vous un animal de compagnie qui vous remontera le moral.','video1':video1,'video2':video2});
+		template = accueilHTML = _.template($('#templateVideos').html(),{'titreQuestion':'Choisissez un animal de compagnie qui vous remontera le moral.','video1':video1,'video2':video2});
 		this.$el.html(template);
 		
 		app.Helpers.videosVimeo();
@@ -887,7 +887,7 @@ app.Views.etape5 = app.Views.question.extend({
 		video1 = {'url':'35132562','titre':'Will Smith - I am a Legend','description':''};
 		video2 = {'url':'3431743','titre':'Chuck Norris','description':''};
 		//Recupère le html générer avec le template
-		template = accueilHTML = _.template($('#templateVideos').html(),{'titreQuestion':'Les conseils de quelle star préféreriez-vous entendre pour vous préparer à la fin du monde ?','video1':video1,'video2':video2});
+		template = accueilHTML = _.template($('#templateVideos').html(),{'titreQuestion':'Quels conseils écouter pour se préparer à la fin du monde ?','video1':video1,'video2':video2});
 		this.$el.html(template);
 		
 		app.Helpers.videosVimeo();
@@ -903,7 +903,7 @@ app.Views.etape6 = app.Views.question.extend({
 	
 	render: function(){
 		//Recupère le html générer avec le template
-		accueilHTML = _.template($('#templateStreetView').html(),{'titreQuestion':'Vous semblez fatigué. Trouvez donc un endroit pour passer la nuit. Vous pouvez choisir entre un Bunker, un Hôtel 5* ou l’arche la plus proche de votre position.'});
+		accueilHTML = _.template($('#templateStreetView').html(),{'titreQuestion':'Trouvez un endroit pour passer la nuit : un bunker, un hôtel ou l\'arche la plus proche ?'});
 		this.$el.html(accueilHTML);
 		//Définition des paramètre de la street + map (voir helper)
 		var optionModeStreetMap = {
@@ -1066,7 +1066,7 @@ app.Views.etape7 = app.Views.question.extend({
 		image2 = {'url':'ipad3.png','alt':'cut','titre':'Couteau','description':'Choisissez le couteau utile et perène !!!'};
 
 		//Recupère le html générer avec le template
-		template = accueilHTML = _.template($('#templateWebGl').html(),{'titreQuestion':'BLA BLA ?','image1':image1,'image2':image2});
+		template = accueilHTML = _.template($('#templateWebGl').html(),{'titreQuestion':'Ces cauchemars donnent envie de se protéger mais que choisir ?','image1':image1,'image2':image2});
 		this.$el.html(template);
 
 		var camera_gun, camera_cut, scene_gun, scene_cut, renderer_gun, renderer_cut;
@@ -1077,12 +1077,12 @@ app.Views.etape7 = app.Views.question.extend({
 		cut();
 		gun();
 
-		$('#choix1').bind('click',function(){
+		$('#elements1').bind('click',function(){
 				app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),0);
 				app.Helpers.unlockQuestion('7');
 				app.router.navigate('etape8', true);
 		});
-		$('#choix2').bind('click',function(){
+		$('#elements2').bind('click',function(){
 				app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),50);
 				app.Helpers.unlockQuestion('7');
 				app.router.navigate('etape8', true);
@@ -1225,7 +1225,7 @@ app.Views.etape8 = app.Views.question.extend({
 		//Fil ariane
 		app.Helpers.filAriane(app.Helpers.getLastQuestUnlock(),app.Helpers.getCurrentQuestion());
 		//Recupère le html générer avec le template
-		template = _.template($('#templateStreetView').html(),{"titreQuestion":"Entendez-vous ? Je crois que l’heure à sonner... Choisissez la direction dans laquelle vous souhaitez partir."});
+		template = _.template($('#templateStreetView').html(),{"titreQuestion":"Vous entendez ? L\'heure a sonné, choisissez une direction.."});
 		this.$el.html(template);		
 		// Définition des paramètre de la street + map (voir helper)
 		var optionModeStreetMap = {

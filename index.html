@@ -14,6 +14,18 @@
         <link rel="stylesheet" href="assets/css/gameover.css" type="text/css" media="screen"  />
         <link type="text/css" rel="stylesheet" media="only screen and (max-device-width: 480px)" href="assets/css/mobile.css" />
         <!--[if lt IE 9]><script src="assets/js/html5shiv.js"></script><![endif]-->
+        <!--Script google analytics-->
+        <script type="text/javascript">
+              var _gaq = _gaq || [];
+              _gaq.push(['_setAccount', 'UA-36782962-1']);
+              _gaq.push(['_trackPageview']);
+
+              (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+              })();
+        </script>
     </head>
     <body>
         <!---Header statique du site-->
@@ -90,7 +102,7 @@
     
                         <h4 itemprop="keywords">Vérifies tes chances de survie !</h4>
                         <br />
-                        <a itemprop="url" id="etape1">
+                        <a itemprop="url" id="etape1" onClick="_gaq.push(['_trackEvent', 'Click', 'startgame', 'startgame1']);">
                             <img itemprop="image "src="assets/img/go.png" alt="GO !" title="GO !" />
                         </a>
                     </section>
@@ -201,7 +213,7 @@
                 <a title="Aller à l'étape 6" href="#etape6">6</a>
                 <a title="Aller à l'étape 7" href="#etape7">7</a>
                 <a title="Aller à l'étape 8" href="#etape8">8</a>
-                <a title="Recommencer le jeu" id='resetGame' class="doing"><i> </i></a>
+                <a title="Recommencer le jeu" id='resetGame' class="doing" onClick="_gaq.push(['_trackEvent', 'Click', 'restart', 'restartgame']);"><i> </i></a>
             </span>
             <a itemprop="url" href="http://facebook.com/pages/2012-Game-Over-/507792199255605" target="_blank" title="Voir notre page Facebook"></a>
             <a itemprop="url" href="http://twitter.com/gameover" target="_blank" title="Voir notre compte Twitter"></a>
@@ -254,6 +266,5 @@
     <script type="text/javascript" src="src/modules/helper.js"></script>
    
 
-    
-    
+   
 </html>
