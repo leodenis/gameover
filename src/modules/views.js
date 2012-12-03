@@ -149,9 +149,9 @@ app.Views.home = Backbone.View.extend({
 	
 		// Déclaration de référance 
 		var renderAccueil = this.renderAccueil;
-		//On lance la vidéo si l'utilisateur n'a jamais vu celle-ci
+		// On lance la vidéo si l'utilisateur n'a jamais vu celle-ci
 		if(app.users.get('1').attributes.videoWatch == false){	
-			//app.Assets.sounds.ambiant.stop();
+			// app.Assets.sounds.ambiant.stop();
 			this.loaderVideo();
 		}else{
 			this.renderAccueil()
@@ -718,12 +718,12 @@ app.Views.etape3 = app.Views.question.extend({
 		livre_MacGyver();
 		iPad_Apple();
 
-		$('#choix1').bind('click',function(){
+		$('#elements1').bind('click',function(){
 				app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),50);
 				app.Helpers.unlockQuestion('3');
 				app.router.navigate('etape4', true);
 		});
-		$('#choix2').bind('click',function(){
+		$('#elements2').bind('click',function(){
 				app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),0);
 				app.Helpers.unlockQuestion('3');
 				app.router.navigate('etape4', true);

@@ -84,15 +84,14 @@
 				</span>\
 				<span class="position">\
 					<span class="digit static">0</span>\
-				</span>'
-			).appendTo(elem);
+				</span>').appendTo(elem);
 			
 			if(this!="Seconds"){
 				/* Les 2 points qui séparents les chiffres */
 				elem.append('<span class="countDiv countDiv'+i+'"></span>');
 			}
+			
 		});
-
 	}
 
 	// Creates an animated transition between the two numbers
