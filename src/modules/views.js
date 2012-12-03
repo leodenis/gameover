@@ -64,8 +64,11 @@ app.Views.loader = Backbone.View.extend({
     		app.router = new app.Router();
     		//Met en route la surveillance de l'url
     		Backbone.history.start();
-		}else
-		this.LoaderRender();
+    		console.log('mobile');
+		}else{
+			this.LoaderRender();
+		}
+		
 
 	},
 
@@ -1421,15 +1424,15 @@ app.Views.etape9 = Backbone.View.extend({
 app.Views.mobileExperience = Backbone.View.extend({
 	
 	//zone de rendering kIkou math ? a quand une intégration de accueilMobile  en Mquery. . . 
-	el : '#question',
+	el : '#accueilMobile',
 	// Fonction appelé automatiquement lors de l'instanciation de la vue
 	initialize : function() {
 		$('#filAriane').addClass('hidden'); // cacher le fil d'ariane
 		this.render();		
 	},
 	render : function(){		
-		template = _.template($('#templateMobile').html(),{test:'kjjk'});
-		this.$el.show().html(template);
+		template = _.template($('#templateMobile').html(),{phrase:'kjjk'});
+		this.$el.attr('style','show').html(template);
 		//Controle si le navigateur peut utiliser le gyroscope
 		if (typeof window.DeviceMotionEvent != 'undefined') {
 			
@@ -1449,8 +1452,8 @@ app.Views.mobileExperience = Backbone.View.extend({
 	    setInterval(function () {
 	        var change = Math.abs(x1-x2+y1-y2+z1-z2);
 	        if (change > sensitivity) {        	
-				template = _.template($('#templateMobile').html(),{test:app.Helpers.getOneInfo()});
-				$('#question').html(template);
+				template = _.template($('#templateMobile').html(),{phrase:app.Helpers.getOneInfo()});
+				$('#accueilMobile').html(template);
 	        }
 	
 	        // Update new position
