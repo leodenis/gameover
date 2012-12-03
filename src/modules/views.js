@@ -1077,12 +1077,12 @@ app.Views.etape7 = app.Views.question.extend({
 		cut();
 		gun();
 
-		$('#choix1').bind('click',function(){
+		$('#elements1').bind('click',function(){
 				app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),0);
 				app.Helpers.unlockQuestion('7');
 				app.router.navigate('etape8', true);
 		});
-		$('#choix2').bind('click',function(){
+		$('#elements2').bind('click',function(){
 				app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),50);
 				app.Helpers.unlockQuestion('7');
 				app.router.navigate('etape8', true);
