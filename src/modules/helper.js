@@ -360,7 +360,7 @@ app.Helpers.videosVimeo = function(){
         player.api('setColor', '111');
         player.api('setVolume', 0.1);
         
-        player.input = $("#"+player_id+" + div > .progressionButton");
+        player.input = $("#"+player_id+" + div > input");
 		player.div = player.input.parent();
 		
 		// pour une progression en décompte secondes :

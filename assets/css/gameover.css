@@ -898,6 +898,8 @@ button.messi .btn::-moz-focus-inner {
 #question h2 + div {
 	position:fixed;
 	top:0;
+	left:0;
+	right:0;
 	bottom:0;
 	opacity:0;
 	z-index:-1;
@@ -932,34 +934,50 @@ button.messi .btn::-moz-focus-inner {
 	-webkit-border-radius:9px;
 	-moz-border-radius:9px;
 	border-radius:9px;
-	margin:130px 1% 20% 1%;
+	margin:130px 1% 240px 1%;
 	padding:1%;
 	position:relative;
 }
-.videos .round {
+.videos > .round {
 	width: 100px;
 	height: 100px;
 	position: absolute;
 	top:110%;
-	left:45%;
+	left:25%;
+	border-radius: 50%;
+	background: #000;
+	display: inline-block;
+}
+.videos > .round + .round {
+	width: 88px;
+	height: 88px;
+	position: absolute;
+	top:110%;
+	left:60%;
 	border-radius: 50%;
 	background: #000;
 	margin-bottom:150px;
 	display: inline-block;
+	border:6px rgba(15,226,15,1) solid;
+	cursor:pointer;
 }
-.videos .round canvas {
+.videos > .round canvas {
 	position: absolute;
 	top:0;
 	left:0;
 	right:0;
 	bottom:0;
 }
-.progressionButton {
+.videos > .round + .round > input {
+	color:rgba(15,226,15,1);
+	cursor:pointer;
+}
+.round > input {
 	position: absolute;
 	text-align: center;
 	width: 100px;
-	top: 33px;
-	left: 0;
+	top: 1em;
+	left: -6px;
 	border: none;
 	background: none;
 	outline: none;
@@ -1284,7 +1302,7 @@ button.messi .btn::-moz-focus-inner {
 	float:left;
 }
 #commentaire{
-	width: 40%;
+	padding:10px 20px;
 	height: 100%;
 	float: left;
 	margin-top: 145px;
