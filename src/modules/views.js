@@ -720,12 +720,12 @@ app.Views.etape3 = app.Views.question.extend({
 
 		$('#elements1').bind('click',function(){
 				app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),50);
-				app.Helpers.unlockQuestion('3');
+				app.Helpers.unlockQuestion('4');
 				app.router.navigate('etape4', true);
 		});
 		$('#elements2').bind('click',function(){
 				app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),0);
-				app.Helpers.unlockQuestion('3');
+				app.Helpers.unlockQuestion('4');
 				app.router.navigate('etape4', true);
 		});
 
@@ -873,6 +873,17 @@ app.Views.etape4 = app.Views.question.extend({
 		this.$el.html(template);
 		
 		app.Helpers.videosVimeo();
+		
+		$('#video1').bind('click',function(){
+				app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),50);
+				app.Helpers.unlockQuestion('5');
+				app.router.navigate('etape5', true);
+		});
+		$('#video2').bind('click',function(){
+				app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),0);
+				app.Helpers.unlockQuestion('5');
+				app.router.navigate('etape5', true);
+		});
 	},
 });
 
@@ -891,6 +902,17 @@ app.Views.etape5 = app.Views.question.extend({
 		this.$el.html(template);
 		
 		app.Helpers.videosVimeo();
+		
+		$('#video1').bind('click',function(){
+				app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),50);
+				app.Helpers.unlockQuestion('6');
+				app.router.navigate('etape6', true);
+		});
+		$('#video2').bind('click',function(){
+				app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),0);
+				app.Helpers.unlockQuestion('6');
+				app.router.navigate('etape6', true);
+		});
 	},
 });
 
