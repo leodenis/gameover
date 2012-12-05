@@ -51,16 +51,11 @@ header > a:nth-of-type(1) {
 	background:url("../img/logo.png") center no-repeat;
 	width:100px;
 	margin-left:4%;
-	-webkit-transition-property:all;
-	-moz-transition-property:all;
-	-ms-transition-property:all;
-	-o-transition-property:all;
-	transition-property:all;
-	-webkit-transition-duration:1s;
-	-moz-transition-duration:1s;
-	-ms-transition-duration:1s;
-	-o-transition-duration:1s;
-	transition-duration:1s
+	-webkit-transition:all 1s;
+	-moz-transition:all 1s;
+	-ms-transition:all 1s;
+	-o-transition-:all 1s;
+	transition:all 1s;
 }
 header > a:nth-of-type(1):hover {
 	-webkit-transform:rotate(720deg);
@@ -344,7 +339,7 @@ h2 {
 	margin:1% 4%;
 	padding:1%;
 	text-align:center;
-	max-height:300px;
+	min-height:280px;
 }
 #jeu img {
 	height:150px;
