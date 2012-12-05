@@ -1,0 +1,19 @@
+/* iPhone [portrait + landscape] */
+@media only screen and (max-device-width: 480px) {
+	
+	body{
+
+	}
+	
+	h1{
+		display:block;
+		width:200px;
+		z-index: 9999;
+	}
+	
+	#accueilMobile{
+		height:1000px;
+		margin-top:400px;
+		z-index:9998;
+	}
+}
