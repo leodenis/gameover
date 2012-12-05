@@ -10,9 +10,10 @@
         <!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="stylesheet" href="assets/css/style.css" type="text/css" media="screen"  />
-        <link rel="stylesheet" href="assets/css/gameover.css" type="text/css" media="screen"  />
+        <link rel="stylesheet" href="assets/css/style.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="assets/css/gameover.css" type="text/css" media="screen" />
         <link type="text/css" rel="stylesheet" media="only screen and (max-device-width: 480px)" href="assets/css/mobile.css" />
+        <link href='http://fonts.googleapis.com/css?family=Englebert' rel='stylesheet' type='text/css'>
         <!--[if lt IE 9]><script src="assets/js/html5shiv.js"></script><![endif]-->
         <!--Script google analytics-->
         <script type="text/javascript">
@@ -88,13 +89,16 @@
                     <div class="clearfix"> </div>
                     <section itemprop="image" id="banner"> </section>
                     <section itemprop="text" id="stats">
+                    	<div class="clearfix"> </div>
                         <h2 itemprop="keywords">êtes-vous prêt à survivre à la fin du monde ?</h2>
                         <div id="container_sondage">
+							
                         </div>
                         <div id="commentaire">
                             <p class="commentaire_survivant">66% Survivent</p>
                             <p class="commentaire_non_survivant">44% Ne survivent pas</p> 
                         </div>
+                        <div class="clearfix"> </div>
                     </section>
                     
                     <section itemprop="text" id="jeu">
@@ -114,7 +118,6 @@
         <!---Template question mobile-->
         <script type="text/template" id="templateMobile">
                   <h1><%= phrase %></h1>
-  
         </script>
         
         
@@ -133,8 +136,6 @@
         	<div> </div>
 			<div style="height:600px" id="exploration"></div>
 			<div class='carte' id="carte"></div>
-			
-			<!--<a class='nextQuestion'>Question suivante</a>-->
         </script>
         
         <!---Template question video -->

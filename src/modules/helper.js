@@ -440,7 +440,3 @@ app.Helpers.renderCharts = function(param){
  		var chart;
 		chart = new Highcharts.Chart(param);
 }
-
-
-
-

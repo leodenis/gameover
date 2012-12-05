@@ -235,7 +235,6 @@ app.Views.home = Backbone.View.extend({
 	                             formatter: function() {
 	                                 return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
 	                             }
-	                            
 	                         }
 	                     }
 	                 },
@@ -262,9 +261,6 @@ app.Views.home = Backbone.View.extend({
 
 	    // génere un sondage
 		app.Helpers.renderCharts(paramChart);
-		console.log('Accueil chargé');
-		
-
 	},
 	// evenement lors du click du lancement de l'application
 	launchGame: function(){
