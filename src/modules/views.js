@@ -135,6 +135,9 @@ app.Views.home = Backbone.View.extend({
 		if($('#question:visible').length){	  	
 	  		$('#question:visible').removeClass('show').empty();
 	  	}
+	  	if($('#end:visible').length){	  	
+	  		$('#end:visible').removeClass('show').empty();
+	  	}
 	  	if($('#div:visible').length){	  		
 	  		$('#div:visible').removeClass('show').empty();
 	  	}
@@ -1379,7 +1382,6 @@ app.Views.etape9 = Backbone.View.extend({
 
 	},
 	
-	
 	// Fonction qui est appelé automatiquement lors de l'instanciation
 	initialize : function() {
 		// Controle que nous n'ayons pas l'accueil de chargé
@@ -1392,7 +1394,7 @@ app.Views.etape9 = Backbone.View.extend({
 	  	if($('#question:visible').length){	  		
 	  		$('#question:visible').removeClass('show').empty();
 	  	}
-	  	this.$el.toggleClass('show');
+	  	this.$el.addClass('show');
 		this.render();
 	},
 	
@@ -1404,13 +1406,13 @@ app.Views.etape9 = Backbone.View.extend({
 			//push sur le serveur le score
 			app.Helpers.SetResultSurvive(false);
 			resultat = {
-				resultatTitle : 'Aie ! la fin est proche pour toi', 
+				resultatTitle : 'Aïe ! la fin est proche pour toi', 
 				resultatAnalyse: ''
 			}
 		}else{
 			app.Helpers.SetResultSurvive(true);
 			resultat = {
-				resultatTitle : 'tu vas survivre champion !!', 
+				resultatTitle : 'Tu vas survivre, champion !', 
 				resultatAnalyse: ''
 			}
 		}

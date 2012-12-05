@@ -253,8 +253,14 @@ body > div {
 	margin-bottom:-10px;
 	display:inline-block;
 }
+#filAriane > a:hover > i {
+	background:url('../img/sound-muted.png') center no-repeat;
+}
 #filAriane > a.muted > i {
 	background:url('../img/sound-muted.png') center no-repeat;
+}
+#filAriane > a.muted:hover > i {
+	background:url('../img/sound-activated.png') center no-repeat;
 }
 #filAriane > a:last-of-type {
 	margin-left:20px;
