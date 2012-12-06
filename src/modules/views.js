@@ -1412,21 +1412,20 @@ app.Views.etape9 = Backbone.View.extend({
 	},
 	
 	render : function(){
-		console.log(app.Helpers.getCuid());
 		score = app.Helpers.getScore();
 		console.log(score);
 		if(score <= 50){
 			//push sur le serveur le score
 			app.Helpers.SetResultSurvive(false);
 			resultat = {
-				resultatTitle : 'Aïe ! la fin est proche pour toi', 
-				resultatAnalyse: ''
+				img : 'rouge.png',
+				resultatTitle : 'Aïe ! la fin est proche pour toi'
 			}
 		}else{
 			app.Helpers.SetResultSurvive(true);
 			resultat = {
-				resultatTitle : 'Tu vas survivre, champion !', 
-				resultatAnalyse: ''
+				img : 'vert.png',
+				resultatTitle : 'Tu vas survivre, champion !'
 			}
 		}
 		console.log(_.template($('#endTemplate').html(),resultat));
