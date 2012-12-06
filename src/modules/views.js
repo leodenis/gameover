@@ -705,29 +705,26 @@ app.Views.etape3 = app.Views.question.extend({
 		image1 = {'url':'mac-gyver.jpg','alt':'livre Que ferait Mac Gyver ?','titre':'Livre : Que ferait Mac Gyver ?','description':'Le livre pour savoir ce que ferait Mac Gyver dans toutes les situations les plus périeuses. Les astuces du maître de la survie !'};
 		image2 = {'url':'ipad3.png','alt':'iPad 3','titre':'Tablette tactile : iPad 3','description':'Le dernier iPad : le plus puissant et la tablette la plus pratique au monde. Un maximum d\outils en un seul objet !'};
 
-		//Recupère le html générer avec le template
-		template = accueilHTML = _.template($('#templateWebGl').html(),{'titreQuestion':'Quel objet choisissez-vous pour survivre ?','image1':image1,'image2':image2});
-		this.$el.html(template);
+		if( app.Helpers.getUserAgent() == "Chrome"){
 
-		var camera_livre, camera_ipad, scene_livre, scene_iPad, renderer_livre, renderer_ipad;
-		var particleLight_livre, particleLight_ipad, pointLight;
-		var dae;
+			//Recupère le html générer avec le template
+			template = accueilHTML = _.template($('#templateWebGl').html(),{'titreQuestion':'Quel objet choisissez-vous pour survivre ?','elements1':image1,'elements2':image2});
+			this.$el.html(template);
+
+			var camera_livre, camera_ipad, scene_livre, scene_iPad, renderer_livre, renderer_ipad;
+			var particleLight_livre, particleLight_ipad, pointLight;
+			var dae;
 
 
-		livre_MacGyver();
-		iPad_Apple();
+			livre_MacGyver();
+			iPad_Apple();
 
-		$('#elements1').bind('click',function(){
-				app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),50);
-				app.Helpers.unlockQuestion('4');
-				app.router.navigate('etape4', true);
-		});
-		$('#elements2').bind('click',function(){
-				app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),0);
-				app.Helpers.unlockQuestion('4');
-				app.router.navigate('etape4', true);
-		});
-
+		}
+		else{
+			//Recupère le html générer avec le template
+			template = accueilHTML = _.template($('#templateWebGlFallback').html(),{'titreQuestion':'Quel objet choisissez-vous pour survivre ?','elements1':image1,'elements2':image2});
+			this.$el.html(template);
+		}
 		function livre_MacGyver(){
 			var loader = new THREE.ColladaLoader();
 			loader.options.convertUpAxis = true;
@@ -854,6 +851,16 @@ app.Views.etape3 = app.Views.question.extend({
 			renderer_livre.setSize( ratioW, ratioH );
 			renderer_ipad.setSize( ratioW, ratioH );
 		}
+		$('#elements1').bind('click',function(){
+				app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),50);
+				app.Helpers.unlockQuestion('4');
+				app.router.navigate('etape4', true);
+		});
+		$('#elements2').bind('click',function(){
+				app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),0);
+				app.Helpers.unlockQuestion('4');
+				app.router.navigate('etape4', true);
+		});
 	},
 });
 
@@ -1083,32 +1090,28 @@ app.Views.etape7 = app.Views.question.extend({
 
 	render : function (){
 		//Définition des variables à passer
-		image1 = {'url':'mac-gyver.jpg','alt':'gun','titre':'Pistolet semi-automatique E-45','description':'Choisissez le pistolet à 11 coups'};
-		image2 = {'url':'ipad3.png','alt':'cut','titre':'Couteau','description':'Choisissez le couteau utile et perène !!!'};
+		image1 = {'url':'gun.png','alt':'gun','titre':'Pistolet semi-automatique E-45','description':'Choisissez le pistolet à 11 coups'};
+		image2 = {'url':'cut.png','alt':'cut','titre':'Couteau','description':'Choisissez le couteau utile et perène !!!'};
 
-		//Recupère le html générer avec le template
-		template = accueilHTML = _.template($('#templateWebGl').html(),{'titreQuestion':'Ces cauchemars donnent envie de se protéger mais que choisir ?','image1':image1,'image2':image2});
-		this.$el.html(template);
+		if( app.Helpers.getUserAgent() == "Chrome"){
 
-		var camera_gun, camera_cut, scene_gun, scene_cut, renderer_gun, renderer_cut;
-		var particleLight_gun, particleLight_cut, pointLight;
-		var dae;
+			//Recupère le html générer avec le template
+			template = accueilHTML = _.template($('#templateWebGl').html(),{'titreQuestion':'Ces cauchemars donnent envie de se protéger mais que choisir ?','elements1':image1,'elements2':image2});
+			this.$el.html(template);
 
+			var camera_gun, camera_cut, scene_gun, scene_cut, renderer_gun, renderer_cut;
+			var particleLight_gun, particleLight_cut, pointLight;
+			var dae;
 
-		cut();
-		gun();
+			cut();
+			gun();
 
-		$('#elements1').bind('click',function(){
-				app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),0);
-				app.Helpers.unlockQuestion('7');
-				app.router.navigate('etape8', true);
-		});
-		$('#elements2').bind('click',function(){
-				app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),50);
-				app.Helpers.unlockQuestion('7');
-				app.router.navigate('etape8', true);
-		});
-
+		}
+		else{
+			//Recupère le html générer avec le template
+			template = accueilHTML = _.template($('#templateWebGlFallback').html(),{'titreQuestion':'Ces cauchemars donnent envie de se protéger mais que choisir ?','elements1':image1,'elements2':image2});
+			this.$el.html(template);
+		}
 		function gun(){
 			var loader = new THREE.ColladaLoader();
 			loader.options.convertUpAxis = true;
@@ -1237,6 +1240,16 @@ app.Views.etape7 = app.Views.question.extend({
 			renderer_gun.setSize( ratioW, ratioH );
 			renderer_cut.setSize( ratioW, ratioH );
 		}
+		$('#elements1').bind('click',function(){
+				app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),0);
+				app.Helpers.unlockQuestion('7');
+				app.router.navigate('etape8', true);
+		});
+		$('#elements2').bind('click',function(){
+				app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),50);
+				app.Helpers.unlockQuestion('7');
+				app.router.navigate('etape8', true);
+		});
 	},	
 });
 
