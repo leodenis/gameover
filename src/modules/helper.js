@@ -140,7 +140,9 @@ app.Helpers.RenderStreetMapMode = function(options){
 		//https://developers.google.com/maps/documentation/javascript/reference#DirectionsRendererOptions
 		//voir pour empêcher l'utilisateur de sortir de la zone de directionDisplay'
 		directionsDisplay.setMap(app.map.carte);
-		directionsDisplay.suppressMarkers = true;
+		directionsDisplay.suppressMarkers = 'true';
+		directionsDisplay.suppressInfoWindows = 'true';
+		console.log(directionsDisplay.suppressMarkers);
 		var request = {
 	     	origin: options.streetGuide.depart,           
 	     	destination: options.streetGuide.arriver, 
@@ -150,6 +152,7 @@ app.Helpers.RenderStreetMapMode = function(options){
 		
 		 directionsService.route(request, function(result, status) {
 	    	if (status == google.maps.DirectionsStatus.OK) {
+	    		console.log('ici');
 	      		directionsDisplay.setDirections(result);
 	      		
 	    	}

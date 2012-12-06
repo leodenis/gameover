@@ -679,7 +679,7 @@ app.Views.etape2 = app.Views.question.extend({
 			}
 			new Messi(app.Assets.images.porsche,options);
 		}else{
-			options.title = 'Vous souhaitez voler un kangoo ?'
+			options.title = 'Vous souhaitez voler un twingo ?'
 			options.callback = function(val){
 				if(val == 'O'){
 					app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),0);
@@ -1444,6 +1444,7 @@ app.Views.mobileExperience = Backbone.View.extend({
 	initialize : function() {
 		$('#filAriane').addClass('hidden'); // cacher le fil d'ariane
 		this.render();		
+		console.log('lol');
 	},
 	render : function(){		
 		template = _.template($('#templateMobile').html(),{phrase:'kjjk'});
