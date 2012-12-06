@@ -178,7 +178,29 @@
             </div>
             <div class="clearfix"> </div>
         </script>
-        
+
+        <!---Template question WebGL fallback-->
+        <script type="text/template" id="templateWebGlFallback">
+            <h2><a id='btnHelp'>?</a><%= titreQuestion %></h2>
+            <div> </div>
+            <div class="clearfix"> </div>
+            <div class="webgl">
+               <h3><%= image1.titre %></h3>
+                <div class="elements" id="elements1">
+                    <img src="assets/img/<%= image1.url %>"/>
+                </div>
+                <!--<a id='choix1' class='nextQuestion'>Choisir</a>-->
+            </div>
+            <div class="webgl">
+               <h3><%= image2.titre %></h3>
+                <div class="elements" id="elements2">
+                    <img src="assets/img/<%= image2.url %>"/>
+                </div>
+                <!--<a id='choix2' class='nextQuestion'>Choisir</a>-->
+            </div>
+            <div class="clearfix"> </div>
+        </script> 
+               
         <!---Template question end -->
         <script type="text/template" id="endTemplate">
            <div itemscope itemtype="http://schema.org/ItemList" id="container">
