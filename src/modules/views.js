@@ -894,8 +894,8 @@ app.Views.etape4 = app.Views.question.extend({
 app.Views.etape5 = app.Views.question.extend({
 	render : function (){
 		//Définition des variables à passer
-		video1 = {'url':'35132562','titre':'Will Smith - I am a Legend','description':''};
-		video2 = {'url':'3431743','titre':'Chuck Norris','description':''};
+		video1 = {'url':'23047448','titre':'Bear Grylls - Man vs Wild'};
+		video2 = {'url':'3431743','titre':'Chuck Norris'};
 		//Recupère le html générer avec le template
 		template = accueilHTML = _.template($('#templateVideos').html(),{'titreQuestion':'Quels conseils écouter pour se préparer à la fin du monde ?','video1':video1,'video2':video2});
 		this.$el.html(template);
