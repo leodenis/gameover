@@ -351,6 +351,9 @@ h2 {
 	text-align:center;
 	min-height:280px;
 }
+#stats h2,#jeu h2 {
+	font-family: 'Englebert',sans-serif;
+}
 #jeu img {
 	height:150px;
 	cursor:pointer;
