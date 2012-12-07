@@ -57,7 +57,6 @@ app.Views.loader = Backbone.View.extend({
 					note.html(message);
 				}
 			}).toggleClass('show');
-
 		//Lancement du rendu de chargement si ce n'est pas un iphone ou ipad
 		if((navigator.userAgent.match(/iPhone/i))||(navigator.userAgent.match(/iPad/i))){
 			// Initialisation du router, c'est lui qui va instancier nos vues
@@ -1455,8 +1454,7 @@ app.Views.mobileExperience = Backbone.View.extend({
 	// Fonction appelé automatiquement lors de l'instanciation de la vue
 	initialize : function() {
 		$('#filAriane').addClass('hidden'); // cacher le fil d'ariane
-		this.render();		
-		console.log('lol');
+		this.render();
 	},
 	render : function(){		
 		template = _.template($('#templateMobile').html(),{phrase:'kjjk'});

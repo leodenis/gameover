@@ -9,12 +9,12 @@
 		min-width:0;
 		text-align:center;
 		line-height:normal;
+		padding-bottom:20px;
 	}
-	
 	
 	h1{
 		display:block;
-		font-size:1.w5em;
+		font-size:1.5em;
 	}
 	
 	footer {
@@ -62,9 +62,22 @@
 	
 	
 	#accueilMobile{
-		height:1000px;
-		margin-top:400px;
-		z-index:9998;
+		margin:0 auto;
+		text-align:center;
+		display:block;
+		font-size:1.5em;
+		opacity:1;
+		width:88%;
+		padding:0 5%;
+	}
+	
+	#accueilMobile p{
+		background-color: rgba(0, 0, 0, 0.5);
+		-webkit-border-radius: 9px;
+		-moz-border-radius: 9px;
+		border-radius: 9px;
+		font-size:0.7em;
+		padding:10px 1%;
 	}
 	
 	.fb_edge_widget_with_comment{
