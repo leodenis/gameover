@@ -57,7 +57,6 @@ app.Views.loader = Backbone.View.extend({
 					note.html(message);
 				}
 			}).toggleClass('show');
-
 		//Lancement du rendu de chargement si ce n'est pas un iphone ou ipad
 		if((navigator.userAgent.match(/iPhone/i))||(navigator.userAgent.match(/iPad/i))){
 			// Initialisation du router, c'est lui qui va instancier nos vues
@@ -679,7 +678,7 @@ app.Views.etape2 = app.Views.question.extend({
 			}
 			new Messi(app.Assets.images.porsche,options);
 		}else{
-			options.title = 'Vous souhaitez voler un kangoo ?'
+			options.title = 'Vous souhaitez voler un twingo ?'
 			options.callback = function(val){
 				if(val == 'O'){
 					app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),50);
@@ -1462,7 +1461,7 @@ app.Views.mobileExperience = Backbone.View.extend({
 	// Fonction appelé automatiquement lors de l'instanciation de la vue
 	initialize : function() {
 		$('#filAriane').addClass('hidden'); // cacher le fil d'ariane
-		this.render();		
+		this.render();
 	},
 	render : function(){		
 		template = _.template($('#templateMobile').html(),{phrase:'kjjk'});
