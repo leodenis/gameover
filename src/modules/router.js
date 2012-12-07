@@ -18,24 +18,35 @@ app.Router = Backbone.Router.extend({
   },
   // Root principal du site internet
   root: function () {
-  	if((navigator.userAgent.match(/iPhone/i))||(navigator.userAgent.match(/iPad/i))){
-  		console.log('ici4');
-  		app.views.mobile = new app.Views.mobileExperience();
+	if(BrowserDetect.browser == 'Explorer' && BrowserDetect.version == '7' || BrowserDetect.browser == 'Explorer' && BrowserDetect.version == '6'){
+		 app.views.obsolete = new  app.views.obsolete();
   	}else{
-  		console.log('ici3');
-  		//Lancement de la view accueil
-  		app.views.home = new app.Views.home();
+  		if((navigator.userAgent.match(/iPhone/i))||(navigator.userAgent.match(/iPad/i))){		
+  			app.views.mobile = new app.Views.mobileExperience();
+  		}else{
+  			app.views.home = new app.Views.home();
+  		}
   	}
   },
   
   home : function(){
-  	if(_.isObject(app.views.home) ){
-  		console.log('elle existe deja dans le dom');
-  		delete app.views.home;
-  		app.views.home = new app.Views.home();
+  	if(BrowserDetect.browser == 'Explorer' && BrowserDetect.version == '7' || BrowserDetect.browser == 'Explorer' && BrowserDetect.version == '6'){
+  		app.views.obsolete = new  app.views.obsolete();
   	}else{
-  		app.views.home = new app.Views.home();
+  		if((navigator.userAgent.match(/iPhone/i))||(navigator.userAgent.match(/iPad/i))){
+  			app.views.mobile = new app.Views.mobileExperience();
+		}else{
+			if(_.isObject(app.views.home) ){
+  				console.log('elle existe deja dans le dom');
+  				delete app.views.home;
+  				app.views.home = new app.Views.home();
+  			}else{
+  				app.views.home = new app.Views.home();
+  		}
+			}
   	}
+  	
+  	
   },
   
   etape1: function() {

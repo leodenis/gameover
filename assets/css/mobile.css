@@ -1,4 +1,3 @@
-/* iPhone [portrait + landscape] */
 @media handheld, only screen and (max-device-width:500px), only screen and (max-width:500px), only screen and (-webkit-min-device-pixel-ratio: 2){
 
 	header {
@@ -33,6 +32,93 @@
 		left:0;
 		right:0;
 		background:url("../img/logo@2x.png") center no-repeat;
+		background-size: 90px 90px;
+	}
+	
+	header > a, header > div {
+		display:block;
+		text-align:center;
+		float: none;
+		line-height:1em;
+	}
+	
+	header .countdownHolder{
+		position:absolute;
+		bottom:0;
+		width:100%;
+		height:auto;
+		margin:0 auto;
+	}
+	
+	header > a:last-of-type{
+		margin:0px;
+		width:100%;
+		height:100px;
+		line-height:100px;
+	}
+	
+	footer a:first-of-type{
+		margin-left:0;
+	}
+	
+	
+	#accueilMobile{
+		margin:0 auto;
+		text-align:center;
+		display:block;
+		font-size:1.5em;
+		opacity:1;
+		width:88%;
+		padding:0 5%;
+	}
+	
+	#accueilMobile p{
+		background-color: rgba(0, 0, 0, 0.5);
+		-webkit-border-radius: 9px;
+		-moz-border-radius: 9px;
+		border-radius: 9px;
+		font-size:0.7em;
+		padding:10px 1%;
+	}
+	
+	.fb_edge_widget_with_comment{
+		display:none !important;
+	}
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px), only screen and (-webkit-min-device-pixel-ratio: 1){
+		header {
+		display:block;
+		height:auto !important;
+		background:none;
+		position:relative;
+		min-width:0;
+		text-align:center;
+		line-height:normal;
+		padding-bottom:20px;
+	}
+	
+	h1{
+		display:block;
+		font-size:1.5em;
+	}
+	
+	footer {
+		display:none;
+	}
+	
+	body > div{
+		width:100%;
+		display:none;
+		height:auto;
+		margin:0 auto;
+	}
+	
+	header > a:first-of-type{
+		margin:0 auto;
+		left:0;
+		right:0;
+		background:url("../img/logo.png") center no-repeat;
 		background-size: 90px 90px;
 	}
 	

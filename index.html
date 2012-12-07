@@ -12,7 +12,7 @@
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="stylesheet" href="assets/css/style.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="assets/css/gameover.css" type="text/css" media="screen" />
-        <link type="text/css" rel="stylesheet" media="only screen and (max-device-width: 480px)" href="assets/css/mobile.css" />
+        <link type="text/css" rel="stylesheet" href="assets/css/mobile.css" />
         <link href='http://fonts.googleapis.com/css?family=Englebert' rel='stylesheet' type='text/css'>
         <!--[if lt IE 9]><script src="assets/js/html5shiv.js"></script><![endif]-->
         <!--Script google analytics-->
@@ -201,6 +201,7 @@
 
         <!---Template question end -->
         <script type="text/template" id="endTemplate">
+
            <section itemprop="image" id="banner"> </section>
            <section>
                 <div class="clearfix"> </div>
@@ -282,7 +283,6 @@
     <script type="text/javascript" src="assets/js/underscore-min.js"></script>
     <script type="text/javascript" src="assets/js/backbone.js"></script>
     <script type="text/javascript" src="assets/js/backbone-localstorage.js"></script>
-    <script type="text/javascript" src="assets/js/html5Preloader.js"></script>
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script type="text/javascript" src="assets/js/messi.min.js"></script>
     <script type="text/javascript" src="assets/js/Math.uuid.js"></script>
@@ -293,10 +293,11 @@
     <script type="text/javascript" src="assets/js/highcharts.js"></script>
     <script type="text/javascript" src="assets/js/jQuery.html5Loader.min.js"></script>
     <script type="text/javascript" src="assets/js/jQuery.html5Loader.circular.js"></script>
-    <!-- Base de l'application Backbone JS -->
+    
+    <!-- Bootstrap de l'application -->
     <script type="text/javascript" src="src/app.js"></script>
 	
-    <!-- Les modules de l'application, l'ordre ne compte pas -->
+    <!-- Les modules de l'application Backbones sans mocha -->
     <script type="text/javascript" src="src/modules/router.js"></script>
     <script type="text/javascript" src="src/modules/views.js"></script>
     <script type="text/javascript" src="src/modules/models.js"></script>

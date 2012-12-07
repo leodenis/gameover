@@ -55,13 +55,19 @@ app.Views.loader = Backbone.View.extend({
 					note.html(message);
 				}
 			}).toggleClass('show');
+			
+		//Lancement du rendu pour internet explorer 6 & 7
+		console.log(BrowserDetect);
+		if(BrowserDetect.browser == 'Explorer' && BrowserDetect.version == '7' || BrowserDetect.browser == 'Explorer' && BrowserDetect.version == '6'){
+			app.router = new app.Router();
+			Backbone.history.start();
+		}
 		//Lancement du rendu de chargement si ce n'est pas un iphone ou ipad
 		if((navigator.userAgent.match(/iPhone/i))||(navigator.userAgent.match(/iPad/i))){
 			// Initialisation du router, c'est lui qui va instancier nos vues
     		app.router = new app.Router();
-    		//Met en route la surveillance de l'url
+    		//Met en route la surveillance des ancres #
     		Backbone.history.start();
-    		console.log('mobile');
 		}else{
 			this.LoaderRender();
 		}
@@ -79,7 +85,6 @@ app.Views.loader = Backbone.View.extend({
             onBeforeLoad:       function () {},
             onComplete:         function () {
 
-            	console.log(app.Assets.files);
 
             	app.Assets.images = {
 					porsche : app.Assets.files[0],
@@ -99,8 +104,8 @@ app.Views.loader = Backbone.View.extend({
 				app.Assets.sounds.ambiant.volume = 0.1;
 				app.Assets.sounds.boum.volume = 0.1;
 				app.Assets.sounds.tranquille.volume = 0.1;
+				
 				//supprime le loader
-				console.log('loader chargé');
 				$('#loader').remove();
 				// Initialisation du router, c'est lui qui va instancier nos vues
 	    		app.router = new app.Router();
@@ -1470,7 +1475,7 @@ app.Views.mobileExperience = Backbone.View.extend({
 		this.render();
 	},
 	render : function(){		
-		template = _.template($('#templateMobile').html(),{phrase:'kjjk'});
+		template = _.template($('#templateMobile').html(),{phrase:'Veuillez secouer votre iPhone pour découvrir une information aléatoire sur la fin du monde.'});
 		this.$el.attr('style','show').html(template);
 		//Controle si le navigateur peut utiliser le gyroscope
 		if (typeof window.DeviceMotionEvent != 'undefined') {
