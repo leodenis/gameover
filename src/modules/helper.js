@@ -294,7 +294,7 @@ var textInfos = new Array (
 		'Des événements comme des tsunamis, des tremblements de terre, des éruptions de super-volcans et d\'autres phénomènes catastrophiques devraient également survenir en 2012.',
 		'Le village Bugarach, est un lieu de refuge pour la fin du monde de 2012. Cette affirmation s\'appuierait sur un ancien texte datant du passage d\'Attila, surnommé « le fléau de Dieu » écrit à Lemud, le 4 mai 451. Date à laquelle les Huns auraient enterré le « trésor de l\'Apocalypse » sur les bords de la Nied, après avoir brûlé Metz (7 avril). Ce mystérieux trésor protégerait les survivants de la fin du monde. Ainsi, quiconque se trouverait à proximité du « trésor de l\'Apocaypse » serait épargné par la fin du monde.'
 	);
-	return textInfos[Math.floor(Math.random() * textInfos.length) + 1];
+	return textInfos[Math.floor(Math.random() * textInfos.length)];
 	
 }
 
