@@ -1448,7 +1448,6 @@ app.Views.etape9 = Backbone.View.extend({
 			resultat["img"] = 'vert.png';
 			resultat["resultatTitle"] = 'Tu vas survivre, champion !';
 		}
-		console.log(resultat);
 		this.$el.html(_.template($('#endTemplate').html(),resultat));
 	}
 
