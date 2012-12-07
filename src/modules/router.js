@@ -19,7 +19,7 @@ app.Router = Backbone.Router.extend({
   // Root principal du site internet
   root: function () {
 	if(BrowserDetect.browser == 'Explorer' && BrowserDetect.version == '7' || BrowserDetect.browser == 'Explorer' && BrowserDetect.version == '6'){
-		 app.views.obsolete = new  app.views.obsolete();
+		 app.views.obsolete = new  app.Views.obsolete();
   	}else{
   		if((navigator.userAgent.match(/iPhone/i))||(navigator.userAgent.match(/iPad/i))){		
   			app.views.mobile = new app.Views.mobileExperience();
@@ -31,7 +31,7 @@ app.Router = Backbone.Router.extend({
   
   home : function(){
   	if(BrowserDetect.browser == 'Explorer' && BrowserDetect.version == '7' || BrowserDetect.browser == 'Explorer' && BrowserDetect.version == '6'){
-  		app.views.obsolete = new  app.views.obsolete();
+  		app.views.obsolete = new  app.Views.obsolete();
   	}else{
   		if((navigator.userAgent.match(/iPhone/i))||(navigator.userAgent.match(/iPad/i))){
   			app.views.mobile = new app.Views.mobileExperience();
