@@ -1395,6 +1395,8 @@ app.Views.etape9 = Backbone.View.extend({
 	},
 	// Fonction qui est appelé automatiquement lors de l'instanciation
 	initialize : function() {
+		//Fil ariane
+		app.Helpers.filAriane(app.Helpers.getLastQuestUnlock(),app.Helpers.getCurrentQuestion());
 		// Controle que nous n'ayons pas l'accueil de chargé
 	  	if($('#accueil:visible').length){
 	  		$('#accueil:visible').removeClass('show').empty();
