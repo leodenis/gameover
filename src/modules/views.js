@@ -672,7 +672,7 @@ app.Views.etape2 = app.Views.question.extend({
 			options.title = 'Vous souhaitez voler une Porsche ?'
 			options.callback = function(val){
 				if(val == 'O'){
-					app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),50);
+					app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),0);
 					app.Helpers.unlockQuestion('2');
 					app.router.navigate('etape3', true);
 				}
@@ -682,7 +682,7 @@ app.Views.etape2 = app.Views.question.extend({
 			options.title = 'Vous souhaitez voler un kangoo ?'
 			options.callback = function(val){
 				if(val == 'O'){
-					app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),0);
+					app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),50);
 					app.Helpers.unlockQuestion('2');
 					app.router.navigate('etape3', true);
 				}
@@ -1414,7 +1414,7 @@ app.Views.etape9 = Backbone.View.extend({
 	render : function(){
 		score = app.Helpers.getScore();
 		console.log(score);
-		if(score <= 50){
+		if(score <= 350){
 			//push sur le serveur le score
 			app.Helpers.SetResultSurvive(false);
 			resultat = {
