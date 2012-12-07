@@ -54,6 +54,9 @@ app.Helpers.getScore = function(options){
 	return app.users.get('1').attributes.totalPoint;
 }
 
+app.Helpers.getOneScore = function(number){
+	return  app.users.get('1').attributes.etapes[number].point;
+}
 
 /**
  * Récupère l'useragent de l'utilisateur

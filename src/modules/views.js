@@ -1394,7 +1394,6 @@ app.Views.etape9 = Backbone.View.extend({
 	events: {
 
 	},
-	
 	// Fonction qui est appelé automatiquement lors de l'instanciation
 	initialize : function() {
 		// Controle que nous n'ayons pas l'accueil de chargé
@@ -1402,7 +1401,6 @@ app.Views.etape9 = Backbone.View.extend({
 	  		$('#accueil:visible').removeClass('show').empty();
 	  	}
 	  	
-	  	console.log($('#question:visible'));
 	  	if($('#question:visible').length){	  		
 	  		$('#question:visible').removeClass('show').empty();
 	  	}
@@ -1411,22 +1409,33 @@ app.Views.etape9 = Backbone.View.extend({
 	},
 	
 	render : function(){
-		score = app.Helpers.getScore();
+		var resultat = {};
+		function text(points){
+			var resultat;
+			if(points == 50){
+				resultat = "Bon";
+			}
+			else{
+				resultat = "Mauvais";
+			}
+			return resultat;
+		}
+		for ( var i=0 ; i<8 ; i++){
+			resultat["question"+i] = text(app.Helpers.getOneScore(i));
+		}
 
+		score = app.Helpers.getScore();
 		if(score <= 350){
 			//push sur le serveur le score
 			app.Helpers.SetResultSurvive(false);
-			resultat = {
-				img : 'rouge.png',
-				resultatTitle : 'Aïe ! la fin est proche pour toi'
-			}
+			resultat["img"] = 'rouge.png';
+			resultat["resultatTitle"] = 'Aïe ! la fin est proche pour toi';
 		}else{
 			app.Helpers.SetResultSurvive(true);
-			resultat = {
-				img : 'vert.png',
-				resultatTitle : 'Tu vas survivre, champion !'
-			}
+			resultat["img"] = 'vert.png';
+			resultat["resultatTitle"] = 'Tu vas survivre, champion !';
 		}
+		console.log(resultat);
 		this.$el.html(_.template($('#endTemplate').html(),resultat));
 	}
 
