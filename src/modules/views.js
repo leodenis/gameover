@@ -1420,7 +1420,7 @@ app.Views.etape9 = Backbone.View.extend({
 			return resultat;
 		}
 		for ( var i=1 ; i<=8 ; i++){
-			resultat["question"+i] = text(app.Helpers.getOneScore(i));
+			resultat["question"+i] = text(app.Helpers.getOneScore(i-1));
 			if ( resultat["question"+i] == "Bon"){
 				resultat["color"+i] = 'green';
 			}
