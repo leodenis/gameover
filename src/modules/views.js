@@ -1262,7 +1262,9 @@ app.Views.etape8 = app.Views.question.extend({
 		app.Helpers.filAriane(app.Helpers.getLastQuestUnlock(),app.Helpers.getCurrentQuestion());
 		//Recupère le html générer avec le template
 		template = _.template($('#templateStreetView').html(),{"titreQuestion":"Vous entendez ? L\'heure a sonné, choisissez une direction.."});
-		this.$el.html(template);		
+		this.$el.html(template);
+		//Correction d'un bug css sur Etape 8
+		$("#question").css("padding-top",90);
 		// Définition des paramètre de la street + map (voir helper)
 		var optionModeStreetMap = {
 			idMap : 'carte',
@@ -1381,7 +1383,6 @@ app.Views.etape8 = app.Views.question.extend({
 				}
 			}
 			new Messi(app.Assets.images.rue,options);
-		 	
 		 }
 	}
 

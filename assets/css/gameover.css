@@ -354,7 +354,7 @@ h2 {
 	float:left;
 	height:200px;
 }
-#container_sondage img {
+#container_sondage img{
 	width:50%;
 	max-width:160px;
 	margin:35px 0 0 0;
@@ -668,6 +668,7 @@ h2 {
 #end {
 	width:100%;
 	min-width:1000px;
+	margin-top:-85px;
 }
 
 
