@@ -309,9 +309,9 @@ app.Helpers.setPointEtape = function(etape,points){
 	user.attributes.etapes[etape-1].point = points;
 	//Gére le score total
 	total = 0;
-	total = user.attributes.totalPoint*10;
+	total = user.attributes.totalPoint;
 	total = total+points;
-	user.attributes.totalPoint = total/10;
+	user.attributes.totalPoint = total;
 	// Enregistre son edition dans le localstorage
 	app.users.get('1').save();
 }

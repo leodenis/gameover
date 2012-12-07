@@ -671,7 +671,7 @@ app.Views.etape2 = app.Views.question.extend({
 			options.title = 'Vous souhaitez voler une Porsche ?'
 			options.callback = function(val){
 				if(val == 'O'){
-					app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),50);
+					app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),0);
 					app.Helpers.unlockQuestion('2');
 					app.router.navigate('etape3', true);
 				}
@@ -681,7 +681,7 @@ app.Views.etape2 = app.Views.question.extend({
 			options.title = 'Vous souhaitez voler un twingo ?'
 			options.callback = function(val){
 				if(val == 'O'){
-					app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),0);
+					app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),50);
 					app.Helpers.unlockQuestion('2');
 					app.router.navigate('etape3', true);
 				}
@@ -1397,7 +1397,6 @@ app.Views.etape9 = Backbone.View.extend({
 	// Fonction qui est appelé automatiquement lors de l'instanciation
 	initialize : function() {
 		// Controle que nous n'ayons pas l'accueil de chargé
-		console.log()
 	  	if($('#accueil:visible').length){
 	  		$('#accueil:visible').removeClass('show').empty();
 	  	}
@@ -1412,8 +1411,8 @@ app.Views.etape9 = Backbone.View.extend({
 	
 	render : function(){
 		score = app.Helpers.getScore();
-		console.log(score);
-		if(score <= 50){
+
+		if(score <= 350){
 			//push sur le serveur le score
 			app.Helpers.SetResultSurvive(false);
 			resultat = {
@@ -1427,7 +1426,6 @@ app.Views.etape9 = Backbone.View.extend({
 				resultatTitle : 'Tu vas survivre, champion !'
 			}
 		}
-		console.log(_.template($('#endTemplate').html(),resultat));
 		this.$el.html(_.template($('#endTemplate').html(),resultat));
 	}
 
