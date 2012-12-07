@@ -8,8 +8,6 @@ app.Views.loader = Backbone.View.extend({
 	// Fonction appelé automatiquement lors de l'instanciation de la vue
 	initialize : function() {
 		this.templateLoader  = $('#templateLoader').html()
-		//Déclaration du noeud html de destination
-		this.noeud
 		//Déclaration des events du footer
 		//Gestion de la mise en pause ou non du son ambiant
 		//Optiomisation -> changement de l'image sur le bouton en fonction de l'element
