@@ -1398,7 +1398,6 @@ app.Views.etape9 = Backbone.View.extend({
 	// Fonction qui est appelé automatiquement lors de l'instanciation
 	initialize : function() {
 		// Controle que nous n'ayons pas l'accueil de chargé
-		console.log()
 	  	if($('#accueil:visible').length){
 	  		$('#accueil:visible').removeClass('show').empty();
 	  	}
@@ -1413,7 +1412,7 @@ app.Views.etape9 = Backbone.View.extend({
 	
 	render : function(){
 		score = app.Helpers.getScore();
-		console.log(score);
+
 		if(score <= 350){
 			//push sur le serveur le score
 			app.Helpers.SetResultSurvive(false);
@@ -1428,7 +1427,6 @@ app.Views.etape9 = Backbone.View.extend({
 				resultatTitle : 'Tu vas survivre, champion !'
 			}
 		}
-		console.log(_.template($('#endTemplate').html(),resultat));
 		this.$el.html(_.template($('#endTemplate').html(),resultat));
 	}
 
