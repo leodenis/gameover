@@ -1354,10 +1354,10 @@ app.Views.etape8 = app.Views.question.extend({
 		}
 		if(pos == 48.85196 && lat == 2.421069999999986){
 			app.Assets.sounds.boum.play();
-		 	options.title = 'Vous comptez aller à droite ?'
+		 	options.title = 'Vous comptez aller à gauche ?'
 			options.callback = function(val){
 				if(val == 'O'){
-					app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),50);
+					app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),0);
 					app.Helpers.unlockQuestion('2');
 					app.router.navigate('etape9', true);
 				}
@@ -1366,10 +1366,10 @@ app.Views.etape8 = app.Views.question.extend({
 			
 		}else{
 			app.Assets.sounds.tranquille.play();
-			options.title = 'Vous comptez aller à gauche ?'
+			options.title = 'Vous comptez aller à droite ?'
 			options.callback = function(val){
 				if(val == 'O'){
-					app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),0);
+					app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),50);
 					app.Helpers.unlockQuestion('2');
 					app.router.navigate('etape9', true);
 				}
@@ -1392,6 +1392,8 @@ app.Views.etape9 = Backbone.View.extend({
 	},
 	// Fonction qui est appelé automatiquement lors de l'instanciation
 	initialize : function() {
+		//Fil ariane
+		app.Helpers.filAriane(app.Helpers.getLastQuestUnlock(),app.Helpers.getCurrentQuestion());
 		// Controle que nous n'ayons pas l'accueil de chargé
 	  	if($('#accueil:visible').length){
 	  		$('#accueil:visible').removeClass('show').empty();
@@ -1417,7 +1419,7 @@ app.Views.etape9 = Backbone.View.extend({
 			return resultat;
 		}
 		for ( var i=1 ; i<=8 ; i++){
-			resultat["question"+i] = text(app.Helpers.getOneScore(i));
+			resultat["question"+i] = text(app.Helpers.getOneScore(i-1));
 			if ( resultat["question"+i] == "Bon"){
 				resultat["color"+i] = 'green';
 			}
