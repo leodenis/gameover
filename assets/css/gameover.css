@@ -283,7 +283,6 @@ body > div {
 	cursor:pointer;
 	position:fixed;
 	z-index:110;
-	display:none;
 }
 .hands:nth-of-type(1) {
 	left:20%;
