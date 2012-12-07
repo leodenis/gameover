@@ -8,8 +8,6 @@ app.Views.loader = Backbone.View.extend({
 	// Fonction appelé automatiquement lors de l'instanciation de la vue
 	initialize : function() {
 		this.templateLoader  = $('#templateLoader').html()
-		//Déclaration du noeud html de destination
-		this.noeud
 		//Déclaration des events du footer
 		//Gestion de la mise en pause ou non du son ambiant
 		//Optiomisation -> changement de l'image sur le bouton en fonction de l'element
@@ -81,7 +79,6 @@ app.Views.loader = Backbone.View.extend({
             onBeforeLoad:       function () {},
             onComplete:         function () {
 
-            	console.log(app.Assets.files);
 
             	app.Assets.images = {
 					porsche : app.Assets.files[0],
@@ -101,8 +98,8 @@ app.Views.loader = Backbone.View.extend({
 				app.Assets.sounds.ambiant.volume = 0.1;
 				app.Assets.sounds.boum.volume = 0.1;
 				app.Assets.sounds.tranquille.volume = 0.1;
+				
 				//supprime le loader
-				console.log('loader chargé');
 				$('#loader').remove();
 				// Initialisation du router, c'est lui qui va instancier nos vues
 	    		app.router = new app.Router();
