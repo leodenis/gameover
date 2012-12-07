@@ -363,10 +363,10 @@ h2 {
 	width:50%;
 	float:left;
 	text-align:center;
+	margin-top:50px;
 }
 #container_commentaire > div{
 	padding:10px;
-	margin:50px 0 0 0;
 	position:relative;
 	font-size:0.8em;
 	transition:all 2s ease;
@@ -378,12 +378,14 @@ h2 {
 	-moz-border-radius:9px;
 	border-radius:9px;
 	box-shadow: 0px 3px 20px #000;
+	width:80%;
+	margin:0 auto;
 }
 #container_commentaire > div table{
 	text-align:center;
 	width:100%;
 }
-##container_commentaire > div table td{
+#container_commentaire > div table td{
 	padding:3px;
 }
 .commentaire_survivant{
