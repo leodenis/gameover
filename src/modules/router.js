@@ -30,13 +30,23 @@ app.Router = Backbone.Router.extend({
   },
   
   home : function(){
-  	if(_.isObject(app.views.home) ){
-  		console.log('elle existe deja dans le dom');
-  		delete app.views.home;
-  		app.views.home = new app.Views.home();
+  	if(BrowserDetect.browser == 'Explorer' && BrowserDetect.version == '7' || BrowserDetect.browser == 'Explorer' && BrowserDetect.version == '6'){
+  		app.views.obsolete = new  app.views.obsolete();
   	}else{
-  		app.views.home = new app.Views.home();
+  		if((navigator.userAgent.match(/iPhone/i))||(navigator.userAgent.match(/iPad/i))){
+  			app.views.mobile = new app.Views.mobileExperience();
+		}else{
+			if(_.isObject(app.views.home) ){
+  				console.log('elle existe deja dans le dom');
+  				delete app.views.home;
+  				app.views.home = new app.Views.home();
+  			}else{
+  				app.views.home = new app.Views.home();
+  		}
+			}
   	}
+  	
+  	
   },
   
   etape1: function() {
