@@ -57,7 +57,6 @@ app.Views.loader = Backbone.View.extend({
 					note.html(message);
 				}
 			}).toggleClass('show');
-
 		//Lancement du rendu de chargement si ce n'est pas un iphone ou ipad
 		if((navigator.userAgent.match(/iPhone/i))||(navigator.userAgent.match(/iPad/i))){
 			// Initialisation du router, c'est lui qui va instancier nos vues
@@ -672,17 +671,17 @@ app.Views.etape2 = app.Views.question.extend({
 			options.title = 'Vous souhaitez voler une Porsche ?'
 			options.callback = function(val){
 				if(val == 'O'){
-					app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),50);
+					app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),0);
 					app.Helpers.unlockQuestion('2');
 					app.router.navigate('etape3', true);
 				}
 			}
 			new Messi(app.Assets.images.porsche,options);
 		}else{
-			options.title = 'Vous souhaitez voler un kangoo ?'
+			options.title = 'Vous souhaitez voler un twingo ?'
 			options.callback = function(val){
 				if(val == 'O'){
-					app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),0);
+					app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),50);
 					app.Helpers.unlockQuestion('2');
 					app.router.navigate('etape3', true);
 				}
@@ -1398,7 +1397,6 @@ app.Views.etape9 = Backbone.View.extend({
 	// Fonction qui est appelé automatiquement lors de l'instanciation
 	initialize : function() {
 		// Controle que nous n'ayons pas l'accueil de chargé
-		console.log()
 	  	if($('#accueil:visible').length){
 	  		$('#accueil:visible').removeClass('show').empty();
 	  	}
@@ -1412,24 +1410,22 @@ app.Views.etape9 = Backbone.View.extend({
 	},
 	
 	render : function(){
-		console.log(app.Helpers.getCuid());
 		score = app.Helpers.getScore();
-		console.log(score);
-		if(score <= 50){
+
+		if(score <= 350){
 			//push sur le serveur le score
 			app.Helpers.SetResultSurvive(false);
 			resultat = {
-				resultatTitle : 'Aïe ! la fin est proche pour toi', 
-				resultatAnalyse: ''
+				img : 'rouge.png',
+				resultatTitle : 'Aïe ! la fin est proche pour toi'
 			}
 		}else{
 			app.Helpers.SetResultSurvive(true);
 			resultat = {
-				resultatTitle : 'Tu vas survivre, champion !', 
-				resultatAnalyse: ''
+				img : 'vert.png',
+				resultatTitle : 'Tu vas survivre, champion !'
 			}
 		}
-		console.log(_.template($('#endTemplate').html(),resultat));
 		this.$el.html(_.template($('#endTemplate').html(),resultat));
 	}
 
@@ -1456,7 +1452,7 @@ app.Views.mobileExperience = Backbone.View.extend({
 	// Fonction appelé automatiquement lors de l'instanciation de la vue
 	initialize : function() {
 		$('#filAriane').addClass('hidden'); // cacher le fil d'ariane
-		this.render();		
+		this.render();
 	},
 	render : function(){		
 		template = _.template($('#templateMobile').html(),{phrase:'kjjk'});

@@ -19,8 +19,10 @@ app.Router = Backbone.Router.extend({
   // Root principal du site internet
   root: function () {
   	if((navigator.userAgent.match(/iPhone/i))||(navigator.userAgent.match(/iPad/i))){
+  		console.log('ici4');
   		app.views.mobile = new app.Views.mobileExperience();
   	}else{
+  		console.log('ici3');
   		//Lancement de la view accueil
   		app.views.home = new app.Views.home();
   	}
