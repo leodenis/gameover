@@ -18,11 +18,14 @@ app.Router = Backbone.Router.extend({
   },
   // Root principal du site internet
   root: function () {
-  	if((navigator.userAgent.match(/iPhone/i))||(navigator.userAgent.match(/iPad/i))){
-  		app.views.mobile = new app.Views.mobileExperience();
+	if(BrowserDetect.browser == 'Explorer' && BrowserDetect.version == '7' || BrowserDetect.browser == 'Explorer' && BrowserDetect.version == '6'){
+		 app.views.obsolete = new  app.views.obsolete();
   	}else{
-  		//Lancement de la view accueil
-  		app.views.home = new app.Views.home();
+  		if((navigator.userAgent.match(/iPhone/i))||(navigator.userAgent.match(/iPad/i))){		
+  			app.views.mobile = new app.Views.mobileExperience();
+  		}else{
+  			app.views.home = new app.Views.home();
+  		}
   	}
   },
   
