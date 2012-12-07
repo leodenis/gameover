@@ -373,7 +373,7 @@ app.Views.etape1 = Backbone.View.extend({
                 },
                 position : new google.maps.LatLng(48.866818,2.399524),
                 pov : {
-                	heading: 550, //Angle de rotation horizontal, en degrés, de la caméra
+                	heading: 650, //Angle de rotation horizontal, en degrés, de la caméra
                     pitch: 10, //Angle vertical, vers le haut ou le bas, par rapport à l'angle de vertical (CAMERA)
                     zoom: 0
                 },
@@ -406,8 +406,9 @@ app.Views.etape1 = Backbone.View.extend({
 			],
 		
 			streetGuide : {
-				depart : new google.maps.LatLng(48.866818,2.399524),
-				arriver : new google.maps.LatLng(48.867404,2.398934),
+				//soucis direction gmap donc disabled
+				//depart : new google.maps.LatLng(48.866818,2.399524),
+				//arriver : new google.maps.LatLng(48.867404,2.398934),
 		}
 	}
 		app.Helpers.RenderStreetMapMode(optionModeStreetMap);
