@@ -1510,3 +1510,46 @@ app.Views.mobileExperience = Backbone.View.extend({
 	}	
 });
 
+app.Views.obsolete = Backbone.View.extend({
+	
+	//zone de rendering kIkou math ? a quand une intégration de accueilMobile  en Mquery. . . 
+	el : 'obsolteAccueil',
+	// Fonction appelé automatiquement lors de l'instanciation de la vue
+	initialize : function() {
+		$('#filAriane').hide(); // cacher le fil d'ariane
+		this.render();
+	},
+	render : function(){		
+		template = _.template($('#templateMobile').html(),{phrase:'Veuillez secouer votre iPhone pour découvrir une information aléatoire sur la fin du monde.'});
+		this.$el.attr('style','show').html(template);
+		//Controle si le navigateur peut utiliser le gyroscope
+		if (typeof window.DeviceMotionEvent != 'undefined') {
+			
+	    // Définit la sensibilité du shake
+	    var sensitivity = 20;
+	
+	    // variable de position
+	    var x1 = 0, y1 = 0, z1 = 0, x2 = 0, y2 = 0, z2 = 0;
+	
+	    // ecoute pour bouger les evenement et update la position 
+	    window.addEventListener('devicemotion', function (e) {
+	        x1 = e.accelerationIncludingGravity.x;
+	        y1 = e.accelerationIncludingGravity.y;
+	        z1 = e.accelerationIncludingGravity.z;
+	    }, false);
+	
+	    setInterval(function () {
+	        var change = Math.abs(x1-x2+y1-y2+z1-z2);
+	        if (change > sensitivity) {        	
+				template = _.template($('#templateMobile').html(),{phrase:app.Helpers.getOneInfo()});
+				$('#accueilMobile').html(template);
+	        }
+	
+	        // Update new position
+	        x2 = x1;
+	        y2 = y1;
+	        z2 = z1;
+	    }, 150);
+	}
+	}	
+});
