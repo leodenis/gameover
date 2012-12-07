@@ -382,7 +382,7 @@ app.Helpers.videosVimeo = function(){
 		player.ctx.beginPath();
 		player.ctx.arc(50,50,47,0,2*Math.PI);
 		player.ctx.lineWidth = 6;
-		player.ctx.strokeStyle = "rgba(226,15,15,1)";
+		player.ctx.strokeStyle = "#3C3B36";
 		player.ctx.stroke();
         
         // lorsqu'on clique sur le bouton play d'une video
