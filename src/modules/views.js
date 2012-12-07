@@ -213,7 +213,7 @@ app.Views.home = Backbone.View.extend({
 		//Valeur a récupérer par une requête ajax
 		var oui = 45;
  		var non = 55;
- 		var chang = document.getElementById('commentaire');
+ 		var chang = $("#container_sondage + div");
         chang.className="played"
         //paramètre du sondage
 		paramChart = {
@@ -933,7 +933,7 @@ app.Views.etape6 = app.Views.question.extend({
 	
 	render: function(){
 		//Recupère le html générer avec le template
-		accueilHTML = _.template($('#templateStreetView').html(),{'titreQuestion':'Trouvez un endroit pour passer la nuit : un bunker, un hôtel ou l\'arche la plus proche ?'});
+		accueilHTML = _.template($('#templateStreetView').html(),{'titreQuestion':'Trouvez un endroit pour passer la nuit : un bunker, un hôtel ?'});
 		this.$el.html(accueilHTML);
 		//Définition des paramètre de la street + map (voir helper)
 		var optionModeStreetMap = {
@@ -1427,10 +1427,10 @@ app.Views.etape9 = Backbone.View.extend({
 		for ( var i=1 ; i<=8 ; i++){
 			resultat["question"+i] = text(app.Helpers.getOneScore(i-1));
 			if ( resultat["question"+i] == "Bon"){
-				resultat["color"+i] = 'green';
+				resultat["class"+i] = 'commentaire_survivant';
 			}
 			else{
-				resultat["color"+i] = 'red';
+				resultat["class"+i] = 'commentaire_non_survivant';
 			}
 		}
 

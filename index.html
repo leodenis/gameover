@@ -81,32 +81,34 @@
         <!--Template de l'accueil-->
         <script type="text/template" id="templateAccueil">
             
-                <section itemprop="video" id="video" style="display='none';"> </section> 
-                
-                <section>
-                    <div class="clearfix"> </div>
-                    <section itemprop="image" id="banner"> </section>
-                    <section itemprop="text" id="stats">
-                    	<div class="clearfix"> </div>
-                        <h2 itemprop="keywords">êtes-vous prêt à survivre à la fin du monde ?</h2>
-                        <div id="container_sondage">
-							
-                        </div>
-                        <div id="commentaire">
-                            <p class="commentaire_survivant">66% Survivent</p>
-                            <p class="commentaire_non_survivant">44% Ne survivent pas</p> 
-                        </div>
-                        <div class="clearfix"> </div>
-                    </section>
-                    
-                    <section itemprop="text" id="jeu">
-                        <h2 itemprop="keywords">et toi, penses-tu être à la hauteur ?</h2>
-                        <a itemprop="url" id="etape1" onClick="_gaq.push(['_trackEvent', 'Click', 'startgame', 'startgame1']);">
-                            <img itemprop="image "src="assets/img/go.png" alt="GO !" title="GO !" />
-                        </a>
-                    </section>
+            <section itemprop="video" id="video" style="display='none';"> </section> 
+            
+            <section>
+                <div class="clearfix"> </div>
+                <section itemprop="image" id="banner"> </section>
+                <section itemprop="text" id="stats">
+                	<div class="clearfix"> </div>
+                    <h2 itemprop="keywords">êtes-vous prêt à survivre à la fin du monde ?</h2>
+                    <div id="container_sondage">
+						
+                    </div>
+                    <div id="container_commentaire">
+	                    <div>
+	                        <p class="commentaire_survivant">66% Survivent</p>
+	                        <p class="commentaire_non_survivant">44% Ne survivent pas</p> 
+	                    </div>
+	                </div>
                     <div class="clearfix"> </div>
                 </section>
+                
+                <section itemprop="text" id="jeu">
+                    <h2 itemprop="keywords">et toi, penses-tu être à la hauteur ?</h2>
+                    <a itemprop="url" id="etape1" onClick="_gaq.push(['_trackEvent', 'Click', 'startgame', 'startgame1']);">
+                        <img itemprop="image "src="assets/img/go.png" alt="GO !" title="GO !" />
+                    </a>
+                </section>
+                <div class="clearfix"> </div>
+            </section>
                 
         </script>
         
@@ -199,31 +201,44 @@
 
         <!---Template question end -->
         <script type="text/template" id="endTemplate">
-           <div itemscope itemtype="http://schema.org/ItemList" id="container">
-               <section itemprop="image" id="banner"> </section>
-               <section>
-                    <div class="clearfix"> </div>
-                    <section itemprop="text" id="stats">
-                        <h2 itemprop="keywords"><%= resultatTitle %></h2>
-                        <img src="assets/img/<%= img %>"/>
-                        <div id="commentaire">
-                            <p style="color:<%= color1 %>;">1) <%= question1 %></p>
-                            <p style="color:<%= color2 %>;">2) <%= question2 %></p>
-                            <p style="color:<%= color3 %>;">3) <%= question3 %></p>
-                            <p style="color:<%= color4 %>;">4) <%= question4 %></p>
-                            <p style="color:<%= color5 %>;">5) <%= question5 %></p>
-                            <p style="color:<%= color6 %>;">6) <%= question6 %></p>
-                            <p style="color:<%= color7 %>;">7) <%= question7 %></p>
-                            <p style="color:<%= color8 %>;">8) <%= question8 %></p>
-                        </div>
-                    </section>
-                    
-                    <section itemprop="text" id="jeu">
-                        <h2 itemprop="keywords">Aime notre page !</h2>
-                    </section>
-                    <div class="clearfix"> </div>
+
+           <section itemprop="image" id="banner"> </section>
+           <section>
+                <div class="clearfix"> </div>
+                <section itemprop="text" id="stats">
+                    <h2 itemprop="keywords"><%= resultatTitle %></h2>
+                    <div id="container_sondage">
+                    	<img src="assets/img/<%= img %>"/>
+                    </div>
+                    <div id="container_commentaire">
+	                    <div>
+	                        <table>
+		                        <tr>
+		                        	<td class="<%= class1 %>">(1) <%= question1 %></td>
+		                        	<td class="<%= class2 %>">(2) <%= question2 %></td>
+		                        </tr>
+		                        <tr>
+		                        	<td class="<%= class3 %>">(3) <%= question3 %></td>
+		                        	<td class="<%= class4 %>">(4) <%= question4 %></td>
+		                        </tr>
+		                        <tr>
+		                        	<td class="<%= class5 %>">(5) <%= question5 %></td>
+		                        	<td class="<%= class6 %>">(6) <%= question6 %></td>
+		                        </tr>
+		                        <tr>
+		                        	<td class="<%= class7 %>">(7) <%= question7 %></td>
+		                        	<td class="<%= class8 %>">(8) <%= question8 %></td>
+		                        </tr>
+	                        </table>
+	                    </div>
+	            	</div>
                 </section>
-            </div>
+                
+                <section itemprop="text" id="jeu">
+                    <h2 itemprop="keywords">Invite tes amis !</h2>
+                </section>
+                <div class="clearfix"> </div>
+            </section>
         </script>
         
         <!---Footer statique du site -->
