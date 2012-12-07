@@ -1488,7 +1488,7 @@ app.Views.mobileExperience = Backbone.View.extend({
 	    var x1 = 0, y1 = 0, z1 = 0, x2 = 0, y2 = 0, z2 = 0;
 	
 	    // ecoute pour bouger les evenement et update la position 
-	    window.addEventListener('devicemotion', function (e) {
+	    window.addEventListener('devicemotion',onClick="_gaq.push(['_trackEvent', 'checking', 'check', 'checkphrase']);", function (e) {
 	        x1 = e.accelerationIncludingGravity.x;
 	        y1 = e.accelerationIncludingGravity.y;
 	        z1 = e.accelerationIncludingGravity.z;
