@@ -7,7 +7,6 @@ app.Views.loader = Backbone.View.extend({
 	el : '#loader',
 	// Fonction appelé automatiquement lors de l'instanciation de la vue
 	initialize : function() {
-		console.log(BrowserDetect);
 		this.templateLoader  = $('#templateLoader').html()
 		//Déclaration des events du footer
 		//Gestion de la mise en pause ou non du son ambiant
@@ -59,8 +58,8 @@ app.Views.loader = Backbone.View.extend({
 			
 		//Lancement du rendu pour internet explorer 6 & 7
 		if((BrowserDetect.browser == 'Explorer' && BrowserDetect.version == '7') || (BrowserDetect.browser == 'Explorer' && BrowserDetect.version == '6')){
-			app.router = new app.Router();
-			Backbone.history.start();
+			console.log('ie');
+			alert('Télécharger un navigateur de qualité !')
 		}else{
 		//Lancement du rendu de chargement si ce n'est pas un iphone ou ipad
 			if((navigator.userAgent.match(/iPhone/i))||(navigator.userAgent.match(/iPad/i))){
@@ -432,7 +431,7 @@ app.Views.etape1 = Backbone.View.extend({
 			callback: function(val) { 
 				if(val == 'O'){
 					app.Helpers.setPointEtape(app.Helpers.getCurrentQuestion(),50);
-					app.Helpers.unlockQuestion('8');
+					app.Helpers.unlockQuestion('1');
 					app.router.navigate('etape2', true);
 				}
 			},
