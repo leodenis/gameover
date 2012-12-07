@@ -101,9 +101,9 @@ app.Views.loader = Backbone.View.extend({
 				};
 				//Configuration du Son ambiant
 				app.Assets.sounds.ambiant.loop = true;
-				app.Assets.sounds.ambiant.volume = 0.1;
-				app.Assets.sounds.boum.volume = 0.1;
-				app.Assets.sounds.tranquille.volume = 0.1;
+				app.Assets.sounds.ambiant.volume = 0.5;
+				app.Assets.sounds.boum.volume = 0.6;
+				app.Assets.sounds.tranquille.volume = 0.6;
 				
 				//supprime le loader
 				$('#loader').remove();
