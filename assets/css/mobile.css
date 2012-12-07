@@ -32,6 +32,8 @@
 		margin:0 auto;
 		left:0;
 		right:0;
+		background:url("../img/logo@2x.png") center no-repeat;
+		background-size: 90px 90px;
 	}
 	
 	header > a, header > div {
