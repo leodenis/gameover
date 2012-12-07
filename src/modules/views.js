@@ -1296,7 +1296,7 @@ app.Views.etape8 = app.Views.question.extend({
 			},
 			markersStreet : [
 					{
-						title : 'Partir à droite',
+						title : 'Partir à gauche',
 						position : new google.maps.LatLng(48.851960,2.421070),
 						events: [
 							{
@@ -1307,7 +1307,7 @@ app.Views.etape8 = app.Views.question.extend({
 						],
 					},
 					{
-						title : 'Partir à gauche',
+						title : 'Partir à droite',
 						position : new google.maps.LatLng(48.85185,2.421125),
 						events: [
 							{
