@@ -1417,6 +1417,7 @@ app.Views.etape9 = Backbone.View.extend({
 	
 	render : function(){
 		var resultat = {};
+		var score = 0;
 		function text(points){
 			var resultat;
 			if(points == 50){
@@ -1431,14 +1432,14 @@ app.Views.etape9 = Backbone.View.extend({
 			resultat["question"+i] = text(app.Helpers.getOneScore(i-1));
 			if ( resultat["question"+i] == "Bon"){
 				resultat["class"+i] = 'commentaire_survivant';
+				score++;
 			}
 			else{
 				resultat["class"+i] = 'commentaire_non_survivant';
 			}
 		}
 
-		score = app.Helpers.getScore();
-		if(score <= 350){
+		if(score <= 5){
 			//push sur le serveur le score
 			app.Helpers.SetResultSurvive(false);
 			resultat["img"] = 'rouge.png';
